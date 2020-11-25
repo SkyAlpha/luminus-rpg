@@ -1,32 +1,30 @@
-import Phaser from "phaser";
-import logoImg from "./assets/logo.png";
+import Phaser from 'phaser';
+import { MainScene } from './MainScene';
+import { Plugin as NineSlicePlugin } from 'phaser3-nineslice';
 
 const config = {
-  type: Phaser.AUTO,
-  parent: "phaser-example",
-  width: 800,
-  height: 600,
-  scene: {
-    preload: preload,
-    create: create
-  }
+    type: Phaser.AUTO,
+    parent: 'collision-test',
+    width: 800,
+    height: 600,
+    scene: [MainScene],
+    plugins: {
+        global: [NineSlicePlugin.DefaultCfg],
+    },
+    physics: {
+        default: 'arcade',
+        arcade: {
+            gravity: { y: 0 }, // Top down game, so no gravity
+            checkCollision: false,
+            debug: true,
+            debugShowBody: true,
+            debugShowStaticBody: true,
+            debugShowVelocity: true,
+            debugVelocityColor: 0xffff00,
+            debugBodyColor: 0x0000ff,
+            debugStaticBodyColor: 0xffffff,
+        },
+    },
 };
 
 const game = new Phaser.Game(config);
-
-function preload() {
-  this.load.image("logo", logoImg);
-}
-
-function create() {
-  const logo = this.add.image(400, 150, "logo");
-
-  this.tweens.add({
-    targets: logo,
-    y: 450,
-    duration: 2000,
-    ease: "Power2",
-    yoyo: true,
-    loop: -1
-  });
-}

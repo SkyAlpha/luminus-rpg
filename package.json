@@ -33,6 +33,9 @@
     "webpack-merge": "^4.2.2"
   },
   "dependencies": {
-    "phaser": "^3.20.1"
+    "css-loader": "^5.0.1",
+    "nes.css": "^2.3.0",
+    "phaser": "^3.24.1",
+    "phaser3-nineslice": "^0.5.0"
   }
 }
