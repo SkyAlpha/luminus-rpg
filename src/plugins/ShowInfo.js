@@ -2,7 +2,13 @@ import Phaser from 'phaser';
 
 export class ShowInfo {
     /**
-     * Creates a Dialog to show messages from static objects.
+     * This class allows one to create Dialogs with "Tiled" map editor https://www.mapeditor.org/
+     * Using the Objects layer https://doc.mapeditor.org/en/stable/manual/objects/ and open them
+     * seemlessly with phaser.
+     *
+     * You should a game object to check if it overlaps your dialog information.
+     *
+     * Simply put, It Creates a Dialog to show messages from static objects created with "Tiled".
      * @param {Phaser.Scene} scene // Scene Context.
      * @param {Phaser.GameObjects} player // Player Game Object.
      * @param {Phaser.Tilemaps.Tilemap} map Tile Map to get the object from.
@@ -44,7 +50,7 @@ export class ShowInfo {
         this.dlg.depth = 99;
         this.dlg.visible = false;
 
-        this.buttonAction = this.scene.add
+        this.actionButton = this.scene.add
             .image(
                 this.scene.cameras.main.width - this.margin_dialog * 3,
                 this.scene.cameras.main.height -
@@ -55,10 +61,10 @@ export class ShowInfo {
             .setDepth(9999)
             .setScrollFactor(0, 0)
             .setScale(this.actionSpriteScale);
-        this.buttonAction.visible = false;
+        this.actionButton.visible = false;
 
         this.scene.tweenKey = this.scene.add.tween({
-            targets: this.buttonAction,
+            targets: this.actionButton,
             yoyo: true,
             repeat: -1,
             scale: { from: this.actionSpriteScale, to: 0.4 },
@@ -104,12 +110,15 @@ export class ShowInfo {
             zones.push({ ...zone, message: infoObj.properties[0].value });
         });
 
+        /**
+         * Checks if the player is overlapping the Tiled map Zone.
+         */
         this.scene.physics.add.overlap(
             zones,
             this.player,
             (zone) => {
                 this.isOverlapingChat = true;
-                this.buttonAction.visible = true;
+                this.actionButton.visible = true;
                 this.dialogMessage = zone.message;
             },
             (d) => {
@@ -140,8 +149,12 @@ export class ShowInfo {
         });
     }
 
+    /**
+     * Shows the dialog with the message from the zone it's overlaping.
+     * Make sure you have only one overlaping zone with the player.
+     */
     showDialog() {
-        this.buttonAction.visible = false;
+        this.actionButton.visible = false;
         this.dlg.visible = true;
         this.canShowDialog = false;
         this.dlg.textMessage = this.scene.add
@@ -181,14 +194,18 @@ export class ShowInfo {
         );
     }
 
+    /**
+     * Checks if the player is still overlaping the zone.
+     * Hides the action button if it's not overlaping the zone.
+     */
     checkUpdate() {
         if (
-            this.buttonAction &&
+            this.actionButton &&
             this.isMoving() &&
             this.player.body.touching.none &&
             this.isOverlapingChat
         ) {
-            this.buttonAction.visible = false;
+            this.actionButton.visible = false;
             this.isOverlapingChat = false;
         }
     }
