@@ -89,6 +89,14 @@ export class ShowInfo {
          * @type {number}  */
         this.fontSize = 20;
         /**
+         * Current dialog page.
+         * @type {number}  */
+        this.currentPage = 0;
+        /**
+         * Dialog font width.
+         * @type {number}  */
+        this.fontWidth = this.fontSize - 5;
+        /**
          * Maximum number of lines.
          * @type {number}  */
         this.dialogMaxLines = 5;
@@ -130,7 +138,7 @@ export class ShowInfo {
 
         this.actionButton = this.scene.add
             .image(
-                this.scene.cameras.main.width - this.margin * 3,
+                this.scene.cameras.main.width - this.margin * 4,
                 this.scene.cameras.main.height -
                     // this.dialog_height -
                     this.margin * 3,
@@ -145,7 +153,10 @@ export class ShowInfo {
             targets: this.actionButton,
             yoyo: true,
             repeat: -1,
-            scale: { from: this.actionSpriteScale, to: 0.4 },
+            scale: {
+                from: this.actionSpriteScale,
+                to: this.actionSpriteScale - 0.15,
+            },
             duration: 1000,
         });
 
@@ -165,12 +176,9 @@ export class ShowInfo {
 
         this.dialog.zone.on('pointerdown', (pointer) => {
             if (this.dialog.textMessage && this.dialog.textMessage.active) {
-                console.log(this.dialog.textMessage.active);
                 this.dialog.textMessage.destroy();
                 this.dialog.visible = false;
-
                 this.canShowDialog = true;
-                console.log(this.player.body.checkCollision);
             }
         });
         // Rules to show informations!
@@ -198,7 +206,7 @@ export class ShowInfo {
             (zone) => {
                 this.isOverlapingChat = true;
                 this.actionButton.visible = true;
-                this.dialogMessage = zone.message;
+                this.dialogMessage = zone.message.trim();
             },
             (d) => {
                 return this.canShowDialog;
@@ -209,6 +217,7 @@ export class ShowInfo {
         );
 
         this.scene.input.keyboard.on('keydown', (key) => {
+            // if (this.keyObj.isDown) debugger;
             if (
                 this.isOverlapingChat &&
                 this.keyObj.isDown &&
@@ -216,7 +225,15 @@ export class ShowInfo {
             ) {
                 this.showDialog();
             } else if (this.isAnimatingText && this.keyObj.isDown) {
-                this.setText(this.dialogMessage, false);
+                this.setText(this.pagesMessage[this.currentPage], false);
+            } else if (
+                !this.isAnimatingText &&
+                this.currentPage !== this.pagesNumber - 1 &&
+                this.keyObj.isDown
+            ) {
+                this.currentPage++;
+                this.dialog.textMessage.text = '';
+                this.setText(this.pagesMessage[this.currentPage], true);
             } else if (
                 this.keyObj.isDown &&
                 this.dialog.visible &&
@@ -235,14 +252,21 @@ export class ShowInfo {
      * Make sure you have only one overlaping zone with the player.
      */
     showDialog() {
-        this.actionButton.visible = false;
+        this.currentPage = 0;
+        // this.actionButton.visible = false;
         this.dialog.visible = true;
         this.canShowDialog = false;
         const maxLettersPage =
-            Math.floor(this.textWidth / this.fontSize) * this.dialogMaxLines;
-        this.pageNumber = Math.ceil(this.dialogMessage.length / maxLettersPage);
-
-        console.log('Max pages', this.pageNumber);
+            Math.floor(this.textWidth / this.fontWidth) * this.dialogMaxLines;
+        this.pagesNumber = Math.ceil(
+            this.dialogMessage.length / maxLettersPage
+        );
+        this.pagesMessage = [];
+        for (let i = 0; i < this.pagesNumber; i++) {
+            this.pagesMessage.push(
+                this.dialogMessage.substr(i * maxLettersPage, maxLettersPage)
+            );
+        }
 
         this.dialog.textMessage = this.scene.add
             .text(
@@ -259,7 +283,7 @@ export class ShowInfo {
                     fontSize: this.fontSize,
                     maxLines: this.dialogMaxLines,
                     letterSpacing: this.letterSpacing,
-                    fontFamily: 'Arial, monospace',
+                    fontFamily: 'Monospace',
                 }
             )
             .setScrollFactor(0, 0)
@@ -269,7 +293,7 @@ export class ShowInfo {
                 this.dialog_height
             );
         // Animates the text
-        this.setText(this.dialogMessage, true);
+        this.setText(this.pagesMessage[0], true);
     }
 
     /**
@@ -281,7 +305,6 @@ export class ShowInfo {
         // Reset the dialog
         this.eventCounter = 0;
         this.animationText = text.split('');
-        console.log(this.animationText);
         if (this.timedEvent) this.timedEvent.remove();
 
         // var tempText = animate ? '' : text;

@@ -141,7 +141,9 @@
  <objectgroup id="7" name="info">
   <object id="19" name="statue_of_alien" x="-118" y="76.2424" width="43.3333" height="55.1515">
    <properties>
-    <property name="message" value="Lorem ipsum dolor sit amend. Lorem ipsum dolor sit amend. Lorem ipsum dolor sit amend. Lorem ipsum dolor sit amend.Lorem ipsum dolor sit amend. Lorem ipsum dolor sit amend.Lorem ipsum dolor sit amend. Lorem ipsum dolor sit amend."/>
+    <property name="message">Lorem ipsum dolor sit amend. Lorem ipsum dolor sit amend. Lorem ipsum dolor sit amend. Lorem ipsum dolor sit amend.Lorem ipsum dolor sit amend. Lorem ipsum dolor sit amend.Lorem ipsum dolor sit amend. Lorem ipsum dolor sit amend.
+
+Lorem ipsum dolor sit amend. Lorem ipsum dolor sit amend. Lorem ipsum dolor sit amend. Lorem ipsum dolor sit amend.Lorem ipsum dolor sit amend. Lorem ipsum dolor sit amend.Lorem ipsum dolor sit amend. Lorem ipsum dolor sit amend.</property>
    </properties>
   </object>
   <object id="20" name="canon" x="171.273" y="119.636" width="44.7273" height="28.3636">

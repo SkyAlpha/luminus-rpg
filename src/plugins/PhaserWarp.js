@@ -28,7 +28,7 @@ export class PhaserWarp {
         const warp_points = [];
 
         warp_array.forEach((warp) => {
-            // For log purpposes
+            // For logging purpposes
             // let rect = this.add.rectangle(
             //     warp.x,
             //     warp.y,

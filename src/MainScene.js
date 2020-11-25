@@ -28,7 +28,6 @@ export class MainScene extends Phaser.Scene {
 
         this.load.tilemapTiledJSON('larus', tile_map_json);
         this.load.css('nescss', 'node_modules/nes.css/css/nes.min.css');
-        // this.load.css('nescss', 'node_modules/nes.css/css/nes.css');
     }
 
     create() {
