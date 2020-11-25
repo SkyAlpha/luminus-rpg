@@ -54,12 +54,7 @@ export class MainScene extends Phaser.Scene {
             'collision',
             collision_tilset
         );
-        const overplayer_layer = map.createStaticLayer(
-            'overplayer',
-            tileset,
-            0,
-            0
-        );
+        const overplayer_layer = map.createStaticLayer('overplayer', tileset);
         overplayer_layer.depth = 99;
         // Hides the collision map.
         collision_layer.alpha = 0;

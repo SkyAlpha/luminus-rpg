@@ -108,7 +108,7 @@ export class PhaserDialogBox {
         /**
          * @type { string }
          */
-        this.fontFamily = '"Press Start 2P", Monospace';
+        this.fontFamily = 'Monospace, "Press Start 2P"';
     }
 
     create() {

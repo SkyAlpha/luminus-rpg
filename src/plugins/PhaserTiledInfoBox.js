@@ -6,10 +6,9 @@ import { PhaserDialogBox } from './PhaserDialogBox';
 export class PhaserTiledInfoBox {
     /**
      * This class allows one to create Dialogs with "Tiled" map editor <a href="https://www.mapeditor.org/">Tiled</a>
-     * Using the Objects layer https://doc.mapeditor.org/en/stable/manual/objects/ and open them
-     * seemlessly with phaser.
+     * Using the Objects layer https://doc.mapeditor.org/en/stable/manual/objects/ and open them seamlessly with phaser.
      *
-     * You should a game object to check if it overlaps your dialog information.
+     * You should add a game object to check if it overlaps your dialog information.
      *
      * Simply put, It Creates a Dialog to show messages from static objects created with "Tiled".
      * @param {Phaser.Scene} scene Scene Context.
