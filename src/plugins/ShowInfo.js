@@ -17,23 +17,28 @@ export class ShowInfo {
         this.scene = scene;
         this.player = player; // Player to compare overlaps.
         this.map = map;
-        this.dialog_height = 150; // Dialog Height
-        this.margin_dialog = 15; // Margin to border.
-        this.objectLayer = 'info';
+        this.tiledObjectLayer = 'info';
         this.dialogSpriteName = 'dialog';
         this.actionButtonSprite = 'space';
         /** @type {Phaser.Input.Keyboard.KeyCodes} */
         this.actionButtonKeyCode = Phaser.Input.Keyboard.KeyCodes.SPACE;
+        this.dialog_height = 150; // Dialog Height
+        this.margin_dialog = 15; // Margin to border.
         this.nineSliceOffsets = 23;
         this.nineSliceSafeArea = 12;
         this.actionSpriteScale = 0.5;
+        this.dialogSpeed = 200;
+        this.fontSize = 20;
+        this.dialogMaxLines = 5;
+        this.textWidth = this.scene.cameras.main.width - this.margin_dialog * 3; // Defines the text Width.
         this.canShowDialog = true;
         this.isOverlapingChat = false;
+        this.isAnimatingText = false;
     }
 
     create() {
         // Rules to show informations!
-        const infoObjects = this.map.getObjectLayer(this.objectLayer);
+        const infoObjects = this.map.getObjectLayer(this.tiledObjectLayer);
 
         this.dlg = this.scene.add.nineslice(
             this.margin_dialog,
@@ -136,6 +141,8 @@ export class ShowInfo {
                 !this.dlg.visible
             ) {
                 this.showDialog();
+            } else if (this.isAnimatingText && this.keyObj.isDown) {
+                this.setText(this.dialogMessage, false);
             } else if (
                 this.keyObj.isDown &&
                 this.dlg.visible &&
@@ -157,20 +164,24 @@ export class ShowInfo {
         this.actionButton.visible = false;
         this.dlg.visible = true;
         this.canShowDialog = false;
+        console.log(Math.floor(this.textWidth / this.fontSize));
+        console.log(
+            Math.floor(this.textWidth / this.fontSize) * this.dialogMaxLines
+        );
+
         this.dlg.textMessage = this.scene.add
             .text(
                 this.margin_dialog * 2,
                 this.scene.cameras.main.height +
                     this.margin_dialog / 2 -
                     this.dialog_height,
-                this.dialogMessage,
+                '',
                 {
                     wordWrap: {
-                        width:
-                            this.scene.cameras.main.width -
-                            this.margin_dialog * 3,
+                        width: this.textWidth,
                     },
-                    maxLines: 5,
+                    fontSize: this.fontSize,
+                    maxLines: this.dialogMaxLines,
                 }
             )
             .setScrollFactor(0, 0)
@@ -179,6 +190,53 @@ export class ShowInfo {
                 this.scene.cameras.main.width - this.margin_dialog * 3,
                 this.dialog_height
             );
+        // Animates the text
+        this.setText(this.dialogMessage, true);
+    }
+
+    /**
+     * Sets the text for the dialog window.
+     * @param { string } text The text string to be shown in the dialog.
+     * @param { boolean } animate Rather it should animate the text or not. If it's false, it will stop the animation text in process.
+     */
+    setText(text, animate = false) {
+        // Reset the dialog
+        this.eventCounter = 0;
+        this.animationText = text.split('');
+        if (this.timedEvent) this.timedEvent.remove();
+
+        // var tempText = animate ? '' : text;
+        // this.setText(tempText);
+
+        if (animate) {
+            this.isAnimatingText = true;
+            this.timedEvent = this.scene.time.addEvent({
+                delay: Math.floor(1000 / this.dialogSpeed),
+                callback: this.animateText,
+                callbackScope: this,
+                loop: true,
+            });
+        } else {
+            if (this.timedEvent) this.timedEvent.remove();
+            this.isAnimatingText = false;
+            this.dlg.textMessage.text = text;
+        }
+    }
+
+    /**
+     * Slowly displays the text in the window to make it appear annimated
+     * */
+    animateText() {
+        this.eventCounter++;
+        this.dlg.textMessage.setText(
+            this.dlg.textMessage.text +
+                this.animationText[this.eventCounter - 1]
+        );
+        // Stops the text animation.
+        if (this.eventCounter === this.animationText.length) {
+            this.isAnimatingText = false;
+            this.timedEvent.remove();
+        }
     }
 
     /**
