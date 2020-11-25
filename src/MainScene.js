@@ -1,7 +1,8 @@
 import Phaser from 'phaser';
-import tiles from './assets/maps/Overworld.png';
-import collision_tile from './assets/maps/collision.png';
-import tile_map_json from './assets/maps/larus.json';
+import tiles from './assets/maps/tilesets/Overworld.png';
+import inner from './assets/maps/tilesets/Inner.png';
+import collision_tile from './assets/maps/tilesets/collision.png';
+import tile_map_json from './assets/maps/larus/larus.json';
 import player_image from './assets/sprites/player.png';
 import dialog from './assets/sprites/dialog.png';
 import space from './assets/sprites/space_key.png';
@@ -25,6 +26,7 @@ export class MainScene extends Phaser.Scene {
         this.load.image('space', space);
         this.load.image('tiles', tiles);
         this.load.image('collision_tiles', collision_tile);
+        this.load.image('inner', inner);
 
         this.load.tilemapTiledJSON('larus', tile_map_json);
         this.load.css('nescss', 'node_modules/nes.css/css/nes.min.css');
@@ -43,18 +45,24 @@ export class MainScene extends Phaser.Scene {
         });
         const map = this.make.tilemap({ key: 'larus' });
         const tileset = map.addTilesetImage('base', 'tiles', 16, 16, 0, 0);
+        const inner = map.addTilesetImage('inner', 'inner', 16, 16, 0, 0);
         const collision_tilset = map.addTilesetImage(
             'collision',
             'collision_tiles'
         );
 
-        const base = map.createStaticLayer('base', tileset);
-        const overlay = map.createStaticLayer('overlay', tileset);
+        const base = map.createStaticLayer('base', [tileset, inner]);
+        const overlay = map.createStaticLayer('overlay', [tileset, inner]);
+        const overlay2 = map.createStaticLayer('overlay2', [tileset, inner]);
+        const overlay3 = map.createStaticLayer('overlay3', [tileset, inner]);
+        const overplayer_layer = map.createStaticLayer('overplayer', [
+            tileset,
+            inner,
+        ]);
         const collision_layer = map.createStaticLayer(
             'collision',
             collision_tilset
         );
-        const overplayer_layer = map.createStaticLayer('overplayer', tileset);
         overplayer_layer.depth = 99;
         // Hides the collision map.
         collision_layer.alpha = 0;
