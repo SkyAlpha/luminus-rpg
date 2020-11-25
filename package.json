@@ -6,7 +6,7 @@
   "scripts": {
     "build": "webpack --config webpack/prod.js ",
     "start": "webpack-dev-server --config webpack/base.js --open",
-    "jsdoc": "jsdoc src -r -c jsdoc.config.json && browser-sync start --server --files 'docs/*.html' "
+    "jsdoc": "jsdoc src -r -c jsdoc.config.json && npx browser-sync start --server --files 'docs/*.html' --startPath docs/"
   },
   "repository": {
     "type": "git",

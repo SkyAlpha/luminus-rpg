@@ -5,20 +5,49 @@ import Phaser from 'phaser';
  */
 export class PhaserWarp {
     /**
-     *
+     * Creates a portal at the Tiled object Specified position.
      * @param {Phaser.Scene} scene Phaser scene that it will control.
      * @param {GameObject} player the game object that will be teleported to a certain spot.
      */
     constructor(scene, player, map) {
+        /**
+         * scene Scene Context.
+         * @type { Phaser.Scene }  */
         this.scene = scene;
+        /**
+         * player Player Game Object.
+         * @type { Phaser.GameObjects }  */
         this.player = player;
+        /**
+         * Tile Map to get the object from.
+         * @type {Phaser.Tilemaps.Tilemap} */
         this.map = map;
+        /**
+         * Duration of the fade time of the camera.
+         * @type { number }
+         */
         this.defaultFadeTime = 1000;
+        /**
+         * Duration of the fade in time of the camera.
+         * @type { number }
+         */
         this.fadeOutTime = this.defaultFadeTime;
+        /**
+         * Duration of the fade in time of the camera.
+         * @type { number }
+         */
         this.fadeInTime = this.defaultFadeTime;
-        this.maxSpeed = this.player.body.maxSpeed;
-
+        /**
+         * Name of the object defined in the Tiled Software to pull the Warps from.
+         * @type { string }
+         */
         this.warpObjectName = 'warps'; // Default name of the warps object created in the Tiled Software.
+        /**
+         * Name of  property of the object defined in the Tiled Software to pull the destination position from.
+         * @type { string }
+         */
+        this.propertyWarpName = 'goto';
+        this.maxSpeed = this.player.body.maxSpeed;
     }
 
     createWarps() {
@@ -63,7 +92,11 @@ export class PhaserWarp {
             this.player,
             (warp_point, player) => {
                 const dest = destinations.find(
-                    (d) => d.id === warp_point.warp.properties[0].value
+                    (d) =>
+                        d.id ===
+                        warp_point.warp.properties.filter(
+                            (f) => f.name === this.propertyWarpName
+                        )[0].value
                 );
                 this.scene.cameras.main.fade(this.fadeOutTime);
                 if (dest) {

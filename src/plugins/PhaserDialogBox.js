@@ -3,60 +3,44 @@ import Phaser from 'phaser';
 /**
  * @class
  */
-export class ShowInfo {
+export class PhaserDialogBox {
     /**
-     * This class allows one to create Dialogs with "Tiled" map editor <a href="https://www.mapeditor.org/">Tiled</a>
-     * Using the Objects layer https://doc.mapeditor.org/en/stable/manual/objects/ and open them
-     * seemlessly with phaser.
-     *
-     * You should a game object to check if it overlaps your dialog information.
-     *
-     * Simply put, It Creates a Dialog to show messages from static objects created with "Tiled".
-     * @param {Phaser.Scene} scene Scene Context.
-     * @param {Phaser.GameObjects} player Player Game Object.
-     * @param {Phaser.Tilemaps.Tilemap} map Tile Map to get the object from.
+     * This class allows one to create Dialogs.
+     * It's possible to set the Action Hotkey, Action button Sprite, Dialog Sprite image,
+     * @param { Phaser.Scene } scene Scene Context.
+     * @param { Phaser.GameObjects } player Player Game Object.
+     * @param { Phaser.Tilemaps.Tilemap } map Tile Map to get the object from.
      */
     constructor(scene, player, map) {
         /**
          * scene Scene Context.
-         * @type {Phaser.Scene}  */
+         * @type { Phaser.Scene }  */
         this.scene = scene;
         /**
          * player Player Game Object.
-         * @type {Phaser.GameObjects}  */
-        this.player = player; // Player to compare overlaps.
-        /**
-         * Tile Map to get the object from.
-         * @type {Phaser.Tilemaps.Tilemap} */
-        this.map = map;
-        /**
-         * Name of the object Layer in the "Tiled" software. <a href="https://www.mapeditor.org/">Tiled</a>
-         * Check Tiled Docs to learn more <a href="https://doc.mapeditor.org/en/stable/manual/objects/">Tiled</a>
-         * @type {string} */
-        this.tiledObjectLayer = 'info';
+         * @type { Phaser.GameObjects }  */
+        this.player = player;
+
         /**
          * Name of the sprite image that will be the dialog.
-         *  @type {string} */
+         *  @type { string } */
         this.dialogSpriteName = 'dialog';
         /**
          * Name of the Sprite of the button action.
-         * @type {string} */
+         * @type { string } */
         this.actionButtonSprite = 'space';
-        /**
-         * Object Attribute that the you created in the Tiled Software
-         * @type {string}  */
-        this.messageAttribute = 'message';
+
         /**
          * Current action button key code.
-         * @type {Phaser.Input.Keyboard.KeyCodes} */
+         * @type { Phaser.Input.Keyboard.KeyCodes } */
         this.actionButtonKeyCode = Phaser.Input.Keyboard.KeyCodes.SPACE;
         /**
          * Dialog height.
-         * @type {number}  */
-        this.dialog_height = 150; // Dialog Height
+         * @type { number }  */
+        this.dialogHeight = 150; // Dialog Height
         /**
          * Margin of the dialog. Used to make spaces in the dialog.
-         * @type {number}  */
+         * @type { number }  */
         this.margin = 15;
         /**
          * Width and Height of the corner Slice.
@@ -70,64 +54,69 @@ export class ShowInfo {
          * // 2	[ topBottom, leftRight ]	The first element is used for the top and bottom, the second element is used as the for the left and right
          * // 3	[ top, rightLeft, bottom ]	The first element is used for the top, second is used for the right and left, and the third element is used for the bottom
          * // 4	[ top, right, bottom, left ]	Each element is assigned to a specific side
-         * @type {number | number []}  */
+         * @type { number | Array<number> }  */
         this.nineSliceOffsets = 23;
         /**
          * Safe area of the scaling areas..
-         * @type {number}  */
+         * @type { number }  */
         this.nineSliceSafeArea = 12;
         /**
          * Sacele of the action button sprite.
-         * @type {number}  */
+         * @type { number }  */
         this.actionSpriteScale = 0.5;
         /**
          * Spelling speed of the text in the dialog box.
-         * @type {number}  */
+         * @type { number }  */
         this.dialogSpeed = 200;
         /**
          * Dialog font size.
-         * @type {number}  */
-        this.fontSize = 20;
+         * @type { number }  */
+        this.fontSize = 15;
         /**
          * Current dialog page.
-         * @type {number}  */
+         * @type { number }  */
         this.currentPage = 0;
         /**
          * Dialog font width.
-         * @type {number}  */
+         * @type { number }  */
         this.fontWidth = this.fontSize - 5;
         /**
          * Maximum number of lines.
-         * @type {number}  */
+         * @type { number }  */
         this.dialogMaxLines = 5;
         /**
          * Space between lines of the dialog text.
-         * @type {number}  */
+         * @type { number }  */
         this.letterSpacing = 0;
         /**
          * Max width of the text inside the dialog.
-         * @type {number}  */
+         * @type { number }  */
         this.textWidth = this.scene.cameras.main.width - this.margin * 3; // Defines the text Width.
         /**
          * Rather it can show de dialog of not.
-         * @type {boolean}  */
+         * @type { boolean }  */
         this.canShowDialog = true;
         /**
          * Defines if the player is overlapping the text zone.
-         * @type {boolean}  */
+         * @type { boolean }  */
         this.isOverlapingChat = false;
         /**
          * Defines if the text is in spelling/typping animation.
-         * @type {boolean}  */
+         * @type { boolean }  */
         this.isAnimatingText = false;
+
+        /**
+         * @type { string }
+         */
+        this.fontFamily = '"Press Start 2P", Monospace';
     }
 
     create() {
         this.dialog = this.scene.add.nineslice(
             this.margin,
-            this.scene.cameras.main.height - this.dialog_height - this.margin, // this is the starting x/y location
+            this.scene.cameras.main.height - this.dialogHeight - this.margin, // this is the starting x/y location
             this.scene.cameras.main.width - this.margin * 2,
-            this.dialog_height, // the width and height of your object
+            this.dialogHeight, // the width and height of your object
             this.dialogSpriteName, // a key to an already loaded image
             this.nineSliceOffsets, // the width and height to offset for a corner slice
             this.nineSliceSafeArea // (optional) pixels to offset when computing the safe usage area
@@ -164,54 +153,24 @@ export class ShowInfo {
             .zone(
                 this.margin,
                 this.scene.cameras.main.height -
-                    this.dialog_height -
+                    this.dialogHeight -
                     this.margin, // this is the starting x/y location
                 this.scene.cameras.main.width - this.margin * 2,
-                this.dialog_height
+                this.dialogHeight
             )
             .setInteractive()
             .setOrigin(0, 0);
         this.dialog.zone.setScrollFactor(0, 0);
         this.dialog.zone.depth = 999;
 
-        this.dialog.zone.on('pointerdown', (pointer) => {
-            if (this.dialog.textMessage && this.dialog.textMessage.active) {
-                this.dialog.textMessage.destroy();
-                this.dialog.visible = false;
-                this.canShowDialog = true;
-            }
-        });
-        // Rules to show informations!
-        const infoObjects = this.map.getObjectLayer(this.tiledObjectLayer);
-        let zones = [];
-        infoObjects.objects.forEach((infoObj) => {
-            let zone = this.scene.add.zone(
-                infoObj.x,
-                infoObj.y,
-                infoObj.width,
-                infoObj.height
-            );
-            this.scene.physics.add.existing(zone);
-            zone.setOrigin(0, 0);
-            zone.body.immovable = true;
-            zones.push({ ...zone, message: infoObj.properties[0].value });
-        });
+        // this.dialog.zone.on('pointerdown', (pointer) => {
+        //     if (this.dialog.textMessage && this.dialog.textMessage.active) {
+        //         this.dialog.textMessage.destroy();
+        //         this.dialog.visible = false;
+        //         this.canShowDialog = true;
+        //     }
+        // });
 
-        /**
-         * Checks if the player is overlapping the Tiled map Zone.
-         */
-        this.scene.physics.add.overlap(
-            zones,
-            this.player,
-            (zone) => {
-                this.isOverlapingChat = true;
-                this.actionButton.visible = true;
-                this.dialogMessage = zone.message.trim();
-            },
-            (d) => {
-                return this.canShowDialog;
-            }
-        );
         this.keyObj = this.scene.input.keyboard.addKey(
             this.actionButtonKeyCode
         );
@@ -273,7 +232,7 @@ export class ShowInfo {
                 this.margin * 2,
                 this.scene.cameras.main.height +
                     this.margin / 2 -
-                    this.dialog_height,
+                    this.dialogHeight,
                 '',
                 {
                     wordWrap: {
@@ -283,14 +242,14 @@ export class ShowInfo {
                     fontSize: this.fontSize,
                     maxLines: this.dialogMaxLines,
                     letterSpacing: this.letterSpacing,
-                    fontFamily: 'Monospace',
+                    fontFamily: this.fontFamily,
                 }
             )
             .setScrollFactor(0, 0)
             .setDepth(99999999999999999)
             .setFixedSize(
                 this.scene.cameras.main.width - this.margin * 3,
-                this.dialog_height
+                this.dialogHeight
             );
         // Animates the text
         this.setText(this.pagesMessage[0], true);

@@ -6,7 +6,7 @@ import player_image from './assets/sprites/player.png';
 import dialog from './assets/sprites/dialog.png';
 import space from './assets/sprites/space_key.png';
 import { PhaserWarp } from './plugins/PhaserWarp';
-import { ShowInfo } from './plugins/ShowInfo';
+import { PhaserTiledInfoBox } from './plugins/PhaserTiledInfoBox';
 
 let player;
 let cursors;
@@ -28,9 +28,19 @@ export class MainScene extends Phaser.Scene {
 
         this.load.tilemapTiledJSON('larus', tile_map_json);
         this.load.css('nescss', 'node_modules/nes.css/css/nes.min.css');
+        this.load.script(
+            'webfont',
+            'https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js'
+        );
     }
 
     create() {
+        WebFont.load({
+            google: {
+                families: ['Press Start 2P'],
+            },
+            active: function () {},
+        });
         const map = this.make.tilemap({ key: 'larus' });
         const tileset = map.addTilesetImage('base', 'tiles', 16, 16, 0, 0);
         const collision_tilset = map.addTilesetImage(
@@ -75,13 +85,15 @@ export class MainScene extends Phaser.Scene {
 
         const phaserWarp = new PhaserWarp(this, player, map);
         phaserWarp.createWarps();
-
-        this.showInfoPlugin = new ShowInfo(this, player, map);
-        this.showInfoPlugin.create();
+        /**
+         * @type {PhaserTiledInfoBox}
+         */
+        this.phaserTiledInfoBox = new PhaserTiledInfoBox(this, player, map);
+        this.phaserTiledInfoBox.create();
     }
 
     update(time, delta) {
-        this.showInfoPlugin.checkUpdate();
+        this.phaserTiledInfoBox.phaserDialogBox.checkUpdate();
         if (this.input.isActive) {
             // Stop any previous movement from the last frame
             player.body.setVelocity(0);
