@@ -5,7 +5,8 @@
   "main": "src/index.js",
   "scripts": {
     "build": "webpack --config webpack/prod.js ",
-    "start": "webpack-dev-server --config webpack/base.js --open"
+    "start": "webpack-dev-server --config webpack/base.js --open",
+    "jsdoc": "jsdoc src -r -c jsdoc.config.json && browser-sync start --server --files 'docs/*.html' "
   },
   "repository": {
     "type": "git",
@@ -22,9 +23,11 @@
     "@babel/core": "^7.7.2",
     "@babel/preset-env": "^7.7.1",
     "babel-loader": "^8.0.6",
+    "browser-sync": "^2.26.13",
     "clean-webpack-plugin": "^3.0.0",
     "file-loader": "^4.2.0",
     "html-webpack-plugin": "^3.2.0",
+    "jsdoc": "^3.6.6",
     "raw-loader": "^3.1.0",
     "terser-webpack-plugin": "^2.2.1",
     "webpack": "^4.41.2",
@@ -34,6 +37,7 @@
   },
   "dependencies": {
     "css-loader": "^5.0.1",
+    "ink-docstrap": "^1.3.2",
     "nes.css": "^2.3.0",
     "phaser": "^3.24.1",
     "phaser3-nineslice": "^0.5.0"

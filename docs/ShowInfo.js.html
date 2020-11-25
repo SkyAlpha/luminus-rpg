@@ -1,11 +1,83 @@
-import Phaser from 'phaser';
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width">
+	<title>Phaser Action RPG Source: ShowInfo.js</title>
+
+	<!--[if lt IE 9]>
+	<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
+	<link type="text/css" rel="stylesheet" href="styles/sunlight.default.css">
+
+	<link type="text/css" rel="stylesheet" href="styles/site.cosmo.css">
+
+</head>
+
+<body>
+
+<div class="navbar navbar-default navbar-fixed-top navbar-inverse">
+<div class="container">
+	<div class="navbar-header">
+		<a class="navbar-brand" href="index.html">Phaser Action RPG</a>
+		<button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#topNavigation">
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+        </button>
+	</div>
+	<div class="navbar-collapse collapse" id="topNavigation">
+		<ul class="nav navbar-nav">
+			
+			<li class="dropdown">
+				<a href="classes.list.html" class="dropdown-toggle" data-toggle="dropdown">Classes<b class="caret"></b></a>
+				<ul class="dropdown-menu ">
+					<li><a href="PhaserWarp.html">PhaserWarp</a></li><li><a href="ShowInfo.html">ShowInfo</a></li>
+				</ul>
+			</li>
+			
+		</ul>
+        
+            <div class="col-sm-3 col-md-3">
+                <form class="navbar-form" role="search">
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="Search" name="q" id="search-input">
+                        <div class="input-group-btn">
+                            <button class="btn btn-default" id="search-submit"><i class="glyphicon glyphicon-search"></i></button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        
+	</div>
+
+</div>
+</div>
+
+
+<div class="container" id="toc-content">
+<div class="row">
+
+	
+	<div class="col-md-12">
+	
+		<div id="main">
+			
+
+		<h1 class="page-title">Source: ShowInfo.js</h1>
+    
+<section>
+    <article>
+        <pre
+            class="sunlight-highlight-javascript linenums">import Phaser from 'phaser';
 
 /**
  * @class
  */
 export class ShowInfo {
     /**
-     * This class allows one to create Dialogs with "Tiled" map editor <a href="https://www.mapeditor.org/">Tiled</a>
+     * This class allows one to create Dialogs with "Tiled" map editor &lt;a href="https://www.mapeditor.org/">Tiled&lt;/a>
      * Using the Objects layer https://doc.mapeditor.org/en/stable/manual/objects/ and open them
      * seemlessly with phaser.
      *
@@ -30,8 +102,8 @@ export class ShowInfo {
          * @type {Phaser.Tilemaps.Tilemap} */
         this.map = map;
         /**
-         * Name of the object Layer in the "Tiled" software. <a href="https://www.mapeditor.org/">Tiled</a>
-         * Check Tiled Docs to learn more <a href="https://doc.mapeditor.org/en/stable/manual/objects/">Tiled</a>
+         * Name of the object Layer in the "Tiled" software. &lt;a href="https://www.mapeditor.org/">Tiled&lt;/a>
+         * Check Tiled Docs to learn more &lt;a href="https://doc.mapeditor.org/en/stable/manual/objects/">Tiled&lt;/a>
          * @type {string} */
         this.tiledObjectLayer = 'info';
         /**
@@ -64,53 +136,23 @@ export class ShowInfo {
          * this.nineSliceOffsets = 25;
          * // Or
          * this.nineSliceOffsets = [10, 15, 5, 5];
-         *
+         * @
          * // Array Length	Use	Explanation
          * // 1	[ topRightBottomLeft ]	The first (only) element is used as the value for all four sides
          * // 2	[ topBottom, leftRight ]	The first element is used for the top and bottom, the second element is used as the for the left and right
          * // 3	[ top, rightLeft, bottom ]	The first element is used for the top, second is used for the right and left, and the third element is used for the bottom
          * // 4	[ top, right, bottom, left ]	Each element is assigned to a specific side
-         * @type {number | number []}  */
+         * @type {number | Array&lt;number>}  */
         this.nineSliceOffsets = 23;
-        /**
-         * Safe area of the scaling areas..
-         * @type {number}  */
         this.nineSliceSafeArea = 12;
-        /**
-         * Sacele of the action button sprite.
-         * @type {number}  */
         this.actionSpriteScale = 0.5;
-        /**
-         * Spelling speed of the text in the dialog box.
-         * @type {number}  */
         this.dialogSpeed = 200;
-        /**
-         * Dialog font size.
-         * @type {number}  */
         this.fontSize = 20;
-        /**
-         * Maximum number of lines.
-         * @type {number}  */
         this.dialogMaxLines = 5;
-        /**
-         * Space between lines of the dialog text.
-         * @type {number}  */
         this.letterSpacing = 0;
-        /**
-         * Max width of the text inside the dialog.
-         * @type {number}  */
         this.textWidth = this.scene.cameras.main.width - this.margin * 3; // Defines the text Width.
-        /**
-         * Rather it can show de dialog of not.
-         * @type {boolean}  */
         this.canShowDialog = true;
-        /**
-         * Defines if the player is overlapping the text zone.
-         * @type {boolean}  */
         this.isOverlapingChat = false;
-        /**
-         * Defines if the text is in spelling/typping animation.
-         * @type {boolean}  */
         this.isAnimatingText = false;
     }
 
@@ -164,7 +206,7 @@ export class ShowInfo {
         this.dialog.zone.depth = 999;
 
         this.dialog.zone.on('pointerdown', (pointer) => {
-            if (this.dialog.textMessage && this.dialog.textMessage.active) {
+            if (this.dialog.textMessage &amp;&amp; this.dialog.textMessage.active) {
                 console.log(this.dialog.textMessage.active);
                 this.dialog.textMessage.destroy();
                 this.dialog.visible = false;
@@ -210,17 +252,17 @@ export class ShowInfo {
 
         this.scene.input.keyboard.on('keydown', (key) => {
             if (
-                this.isOverlapingChat &&
-                this.keyObj.isDown &&
+                this.isOverlapingChat &amp;&amp;
+                this.keyObj.isDown &amp;&amp;
                 !this.dialog.visible
             ) {
                 this.showDialog();
-            } else if (this.isAnimatingText && this.keyObj.isDown) {
+            } else if (this.isAnimatingText &amp;&amp; this.keyObj.isDown) {
                 this.setText(this.dialogMessage, false);
             } else if (
-                this.keyObj.isDown &&
-                this.dialog.visible &&
-                this.dialog.textMessage &&
+                this.keyObj.isDown &amp;&amp;
+                this.dialog.visible &amp;&amp;
+                this.dialog.textMessage &amp;&amp;
                 this.dialog.textMessage.active
             ) {
                 this.dialog.textMessage.destroy();
@@ -337,9 +379,9 @@ export class ShowInfo {
      */
     checkUpdate() {
         if (
-            this.actionButton &&
-            this.isMoving() &&
-            this.player.body.touching.none &&
+            this.actionButton &amp;&amp;
+            this.isMoving() &amp;&amp;
+            this.player.body.touching.none &amp;&amp;
             this.isOverlapingChat
         ) {
             this.actionButton.visible = false;
@@ -347,3 +389,140 @@ export class ShowInfo {
         }
     }
 }
+</pre>
+    </article>
+</section>
+
+
+
+
+
+		</div>
+	</div>
+
+	<div class="clearfix"></div>
+
+	
+
+</div>
+</div>
+
+
+    <div class="modal fade" id="searchResults">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title">Search results</h4>
+          </div>
+          <div class="modal-body"></div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          </div>
+        </div><!-- /.modal-content -->
+      </div><!-- /.modal-dialog -->
+    </div>
+
+
+<footer>
+
+
+	<span class="copyright">
+	Lorem Ipsun Studio © 2020 - todos os direitos reservados.
+	</span>
+
+<span class="jsdoc-message">
+	Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.6</a>
+	
+		on Wed Nov 25th 2020
+	
+	using the <a href="https://github.com/docstrap/docstrap">DocStrap template</a>.
+</span>
+</footer>
+
+<script src="scripts/docstrap.lib.js"></script>
+<script src="scripts/toc.js"></script>
+
+    <script type="text/javascript" src="scripts/fulltext-search-ui.js"></script>
+
+
+<script>
+$( function () {
+	$( "[id*='$']" ).each( function () {
+		var $this = $( this );
+
+		$this.attr( "id", $this.attr( "id" ).replace( "$", "__" ) );
+	} );
+
+	$( ".tutorial-section pre, .readme-section pre, pre.prettyprint.source" ).each( function () {
+		var $this = $( this );
+
+		var example = $this.find( "code" );
+		exampleText = example.html();
+		var lang = /{@lang (.*?)}/.exec( exampleText );
+		if ( lang && lang[1] ) {
+			exampleText = exampleText.replace( lang[0], "" );
+			example.html( exampleText );
+			lang = lang[1];
+		} else {
+			var langClassMatch = example.parent()[0].className.match(/lang\-(\S+)/);
+			lang = langClassMatch ? langClassMatch[1] : "javascript";
+		}
+
+		if ( lang ) {
+
+			$this
+			.addClass( "sunlight-highlight-" + lang )
+			.addClass( "linenums" )
+			.html( example.html() );
+
+		}
+	} );
+
+	Sunlight.highlightAll( {
+		lineNumbers : true,
+		showMenu : true,
+		enableDoclinks : true
+	} );
+
+	$.catchAnchorLinks( {
+        navbarOffset: 10
+	} );
+	$( "#toc" ).toc( {
+		anchorName  : function ( i, heading, prefix ) {
+			return $( heading ).attr( "id" ) || ( prefix + i );
+		},
+		selectors   : "#toc-content h1,#toc-content h2,#toc-content h3,#toc-content h4",
+		showAndHide : false,
+		smoothScrolling: true
+	} );
+
+	$( "#main span[id^='toc']" ).addClass( "toc-shim" );
+	$( '.dropdown-toggle' ).dropdown();
+
+    $( "table" ).each( function () {
+      var $this = $( this );
+      $this.addClass('table');
+    } );
+
+} );
+</script>
+
+
+
+<!--Navigation and Symbol Display-->
+
+
+<!--Google Analytics-->
+
+
+
+    <script type="text/javascript">
+        $(document).ready(function() {
+            SearcherDisplay.init();
+        });
+    </script>
+
+
+</body>
+</html>

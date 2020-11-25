@@ -1,5 +1,8 @@
 import Phaser from 'phaser';
 
+/**
+ * @class
+ */
 export class PhaserWarp {
     /**
      *
