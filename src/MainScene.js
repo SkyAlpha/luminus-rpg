@@ -96,10 +96,6 @@ export class MainScene extends Phaser.Scene {
         setTimeout((t) => {
             this.events.emit('setConfiguration', { player, map });
         });
-
-        this.input.on('pointerdown', (pointer) => {
-            console.log(this.cameras.main);
-        });
     }
 
     update(time, delta) {

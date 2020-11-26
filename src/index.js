@@ -9,8 +9,8 @@ import { DialogScene } from './DialogScene';
 const config = {
     type: Phaser.AUTO,
     parent: 'collision-test',
-    width: 800,
-    height: 600,
+    width: 190,
+    height: 108,
     scene: [MainScene, DialogScene],
     scaleMode: Phaser.Scale.RESIZE,
     plugins: {

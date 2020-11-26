@@ -121,6 +121,7 @@ export class PhaserDialogBox {
         this.cameraZoom = this.scene.cameras.main.zoom;
 
         /**
+         * Font family to be used. It has to be included in your Phaser project.
          * @type { string }
          */
         this.fontFamily = 'Monospace, "Press Start 2P"';
@@ -241,28 +242,7 @@ export class PhaserDialogBox {
             );
         }
 
-        this.dialog.textMessage = this.scene.add
-            .text(
-                this.margin * 2,
-                this.cameraHeight + this.margin / 2 - this.dialogHeight,
-                '',
-                {
-                    wordWrap: {
-                        width: this.textWidth,
-                    },
-                    wordWrapUseAdvanced: false,
-                    fontSize: this.fontSize,
-                    maxLines: this.dialogMaxLines,
-                    letterSpacing: this.letterSpacing,
-                    fontFamily: this.fontFamily,
-                }
-            )
-            .setScrollFactor(0, 0)
-            .setDepth(99999999999999999)
-            .setFixedSize(
-                this.cameraWidth - this.margin * 3,
-                this.dialogHeight
-            );
+        this.createText();
         // Animates the text
         this.setText(this.pagesMessage[0], true);
     }
@@ -340,5 +320,71 @@ export class PhaserDialogBox {
             this.actionButton.visible = false;
             this.isOverlapingChat = false;
         }
+    }
+
+    /**
+     * Resizes all the elements of the dialog component.
+     * @param { number } width new Width.
+     * @param { number } height new Height.
+     */
+    resizeComponents(width, height) {
+        if (width !== 0 && height !== 0) {
+            this.cameraWidth = width;
+            this.cameraHeight = height;
+            this.textWidth = this.cameraWidth - this.margin * 3;
+            this.dialog.x = this.margin;
+            this.dialog.y = this.cameraHeight - this.dialogHeight - this.margin; // this is the starting x/y location
+            this.dialog.resize(
+                this.cameraWidth - this.margin * 2,
+                this.dialogHeight
+            );
+
+            this.actionButton.x = this.cameraWidth - this.margin * 4;
+            this.actionButton.y = this.cameraHeight - this.margin * 3;
+            if (this.dialog.textMessage && this.dialog.textMessage.visible) {
+                this.dialog.textMessage.y =
+                    this.cameraHeight + this.margin / 2 - this.dialogHeight;
+                this.dialog.textMessage.setStyle({
+                    wordWrap: {
+                        width: this.textWidth,
+                    },
+                    wordWrapUseAdvanced: false,
+                    fontSize: this.fontSize,
+                    maxLines: this.dialogMaxLines,
+                    letterSpacing: this.letterSpacing,
+                    fontFamily: this.fontFamily,
+                });
+            } else {
+                this.createText();
+            }
+        }
+    }
+
+    /**
+     * Creates the text Game Object
+     * @private
+     */
+    createText() {
+        this.dialog.textMessage = this.scene.add
+            .text(
+                this.margin * 2,
+                this.cameraHeight + this.margin / 2 - this.dialogHeight,
+                '',
+                {
+                    wordWrap: {
+                        width: this.textWidth,
+                    },
+                    fontSize: this.fontSize,
+                    maxLines: this.dialogMaxLines,
+                    letterSpacing: this.letterSpacing,
+                    fontFamily: this.fontFamily,
+                }
+            )
+            .setScrollFactor(0, 0)
+            .setDepth(99999999999999999)
+            .setFixedSize(
+                this.cameraWidth - this.margin * 3,
+                this.dialogHeight
+            );
     }
 }

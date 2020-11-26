@@ -63,7 +63,6 @@ export class PhaserTiledInfoBox {
         // Rules to show informations!
         const infoObjects = this.map.getObjectLayer(this.tiledObjectLayer);
         let zones = [];
-        console.log(infoObjects);
         infoObjects.objects.forEach((infoObj) => {
             let zone = this.scene.add.zone(
                 infoObj.x,

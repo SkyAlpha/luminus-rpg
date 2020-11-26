@@ -24,7 +24,6 @@ export class DialogScene extends Phaser.Scene {
         this.mainScene.events.on(
             'setConfiguration',
             (args) => {
-                console.log('aosdjfoaisfdj');
                 this.player = args.player;
                 this.map = args.map;
                 /**
@@ -40,6 +39,17 @@ export class DialogScene extends Phaser.Scene {
             },
             this
         );
+
+        this.scale.on('resize', (resize) => {
+            this.phaserTiledInfoBox.phaserDialogBox.resizeComponents(
+                resize.width,
+                resize.height
+            );
+        });
+
+        this.input.on('pointerdown', (pointer) => {
+            // console.log(this.cameras.main);
+        });
     }
 
     update() {
