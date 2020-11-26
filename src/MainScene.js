@@ -87,16 +87,15 @@ export class MainScene extends Phaser.Scene {
 
         cursors = this.input.keyboard.createCursorKeys();
 
-        this.cameras.main.setZoom(2);
+        this.cameras.main.setZoom(2.5);
         const phaserWarp = new PhaserWarp(this, player, map);
         phaserWarp.createWarps();
         this.scene.launch('DialogScene');
 
+        // Only to give time to the scene to be initialized.
         setTimeout((t) => {
             this.events.emit('setConfiguration', { player, map });
         });
-
-        this.notShown = true;
 
         this.input.on('pointerdown', (pointer) => {
             console.log(this.cameras.main);

@@ -215,6 +215,7 @@ export class PhaserDialogBox {
                 this.dialog.textMessage.destroy();
                 this.dialog.visible = false;
                 this.canShowDialog = true;
+                this.actionButton.visible = false;
             }
         });
     }
