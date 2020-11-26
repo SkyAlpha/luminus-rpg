@@ -86,6 +86,7 @@ export class MainScene extends Phaser.Scene {
 
         cursors = this.input.keyboard.createCursorKeys();
 
+        this.cameras.main.setZoom(1.3);
         const phaserWarp = new PhaserWarp(this, player, map);
         phaserWarp.createWarps();
         /**
@@ -93,6 +94,10 @@ export class MainScene extends Phaser.Scene {
          */
         this.phaserTiledInfoBox = new PhaserTiledInfoBox(this, player, map);
         this.phaserTiledInfoBox.create();
+
+        this.input.on('pointerdown', (pointer) => {
+            console.log(this.cameras.main);
+        });
     }
 
     update(time, delta) {

@@ -37,7 +37,7 @@ export class PhaserDialogBox {
         /**
          * Dialog height.
          * @type { number }  */
-        this.dialogHeight = 150; // Dialog Height
+        this.dialogHeight = 90; // Dialog Height
         /**
          * Margin of the dialog. Used to make spaces in the dialog.
          * @type { number }  */
@@ -71,7 +71,7 @@ export class PhaserDialogBox {
         /**
          * Dialog font size.
          * @type { number }  */
-        this.fontSize = 15;
+        this.fontSize = 13;
         /**
          * Current dialog page.
          * @type { number }  */
@@ -83,15 +83,27 @@ export class PhaserDialogBox {
         /**
          * Maximum number of lines.
          * @type { number }  */
-        this.dialogMaxLines = 5;
+        this.dialogMaxLines = Math.floor(
+            this.dialogHeight / (this.fontSize * 2)
+        );
         /**
          * Space between lines of the dialog text.
          * @type { number }  */
         this.letterSpacing = 0;
         /**
+         * Width of the camera view port.
+         * @type { number }
+         */
+        this.cameraWidth = this.scene.cameras.main.displayWidth;
+        /**
+         * Height of the camera view port.
+         * @type { number }
+         */
+        this.cameraHeight = this.scene.cameras.main.displayHeight;
+        /**
          * Max width of the text inside the dialog.
          * @type { number }  */
-        this.textWidth = this.scene.cameras.main.width - this.margin * 3; // Defines the text Width.
+        this.textWidth = this.cameraWidth - this.margin * 3; // Defines the text Width.
         /**
          * Rather it can show de dialog of not.
          * @type { boolean }  */
@@ -106,6 +118,11 @@ export class PhaserDialogBox {
         this.isAnimatingText = false;
 
         /**
+         * @type { number }
+         */
+        this.cameraZoom = this.scene.cameras.main.zoom;
+
+        /**
          * @type { string }
          */
         this.fontFamily = 'Monospace, "Press Start 2P"';
@@ -114,8 +131,8 @@ export class PhaserDialogBox {
     create() {
         this.dialog = this.scene.add.nineslice(
             this.margin,
-            this.scene.cameras.main.height - this.dialogHeight - this.margin, // this is the starting x/y location
-            this.scene.cameras.main.width - this.margin * 2,
+            this.cameraHeight - this.dialogHeight - this.margin, // this is the starting x/y location
+            this.cameraWidth - this.margin * 2,
             this.dialogHeight, // the width and height of your object
             this.dialogSpriteName, // a key to an already loaded image
             this.nineSliceOffsets, // the width and height to offset for a corner slice
@@ -127,10 +144,10 @@ export class PhaserDialogBox {
 
         this.actionButton = this.scene.add
             .image(
-                this.scene.cameras.main.width - this.margin * 4,
-                this.scene.cameras.main.height -
+                this.cameraWidth - this.margin * 2,
+                this.cameraHeight -
                     // this.dialog_height -
-                    this.margin * 3,
+                    this.margin,
                 this.actionButtonSprite
             )
             .setDepth(9999)
@@ -152,10 +169,8 @@ export class PhaserDialogBox {
         this.dialog.zone = this.scene.add
             .zone(
                 this.margin,
-                this.scene.cameras.main.height -
-                    this.dialogHeight -
-                    this.margin, // this is the starting x/y location
-                this.scene.cameras.main.width - this.margin * 2,
+                this.cameraHeight - this.dialogHeight - this.margin, // this is the starting x/y location
+                this.cameraWidth - this.margin * 2,
                 this.dialogHeight
             )
             .setInteractive()
@@ -230,9 +245,7 @@ export class PhaserDialogBox {
         this.dialog.textMessage = this.scene.add
             .text(
                 this.margin * 2,
-                this.scene.cameras.main.height +
-                    this.margin / 2 -
-                    this.dialogHeight,
+                this.cameraHeight + this.margin / 2 - this.dialogHeight,
                 '',
                 {
                     wordWrap: {
@@ -248,7 +261,7 @@ export class PhaserDialogBox {
             .setScrollFactor(0, 0)
             .setDepth(99999999999999999)
             .setFixedSize(
-                this.scene.cameras.main.width - this.margin * 3,
+                this.cameraWidth - this.margin * 3,
                 this.dialogHeight
             );
         // Animates the text
@@ -322,7 +335,8 @@ export class PhaserDialogBox {
             this.actionButton &&
             this.isMoving() &&
             this.player.body.touching.none &&
-            this.isOverlapingChat
+            this.isOverlapingChat &&
+            !this.dialog.visible
         ) {
             this.actionButton.visible = false;
             this.isOverlapingChat = false;
