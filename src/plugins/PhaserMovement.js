@@ -8,8 +8,9 @@ export class PhaserMovement {
      * Creates cursors to move the player.
      * @param { Phaser.Scene } scene Phaser Scene.
      * @param { Phaser.GameObjects } player the player that the cursors will move.
+     * @param { Phaser.Scene } joystickScene
      */
-    constructor(scene, player) {
+    constructor(scene, player, joystickScene) {
         /**
          * scene Scene Context.
          * @type { Phaser.Scene }  */
@@ -32,6 +33,18 @@ export class PhaserMovement {
          * @default
          */
         this.stick = null;
+
+        /**
+         * The JoystickScene. If it's available, use the joystick to move the Player.
+         * @type { Phaser.Scene }
+         */
+        this.joystickScene = joystickScene;
+
+        if (this.joystickScene) {
+            this.joystickScene.events.on('setStick', (payload) => {
+                this.stick = payload; // Sets the Stick pad for movement.
+            });
+        }
     }
 
     move() {
@@ -58,13 +71,12 @@ export class PhaserMovement {
             this.player.body.setVelocityY(0);
             this.player.body.setVelocityX(0);
         }
-        // if (this.stick && this.stick.isDown && this.player.body.maxSpeed > 0) {
-        //     console.log(this.stick);
-        //     this.physics.velocityFromRotation(
-        //         this.stick.rotation,
-        //         this.stick.force * this.player.speed,
-        //         this.player.body.velocity
-        //     );
-        // }
+        if (this.stick && this.stick.isDown && this.player.body.maxSpeed > 0) {
+            this.scene.physics.velocityFromRotation(
+                this.stick.rotation,
+                this.stick.force * this.player.speed,
+                this.player.body.velocity
+            );
+        }
     }
 }

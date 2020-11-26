@@ -92,8 +92,7 @@ export class MainScene extends Phaser.Scene {
         this.scene.launch('JoystickScene');
 
         this.joystickScene = this.scene.get('JoystickScene');
-        this.movement = new PhaserMovement(this, player);
-        this.movement.stick = this.joystickScene.stick;
+        this.movement = new PhaserMovement(this, player, this.joystickScene);
 
         // Only to give time to the scene to be initialized.
         setTimeout((t) => {

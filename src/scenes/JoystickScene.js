@@ -48,7 +48,7 @@ export class JoystickScene extends Phaser.Scene {
             'setConfiguration',
             (args) => {
                 this.player = args.player;
-                this.mainScene;
+                this.events.emit('setStick', this.stick);
                 console.log(args);
             },
             this
