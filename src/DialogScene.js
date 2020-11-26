@@ -41,10 +41,15 @@ export class DialogScene extends Phaser.Scene {
         );
 
         this.scale.on('resize', (resize) => {
-            this.phaserTiledInfoBox.phaserDialogBox.resizeComponents(
-                resize.width,
-                resize.height
-            );
+            if (
+                this.phaserTiledInfoBox &&
+                this.phaserTiledInfoBox.phaserDialogBox
+            ) {
+                this.phaserTiledInfoBox.phaserDialogBox.resizeComponents(
+                    resize.width,
+                    resize.height
+                );
+            }
         });
 
         this.input.on('pointerdown', (pointer) => {
