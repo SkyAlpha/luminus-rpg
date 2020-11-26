@@ -9,6 +9,9 @@
         "destination": "docs",
         "template": "node_modules/ink-docstrap/template"
     },
+    "source": {
+        "excludePattern": "assets"
+    },
     "templates": {
         "logoFile": "",
         "cleverLinks": false,

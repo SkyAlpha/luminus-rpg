@@ -1,5 +1,5 @@
 import Phaser from 'phaser';
-import { PhaserTiledInfoBox } from './plugins/PhaserTiledInfoBox';
+import { PhaserTiledInfoBox } from '../plugins/PhaserTiledInfoBox';
 
 export class DialogScene extends Phaser.Scene {
     constructor() {

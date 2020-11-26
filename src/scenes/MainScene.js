@@ -1,17 +1,17 @@
 import Phaser from 'phaser';
-import tiles from './assets/maps/tilesets/Overworld.png';
-import inner from './assets/maps/tilesets/Inner.png';
-import collision_tile from './assets/maps/tilesets/collision.png';
-import tile_map_json from './assets/maps/larus/larus.json';
-import player_image from './assets/sprites/player.png';
-import dialog from './assets/sprites/dialog.png';
-import space from './assets/sprites/space_key.png';
-import { PhaserWarp } from './plugins/PhaserWarp';
-import { PhaserTiledInfoBox } from './plugins/PhaserTiledInfoBox';
+import tiles from '../assets/maps/tilesets/Overworld.png';
+import inner from '../assets/maps/tilesets/Inner.png';
+import collision_tile from '../assets/maps/tilesets/collision.png';
+import player_image from '../assets/sprites/player.png';
+import dialog from '../assets/sprites/dialog_paper.png';
+import space from '../assets/sprites/space_key.png';
+import tile_map_json from '../assets/maps/larus/larus.json';
+import { PhaserWarp } from '../plugins/PhaserWarp';
+import { Player } from '../entities/Player';
+import { PhaserMovement } from '../plugins/PhaserMovement';
 
 let player;
 let cursors;
-const speed = 175;
 let map;
 
 export class MainScene extends Phaser.Scene {
@@ -38,6 +38,8 @@ export class MainScene extends Phaser.Scene {
     }
 
     create() {
+        this.cameras.main.setZoom(2.5);
+
         WebFont.load({
             google: {
                 families: ['Press Start 2P'],
@@ -75,9 +77,8 @@ export class MainScene extends Phaser.Scene {
             (obj) => obj.name === 'Spawn Point'
         );
 
-        player = this.add.sprite(spawnPoint.x, spawnPoint.y, 'player');
-        this.physics.add.existing(player);
-        player.body.maxSpeed = speed;
+        player = new Player(this, spawnPoint.x, spawnPoint.y, 'player');
+
         const camera = this.cameras.main;
         camera.startFollow(player);
 
@@ -85,43 +86,25 @@ export class MainScene extends Phaser.Scene {
 
         this.physics.add.collider(player, collision_layer);
 
-        cursors = this.input.keyboard.createCursorKeys();
-
-        this.cameras.main.setZoom(2.5);
         const phaserWarp = new PhaserWarp(this, player, map);
         phaserWarp.createWarps();
         this.scene.launch('DialogScene');
+        this.scene.launch('JoystickScene');
+
+        this.joystickScene = this.scene.get('JoystickScene');
+        this.movement = new PhaserMovement(this, player);
+        this.movement.stick = this.joystickScene.stick;
 
         // Only to give time to the scene to be initialized.
         setTimeout((t) => {
-            this.events.emit('setConfiguration', { player, map });
-        });
+            this.events.emit('setConfiguration', {
+                player,
+                map,
+            });
+        }, 300);
     }
 
     update(time, delta) {
-        if (this.input.isActive) {
-            // Stop any previous movement from the last frame
-            player.body.setVelocity(0);
-
-            // Horizontal movement
-            if (cursors.left.isDown) {
-                player.body.setVelocityX(-100);
-            } else if (cursors.right.isDown) {
-                player.body.setVelocityX(100);
-            }
-
-            // Vertical movement
-            if (cursors.up.isDown) {
-                player.body.setVelocityY(-100);
-            } else if (cursors.down.isDown) {
-                player.body.setVelocityY(100);
-            }
-
-            // Normalize and scale the velocity so that player can't move faster along a diagonal
-            player.body.velocity.normalize().scale(speed);
-        } else {
-            player.body.setVelocityY(0);
-            player.body.setVelocityX(0);
-        }
+        this.movement.move();
     }
 }

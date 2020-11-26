@@ -1,0 +1,314 @@
+{
+	"textures": [
+		{
+			"image": "arcade-joystick.png",
+			"format": "RGBA8888",
+			"size": {
+				"w": 792,
+				"h": 410
+			},
+			"scale": 1,
+			"frames": [
+				{
+					"filename": "base",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 276,
+						"h": 276
+					},
+					"spriteSourceSize": {
+						"x": 8,
+						"y": 0,
+						"w": 268,
+						"h": 276
+					},
+					"frame": {
+						"x": 2,
+						"y": 2,
+						"w": 268,
+						"h": 276
+					}
+				},
+				{
+					"filename": "button1-down-plain",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 128,
+						"h": 128
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 128,
+						"h": 128
+					},
+					"frame": {
+						"x": 2,
+						"y": 280,
+						"w": 128,
+						"h": 128
+					}
+				},
+				{
+					"filename": "button1-down",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 128,
+						"h": 128
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 128,
+						"h": 128
+					},
+					"frame": {
+						"x": 132,
+						"y": 280,
+						"w": 128,
+						"h": 128
+					}
+				},
+				{
+					"filename": "button1-up-plain",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 128,
+						"h": 128
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 128,
+						"h": 128
+					},
+					"frame": {
+						"x": 262,
+						"y": 280,
+						"w": 128,
+						"h": 128
+					}
+				},
+				{
+					"filename": "stick",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 130,
+						"h": 130
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 130,
+						"h": 130
+					},
+					"frame": {
+						"x": 272,
+						"y": 2,
+						"w": 130,
+						"h": 130
+					}
+				},
+				{
+					"filename": "button1-up",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 128,
+						"h": 128
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 128,
+						"h": 128
+					},
+					"frame": {
+						"x": 272,
+						"y": 134,
+						"w": 128,
+						"h": 128
+					}
+				},
+				{
+					"filename": "button2-down-plain",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 128,
+						"h": 128
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 128,
+						"h": 128
+					},
+					"frame": {
+						"x": 392,
+						"y": 264,
+						"w": 128,
+						"h": 128
+					}
+				},
+				{
+					"filename": "button2-down",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 128,
+						"h": 128
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 128,
+						"h": 128
+					},
+					"frame": {
+						"x": 402,
+						"y": 134,
+						"w": 128,
+						"h": 128
+					}
+				},
+				{
+					"filename": "button2-up-plain",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 128,
+						"h": 128
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 128,
+						"h": 128
+					},
+					"frame": {
+						"x": 404,
+						"y": 2,
+						"w": 128,
+						"h": 128
+					}
+				},
+				{
+					"filename": "button2-up",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 128,
+						"h": 128
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 128,
+						"h": 128
+					},
+					"frame": {
+						"x": 522,
+						"y": 264,
+						"w": 128,
+						"h": 128
+					}
+				},
+				{
+					"filename": "button3-down-plain",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 128,
+						"h": 128
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 128,
+						"h": 128
+					},
+					"frame": {
+						"x": 532,
+						"y": 132,
+						"w": 128,
+						"h": 128
+					}
+				},
+				{
+					"filename": "button3-down",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 128,
+						"h": 128
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 128,
+						"h": 128
+					},
+					"frame": {
+						"x": 534,
+						"y": 2,
+						"w": 128,
+						"h": 128
+					}
+				},
+				{
+					"filename": "button3-up-plain",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 128,
+						"h": 128
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 128,
+						"h": 128
+					},
+					"frame": {
+						"x": 662,
+						"y": 132,
+						"w": 128,
+						"h": 128
+					}
+				},
+				{
+					"filename": "button3-up",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 128,
+						"h": 128
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 128,
+						"h": 128
+					},
+					"frame": {
+						"x": 652,
+						"y": 262,
+						"w": 128,
+						"h": 128
+					}
+				}
+			]
+		}
+	],
+	"meta": {
+		"app": "https://www.codeandweb.com/texturepacker",
+		"version": "3.0",
+		"smartupdate": "$TexturePacker:SmartUpdate:23f9ad6e3c4bcd4078f7be1e8c33ab98:2d494313161f47b22092b80765a6ad6c:a263a0553fca6de61a66e4e620c067cc$"
+	}
+}

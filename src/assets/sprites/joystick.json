@@ -1,0 +1,62 @@
+{
+	"textures": [
+		{
+			"image": "joystick-0.png",
+			"format": "RGBA8888",
+			"size": {
+				"w": 204,
+				"h": 102
+			},
+			"scale": 1,
+			"frames": [
+				{
+					"filename": "base",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 100,
+						"h": 100
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 100,
+						"h": 100
+					},
+					"frame": {
+						"x": 1,
+						"y": 1,
+						"w": 100,
+						"h": 100
+					}
+				},
+				{
+					"filename": "stick",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 100,
+						"h": 100
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 100,
+						"h": 100
+					},
+					"frame": {
+						"x": 103,
+						"y": 1,
+						"w": 100,
+						"h": 100
+					}
+				}
+			]
+		}
+	],
+	"meta": {
+		"app": "https://www.codeandweb.com/texturepacker",
+		"version": "3.0",
+		"smartupdate": "$TexturePacker:SmartUpdate:74b44ac226f13f85a80d0f52213925a2:23cf268f796ddd7bf871fae0f6b08084:16e0bb48dbe1fe767d9a2d1d10b7c980$"
+	}
+}

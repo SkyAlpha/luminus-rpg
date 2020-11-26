@@ -59,7 +59,7 @@ export class PhaserDialogBox {
         /**
          * Safe area of the scaling areas..
          * @type { number }  */
-        this.nineSliceSafeArea = 12;
+        this.nineSliceSafeArea = 14;
         /**
          * Sacele of the action button sprite.
          * @type { number }  */
@@ -121,6 +121,11 @@ export class PhaserDialogBox {
         this.cameraZoom = this.scene.cameras.main.zoom;
 
         /**
+         * @type { Phaser.Display.Color}
+         */
+        this.fontColor = new Phaser.Display.Color(61, 61, 61, 1);
+
+        /**
          * Font family to be used. It has to be included in your Phaser project.
          * @type { string }
          */
@@ -164,26 +169,6 @@ export class PhaserDialogBox {
             },
             duration: 1000,
         });
-
-        this.dialog.zone = this.scene.add
-            .zone(
-                this.margin,
-                this.cameraHeight - this.dialogHeight - this.margin, // this is the starting x/y location
-                this.cameraWidth - this.margin * 2,
-                this.dialogHeight
-            )
-            .setInteractive()
-            .setOrigin(0, 0);
-        this.dialog.zone.setScrollFactor(0, 0);
-        this.dialog.zone.depth = 999;
-
-        // this.dialog.zone.on('pointerdown', (pointer) => {
-        //     if (this.dialog.textMessage && this.dialog.textMessage.active) {
-        //         this.dialog.textMessage.destroy();
-        //         this.dialog.visible = false;
-        //         this.canShowDialog = true;
-        //     }
-        // });
 
         this.keyObj = this.scene.input.keyboard.addKey(
             this.actionButtonKeyCode
@@ -378,6 +363,7 @@ export class PhaserDialogBox {
                     maxLines: this.dialogMaxLines,
                     letterSpacing: this.letterSpacing,
                     fontFamily: this.fontFamily,
+                    color: this.fontColor,
                 }
             )
             .setScrollFactor(0, 0)
