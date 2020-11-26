@@ -12,6 +12,7 @@ import { PhaserTiledInfoBox } from './plugins/PhaserTiledInfoBox';
 let player;
 let cursors;
 const speed = 175;
+let map;
 
 export class MainScene extends Phaser.Scene {
     constructor() {
@@ -43,7 +44,7 @@ export class MainScene extends Phaser.Scene {
             },
             active: function () {},
         });
-        const map = this.make.tilemap({ key: 'larus' });
+        map = this.make.tilemap({ key: 'larus' });
         const tileset = map.addTilesetImage('base', 'tiles', 16, 16, 0, 0);
         const inner = map.addTilesetImage('inner', 'inner', 16, 16, 0, 0);
         const collision_tilset = map.addTilesetImage(
@@ -86,14 +87,16 @@ export class MainScene extends Phaser.Scene {
 
         cursors = this.input.keyboard.createCursorKeys();
 
-        this.cameras.main.setZoom(1.3);
+        this.cameras.main.setZoom(2);
         const phaserWarp = new PhaserWarp(this, player, map);
         phaserWarp.createWarps();
-        /**
-         * @type {PhaserTiledInfoBox}
-         */
-        this.phaserTiledInfoBox = new PhaserTiledInfoBox(this, player, map);
-        this.phaserTiledInfoBox.create();
+        this.scene.launch('DialogScene');
+
+        setTimeout((t) => {
+            this.events.emit('setConfiguration', { player, map });
+        });
+
+        this.notShown = true;
 
         this.input.on('pointerdown', (pointer) => {
             console.log(this.cameras.main);
@@ -101,7 +104,6 @@ export class MainScene extends Phaser.Scene {
     }
 
     update(time, delta) {
-        this.phaserTiledInfoBox.phaserDialogBox.checkUpdate();
         if (this.input.isActive) {
             // Stop any previous movement from the last frame
             player.body.setVelocity(0);

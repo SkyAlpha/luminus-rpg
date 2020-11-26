@@ -1,16 +1,22 @@
 import Phaser from 'phaser';
 import { MainScene } from './MainScene';
 import { Plugin as NineSlicePlugin } from 'phaser3-nineslice';
+import { DialogScene } from './DialogScene';
 
+/**
+ * @type { Phaser.Core.Config}
+ */
 const config = {
     type: Phaser.AUTO,
     parent: 'collision-test',
     width: 800,
     height: 600,
-    scene: [MainScene],
+    scene: [MainScene, DialogScene],
+    scaleMode: Phaser.Scale.RESIZE,
     plugins: {
         global: [NineSlicePlugin.DefaultCfg],
     },
+    pixelArt: false,
     physics: {
         default: 'arcade',
         arcade: {

@@ -37,7 +37,7 @@ export class PhaserDialogBox {
         /**
          * Dialog height.
          * @type { number }  */
-        this.dialogHeight = 90; // Dialog Height
+        this.dialogHeight = 150; // Dialog Height
         /**
          * Margin of the dialog. Used to make spaces in the dialog.
          * @type { number }  */
@@ -71,7 +71,7 @@ export class PhaserDialogBox {
         /**
          * Dialog font size.
          * @type { number }  */
-        this.fontSize = 13;
+        this.fontSize = 20;
         /**
          * Current dialog page.
          * @type { number }  */
@@ -83,9 +83,7 @@ export class PhaserDialogBox {
         /**
          * Maximum number of lines.
          * @type { number }  */
-        this.dialogMaxLines = Math.floor(
-            this.dialogHeight / (this.fontSize * 2)
-        );
+        this.dialogMaxLines = 5;
         /**
          * Space between lines of the dialog text.
          * @type { number }  */
@@ -144,10 +142,10 @@ export class PhaserDialogBox {
 
         this.actionButton = this.scene.add
             .image(
-                this.cameraWidth - this.margin * 2,
+                this.cameraWidth - this.margin * 4,
                 this.cameraHeight -
                     // this.dialog_height -
-                    this.margin,
+                    this.margin * 3,
                 this.actionButtonSprite
             )
             .setDepth(9999)

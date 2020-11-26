@@ -15,7 +15,7 @@ export class PhaserTiledInfoBox {
      * @param {Phaser.GameObjects} player Player Game Object.
      * @param {Phaser.Tilemaps.Tilemap} map Tile Map to get the object from.
      */
-    constructor(scene, player, map) {
+    constructor(scene, player, map, uiScene) {
         /**
          * Tile Map to get the object from.
          * @type {Phaser.Tilemaps.Tilemap} */
@@ -24,6 +24,11 @@ export class PhaserTiledInfoBox {
          * scene Scene Context.
          * @type { Phaser.Scene }  */
         this.scene = scene;
+
+        /**
+         * Dialog Scene to create the dialog.
+         * @type { Phaser.Scene }  */
+        this.uiScene = uiScene;
         /**
          * player Player Game Object.
          * @type { Phaser.GameObjects }  */
@@ -33,7 +38,7 @@ export class PhaserTiledInfoBox {
          * @type { PhaserDialogBox }
          */
         this.phaserDialogBox = new PhaserDialogBox(
-            this.scene,
+            this.uiScene,
             this.player,
             this.map
         );
