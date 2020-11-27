@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.4" tiledversion="1.4.3" orientation="orthogonal" renderorder="right-down" width="100" height="100" tilewidth="16" tileheight="16" infinite="1" nextlayerid="10" nextobjectid="32">
+<map version="1.4" tiledversion="1.4.3" orientation="orthogonal" renderorder="right-down" width="100" height="100" tilewidth="16" tileheight="16" infinite="1" nextlayerid="11" nextobjectid="40">
  <editorsettings>
   <export target="larus.json" format="json"/>
  </editorsettings>
@@ -349,6 +349,32 @@ Será que ainda funciona?</property>
 
 ......</property>
    </properties>
+  </object>
+ </objectgroup>
+ <objectgroup id="10" name="markers">
+  <object id="32" x="-97" y="76.5">
+   <point/>
+  </object>
+  <object id="33" x="198.5" y="117">
+   <point/>
+  </object>
+  <object id="34" x="48" y="-239">
+   <point/>
+  </object>
+  <object id="35" x="1062.5" y="53">
+   <point/>
+  </object>
+  <object id="36" x="1128.5" y="15.5">
+   <point/>
+  </object>
+  <object id="37" x="1013.5" y="380">
+   <point/>
+  </object>
+  <object id="38" x="932" y="393.5">
+   <point/>
+  </object>
+  <object id="39" x="40" y="-20.5">
+   <point/>
   </object>
  </objectgroup>
  <objectgroup id="5" name="warps" visible="0">

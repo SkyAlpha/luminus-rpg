@@ -39,7 +39,7 @@ export class PhaserDialogBox {
          * @type { string }
          * @default
          * */
-        this.interactionSpriteName = 'question_mark';
+        this.interactionSpriteName = 'spread';
 
         /**
          * Name of the Sprite of the Mobile button action.
