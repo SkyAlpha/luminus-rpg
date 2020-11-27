@@ -13,7 +13,7 @@ export const Animations = [
         atlas: 'character',
         key: 'idle-right',
         frameRate: 4,
-        prefix: 'idle-down/idle-right',
+        prefix: 'idle-right/idle-right',
         start: 0,
         end: 0,
         zeroPad: 2,

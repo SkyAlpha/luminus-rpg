@@ -95,8 +95,7 @@ export class MainScene extends Phaser.Scene {
         );
 
         player = new Player(this, spawnPoint.x, spawnPoint.y, 'character');
-        console.log(player.anims);
-        player.body.setSize(16, 16);
+        player.body.setSize(12, 16);
         // player.body.offset.y = 20;
         player.play('idle-down');
 
