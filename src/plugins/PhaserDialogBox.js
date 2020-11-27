@@ -405,7 +405,6 @@ export class PhaserDialogBox {
      * @param { number } height new Height.
      */
     resizeComponents(width, height) {
-        console.log(width, height);
         if (width !== 0 && height !== 0) {
             this.interactionIcon.setPosition(
                 this.scene.cameras.main.midPoint.x,

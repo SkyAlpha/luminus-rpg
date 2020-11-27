@@ -4,6 +4,7 @@ import { Plugin as NineSlicePlugin } from 'phaser3-nineslice';
 import { DialogScene } from './scenes/DialogScene';
 import { JoystickScene } from './scenes/JoystickScene';
 import { HUDScene } from './scenes/HUDScene';
+import { PreloadScene } from './scenes/PreloadScene';
 
 /**
  * @type { Phaser.Core.Config}
@@ -11,9 +12,9 @@ import { HUDScene } from './scenes/HUDScene';
 const config = {
     type: Phaser.AUTO,
     parent: 'collision-test',
-    width: 192,
-    height: 108,
-    scene: [MainScene, JoystickScene, DialogScene, HUDScene],
+    width: 800,
+    height: 600,
+    scene: [PreloadScene, MainScene, JoystickScene, DialogScene, HUDScene],
     scaleMode: Phaser.Scale.RESIZE,
     plugins: {
         global: [NineSlicePlugin.DefaultCfg],
@@ -24,7 +25,7 @@ const config = {
         arcade: {
             gravity: { y: 0 }, // Top down game, so no gravity
             checkCollision: false,
-            debug: true,
+            debug: false,
             debugShowBody: true,
             debugShowStaticBody: true,
             debugShowVelocity: true,

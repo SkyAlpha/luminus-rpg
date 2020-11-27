@@ -39,7 +39,7 @@ export class MainScene extends Phaser.Scene {
         this.load.image('inner', inner);
 
         this.load.tilemapTiledJSON('larus', tile_map_json);
-        this.load.css('nescss', 'node_modules/nes.css/css/nes.min.css');
+        // this.load.css('nescss', 'node_modules/nes.css/css/nes.min.css');
         this.load.script(
             'webfont',
             'https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js'
@@ -47,14 +47,22 @@ export class MainScene extends Phaser.Scene {
     }
 
     create() {
+        if (
+            !this.scale.isFullscreen && !this.sys.game.device.os.desktop
+                ? true
+                : false
+        ) {
+            this.scale.startFullscreen();
+        }
+
         this.cameras.main.setZoom(2.5);
 
-        WebFont.load({
-            google: {
-                families: ['Press Start 2P'],
-            },
-            active: function () {},
-        });
+        // WebFont.load({
+        //     google: {
+        //         families: ['Press Start 2P'],
+        //     },
+        //     active: function () {},
+        // });
         map = this.make.tilemap({ key: 'larus' });
         const tileset = map.addTilesetImage('base', 'tiles', 16, 16, 0, 0);
         const inner = map.addTilesetImage('inner', 'inner', 16, 16, 0, 0);
@@ -86,7 +94,7 @@ export class MainScene extends Phaser.Scene {
             (obj) => obj.name === 'Spawn Point'
         );
 
-        player = new Player(this, spawnPoint.x, spawnPoint.y, 'player');
+        player = new Player(this, spawnPoint.x, spawnPoint.y, 'character');
 
         const camera = this.cameras.main;
         camera.startFollow(player);
