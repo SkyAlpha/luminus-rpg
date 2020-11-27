@@ -26,10 +26,20 @@ export class PhaserDialogBox {
          * Name of the sprite image that will be the dialog.
          *  @type { string } */
         this.dialogSpriteName = 'dialog';
+
         /**
          * Name of the Sprite of the button action.
-         * @type { string } */
+         * @type { string }
+         * @default
+         * */
         this.actionButtonSprite = 'space';
+
+        /**
+         * Name of the Sprite of the Mobile button action.
+         * @type { string }
+         * @default
+         * */
+        this.mobileActionButtonSprite = 'buttonA';
 
         /**
          * Current action button key code.
@@ -151,6 +161,12 @@ export class PhaserDialogBox {
         this.dialog = null;
 
         /**
+         * Checks if it's mobile so it can hide the buttons.
+         * @type { boolean }
+         */
+        this.isMobile = false;
+
+        /**
          * Font family to be used. It has to be included in your Phaser project.
          * @type { string }
          */
@@ -158,6 +174,8 @@ export class PhaserDialogBox {
     }
 
     create() {
+        // First thing to do is to check if it's mobile.
+        this.isMobile = !this.scene.sys.game.device.os.desktop ? true : false;
         this.dialog = this.scene.add.nineslice(
             this.margin,
             this.cameraHeight - this.dialogHeight - this.margin, // this is the starting x/y location
@@ -170,14 +188,15 @@ export class PhaserDialogBox {
         this.dialog.setScrollFactor(0, 0);
         this.dialog.depth = 99;
         this.dialog.visible = false;
-
         this.actionButton = this.scene.add
             .image(
                 this.cameraWidth - this.margin * 4,
                 this.cameraHeight -
                     // this.dialog_height -
                     this.margin * 3,
-                this.actionButtonSprite
+                this.isMobile
+                    ? this.mobileActionButtonSprite
+                    : this.actionButtonSprite
             )
             .setDepth(9999)
             .setScrollFactor(0, 0)
@@ -211,40 +230,41 @@ export class PhaserDialogBox {
         );
 
         this.scene.input.keyboard.on('keydown', (key) => {
-            // if (this.keyObj.isDown) debugger;
             this.checkButtonDown();
         });
 
         const joystickScene = this.scene.scene.get('JoystickScene');
-        if (joystickScene) {
+        if ((joystickScene && joystickScene.buttonA) || joystickScene.buttonB) {
             this.buttonA = joystickScene.buttonA;
+            this.buttonB = joystickScene.buttonB;
             this.buttonA.on('down', (b) => this.checkButtonDown());
+            this.buttonB.on('down', (b) => this.checkButtonDown());
         }
     }
 
     checkButtonDown() {
         if (
             this.isOverlapingChat &&
-            (this.keyObj.isDown || (this.buttonA && this.buttonA.isDown)) &&
+            (this.keyObj.isDown || this.isMobileButtonPressed()) &&
             !this.dialog.visible
         ) {
             this.showDialog();
         } else if (
             this.isAnimatingText &&
-            (this.keyObj.isDown || (this.buttonA && this.buttonA.isDown))
+            (this.keyObj.isDown || this.isMobileButtonPressed())
         ) {
             this.setText(this.pagesMessage[this.currentPage], false);
         } else if (
             !this.isAnimatingText &&
             this.currentPage !== this.pagesNumber - 1 &&
             this.dialog.visible &&
-            (this.keyObj.isDown || (this.buttonA && this.buttonA.isDown))
+            (this.keyObj.isDown || this.isMobileButtonPressed())
         ) {
             this.currentPage++;
             this.dialog.textMessage.text = '';
             this.setText(this.pagesMessage[this.currentPage], true);
         } else if (
-            (this.keyObj.isDown || (this.buttonA && this.buttonA.isDown)) &&
+            (this.keyObj.isDown || this.isMobileButtonPressed()) &&
             this.dialog.visible &&
             this.dialog.textMessage &&
             this.dialog.textMessage.active
@@ -255,6 +275,18 @@ export class PhaserDialogBox {
             this.actionButton.visible = false;
             this.interactionIcon.visible = false;
         }
+    }
+
+    /**
+     * Checks if the Button A or the Button B is pressed.
+     * Returns true if any of those is pressed, otherwise returns false.
+     * @returns { boolean }
+     */
+    isMobileButtonPressed() {
+        return (
+            (this.buttonA && this.buttonA.isDown) ||
+            (this.buttonB && this.buttonB.isDown)
+        );
     }
 
     /**

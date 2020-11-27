@@ -27,6 +27,18 @@ export class JoystickScene extends Phaser.Scene {
         this.stick = null;
 
         /**
+         * The name of the Button A to make it easy to use it for comparisons.
+         * @type { string }
+         */
+        this.buttonAName = 'mobile_ButtonA';
+
+        /**
+         * The name of the Button B to make it easy to use it for comparisons.
+         * @type { string }
+         */
+        this.buttonBName = 'mobile_ButtonB';
+
+        /**
          * Button A
          * @type { Button }
          */
@@ -37,6 +49,18 @@ export class JoystickScene extends Phaser.Scene {
          * @type { Button }
          */
         this.buttonB = null;
+
+        /**
+         * Name of the atlas.
+         * @type { string }
+         */
+        this.atlasName = 'joystick';
+
+        /**
+         * Checks if it's mobile so it can hide the buttons.
+         * @type { boolean }
+         */
+        this.isMobile = false;
     }
 
     preload() {
@@ -46,45 +70,50 @@ export class JoystickScene extends Phaser.Scene {
             'VirtualJoystickPlugin',
             'pad'
         );
-        this.load.atlas('joystick', joystick_atlas_image, joystick_json);
+        this.load.atlas(this.atlasName, joystick_atlas_image, joystick_json);
     }
 
     create() {
-        this.mainScene = this.scene.get('MainScene');
+        this.isMobile = !this.sys.game.device.os.desktop ? true : false;
+        // TODO - Hardcoded.
+        if (this.isMobile) {
+            // if (true) {
+            this.mainScene = this.scene.get('MainScene');
 
-        this.stick = this.pad
-            .addStick(0, 0, 120, 'joystick', 'base', 'stick')
-            .alignBottomLeft(100);
-        this.buttonA = this.pad
-            .addButton(0, 120, 'joystick', 'button0-up', 'button0-down')
-            .setName('mobile_ButtonA');
-        this.buttonA.posX = this.cameras.main.width - 150;
-        this.buttonA.posY = this.cameras.main.height - 250;
+            this.stick = this.pad
+                .addStick(0, 0, 120, this.atlasName, 'base', 'stick')
+                .alignBottomLeft(100);
+            this.buttonA = this.pad
+                .addButton(0, 120, this.atlasName, 'button0-up', 'button0-down')
+                .setName(this.buttonAName);
+            this.buttonA.posX = this.cameras.main.width - 150;
+            this.buttonA.posY = this.cameras.main.height - 250;
 
-        // Sets the button B
-        this.buttonB = this.pad
-            .addButton(0, 120, 'joystick', 'button1-up', 'button1-down')
-            .setName('mobile_ButtonB')
-            .alignBottomRight(100);
-        this.buttonB.posX = this.cameras.main.width - 50;
-        this.buttonB.posY = this.cameras.main.height - 250;
+            // Sets the button B
+            this.buttonB = this.pad
+                .addButton(0, 120, this.atlasName, 'button1-up', 'button1-down')
+                .setName(this.buttonBName)
+                .alignBottomRight(100);
+            this.buttonB.posX = this.cameras.main.width - 50;
+            this.buttonB.posY = this.cameras.main.height - 250;
 
-        this.mainScene.events.on(
-            'setConfiguration',
-            (args) => {
-                this.player = args.player;
-                this.events.emit('setStick', this.stick);
-            },
-            this
-        );
+            this.mainScene.events.on(
+                'setConfiguration',
+                (args) => {
+                    this.player = args.player;
+                    this.events.emit('setStick', this.stick);
+                },
+                this
+            );
 
-        // this.scale.on('resize', (resize) => {
-        //     if (this.stick) {
-        //         this.stick = this.pad
-        //             .addStick(20, 20, 120, 'joystick', 'base', 'stick')
-        //             .alignBottomLeft(32);
-        //     }
-        // });
+            // this.scale.on('resize', (resize) => {
+            //     if (this.stick) {
+            //         this.stick = this.pad
+            //             .addStick(20, 20, 120, this.atlasName, 'base', 'stick')
+            //             .alignBottomLeft(32);
+            //     }
+            // });
+        }
     }
 
     update() {

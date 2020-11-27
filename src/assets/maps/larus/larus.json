@@ -759,7 +759,7 @@
                         {
                          "name":"message",
                          "type":"string",
-                         "value":"UAU!! Um Canh\u00e3o!!"
+                         "value":"UAU!! Um Canh\u00e3o!!\nEste \u00e9 bem raro de se encontrar hoje em dia.\nSer\u00e1 que ainda funciona?"
                         }],
                  "rotation":0,
                  "type":"",
@@ -801,6 +801,57 @@
                  "width":77.5,
                  "x":9,
                  "y":-271
+                }, 
+                {
+                 "height":45,
+                 "id":29,
+                 "name":"bad_chair",
+                 "properties":[
+                        {
+                         "name":"message",
+                         "type":"string",
+                         "value":"Esta cadeira parece fr\u00e1gil. Melhor n\u00e3o sentar nela."
+                        }],
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":25,
+                 "x":1055.5,
+                 "y":31.5
+                }, 
+                {
+                 "height":52,
+                 "id":30,
+                 "name":"beautiful_bed",
+                 "properties":[
+                        {
+                         "name":"message",
+                         "type":"string",
+                         "value":"Ainda bem que eu arrumei a minha cama antes de sair de casa. Minha esposa ficaria furiosa se voltasse para casa e a encontrasse desarrumada."
+                        }],
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":49.5,
+                 "x":911,
+                 "y":369.5
+                }, 
+                {
+                 "height":38.5,
+                 "id":31,
+                 "name":"livros",
+                 "properties":[
+                        {
+                         "name":"message",
+                         "type":"string",
+                         "value":"Ser\u00e1 que tem uma B\u00edblia aqui?\n\n......"
+                        }],
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":70,
+                 "x":981,
+                 "y":372.5
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -854,7 +905,7 @@
                  "point":true,
                  "rotation":0,
                  "type":"",
-                 "visible":true,
+                 "visible":false,
                  "width":0,
                  "x":1032.67,
                  "y":-12.3334
@@ -866,7 +917,7 @@
                  "point":true,
                  "rotation":0,
                  "type":"",
-                 "visible":true,
+                 "visible":false,
                  "width":0,
                  "x":40,
                  "y":16
@@ -895,7 +946,7 @@
                  "point":true,
                  "rotation":0,
                  "type":"",
-                 "visible":true,
+                 "visible":false,
                  "width":0,
                  "x":1103.5,
                  "y":512.5
@@ -924,14 +975,14 @@
                  "point":true,
                  "rotation":0,
                  "type":"",
-                 "visible":true,
+                 "visible":false,
                  "width":0,
                  "x":1118.5,
                  "y":94.5
                 }],
          "opacity":1,
          "type":"objectgroup",
-         "visible":true,
+         "visible":false,
          "x":0,
          "y":0
         }, 
@@ -959,7 +1010,7 @@
          "y":0
         }],
  "nextlayerid":10,
- "nextobjectid":29,
+ "nextobjectid":32,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.4.3",

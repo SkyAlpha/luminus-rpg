@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.4" tiledversion="1.4.3" orientation="orthogonal" renderorder="right-down" width="100" height="100" tilewidth="16" tileheight="16" infinite="1" nextlayerid="10" nextobjectid="29">
+<map version="1.4" tiledversion="1.4.3" orientation="orthogonal" renderorder="right-down" width="100" height="100" tilewidth="16" tileheight="16" infinite="1" nextlayerid="10" nextobjectid="32">
  <editorsettings>
   <export target="larus.json" format="json"/>
  </editorsettings>
@@ -316,7 +316,9 @@
   </object>
   <object id="20" name="canon" x="171.273" y="119.636" width="44.7273" height="28.3636">
    <properties>
-    <property name="message" value="UAU!! Um Canhão!!"/>
+    <property name="message">UAU!! Um Canhão!!
+Este é bem raro de se encontrar hoje em dia.
+Será que ainda funciona?</property>
    </properties>
   </object>
   <object id="21" name="plates_house" x="1110" y="18.1818" width="26.5455" height="5.09091">
@@ -329,8 +331,25 @@
     <property name="message" value="- A porta está fechada! Deve ter algo muito importante aqui dentro. Vou procurar uma chave para abri-la."/>
    </properties>
   </object>
+  <object id="29" name="bad_chair" x="1055.5" y="31.5" width="25" height="45">
+   <properties>
+    <property name="message" value="Esta cadeira parece frágil. Melhor não sentar nela."/>
+   </properties>
+  </object>
+  <object id="30" name="beautiful_bed" x="911" y="369.5" width="49.5" height="52">
+   <properties>
+    <property name="message" value="Ainda bem que eu arrumei a minha cama antes de sair de casa. Minha esposa ficaria furiosa se voltasse para casa e a encontrasse desarrumada."/>
+   </properties>
+  </object>
+  <object id="31" name="livros" x="981" y="372.5" width="70" height="38.5">
+   <properties>
+    <property name="message">Será que tem uma Bíblia aqui?
+
+......</property>
+   </properties>
+  </object>
  </objectgroup>
- <objectgroup id="5" name="warps">
+ <objectgroup id="5" name="warps" visible="0">
   <object id="8" name="go_house" x="31.75" y="-27" width="16" height="11">
    <properties>
     <property name="goto" type="object" value="16"/>
@@ -341,10 +360,10 @@
     <property name="goto" type="object" value="17"/>
    </properties>
   </object>
-  <object id="16" name="spawn_house" x="1032.67" y="-12.3334">
+  <object id="16" name="spawn_house" x="1032.67" y="-12.3334" visible="0">
    <point/>
   </object>
-  <object id="17" name="spawn_field" x="40" y="16">
+  <object id="17" name="spawn_field" x="40" y="16" visible="0">
    <point/>
   </object>
   <object id="22" name="goto_second_floor" x="1110" y="125" width="20.5" height="16.5">
@@ -352,7 +371,7 @@
     <property name="goto" type="object" value="23"/>
    </properties>
   </object>
-  <object id="23" name="second_floor" x="1103.5" y="512.5">
+  <object id="23" name="second_floor" x="1103.5" y="512.5" visible="0">
    <point/>
   </object>
   <object id="24" name="goto_first_floor" x="1092" y="542.5" width="24" height="13.5">
@@ -360,7 +379,7 @@
     <property name="goto" type="object" value="26"/>
    </properties>
   </object>
-  <object id="26" name="first_floor" x="1118.5" y="94.5">
+  <object id="26" name="first_floor" x="1118.5" y="94.5" visible="0">
    <point/>
   </object>
  </objectgroup>
