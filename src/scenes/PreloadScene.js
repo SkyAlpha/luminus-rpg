@@ -1,6 +1,7 @@
 import Phaser from 'phaser';
 import atlas_image from '../assets/sprites/character.png';
 import atlas_image_json from '../assets/sprites/character.json';
+import { Animations } from '../entities/PlayerAnimations';
 
 export class PreloadScene extends Phaser.Scene {
     constructor() {
@@ -10,25 +11,22 @@ export class PreloadScene extends Phaser.Scene {
     }
 
     preload() {
-        this.load.atlas(
-            'character',
-            'src/assets/sprites/character.png',
-            'src/assets/sprites/character.json'
-        );
+        this.load.atlas('character', atlas_image, atlas_image_json);
     }
 
     create() {
-        this.anims.create({
-            key: 'idle-down',
-            frameRate: 4,
-            frames: this.anims.generateFrameNames('character', {
-                prefix: 'idle-down/idle-down',
-                // suffix: '.png',
-                start: 0,
-                end: 0,
-                zeroPad: 1,
-            }),
-            repeat: -1,
+        Animations.forEach((animation) => {
+            this.anims.create({
+                key: animation.key,
+                frameRate: animation.frameRate,
+                frames: this.anims.generateFrameNames(animation.atlas, {
+                    prefix: animation.prefix,
+                    start: animation.start,
+                    end: animation.end,
+                    zeroPad: animation.zeroPad,
+                }),
+                repeat: animation.repeat,
+            });
         });
 
         this.scene.start('MainScene');
