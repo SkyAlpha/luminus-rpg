@@ -3,6 +3,7 @@ import { MainScene } from './scenes/MainScene';
 import { Plugin as NineSlicePlugin } from 'phaser3-nineslice';
 import { DialogScene } from './scenes/DialogScene';
 import { JoystickScene } from './scenes/JoystickScene';
+import { HUDScene } from './scenes/HUDScene';
 
 /**
  * @type { Phaser.Core.Config}
@@ -12,7 +13,7 @@ const config = {
     parent: 'collision-test',
     width: 192,
     height: 108,
-    scene: [MainScene, JoystickScene, DialogScene],
+    scene: [MainScene, JoystickScene, DialogScene, HUDScene],
     scaleMode: Phaser.Scale.RESIZE,
     plugins: {
         global: [NineSlicePlugin.DefaultCfg],

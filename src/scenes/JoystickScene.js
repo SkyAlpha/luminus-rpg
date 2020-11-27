@@ -106,13 +106,15 @@ export class JoystickScene extends Phaser.Scene {
                 this
             );
 
-            // this.scale.on('resize', (resize) => {
-            //     if (this.stick) {
-            //         this.stick = this.pad
-            //             .addStick(20, 20, 120, this.atlasName, 'base', 'stick')
-            //             .alignBottomLeft(32);
-            //     }
-            // });
+            this.scale.on('resize', (resize) => {
+                if (this.stick) {
+                    this.stick.alignBottomLeft(100);
+                    this.buttonA.posX = this.cameras.main.width - 150;
+                    this.buttonA.posY = this.cameras.main.height - 250;
+                    this.buttonB.posX = this.cameras.main.width - 50;
+                    this.buttonB.posY = this.cameras.main.height - 250;
+                }
+            });
         }
     }
 

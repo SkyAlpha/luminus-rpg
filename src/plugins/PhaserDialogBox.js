@@ -32,14 +32,21 @@ export class PhaserDialogBox {
          * @type { string }
          * @default
          * */
-        this.actionButtonSprite = 'space';
+        this.actionButtonSpriteName = 'space';
+
+        /**
+         * Interaction sprite name.
+         * @type { string }
+         * @default
+         * */
+        this.interactionSpriteName = 'question_mark';
 
         /**
          * Name of the Sprite of the Mobile button action.
          * @type { string }
          * @default
          * */
-        this.mobileActionButtonSprite = 'buttonA';
+        this.mobileActionButtonSpriteName = 'buttonA';
 
         /**
          * Current action button key code.
@@ -188,6 +195,10 @@ export class PhaserDialogBox {
         this.dialog.setScrollFactor(0, 0);
         this.dialog.depth = 99;
         this.dialog.visible = false;
+        console.log(
+            this.scene.cameras.main.midPoint.x,
+            this.scene.cameras.main.midPoint.y - this.player.body.height * 2.5
+        );
         this.actionButton = this.scene.add
             .image(
                 this.cameraWidth - this.margin * 4,
@@ -195,8 +206,8 @@ export class PhaserDialogBox {
                     // this.dialog_height -
                     this.margin * 3,
                 this.isMobile
-                    ? this.mobileActionButtonSprite
-                    : this.actionButtonSprite
+                    ? this.mobileActionButtonSpriteName
+                    : this.actionButtonSpriteName
             )
             .setDepth(9999)
             .setScrollFactor(0, 0)
@@ -208,7 +219,7 @@ export class PhaserDialogBox {
                 this.scene.cameras.main.midPoint.x,
                 this.scene.cameras.main.midPoint.y -
                     this.player.body.height * 2.5,
-                'question_mark'
+                this.interactionSpriteName
             )
             .setDepth(99999)
             .setScale(2);
@@ -398,6 +409,17 @@ export class PhaserDialogBox {
      */
     resizeComponents(width, height) {
         if (width !== 0 && height !== 0) {
+            console.log(
+                this.scene.cameras.main.midPoint.x,
+                this.scene.cameras.main.midPoint.y -
+                    this.player.body.height * 2.5
+            );
+            this.interactionIcon.setPosition(
+                this.scene.cameras.main.midPoint.x,
+                this.scene.cameras.main.midPoint.y -
+                    this.player.body.height * 2.5
+            );
+
             this.cameraWidth = width;
             this.cameraHeight = height;
             this.textWidth = this.cameraWidth - this.margin * 3;
