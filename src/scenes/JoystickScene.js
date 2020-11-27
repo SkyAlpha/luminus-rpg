@@ -25,6 +25,18 @@ export class JoystickScene extends Phaser.Scene {
          * @type { VirtualJoystickPlugin }
          */
         this.stick = null;
+
+        /**
+         * Button A
+         * @type { Button }
+         */
+        this.buttonA = null;
+
+        /**
+         * Button B
+         * @type { Button }
+         */
+        this.buttonB = null;
     }
 
     preload() {
@@ -43,13 +55,25 @@ export class JoystickScene extends Phaser.Scene {
         this.stick = this.pad
             .addStick(0, 0, 120, 'joystick', 'base', 'stick')
             .alignBottomLeft(100);
+        this.buttonA = this.pad
+            .addButton(0, 120, 'joystick', 'button0-up', 'button0-down')
+            .setName('mobile_ButtonA');
+        this.buttonA.posX = this.cameras.main.width - 150;
+        this.buttonA.posY = this.cameras.main.height - 250;
+
+        // Sets the button B
+        this.buttonB = this.pad
+            .addButton(0, 120, 'joystick', 'button1-up', 'button1-down')
+            .setName('mobile_ButtonB')
+            .alignBottomRight(100);
+        this.buttonB.posX = this.cameras.main.width - 50;
+        this.buttonB.posY = this.cameras.main.height - 250;
 
         this.mainScene.events.on(
             'setConfiguration',
             (args) => {
                 this.player = args.player;
                 this.events.emit('setStick', this.stick);
-                console.log(args);
             },
             this
         );

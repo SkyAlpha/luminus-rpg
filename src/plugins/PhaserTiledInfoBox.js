@@ -90,6 +90,7 @@ export class PhaserTiledInfoBox {
             (zone) => {
                 this.phaserDialogBox.isOverlapingChat = true;
                 this.phaserDialogBox.actionButton.visible = true;
+                this.phaserDialogBox.interactionIcon.visible = true;
                 this.phaserDialogBox.dialogMessage = zone.message.trim();
             },
             (d) => {

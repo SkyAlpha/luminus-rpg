@@ -151,7 +151,7 @@
         <key>autoAliasEnabled</key>
         <false/>
         <key>trimSpriteNames</key>
-        <false/>
+        <true/>
         <key>prependSmartFolderName</key>
         <false/>
         <key>autodetectAnimations</key>
@@ -182,7 +182,11 @@
         <key>individualSpriteSettings</key>
         <map type="IndividualSpriteSettingsMap">
             <key type="filename">../../../../../assets games/Controls/Xelu_FREE_keyboard+controller_prompts_pack/Xbox 360/stick.png</key>
+            <key type="filename">../../../../../assets games/Controls/Xelu_FREE_keyboard+controller_prompts_pack/Xbox One/button0-up.png</key>
+            <key type="filename">../../../../../assets games/Controls/Xelu_FREE_keyboard+controller_prompts_pack/Xbox One/button1-up.png</key>
             <key type="filename">../../../../../../../Downloads/base.png</key>
+            <key type="filename">../../../../../../../Downloads/button0-down.png</key>
+            <key type="filename">../../../../../../../Downloads/button1-down.png</key>
             <struct type="IndividualSpriteSettings">
                 <key>pivotPoint</key>
                 <point_f>0.5,0.5</point_f>
@@ -202,6 +206,10 @@
         <array>
             <filename>../../../../../assets games/Controls/Xelu_FREE_keyboard+controller_prompts_pack/Xbox 360/stick.png</filename>
             <filename>../../../../../../../Downloads/base.png</filename>
+            <filename>../../../../../assets games/Controls/Xelu_FREE_keyboard+controller_prompts_pack/Xbox One/button0-up.png</filename>
+            <filename>../../../../../assets games/Controls/Xelu_FREE_keyboard+controller_prompts_pack/Xbox One/button1-up.png</filename>
+            <filename>../../../../../../../Downloads/button0-down.png</filename>
+            <filename>../../../../../../../Downloads/button1-down.png</filename>
         </array>
         <key>ignoreFileList</key>
         <array/>

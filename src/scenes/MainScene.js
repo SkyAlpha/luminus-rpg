@@ -5,6 +5,7 @@ import collision_tile from '../assets/maps/tilesets/collision.png';
 import player_image from '../assets/sprites/player.png';
 import dialog from '../assets/sprites/dialog_paper.png';
 import space from '../assets/sprites/space_key.png';
+import question_mark from '../assets/sprites/question_mark.png';
 import tile_map_json from '../assets/maps/larus/larus.json';
 import { PhaserWarp } from '../plugins/PhaserWarp';
 import { Player } from '../entities/Player';
@@ -25,6 +26,7 @@ export class MainScene extends Phaser.Scene {
         this.load.image('player', player_image);
         this.load.image('dialog', dialog);
         this.load.image('space', space);
+        this.load.image('question_mark', question_mark);
         this.load.image('tiles', tiles);
         this.load.image('collision_tiles', collision_tile);
         this.load.image('inner', inner);

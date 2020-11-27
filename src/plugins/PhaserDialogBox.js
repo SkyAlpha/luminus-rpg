@@ -1,4 +1,5 @@
 import Phaser from 'phaser';
+import { NineSlice } from 'phaser3-nineslice';
 
 /**
  * @class
@@ -7,11 +8,11 @@ export class PhaserDialogBox {
     /**
      * This class allows one to create Dialogs.
      * It's possible to set the Action Hotkey, Action button Sprite, Dialog Sprite image,
+     * Interaction icon above player.
      * @param { Phaser.Scene } scene Scene Context.
      * @param { Phaser.GameObjects } player Player Game Object.
-     * @param { Phaser.Tilemaps.Tilemap } map Tile Map to get the object from.
      */
-    constructor(scene, player, map) {
+    constructor(scene, player) {
         /**
          * scene Scene Context.
          * @type { Phaser.Scene }  */
@@ -126,6 +127,30 @@ export class PhaserDialogBox {
         this.fontColor = new Phaser.Display.Color(61, 61, 61, 1);
 
         /**
+         * Button A
+         * @type { Button }
+         */
+        this.buttonA = null;
+
+        /**
+         * Button B
+         * @type { Button }
+         */
+        this.buttonB = null;
+
+        /**
+         * Action Button for general devices.
+         * @type { Phaser.GameObjects.Image }
+         */
+        this.actionButton = null;
+
+        /**
+         * The Dialog that will show the text.
+         * @type { NineSlice }
+         */
+        this.dialog = null;
+
+        /**
          * Font family to be used. It has to be included in your Phaser project.
          * @type { string }
          */
@@ -159,6 +184,17 @@ export class PhaserDialogBox {
             .setScale(this.actionSpriteScale);
         this.actionButton.visible = false;
 
+        this.interactionIcon = this.scene.add
+            .image(
+                this.scene.cameras.main.midPoint.x,
+                this.scene.cameras.main.midPoint.y -
+                    this.player.body.height * 2.5,
+                'question_mark'
+            )
+            .setDepth(99999)
+            .setScale(2);
+        this.interactionIcon.visible = false;
+
         this.scene.tweenKey = this.scene.add.tween({
             targets: this.actionButton,
             yoyo: true,
@@ -176,34 +212,49 @@ export class PhaserDialogBox {
 
         this.scene.input.keyboard.on('keydown', (key) => {
             // if (this.keyObj.isDown) debugger;
-            if (
-                this.isOverlapingChat &&
-                this.keyObj.isDown &&
-                !this.dialog.visible
-            ) {
-                this.showDialog();
-            } else if (this.isAnimatingText && this.keyObj.isDown) {
-                this.setText(this.pagesMessage[this.currentPage], false);
-            } else if (
-                !this.isAnimatingText &&
-                this.currentPage !== this.pagesNumber - 1 &&
-                this.keyObj.isDown
-            ) {
-                this.currentPage++;
-                this.dialog.textMessage.text = '';
-                this.setText(this.pagesMessage[this.currentPage], true);
-            } else if (
-                this.keyObj.isDown &&
-                this.dialog.visible &&
-                this.dialog.textMessage &&
-                this.dialog.textMessage.active
-            ) {
-                this.dialog.textMessage.destroy();
-                this.dialog.visible = false;
-                this.canShowDialog = true;
-                this.actionButton.visible = false;
-            }
+            this.checkButtonDown();
         });
+
+        const joystickScene = this.scene.scene.get('JoystickScene');
+        if (joystickScene) {
+            this.buttonA = joystickScene.buttonA;
+            this.buttonA.on('down', (b) => this.checkButtonDown());
+        }
+    }
+
+    checkButtonDown() {
+        if (
+            this.isOverlapingChat &&
+            (this.keyObj.isDown || (this.buttonA && this.buttonA.isDown)) &&
+            !this.dialog.visible
+        ) {
+            this.showDialog();
+        } else if (
+            this.isAnimatingText &&
+            (this.keyObj.isDown || (this.buttonA && this.buttonA.isDown))
+        ) {
+            this.setText(this.pagesMessage[this.currentPage], false);
+        } else if (
+            !this.isAnimatingText &&
+            this.currentPage !== this.pagesNumber - 1 &&
+            this.dialog.visible &&
+            (this.keyObj.isDown || (this.buttonA && this.buttonA.isDown))
+        ) {
+            this.currentPage++;
+            this.dialog.textMessage.text = '';
+            this.setText(this.pagesMessage[this.currentPage], true);
+        } else if (
+            (this.keyObj.isDown || (this.buttonA && this.buttonA.isDown)) &&
+            this.dialog.visible &&
+            this.dialog.textMessage &&
+            this.dialog.textMessage.active
+        ) {
+            this.dialog.textMessage.destroy();
+            this.dialog.visible = false;
+            this.canShowDialog = true;
+            this.actionButton.visible = false;
+            this.interactionIcon.visible = false;
+        }
     }
 
     /**
@@ -303,6 +354,7 @@ export class PhaserDialogBox {
             !this.dialog.visible
         ) {
             this.actionButton.visible = false;
+            this.interactionIcon.visible = false;
             this.isOverlapingChat = false;
         }
     }
