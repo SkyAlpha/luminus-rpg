@@ -195,10 +195,7 @@ export class PhaserDialogBox {
         this.dialog.setScrollFactor(0, 0);
         this.dialog.depth = 99;
         this.dialog.visible = false;
-        console.log(
-            this.scene.cameras.main.midPoint.x,
-            this.scene.cameras.main.midPoint.y - this.player.body.height * 2.5
-        );
+
         this.actionButton = this.scene.add
             .image(
                 this.cameraWidth - this.margin * 4,
@@ -408,16 +405,11 @@ export class PhaserDialogBox {
      * @param { number } height new Height.
      */
     resizeComponents(width, height) {
+        console.log(width, height);
         if (width !== 0 && height !== 0) {
-            console.log(
-                this.scene.cameras.main.midPoint.x,
-                this.scene.cameras.main.midPoint.y -
-                    this.player.body.height * 2.5
-            );
             this.interactionIcon.setPosition(
                 this.scene.cameras.main.midPoint.x,
-                this.scene.cameras.main.midPoint.y -
-                    this.player.body.height * 2.5
+                height / 2 - this.player.body.height * 2.5
             );
 
             this.cameraWidth = width;
