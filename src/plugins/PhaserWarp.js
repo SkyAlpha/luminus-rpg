@@ -50,6 +50,9 @@ export class PhaserWarp {
         this.maxSpeed = this.player.body.maxSpeed;
     }
 
+    /**
+     * Creates all warps of the game.
+     */
     createWarps() {
         const warps = this.map.getObjectLayer(this.warpObjectName);
         const warp_array = warps.objects.filter((obj) => obj.properties);

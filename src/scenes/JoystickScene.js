@@ -74,10 +74,9 @@ export class JoystickScene extends Phaser.Scene {
     }
 
     create() {
+        this.input.addPointer(3);
         this.isMobile = !this.sys.game.device.os.desktop ? true : false;
-        // TODO - Hardcoded.
         if (this.isMobile) {
-            // if (true) {
             this.mainScene = this.scene.get('MainScene');
 
             this.stick = this.pad
@@ -119,7 +118,12 @@ export class JoystickScene extends Phaser.Scene {
     }
 
     update() {
-        if (this.useOnScreenControls && this.player && this.player.body) {
+        if (
+            this.useOnScreenControls &&
+            this.player &&
+            this.player.body &&
+            this.input.pointer1.isDown
+        ) {
             if (
                 this.stick &&
                 this.stick.isDown &&

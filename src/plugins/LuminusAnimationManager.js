@@ -55,47 +55,28 @@ export class LuminusAnimationManager {
      * It must be defined in your configuration file, and or spriting software of your choice.
      */
     animateWithAngle(animation, angle) {
-        const currrentAnimation = this.player.anims.currentAnim.key;
-        if (parseFloat(angle).toFixed(2) == -1.57) {
+        if (
+            parseFloat(angle).toFixed(2) > -0.66 &&
+            parseFloat(angle).toFixed(2) < 0.66
+        ) {
+            this.player.anims.play(animation + '-right', true);
+        } else if (
+            parseFloat(angle).toFixed(2) > -2.33 &&
+            parseFloat(angle).toFixed(2) < -0.66
+        ) {
             this.player.anims.play(animation + '-up', true);
-        }
-        if (
-            parseFloat(angle).toFixed(2) < -1.57 &&
-            parseFloat(angle).toFixed(2) > -3.14
+        } else if (
+            (parseFloat(angle).toFixed(2) < -2.33 &&
+                parseFloat(angle).toFixed(2) >= -3.14) ||
+            (parseFloat(angle).toFixed(2) <= 3.14 &&
+                parseFloat(angle).toFixed(2) > 2.33)
         ) {
             this.player.anims.play(animation + '-left', true);
-        }
-        // Right
-        if (
-            parseFloat(angle).toFixed(2) <= -0.01 &&
-            parseFloat(angle).toFixed(2) > -1.57
-        ) {
-            this.player.anims.play(animation + '-right', true);
-        }
-        if (angle == 0) {
-            this.player.anims.play(animation + '-right', true);
-        }
-
-        // Down
-        if (
-            parseFloat(angle).toFixed(2) > 0 &&
-            parseFloat(angle).toFixed(2) < 1.57
+        } else if (
+            parseFloat(angle).toFixed(2) <= 2.33 &&
+            parseFloat(angle).toFixed(2) > 0.66
         ) {
             this.player.anims.play(animation + '-down', true);
-        }
-        if (parseFloat(angle).toFixed(2) == 1.57) {
-            this.player.anims.play(animation + '-down', true);
-        }
-
-        // Left
-        if (
-            parseFloat(angle).toFixed(2) > 1.57 &&
-            parseFloat(angle).toFixed(2) < 3.14
-        ) {
-            this.player.anims.play(animation + '-left', true);
-        }
-        if (parseFloat(angle).toFixed(2) == 3.14) {
-            this.player.anims.play(animation + '-left', true);
         }
 
         this.lastAnimation = this.player.anims.currentAnim.key;

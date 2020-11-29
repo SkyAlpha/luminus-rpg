@@ -4,7 +4,7 @@ import { LuminusAnimationManager } from './LuminusAnimationManager';
 /**
  * @class
  */
-export class PhaserMovement {
+export class LuminusMovement {
     /**
      * Creates cursors to move the player.
      * @param { Phaser.Scene } scene Phaser Scene.
@@ -56,6 +56,8 @@ export class PhaserMovement {
         this.scene.input.on('keydown', (down) => {
             console.log('down');
         });
+
+        this.scene.input.addPointer(3);
     }
 
     /**
@@ -129,7 +131,8 @@ export class PhaserMovement {
             this.stick &&
             this.stick.isDown &&
             this.player.body.maxSpeed > 0 &&
-            this.stick.force > 0
+            this.stick.force > 0 &&
+            this.scene.input.pointer1.isDown
         ) {
             this.luminusAnimationManager.animateWithAngle(
                 'walk',

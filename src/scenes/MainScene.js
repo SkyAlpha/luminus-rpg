@@ -12,7 +12,7 @@ import maximize from '../assets/sprites/maximize.png';
 import tile_map_json from '../assets/maps/larus/larus.json';
 import { PhaserWarp } from '../plugins/PhaserWarp';
 import { Player } from '../entities/Player';
-import { PhaserMovement } from '../plugins/PhaserMovement';
+import { LuminusMovement } from '../plugins/LuminusMovement';
 import { ObjectInteractionMarker } from '../plugins/ObjectInteractionMarker';
 
 let player;
@@ -44,6 +44,14 @@ export class MainScene extends Phaser.Scene {
             'webfont',
             'https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js'
         );
+
+        // this.load.video(
+        //     'daniel2',
+        //     'https://www.youtube.com/watch?v=LtYhRAQSZlU&ab_channel=B%C3%ADbliaF%C3%A1cil',
+        //     'loadeddata',
+        //     false,
+        //     true
+        // );
     }
 
     create() {
@@ -93,7 +101,8 @@ export class MainScene extends Phaser.Scene {
             'spawn',
             (obj) => obj.name === 'Spawn Point'
         );
-
+        // const video = this.add.video(spawnPoint.x, spawnPoint.y, 'daniel2');
+        // video.play();
         player = new Player(this, spawnPoint.x, spawnPoint.y, 'character');
         player.body.setSize(12, 16);
         // player.body.offset.y = 20;
@@ -116,7 +125,7 @@ export class MainScene extends Phaser.Scene {
         this.scene.launch('HUDScene');
 
         this.joystickScene = this.scene.get('JoystickScene');
-        this.movement = new PhaserMovement(this, player, this.joystickScene);
+        this.movement = new LuminusMovement(this, player, this.joystickScene);
 
         // Only to give time to the scene to be initialized.
         setTimeout((t) => {
