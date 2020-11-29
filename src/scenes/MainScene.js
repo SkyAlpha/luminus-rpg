@@ -15,7 +15,6 @@ import { Player } from '../entities/Player';
 import { LuminusMovement } from '../plugins/LuminusMovement';
 import { ObjectInteractionMarker } from '../plugins/ObjectInteractionMarker';
 
-let player;
 let cursors;
 let map;
 
@@ -24,6 +23,7 @@ export class MainScene extends Phaser.Scene {
         super({
             key: 'MainScene',
         });
+        this.player = null;
     }
 
     preload() {
@@ -95,19 +95,20 @@ export class MainScene extends Phaser.Scene {
             (obj) => obj.name === 'Spawn Point'
         );
 
-        player = new Player(this, spawnPoint.x, spawnPoint.y, 'character');
-        player.body.setSize(12, 16);
+        this.player = new Player(this, spawnPoint.x, spawnPoint.y, 'character');
+
+        this.player.body.setSize(12, 16);
         // player.body.offset.y = 20;
-        player.play('idle-down');
+        this.player.play('idle-down');
 
         const camera = this.cameras.main;
-        camera.startFollow(player);
+        camera.startFollow(this.player);
 
         // camera.setBounds(0, 0, map.widthInPixels, map.heightInPixels);
 
-        this.physics.add.collider(player, collision_layer);
+        this.physics.add.collider(this.player, collision_layer);
 
-        const phaserWarp = new PhaserWarp(this, player, map);
+        const phaserWarp = new PhaserWarp(this, this.player, map);
         phaserWarp.createWarps();
         const interactiveMarkers = new ObjectInteractionMarker(this, map);
         interactiveMarkers.create();
@@ -118,12 +119,16 @@ export class MainScene extends Phaser.Scene {
         // this.scene.launch('VideoPlayerScene');
 
         this.joystickScene = this.scene.get('JoystickScene');
-        this.movement = new LuminusMovement(this, player, this.joystickScene);
+        this.movement = new LuminusMovement(
+            this,
+            this.player,
+            this.joystickScene
+        );
 
         // Only to give time to the scene to be initialized.
         setTimeout((t) => {
             this.events.emit('setConfiguration', {
-                player,
+                player: this.player,
                 map,
             });
         }, 300);
