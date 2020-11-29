@@ -1,5 +1,8 @@
 import Phaser from 'phaser';
 
+/**
+ * @class
+ */
 export class ObjectInteractionMarker {
     /**
      * Displays a marker on interactive objects.
@@ -8,7 +11,7 @@ export class ObjectInteractionMarker {
      */
     constructor(scene, map) {
         /**
-         * scene Scene Context.
+         * Scene Scene Context where it will create the markers.
          * @type { Phaser.Scene }  */
         this.scene = scene;
         /**
@@ -19,12 +22,14 @@ export class ObjectInteractionMarker {
         /**
          * Marker name.
          * @type { string }
+         * @default
          */
         this.tiledObjectLayer = 'markers';
 
         /**
          * Interaction indicator Sprite name.
          * @type { string }
+         * @default
          */
         this.markerSpriteName = 'question_mark';
     }

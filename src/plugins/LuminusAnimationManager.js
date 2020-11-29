@@ -19,6 +19,86 @@ export class LuminusAnimationManager {
          * @type { string }
          */
         this.lastAnimation = '';
+
+        /**
+         * This is specific for those who are using the joystick.
+         *
+         * The Luminus animation manager expects the animations to have a prefix. The sufix is automatically added by the LuminusAnimationManager class, like this:
+         * prefix: 'walk'
+         * sufix: '-up'
+         * By default the prefix is just 'walk' and the sufix is the direction that the player animation should play.
+         *
+         * The luminus animation manager will play the default animation directions
+         * 'up', 'right', 'down', 'left'
+         *
+         * @example
+         * 'walk-up'
+         *
+         *
+         * @type { string }
+         * @default
+         */
+        this.upAnimationSufix = '-up';
+
+        /**
+         * This is specific for those who are using the joystick.
+         *
+         * The Luminus animation manager expects the animations to have a prefix. The sufix is automatically added by the LuminusAnimationManager class, like this:
+         * prefix: 'walk'
+         * sufix: '-down'
+         * By default the prefix is just 'walk' and the sufix is the direction that the player animation should play.
+         *
+         * The luminus animation manager will play the default animation directions
+         * 'up', 'right', 'down', 'left'
+         *
+         * @example
+         * 'walk-down'
+         *
+         *
+         * @type { string }
+         * @default
+         */
+        this.downAnimationSufix = '-down';
+
+        /**
+         * This is specific for those who are using the joystick.
+         *
+         * The Luminus animation manager expects the animations to have a prefix. The sufix is automatically added by the LuminusAnimationManager class, like this:
+         * prefix: 'walk'
+         * sufix: '-right'
+         * By default the prefix is just 'walk' and the sufix is the direction that the player animation should play.
+         *
+         * The luminus animation manager will play the default animation directions
+         * 'up', 'right', 'down', 'left'
+         *
+         * @example
+         * 'walk-right'
+         *
+         *
+         * @type { string }
+         * @default
+         */
+        this.rightAnimationSufix = '-right';
+
+        /**
+         * This is specific for those who are using the joystick.
+         *
+         * The Luminus animation manager expects the animations to have a prefix. The sufix is automatically added by the LuminusAnimationManager class, like this:
+         * prefix: 'walk'
+         * sufix: '-left'
+         * By default the prefix is just 'walk' and the sufix is the direction that the player animation should play.
+         *
+         * The luminus animation manager will play the default animation directions
+         * 'up', 'right', 'down', 'left'
+         *
+         * @example
+         * 'walk-left'
+         *
+         *
+         * @type { string }
+         * @default
+         */
+        this.leftAnimationSufix = '-left';
     }
 
     /**
@@ -59,24 +139,24 @@ export class LuminusAnimationManager {
             parseFloat(angle).toFixed(2) > -0.66 &&
             parseFloat(angle).toFixed(2) < 0.66
         ) {
-            this.player.anims.play(animation + '-right', true);
+            this.player.anims.play(animation + this.rightAnimationSufix, true);
         } else if (
             parseFloat(angle).toFixed(2) > -2.33 &&
             parseFloat(angle).toFixed(2) < -0.66
         ) {
-            this.player.anims.play(animation + '-up', true);
+            this.player.anims.play(animation + this.upAnimationSufix, true);
         } else if (
             (parseFloat(angle).toFixed(2) < -2.33 &&
                 parseFloat(angle).toFixed(2) >= -3.14) ||
             (parseFloat(angle).toFixed(2) <= 3.14 &&
                 parseFloat(angle).toFixed(2) > 2.33)
         ) {
-            this.player.anims.play(animation + '-left', true);
+            this.player.anims.play(animation + this.leftAnimationSufix, true);
         } else if (
             parseFloat(angle).toFixed(2) <= 2.33 &&
             parseFloat(angle).toFixed(2) > 0.66
         ) {
-            this.player.anims.play(animation + '-down', true);
+            this.player.anims.play(animation + this.downAnimationSufix, true);
         }
 
         this.lastAnimation = this.player.anims.currentAnim.key;

@@ -44,24 +44,16 @@ export class MainScene extends Phaser.Scene {
             'webfont',
             'https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js'
         );
-
-        // this.load.video(
-        //     'daniel2',
-        //     'https://www.youtube.com/watch?v=LtYhRAQSZlU&ab_channel=B%C3%ADbliaF%C3%A1cil',
-        //     'loadeddata',
-        //     false,
-        //     true
-        // );
     }
 
     create() {
-        if (
-            !this.scale.isFullscreen && !this.sys.game.device.os.desktop
-                ? true
-                : false
-        ) {
-            this.scale.startFullscreen();
-        }
+        // if (
+        //     !this.scale.isFullscreen && !this.sys.game.device.os.desktop
+        //         ? true
+        //         : false
+        // ) {
+        //     this.scale.startFullscreen();
+        // }
 
         this.cameras.main.setZoom(2.5);
 
@@ -79,15 +71,16 @@ export class MainScene extends Phaser.Scene {
             'collision_tiles'
         );
 
-        const base = map.createStaticLayer('base', [tileset, inner]);
-        const overlay = map.createStaticLayer('overlay', [tileset, inner]);
-        const overlay2 = map.createStaticLayer('overlay2', [tileset, inner]);
-        const overlay3 = map.createStaticLayer('overlay3', [tileset, inner]);
-        const overplayer_layer = map.createStaticLayer('overplayer', [
+        const base = map.createDynamicLayer('base', [tileset, inner]);
+        const overlay = map.createDynamicLayer('overlay', [tileset, inner]);
+        const overlay2 = map.createDynamicLayer('overlay2', [tileset, inner]);
+        const overlay3 = map.createDynamicLayer('overlay3', [tileset, inner]);
+        const overlay4 = map.createDynamicLayer('overlay4', [tileset, inner]);
+        const overplayer_layer = map.createDynamicLayer('overplayer', [
             tileset,
             inner,
         ]);
-        const collision_layer = map.createStaticLayer(
+        const collision_layer = map.createDynamicLayer(
             'collision',
             collision_tilset
         );
@@ -101,8 +94,7 @@ export class MainScene extends Phaser.Scene {
             'spawn',
             (obj) => obj.name === 'Spawn Point'
         );
-        // const video = this.add.video(spawnPoint.x, spawnPoint.y, 'daniel2');
-        // video.play();
+
         player = new Player(this, spawnPoint.x, spawnPoint.y, 'character');
         player.body.setSize(12, 16);
         // player.body.offset.y = 20;
@@ -123,6 +115,7 @@ export class MainScene extends Phaser.Scene {
         this.scene.launch('DialogScene');
         this.scene.launch('JoystickScene');
         this.scene.launch('HUDScene');
+        // this.scene.launch('VideoPlayerScene');
 
         this.joystickScene = this.scene.get('JoystickScene');
         this.movement = new LuminusMovement(this, player, this.joystickScene);

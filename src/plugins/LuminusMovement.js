@@ -6,7 +6,7 @@ import { LuminusAnimationManager } from './LuminusAnimationManager';
  */
 export class LuminusMovement {
     /**
-     * Creates cursors to move the player.
+     * Creates cursors to move the player in the given direction.
      * @param { Phaser.Scene } scene Phaser Scene.
      * @param { Phaser.GameObjects } player the player that the cursors will move.
      * @param { Phaser.Scene } joystickScene
@@ -34,6 +34,72 @@ export class LuminusMovement {
          * @default
          */
         this.stick = null;
+
+        /**
+         * Name of the walk up animation.
+         * @type { string }
+         * @default
+         */
+        this.walkUpAnimationName = 'walk-up';
+
+        /**
+         * Name of the walk right animation.
+         * @type { string }
+         * @default
+         */
+        this.walkRightAnimationName = 'walk-right';
+
+        /**
+         * Name of the walk down animation.
+         * @type { string }
+         * @default
+         */
+        this.walkDownAnimationName = 'walk-down';
+
+        /**
+         * Name of the walk left animation.
+         * @type { string }
+         * @default
+         */
+        this.walkLeftAnimationName = 'walk-left';
+
+        /**
+         * This is specific for those who are using the joystick.
+         *
+         * The Luminus animation manager expects the animations to have a prefix. The sufix is automatically added by the LuminusAnimationManager class, like this:
+         * prefix: 'walk'
+         * sufix: '-right'
+         * By default the prefix is just 'walk' and the sufix is the direction that the player animation should play.
+         *
+         * The luminus animation manager will play the default animation directions
+         * 'up', 'right', 'down', 'left'
+         *
+         * @example
+         * 'walk-right'
+         *
+         *
+         * @type { string }
+         */
+        this.walkPrefixAnimation = 'walk';
+
+        /**
+         * This is specific for those who are using the joystick.
+         *
+         * The Luminus animation manager expects the animations to have a prefix. The sufix is automatically added by the LuminusAnimationManager class, like this:
+         * prefix: 'walk'
+         * sufix: '-right'
+         * By default the prefix is just 'walk' and the sufix is the direction that the player animation should play.
+         *
+         * The luminus animation manager will play the default animation directions
+         * 'up', 'right', 'down', 'left'
+         *
+         * @example
+         * 'walk-right'
+         *
+         *
+         * @type { string }
+         */
+        this.idlePrefixAnimation = 'idle';
 
         /**
          * The JoystickScene. If it's available, use the joystick to move the Player.
@@ -86,9 +152,6 @@ export class LuminusMovement {
 
     move() {
         if (this.scene.input.isActive) {
-            // console.log(
-            //     new Phaser.Math.Vector2(this.player.body.velocity).angle()
-            // );
             // Stop any previous movement from the last frame
             this.player.body.setVelocity(0);
             // Horizontal movement
@@ -98,13 +161,13 @@ export class LuminusMovement {
                 (this.cursors.left.isDown && this.cursors.up.isDown)
             ) {
                 this.player.body.setVelocityX(-this.player.speed);
-                this.player.anims.play('walk-left', true);
+                this.player.anims.play(this.walkLeftAnimationName, true);
             } else if (
                 this.cursors.right.isDown ||
                 (this.cursors.right.isDown && this.cursors.down.isDown) ||
                 (this.cursors.right.isDown && this.cursors.up.isDown)
             ) {
-                this.player.anims.play('walk-right', true);
+                this.player.anims.play(this.walkRightAnimationName, true);
                 this.player.body.setVelocityX(this.player.speed);
             }
 
@@ -112,17 +175,18 @@ export class LuminusMovement {
             if (this.cursors.up.isDown) {
                 this.player.body.setVelocityY(-this.player.speed);
                 if (!this.cursors.left.isDown && !this.cursors.right.isDown)
-                    this.player.anims.play('walk-up', true);
+                    this.player.anims.play(this.walkUpAnimationName, true);
             }
             if (this.cursors.down.isDown) {
                 if (!this.cursors.left.isDown && !this.cursors.right.isDown)
-                    this.player.anims.play('walk-down', true);
+                    this.player.anims.play(this.walkDownAnimationName, true);
                 this.player.body.setVelocityY(this.player.speed);
             }
 
             // Normalize and scale the velocity so that player can't move faster along a diagonal
             this.player.body.velocity.normalize().scale(this.player.speed);
         } else {
+            // Stops the movement if there is no pressed key.
             this.player.body.setVelocityY(0);
             this.player.body.setVelocityX(0);
         }
@@ -135,7 +199,7 @@ export class LuminusMovement {
             this.scene.input.pointer1.isDown
         ) {
             this.luminusAnimationManager.animateWithAngle(
-                'walk',
+                this.walkPrefixAnimation,
                 this.stick.rotation
             );
             this.scene.physics.velocityFromRotation(
@@ -147,7 +211,10 @@ export class LuminusMovement {
 
         if (!this.isMoving()) {
             const currrentAnimation = this.player.anims.currentAnim.key;
-            const idleAnimation = currrentAnimation.replace('walk', 'idle');
+            const idleAnimation = currrentAnimation.replace(
+                this.walkPrefixAnimation,
+                this.idlePrefixAnimation
+            );
             this.player.anims.play(idleAnimation);
         }
     }
