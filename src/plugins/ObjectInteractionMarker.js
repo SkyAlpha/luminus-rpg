@@ -11,7 +11,7 @@ export class ObjectInteractionMarker {
      */
     constructor(scene, map) {
         /**
-         * Scene Scene Context where it will create the markers.
+         * Scene Context where it will create the markers.
          * @type { Phaser.Scene }  */
         this.scene = scene;
         /**

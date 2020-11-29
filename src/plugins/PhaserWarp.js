@@ -11,7 +11,7 @@ export class PhaserWarp {
      */
     constructor(scene, player, map) {
         /**
-         * scene Scene Context.
+         * Scene Context.
          * @type { Phaser.Scene }  */
         this.scene = scene;
         /**

@@ -13,7 +13,7 @@ export class LuminusMovement {
      */
     constructor(scene, player, joystickScene) {
         /**
-         * scene Scene Context.
+         * Scene Context.
          * @type { Phaser.Scene }  */
         this.scene = scene;
 

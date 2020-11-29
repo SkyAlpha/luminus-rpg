@@ -23,7 +23,8 @@ export class LuminusAnimationManager {
         /**
          * This is specific for those who are using the joystick.
          *
-         * The Luminus animation manager expects the animations to have a prefix. The sufix is automatically added by the LuminusAnimationManager class, like this:
+         * The Luminus animation manager expects the animations to have a prefix.
+         * The sufix is can be changed in this variable:
          * prefix: 'walk'
          * sufix: '-up'
          * By default the prefix is just 'walk' and the sufix is the direction that the player animation should play.
@@ -43,7 +44,8 @@ export class LuminusAnimationManager {
         /**
          * This is specific for those who are using the joystick.
          *
-         * The Luminus animation manager expects the animations to have a prefix. The sufix is automatically added by the LuminusAnimationManager class, like this:
+         * The Luminus animation manager expects the animations to have a prefix.
+         * The sufix is can be changed in this variable:
          * prefix: 'walk'
          * sufix: '-down'
          * By default the prefix is just 'walk' and the sufix is the direction that the player animation should play.
@@ -63,7 +65,8 @@ export class LuminusAnimationManager {
         /**
          * This is specific for those who are using the joystick.
          *
-         * The Luminus animation manager expects the animations to have a prefix. The sufix is automatically added by the LuminusAnimationManager class, like this:
+         * The Luminus animation manager expects the animations to have a prefix.
+         * The sufix is can be changed in this variable:
          * prefix: 'walk'
          * sufix: '-right'
          * By default the prefix is just 'walk' and the sufix is the direction that the player animation should play.
@@ -83,7 +86,8 @@ export class LuminusAnimationManager {
         /**
          * This is specific for those who are using the joystick.
          *
-         * The Luminus animation manager expects the animations to have a prefix. The sufix is automatically added by the LuminusAnimationManager class, like this:
+         * The Luminus animation manager expects the animations to have a prefix.
+         * The sufix is can be changed in this variable:
          * prefix: 'walk'
          * sufix: '-left'
          * By default the prefix is just 'walk' and the sufix is the direction that the player animation should play.

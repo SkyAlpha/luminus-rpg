@@ -14,7 +14,7 @@ export class PhaserDialogBox {
      */
     constructor(scene, player) {
         /**
-         * scene Scene Context.
+         * Scene Context.
          * @type { Phaser.Scene }  */
         this.scene = scene;
         /**

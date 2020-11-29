@@ -21,7 +21,7 @@ export class PhaserTiledInfoBox {
          * @type {Phaser.Tilemaps.Tilemap} */
         this.map = map;
         /**
-         * scene Scene Context.
+         * Scene Context.
          * @type { Phaser.Scene }  */
         this.scene = scene;
 
