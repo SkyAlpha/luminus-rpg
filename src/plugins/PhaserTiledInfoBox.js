@@ -78,6 +78,7 @@ export class PhaserTiledInfoBox {
                 message: infoObj.properties.find(
                     (f) => f.name === this.messageAttribute
                 ).value,
+                properties: infoObj.properties,
             });
         });
 
@@ -88,6 +89,7 @@ export class PhaserTiledInfoBox {
             zones,
             this.player,
             (zone) => {
+                this.phaserDialogBox.allProperties = zone.properties;
                 this.phaserDialogBox.isOverlapingChat = true;
                 this.phaserDialogBox.actionButton.visible = true;
                 this.phaserDialogBox.interactionIcon.visible = true;

@@ -89,12 +89,12 @@ export class JoystickScene extends Phaser.Scene {
             this.buttonA.posY = this.cameras.main.height - 250;
 
             // Sets the button B
-            this.buttonB = this.pad
-                .addButton(0, 120, this.atlasName, 'button1-up', 'button1-down')
-                .setName(this.buttonBName)
-                .alignBottomRight(100);
-            this.buttonB.posX = this.cameras.main.width - 50;
-            this.buttonB.posY = this.cameras.main.height - 250;
+            // this.buttonB = this.pad
+            //     .addButton(0, 120, this.atlasName, 'button1-up', 'button1-down')
+            //     .setName(this.buttonBName)
+            //     .alignBottomRight(100);
+            // this.buttonB.posX = this.cameras.main.width - 50;
+            // this.buttonB.posY = this.cameras.main.height - 250;
 
             this.mainScene.events.on(
                 'setConfiguration',
@@ -108,10 +108,14 @@ export class JoystickScene extends Phaser.Scene {
             this.scale.on('resize', (resize) => {
                 if (this.stick) {
                     this.stick.alignBottomLeft(100);
-                    this.buttonA.posX = this.cameras.main.width - 150;
-                    this.buttonA.posY = this.cameras.main.height - 250;
-                    this.buttonB.posX = this.cameras.main.width - 50;
-                    this.buttonB.posY = this.cameras.main.height - 250;
+                    if (this.buttonA) {
+                        this.buttonA.posX = this.cameras.main.width - 150;
+                        this.buttonA.posY = this.cameras.main.height - 250;
+                    }
+                    if (this.buttonB) {
+                        this.buttonB.posX = this.cameras.main.width - 50;
+                        this.buttonB.posY = this.cameras.main.height - 250;
+                    }
                 }
             });
         }

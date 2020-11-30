@@ -7,7 +7,7 @@ export class ObjectInteractionMarker {
     /**
      * Displays a marker on interactive objects.
      * @param { Phaser.Scene } scene Parent Scene.
-     * @param {Phaser.Tilemaps.Tilemap} map Tile Map to get the markers from.
+     * @param { Phaser.Tilemaps.DynamicTilemapLayer | Phaser.Tilemaps.StaticTilemapLayer} map Tile Map to get the markers from.
      */
     constructor(scene, map) {
         /**

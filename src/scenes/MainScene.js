@@ -1,4 +1,3 @@
-import Phaser from 'phaser';
 import tiles from '../assets/maps/tilesets/Overworld.png';
 import inner from '../assets/maps/tilesets/Inner.png';
 import collision_tile from '../assets/maps/tilesets/collision.png';
@@ -9,7 +8,9 @@ import buttonA from '../assets/sprites/buttonA.png';
 import question_mark from '../assets/sprites/question_mark.png';
 import spread from '../assets/sprites/spread.png';
 import maximize from '../assets/sprites/maximize.png';
+import close from '../assets/sprites/close.png';
 import tile_map_json from '../assets/maps/larus/larus.json';
+import Phaser from 'phaser';
 import { PhaserWarp } from '../plugins/PhaserWarp';
 import { Player } from '../entities/Player';
 import { LuminusMovement } from '../plugins/LuminusMovement';
@@ -34,6 +35,7 @@ export class MainScene extends Phaser.Scene {
         this.load.image('question_mark', question_mark);
         this.load.image('spread', spread);
         this.load.image('maximize', maximize);
+        this.load.image('close_button', close);
         this.load.image('tiles', tiles);
         this.load.image('collision_tiles', collision_tile);
         this.load.image('inner', inner);
@@ -116,7 +118,14 @@ export class MainScene extends Phaser.Scene {
         this.scene.launch('DialogScene');
         this.scene.launch('JoystickScene');
         this.scene.launch('HUDScene');
-        // this.scene.launch('VideoPlayerScene');
+
+        // this.cameras.main.disableCull = false;
+        // this.cameras.main.setBounds(
+        //     0,
+        //     0,
+        //     map.widthInPixels,
+        //     map.heightInPixels
+        // );
 
         this.joystickScene = this.scene.get('JoystickScene');
         this.movement = new LuminusMovement(

@@ -1,5 +1,7 @@
 import Phaser from 'phaser';
 import { NineSlice } from 'phaser3-nineslice';
+import { LuminusTypingSoundManager } from './LuminusTypingSoundManager';
+import { LuminusVideoOpener } from './LuminusVideoOpener';
 
 /**
  * @class
@@ -83,9 +85,9 @@ export class PhaserDialogBox {
          * @type { number }  */
         this.actionSpriteScale = 0.5;
         /**
-         * Spelling speed of the text in the dialog box.
+         * Spelling speed of the text in the dialog box. Bigger is faster.
          * @type { number }  */
-        this.dialogSpeed = 200;
+        this.dialogSpeed = 100;
         /**
          * Dialog font size.
          * @type { number }  */
@@ -139,7 +141,9 @@ export class PhaserDialogBox {
         this.cameraZoom = this.scene.cameras.main.zoom;
 
         /**
-         * @type { Phaser.Display.Color}
+         * Color of the font.
+         * @type { Phaser.Display.Color }
+         * @default
          */
         this.fontColor = new Phaser.Display.Color(61, 61, 61, 1);
 
@@ -170,8 +174,36 @@ export class PhaserDialogBox {
         /**
          * Checks if it's mobile so it can hide the buttons.
          * @type { boolean }
+         * @default
          */
         this.isMobile = false;
+
+        /**
+         * Controls the has video state. If true it has a video to play.
+         * @type { boolean }
+         * @default
+         */
+        this.hasVideo = false;
+
+        /**
+         * Class to open the video, if there is a video property defined by the developer.
+         * @type { LuminusVideoOpener }
+         * @default
+         */
+        this.luminusVideoOpener = new LuminusVideoOpener(this.scene);
+
+        /**
+         * The Typing sound Manager. This will make sounds while typing the letters.
+         * @type { LuminusTypingSoundManager }
+         */
+        this.luminusTypingSoundManager = null;
+
+        /**
+         * Array with all properties that come with the Message Box. This will allow us to create videos, and more interactions
+         * with the player as we wish.
+         * @type { Array }
+         */
+        this.allProperties = null;
 
         /**
          * Font family to be used. It has to be included in your Phaser project.
@@ -181,6 +213,10 @@ export class PhaserDialogBox {
     }
 
     create() {
+        this.luminusTypingSoundManager = new LuminusTypingSoundManager(
+            this.scene
+        );
+        this.luminusTypingSoundManager.create();
         // First thing to do is to check if it's mobile.
         this.isMobile = !this.scene.sys.game.device.os.desktop ? true : false;
         this.dialog = this.scene.add.nineslice(
@@ -245,8 +281,10 @@ export class PhaserDialogBox {
         if ((joystickScene && joystickScene.buttonA) || joystickScene.buttonB) {
             this.buttonA = joystickScene.buttonA;
             this.buttonB = joystickScene.buttonB;
-            this.buttonA.on('down', (b) => this.checkButtonDown());
-            this.buttonB.on('down', (b) => this.checkButtonDown());
+            if (this.buttonA)
+                this.buttonA.on('down', (b) => this.checkButtonDown());
+            if (this.buttonB)
+                this.buttonB.on('down', (b) => this.checkButtonDown());
         }
     }
 
@@ -256,11 +294,13 @@ export class PhaserDialogBox {
             (this.keyObj.isDown || this.isMobileButtonPressed()) &&
             !this.dialog.visible
         ) {
+            // First time, show the Dialog.
             this.showDialog();
         } else if (
             this.isAnimatingText &&
             (this.keyObj.isDown || this.isMobileButtonPressed())
         ) {
+            // Skips the typping animation.
             this.setText(this.pagesMessage[this.currentPage], false);
         } else if (
             !this.isAnimatingText &&
@@ -268,6 +308,7 @@ export class PhaserDialogBox {
             this.dialog.visible &&
             (this.keyObj.isDown || this.isMobileButtonPressed())
         ) {
+            // Has more pages.
             this.currentPage++;
             this.dialog.textMessage.text = '';
             this.setText(this.pagesMessage[this.currentPage], true);
@@ -277,7 +318,9 @@ export class PhaserDialogBox {
             this.dialog.textMessage &&
             this.dialog.textMessage.active
         ) {
+            // Finishes the Dialog. Destroys the text and sets all variables to initial state.
             this.dialog.textMessage.destroy();
+            this.luminusVideoOpener.checkHasVideo(this.allProperties);
             this.dialog.visible = false;
             this.canShowDialog = true;
             this.actionButton.visible = false;
@@ -360,6 +403,9 @@ export class PhaserDialogBox {
         this.dialog.textMessage.setText(
             this.dialog.textMessage.text +
                 this.animationText[this.eventCounter - 1]
+        );
+        this.luminusTypingSoundManager.type(
+            this.animationText[this.eventCounter - 1]
         );
         // Stops the text animation.
         if (this.eventCounter === this.animationText.length) {
