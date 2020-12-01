@@ -1,13 +1,12 @@
 import Phaser from 'phaser';
-import atlas_image from '../assets/sprites/character.png';
-import atlas_image_json from '../assets/sprites/character.json';
-import space_sound_key from '../assets/sound/typing/space_sound.mp3';
-import typing_key_01 from '../assets/sound/typing/typing_key_01.mp3';
-import typing_key_02 from '../assets/sound/typing/typing_key_02.mp3';
-import typing_key_03 from '../assets/sound/typing/typing_key_03.mp3';
-import typing_key_04 from '../assets/sound/typing/typing_key_04.mp3';
-import typing_key_05 from '../assets/sound/typing/typing_key_05.mp3';
+
 import { Animations } from '../entities/PlayerAnimations';
+import {
+    AtlasConfig,
+    Images,
+    LuminusAudios,
+    TilemapConfig,
+} from '../consts/GameAssets';
 
 export class PreloadScene extends Phaser.Scene {
     constructor() {
@@ -17,16 +16,76 @@ export class PreloadScene extends Phaser.Scene {
     }
 
     preload() {
+        // Images
+        Images.forEach((values) => {
+            this.load.image(values.name, values.image);
+        });
+
+        // Tilemap
+        TilemapConfig.forEach((value) => {
+            this.load.tilemapTiledJSON(value.name, value.json);
+        });
+
+        // Scripts
+        this.load.script(
+            'webfont',
+            'https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js'
+        );
+
         // Sound
-        this.load.audio('space_sound', space_sound_key);
-        this.load.audio('typing_key_01', typing_key_01);
-        this.load.audio('typing_key_02', typing_key_02);
-        this.load.audio('typing_key_03', typing_key_03);
-        this.load.audio('typing_key_04', typing_key_04);
-        this.load.audio('typing_key_05', typing_key_05);
+        LuminusAudios.forEach((value) => {
+            this.load.audio(value.name, value.audio);
+        });
 
         // Atlas
-        this.load.atlas('character', atlas_image, atlas_image_json);
+        AtlasConfig.forEach((value) => {
+            this.load.atlas(value.name, value.image, value.json);
+        });
+
+        // Custom CSS
+        this.load.css('nescss', 'node_modules/nes.css/css/nes.min.css');
+
+        let progressBar = this.add.graphics();
+        let progressBox = this.add.graphics();
+        const width = this.cameras.main.width;
+        const height = this.cameras.main.height;
+        progressBox.fillStyle(0x222222, 0.8);
+        progressBox.fillRect(10, height / 2 + 30, width - 30, 50);
+
+        let loadingText = this.make.text({
+            x: width / 2,
+            y: height / 2 - 50,
+            text: 'Loading...',
+            style: {
+                font: '20px monospace',
+                fill: '#ffffff',
+            },
+        });
+        loadingText.setOrigin(0.5, 0.5);
+
+        let percentText = this.make.text({
+            x: width / 2,
+            y: height / 2 - 5,
+            text: '0%',
+            style: {
+                font: '18px monospace',
+                fill: '#ffffff',
+            },
+        });
+        percentText.setOrigin(0.5, 0.5);
+        this.load.on('progress', function (value) {
+            percentText.setText(parseInt(value * 100) + '%');
+            progressBar.clear();
+            progressBar.fillStyle(0xffffff, 1);
+            progressBar.fillRect(20, height / 2 + 40, (width - 50) * value, 30);
+        });
+
+        this.load.on('complete', function () {
+            progressBar.destroy();
+            progressBox.destroy();
+            loadingText.destroy();
+            percentText.destroy();
+        });
     }
 
     create() {
@@ -43,7 +102,14 @@ export class PreloadScene extends Phaser.Scene {
                 repeat: animation.repeat,
             });
         });
-
-        this.scene.start('MainScene');
+        // Web Fonts
+        WebFont.load({
+            google: {
+                families: ['Press Start 2P'],
+            },
+            active: () => {
+                this.scene.start('IntroScene');
+            },
+        });
     }
 }

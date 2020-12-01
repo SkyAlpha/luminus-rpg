@@ -1,5 +1,5 @@
 import Phaser from 'phaser';
-import { PhaserTiledInfoBox } from '../plugins/PhaserTiledInfoBox';
+import { LuminusTiledInfoBox } from '../plugins/LuminusTiledInfoBox';
 
 export class DialogScene extends Phaser.Scene {
     constructor() {
@@ -14,7 +14,7 @@ export class DialogScene extends Phaser.Scene {
 
         /**
          * Tile Map to get the object from.
-         * @type {Phaser.Tilemaps.Tilemap} */
+         * @type { Phaser.Tilemaps.Tilemap } */
         this.map = null;
     }
 
@@ -27,25 +27,25 @@ export class DialogScene extends Phaser.Scene {
                 this.player = args.player;
                 this.map = args.map;
                 /**
-                 * @type {PhaserTiledInfoBox}
+                 * @type { LuminusTiledInfoBox }
                  */
-                this.phaserTiledInfoBox = new PhaserTiledInfoBox(
+                this.luminusTiledInfoBox = new LuminusTiledInfoBox(
                     this.mainScene,
                     this.player,
                     this.map,
                     this
                 );
-                this.phaserTiledInfoBox.create();
+                this.luminusTiledInfoBox.create();
             },
             this
         );
 
         this.scale.on('resize', (resize) => {
             if (
-                this.phaserTiledInfoBox &&
-                this.phaserTiledInfoBox.phaserDialogBox
+                this.luminusTiledInfoBox &&
+                this.luminusTiledInfoBox.luminusDialogBox
             ) {
-                this.phaserTiledInfoBox.phaserDialogBox.resizeComponents(
+                this.luminusTiledInfoBox.luminusDialogBox.resizeComponents(
                     resize.width,
                     resize.height
                 );
@@ -58,7 +58,7 @@ export class DialogScene extends Phaser.Scene {
     }
 
     update() {
-        if (this.phaserTiledInfoBox)
-            this.phaserTiledInfoBox.phaserDialogBox.checkUpdate();
+        if (this.luminusTiledInfoBox)
+            this.luminusTiledInfoBox.luminusDialogBox.checkUpdate();
     }
 }

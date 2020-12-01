@@ -6,7 +6,7 @@ import { LuminusVideoOpener } from './LuminusVideoOpener';
 /**
  * @class
  */
-export class PhaserDialogBox {
+export class LuminusDialogBox {
     /**
      * This class allows one to create Dialogs.
      * It's possible to set the Action Hotkey, Action button Sprite, Dialog Sprite image,

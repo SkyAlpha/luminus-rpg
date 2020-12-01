@@ -1,20 +1,8 @@
-import tiles from '../assets/maps/tilesets/Overworld.png';
-import inner from '../assets/maps/tilesets/Inner.png';
-import collision_tile from '../assets/maps/tilesets/collision.png';
-import player_image from '../assets/sprites/player.png';
-import dialog from '../assets/sprites/dialog_paper.png';
-import space from '../assets/sprites/space_key.png';
-import buttonA from '../assets/sprites/buttonA.png';
-import question_mark from '../assets/sprites/question_mark.png';
-import spread from '../assets/sprites/spread.png';
-import maximize from '../assets/sprites/maximize.png';
-import close from '../assets/sprites/close.png';
-import tile_map_json from '../assets/maps/larus/larus.json';
 import Phaser from 'phaser';
-import { PhaserWarp } from '../plugins/PhaserWarp';
+import { LuminusWarp } from '../plugins/LuminusWarp';
 import { Player } from '../entities/Player';
 import { LuminusMovement } from '../plugins/LuminusMovement';
-import { ObjectInteractionMarker } from '../plugins/ObjectInteractionMarker';
+import { LuminusObjectMarker } from '../plugins/LuminusObjectMarker';
 
 let cursors;
 let map;
@@ -25,27 +13,6 @@ export class MainScene extends Phaser.Scene {
             key: 'MainScene',
         });
         this.player = null;
-    }
-
-    preload() {
-        this.load.image('player', player_image);
-        this.load.image('dialog', dialog);
-        this.load.image('space', space);
-        this.load.image('buttonA', buttonA);
-        this.load.image('question_mark', question_mark);
-        this.load.image('spread', spread);
-        this.load.image('maximize', maximize);
-        this.load.image('close_button', close);
-        this.load.image('tiles', tiles);
-        this.load.image('collision_tiles', collision_tile);
-        this.load.image('inner', inner);
-
-        this.load.tilemapTiledJSON('larus', tile_map_json);
-        // this.load.css('nescss', 'node_modules/nes.css/css/nes.min.css');
-        this.load.script(
-            'webfont',
-            'https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js'
-        );
     }
 
     create() {
@@ -59,12 +26,6 @@ export class MainScene extends Phaser.Scene {
 
         this.cameras.main.setZoom(2.5);
 
-        // WebFont.load({
-        //     google: {
-        //         families: ['Press Start 2P'],
-        //     },
-        //     active: function () {},
-        // });
         map = this.make.tilemap({ key: 'larus' });
         const tileset = map.addTilesetImage('base', 'tiles', 16, 16, 0, 0);
         const inner = map.addTilesetImage('inner', 'inner', 16, 16, 0, 0);
@@ -110,9 +71,9 @@ export class MainScene extends Phaser.Scene {
 
         this.physics.add.collider(this.player, collision_layer);
 
-        const phaserWarp = new PhaserWarp(this, this.player, map);
+        const phaserWarp = new LuminusWarp(this, this.player, map);
         phaserWarp.createWarps();
-        const interactiveMarkers = new ObjectInteractionMarker(this, map);
+        const interactiveMarkers = new LuminusObjectMarker(this, map);
         interactiveMarkers.create();
 
         this.scene.launch('DialogScene');

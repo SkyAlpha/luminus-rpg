@@ -1,9 +1,9 @@
-import { PhaserDialogBox } from './PhaserDialogBox';
+import { LuminusDialogBox } from './LuminusDialogBox';
 
 /**
  * @class
  */
-export class PhaserTiledInfoBox {
+export class LuminusTiledInfoBox {
     /**
      * This class allows one to create Dialogs with "Tiled" map editor <a href="https://www.mapeditor.org/">Tiled</a>
      * Using the Objects layer https://doc.mapeditor.org/en/stable/manual/objects/ and open them seamlessly with phaser.
@@ -35,9 +35,9 @@ export class PhaserTiledInfoBox {
         this.player = player;
         /**
          * The Dialog box that will show de text from Tiled.
-         * @type { PhaserDialogBox }
+         * @type { LuminusDialogBox }
          */
-        this.phaserDialogBox = new PhaserDialogBox(
+        this.luminusDialogBox = new LuminusDialogBox(
             this.uiScene,
             this.player,
             this.map
@@ -59,7 +59,7 @@ export class PhaserTiledInfoBox {
      */
     create() {
         // Creates the dialog information.
-        this.phaserDialogBox.create();
+        this.luminusDialogBox.create();
         // Rules to show informations!
         const infoObjects = this.map.getObjectLayer(this.tiledObjectLayer);
         let zones = [];
@@ -89,14 +89,14 @@ export class PhaserTiledInfoBox {
             zones,
             this.player,
             (zone) => {
-                this.phaserDialogBox.allProperties = zone.properties;
-                this.phaserDialogBox.isOverlapingChat = true;
-                this.phaserDialogBox.actionButton.visible = true;
-                this.phaserDialogBox.interactionIcon.visible = true;
-                this.phaserDialogBox.dialogMessage = zone.message.trim();
+                this.luminusDialogBox.allProperties = zone.properties;
+                this.luminusDialogBox.isOverlapingChat = true;
+                this.luminusDialogBox.actionButton.visible = true;
+                this.luminusDialogBox.interactionIcon.visible = true;
+                this.luminusDialogBox.dialogMessage = zone.message.trim();
             },
             (d) => {
-                return this.phaserDialogBox.canShowDialog;
+                return this.luminusDialogBox.canShowDialog;
             }
         );
     }

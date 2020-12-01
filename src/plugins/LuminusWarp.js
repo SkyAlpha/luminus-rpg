@@ -3,7 +3,7 @@ import Phaser from 'phaser';
 /**
  * @class
  */
-export class PhaserWarp {
+export class LuminusWarp {
     /**
      * Creates a portal at the Tiled object Specified position.
      * @param {Phaser.Scene} scene Phaser scene that it will control.

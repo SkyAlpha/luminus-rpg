@@ -3,7 +3,7 @@ import Phaser from 'phaser';
 /**
  * @class
  */
-export class ObjectInteractionMarker {
+export class LuminusObjectMarker {
     /**
      * Displays a marker on interactive objects.
      * @param { Phaser.Scene } scene Parent Scene.

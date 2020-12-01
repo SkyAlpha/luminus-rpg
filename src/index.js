@@ -6,6 +6,7 @@ import { JoystickScene } from './scenes/JoystickScene';
 import { HUDScene } from './scenes/HUDScene';
 import { PreloadScene } from './scenes/PreloadScene';
 import { VideoPlayerScene } from './scenes/VideoPlayerScene';
+import { IntroScene } from './scenes/IntroScene';
 /**
  * @type { Phaser.Core.Config}
  */
@@ -16,6 +17,7 @@ const config = {
     height: 600,
     scene: [
         PreloadScene,
+        IntroScene,
         MainScene,
         JoystickScene,
         DialogScene,
