@@ -102,6 +102,11 @@ export class MainScene extends Phaser.Scene {
                 map,
             });
         }, 300);
+
+        let themeSound = this.sound.add('path_to_lake_land', {
+            loop: true,
+        });
+        themeSound.play();
     }
 
     update(time, delta) {

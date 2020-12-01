@@ -10,6 +10,7 @@ import spread from '../assets/sprites/spread.png';
 import maximize from '../assets/sprites/maximize.png';
 import close from '../assets/sprites/close.png';
 import logo_phaser from '../assets/sprites/logo.png';
+import luminus_candle from '../assets/sprites/candle.png';
 
 // Atlas
 import atlas_character_image from '../assets/sprites/character.png';
@@ -20,12 +21,14 @@ import atlas_flares_image_json from '../assets/sprites/flares.json';
 // JSON
 import tile_map_json from '../assets/maps/larus/larus.json';
 
+// Sound
 import space_sound_key from '../assets/sound/typing/space_sound.mp3';
 import typing_key_01 from '../assets/sound/typing/typing_key_01.mp3';
 import typing_key_02 from '../assets/sound/typing/typing_key_02.mp3';
 import typing_key_03 from '../assets/sound/typing/typing_key_03.mp3';
 import typing_key_04 from '../assets/sound/typing/typing_key_04.mp3';
 import typing_key_05 from '../assets/sound/typing/typing_key_05.mp3';
+import path_to_lake_land from '../assets/sound/path_to_lake_land.ogg';
 
 export const Images = [
     {
@@ -76,6 +79,10 @@ export const Images = [
         name: 'logo_phaser',
         image: logo_phaser,
     },
+    {
+        name: 'luminus_candle',
+        image: luminus_candle,
+    },
 ];
 
 export const AtlasConfig = [
@@ -121,5 +128,9 @@ export const LuminusAudios = [
     {
         name: 'typing_key_05',
         audio: typing_key_05,
+    },
+    {
+        name: 'path_to_lake_land',
+        audio: path_to_lake_land,
     },
 ];

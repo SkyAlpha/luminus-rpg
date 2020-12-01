@@ -1,4 +1,5 @@
 import Phaser from 'phaser';
+import { LuminusSoundManager } from '../plugins/LuminusSoundManager';
 
 /**
  * @class
@@ -83,6 +84,12 @@ export class VideoPlayerScene extends Phaser.Scene {
          * @default
          */
         this.closeButtonMarginY = 30;
+
+        /**
+         * the Luminus audio manager. Used to stop and resume audios in this Scene.
+         * @type { LuminusSoundManager }
+         */
+        this.luminusSoundManager = null;
     }
 
     preload() {
@@ -91,6 +98,9 @@ export class VideoPlayerScene extends Phaser.Scene {
             'https://raw.githubusercontent.com/rexrainbow/phaser3-rex-notes/master/dist/rexyoutubeplayerplugin.min.js',
             true
         );
+        this.luminusSoundManager = new LuminusSoundManager(this);
+        this.luminusSoundManager.create();
+        this.luminusSoundManager.stopAllAudio();
     }
 
     create() {
@@ -148,6 +158,7 @@ export class VideoPlayerScene extends Phaser.Scene {
 
             // Closes the Video Scene when the player clicks the Close button.
             this.closeButton.on('pointerdown', (pointer) => {
+                this.luminusSoundManager.resumeAllAudio();
                 this.scene.stop();
             });
         }

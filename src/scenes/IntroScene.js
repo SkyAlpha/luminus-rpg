@@ -35,6 +35,25 @@ export class IntroScene extends Phaser.Scene {
         this.centerY = this.cameras.main.midPoint.y;
         this.timeline = this.tweens.createTimeline();
 
+        // LOGO Part.
+        this.createPhaserLogo();
+        this.createLuminusLogo();
+        this.timeline.play();
+        this.timeline.on('complete', (done) => {
+            this.scene.launch('MainScene');
+            this.scene.stop();
+        });
+
+        // this.input.on('pointerdown', (pointer) => {
+        //     this.timeline.destroy();
+        //     this.scene.launch('MainScene');
+        // });
+    }
+
+    /**
+     * Creates the Phaser logo to present with the the particles.
+     */
+    createPhaserLogo() {
         const logo_phaser = this.add.image(
             this.centerX,
             this.centerY,
@@ -52,11 +71,11 @@ export class IntroScene extends Phaser.Scene {
             }
         );
         logo_phaser_text.setOrigin(0.5, 0.5);
+        logo_phaser_text.alpha = 0;
 
         var textures = this.textures;
 
         let origin = logo_phaser.getTopLeft();
-        console.log(origin);
         let pixel;
         let logoSource = {
             getRandomPoint: (vec) => {
@@ -87,13 +106,40 @@ export class IntroScene extends Phaser.Scene {
             alpha: { from: 0, to: 1 },
             duration: 2000,
             yoyo: true,
+            onComplete: (done) => {
+                particles.destroy();
+            },
         });
-        this.timeline.play();
-        this.timeline.on('complete', (done) => {
-            particles.destroy();
-            this.scene.launch('MainScene');
-        });
+    }
 
-        this.input.on('pointerdown', (pointer) => {});
+    createLuminusLogo() {
+        const luminus_candle = this.add.image(
+            this.centerX,
+            this.centerY,
+            'luminus_candle'
+        );
+        luminus_candle.alpha = 0;
+
+        const logo_candle_text = this.add.text(
+            this.centerX,
+            this.centerY - luminus_candle.height / 2 - 60,
+            'Luminus Game Studio',
+            {
+                fontFamily: "'Press Start 2P'",
+                fontSize: '25px',
+            }
+        );
+        logo_candle_text.setOrigin(0.5, 0.5);
+        logo_candle_text.alpha = 0;
+
+        this.timeline.add({
+            targets: [luminus_candle, logo_candle_text],
+            alpha: { from: 0, to: 1 },
+            duration: 2000,
+            yoyo: true,
+            onComplete: (done) => {
+                // particles.destroy();
+            },
+        });
     }
 }

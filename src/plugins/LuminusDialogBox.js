@@ -296,6 +296,7 @@ export class LuminusDialogBox {
         ) {
             // First time, show the Dialog.
             this.showDialog();
+            this.player.body.maxSpeed = 0;
         } else if (
             this.isAnimatingText &&
             (this.keyObj.isDown || this.isMobileButtonPressed())
@@ -325,6 +326,7 @@ export class LuminusDialogBox {
             this.canShowDialog = true;
             this.actionButton.visible = false;
             this.interactionIcon.visible = false;
+            this.player.body.maxSpeed = this.player.maxSpeed;
         }
     }
 
