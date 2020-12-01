@@ -17,6 +17,8 @@ import atlas_character_image from '../assets/sprites/character.png';
 import atlas_character_image_json from '../assets/sprites/character.json';
 import atlas_flares_image from '../assets/sprites/flares.png';
 import atlas_flares_image_json from '../assets/sprites/flares.json';
+import atlas_chat_bubble_animation_image from '../assets/sprites/chat_bubble_animation.png';
+import atlas_chat_bubble_animation_image_json from '../assets/sprites/chat_bubble_animation.json';
 
 // JSON
 import tile_map_json from '../assets/maps/larus/larus.json';
@@ -95,6 +97,11 @@ export const AtlasConfig = [
         name: 'flares',
         image: atlas_flares_image,
         json: atlas_flares_image_json,
+    },
+    {
+        name: 'chat_bubble_animation',
+        image: atlas_chat_bubble_animation_image,
+        json: atlas_chat_bubble_animation_image_json,
     },
 ];
 

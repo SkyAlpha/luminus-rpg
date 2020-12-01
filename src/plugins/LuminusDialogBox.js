@@ -1,5 +1,6 @@
 import Phaser from 'phaser';
 import { NineSlice } from 'phaser3-nineslice';
+import { Player } from '../entities/Player';
 import { LuminusTypingSoundManager } from './LuminusTypingSoundManager';
 import { LuminusVideoOpener } from './LuminusVideoOpener';
 
@@ -21,7 +22,7 @@ export class LuminusDialogBox {
         this.scene = scene;
         /**
          * player Player Game Object.
-         * @type { Phaser.GameObjects }  */
+         * @type { Player }  */
         this.player = player;
 
         /**
@@ -41,7 +42,13 @@ export class LuminusDialogBox {
          * @type { string }
          * @default
          * */
-        this.interactionSpriteName = 'spread';
+        this.interactionSpriteName = 'chat_bubble_animation';
+
+        /**
+         * The name of the animation that the iteraction icon will play.
+         * @type { string }
+         */
+        this.animationIteractionIconName = 'chat_bubble_animation';
 
         /**
          * Name of the Sprite of the Mobile button action.
@@ -248,7 +255,7 @@ export class LuminusDialogBox {
         this.actionButton.visible = false;
 
         this.interactionIcon = this.scene.add
-            .image(
+            .sprite(
                 this.scene.cameras.main.midPoint.x,
                 this.scene.cameras.main.midPoint.y -
                     this.player.body.height * 2.5,
@@ -256,6 +263,8 @@ export class LuminusDialogBox {
             )
             .setDepth(99999)
             .setScale(2);
+
+        this.interactionIcon.play(this.animationIteractionIconName);
         this.interactionIcon.visible = false;
 
         this.scene.tweenKey = this.scene.add.tween({
@@ -326,7 +335,7 @@ export class LuminusDialogBox {
             this.canShowDialog = true;
             this.actionButton.visible = false;
             this.interactionIcon.visible = false;
-            this.player.body.maxSpeed = this.player.maxSpeed;
+            this.player.body.maxSpeed = this.player.speed;
         }
     }
 
