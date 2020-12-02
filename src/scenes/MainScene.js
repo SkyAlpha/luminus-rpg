@@ -3,6 +3,7 @@ import { LuminusWarp } from '../plugins/LuminusWarp';
 import { Player } from '../entities/Player';
 import { LuminusMovement } from '../plugins/LuminusMovement';
 import { LuminusObjectMarker } from '../plugins/LuminusObjectMarker';
+import AnimatedTiles from '../plugins/AnimatedTiles';
 
 let cursors;
 let map;
@@ -13,6 +14,10 @@ export class MainScene extends Phaser.Scene {
             key: 'MainScene',
         });
         this.player = null;
+    }
+
+    preload() {
+        this.load.scenePlugin('animatedTiles', AnimatedTiles, 'animatedTiles', 'animatedTiles');
     }
 
     create() {
@@ -27,20 +32,39 @@ export class MainScene extends Phaser.Scene {
         this.cameras.main.setZoom(2.5);
 
         map = this.make.tilemap({ key: 'larus' });
-        const tileset = map.addTilesetImage('base', 'tiles', 16, 16, 0, 0);
-        const inner = map.addTilesetImage('inner', 'inner', 16, 16, 0, 0);
+        const tileset_overworld = map.addTilesetImage(
+            'base',
+            'tiles_overworld',
+            16,
+            16,
+            1,
+            2
+        );
+        const inner = map.addTilesetImage('inner', 'inner', 16, 16, 1, 2);
         const collision_tilset = map.addTilesetImage(
             'collision',
             'collision_tiles'
         );
 
-        const base = map.createDynamicLayer('base', [tileset, inner]);
-        const overlay = map.createDynamicLayer('overlay', [tileset, inner]);
-        const overlay2 = map.createDynamicLayer('overlay2', [tileset, inner]);
-        const overlay3 = map.createDynamicLayer('overlay3', [tileset, inner]);
-        const overlay4 = map.createDynamicLayer('overlay4', [tileset, inner]);
+        const base = map.createDynamicLayer('base', [inner, tileset_overworld]);
+        const overlay = map.createDynamicLayer('overlay', [
+            inner,
+            tileset_overworld,
+        ]);
+        const overlay2 = map.createDynamicLayer('overlay2', [
+            inner,
+            tileset_overworld,
+        ]);
+        const overlay3 = map.createDynamicLayer('overlay3', [
+            inner,
+            tileset_overworld,
+        ]);
+        const overlay4 = map.createDynamicLayer('overlay4', [
+            inner,
+            tileset_overworld,
+        ]);
         const overplayer_layer = map.createDynamicLayer('overplayer', [
-            tileset,
+            tileset_overworld,
             inner,
         ]);
         const collision_layer = map.createDynamicLayer(
@@ -60,8 +84,8 @@ export class MainScene extends Phaser.Scene {
 
         this.player = new Player(this, spawnPoint.x, spawnPoint.y, 'character');
 
-        this.player.body.setSize(12, 16);
-        // player.body.offset.y = 20;
+        this.player.body.setSize(12, 8);
+        this.player.body.offset.y = 20;
         this.player.play('idle-down');
 
         const camera = this.cameras.main;
@@ -107,6 +131,8 @@ export class MainScene extends Phaser.Scene {
             loop: true,
         });
         themeSound.play();
+
+        this.sys.animatedTiles.init(map);
     }
 
     update(time, delta) {

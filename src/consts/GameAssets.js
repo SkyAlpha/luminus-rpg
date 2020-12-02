@@ -1,5 +1,6 @@
 import tiles from '../assets/maps/tilesets/Overworld.png';
-import inner from '../assets/maps/tilesets/Inner.png';
+import tiles_overworld from '../assets/maps/tilesets/Overworld-extruded.png';
+import inner from '../assets/maps/tilesets/Inner-extruded.png';
 import collision_tile from '../assets/maps/tilesets/collision.png';
 import player_image from '../assets/sprites/player.png';
 import dialog from '../assets/sprites/dialog_paper.png';
@@ -36,6 +37,10 @@ export const Images = [
     {
         name: 'tiles',
         image: tiles,
+    },
+    {
+        name: 'tiles_overworld',
+        image: tiles_overworld,
     },
     {
         name: 'inner',
