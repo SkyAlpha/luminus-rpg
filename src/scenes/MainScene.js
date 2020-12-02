@@ -17,7 +17,12 @@ export class MainScene extends Phaser.Scene {
     }
 
     preload() {
-        this.load.scenePlugin('animatedTiles', AnimatedTiles, 'animatedTiles', 'animatedTiles');
+        this.load.scenePlugin(
+            'animatedTiles',
+            AnimatedTiles,
+            'animatedTiles',
+            'animatedTiles'
+        );
     }
 
     create() {

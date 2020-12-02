@@ -251,8 +251,13 @@ export class LuminusDialogBox {
             )
             .setDepth(9999)
             .setScrollFactor(0, 0)
-            .setScale(this.actionSpriteScale);
+            .setScale(this.actionSpriteScale)
+            .setInteractive();
         this.actionButton.visible = false;
+        this.actionButton.on('pointerdown', (b) => {
+            this.actionButton.clicked = true;
+            this.checkButtonDown();
+        });
 
         this.interactionIcon = this.scene.add
             .sprite(
@@ -337,6 +342,7 @@ export class LuminusDialogBox {
             this.interactionIcon.visible = false;
             this.player.body.maxSpeed = this.player.speed;
         }
+        this.actionButton.clicked = false;
     }
 
     /**
@@ -347,7 +353,8 @@ export class LuminusDialogBox {
     isMobileButtonPressed() {
         return (
             (this.buttonA && this.buttonA.isDown) ||
-            (this.buttonB && this.buttonB.isDown)
+            (this.buttonB && this.buttonB.isDown) ||
+            (this.actionButton && this.actionButton.clicked)
         );
     }
 

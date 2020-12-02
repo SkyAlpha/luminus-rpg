@@ -81,7 +81,7 @@ export class JoystickScene extends Phaser.Scene {
 
             this.stick = this.pad
                 .addStick(0, 0, 120, this.atlasName, 'base', 'stick')
-                .alignBottomLeft(100);
+                .alignBottomLeft(50);
             this.buttonA = this.pad
                 .addButton(0, 120, this.atlasName, 'button0-up', 'button0-down')
                 .setName(this.buttonAName);
@@ -107,7 +107,7 @@ export class JoystickScene extends Phaser.Scene {
 
             this.scale.on('resize', (resize) => {
                 if (this.stick) {
-                    this.stick.alignBottomLeft(100);
+                    this.stick.alignBottomLeft(50);
                     if (this.buttonA) {
                         this.buttonA.posX = this.cameras.main.width - 150;
                         this.buttonA.posY = this.cameras.main.height - 250;

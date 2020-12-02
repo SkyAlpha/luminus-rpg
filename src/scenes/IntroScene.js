@@ -67,22 +67,24 @@ export class IntroScene extends Phaser.Scene {
         //     this.scene.launch('MainScene');
         // });
 
-        this.scale.on('resize', size => {
-            console.log(size);
+        this.scale.on('resize', (size) => {
+            // console.log(size);
             this.resizeAll(size);
         });
     }
 
     /**
-     * 
+     *
      * @param { Size } size new size of the game.
      */
     resizeAll(size) {
-        this.centerX = this.cameras.main.midPoint.x;
-        this.centerY = this.cameras.main.midPoint.y;
-        this.logo_phaser.setPosition(this.centerX, this.centerY);
-        this.logo_phaser_text.setPosition(this.centerX,
-            this.centerY - this.logo_phaser.height / 2 - 60)
+        // this.centerX = this.cameras.main.midPoint.x;
+        // this.centerY = this.cameras.main.midPoint.y;
+        // this.logo_phaser.setPosition(this.centerX, this.centerY);
+        // this.logo_phaser_text.setPosition(
+        //     this.centerX,
+        //     this.centerY - this.logo_phaser.height / 2 - 60
+        // );
     }
 
     /**
@@ -137,7 +139,11 @@ export class IntroScene extends Phaser.Scene {
         });
 
         this.timeline.add({
-            targets: [this.logo_phaser, this.logo_phaser_text, this.particles_logo],
+            targets: [
+                this.logo_phaser,
+                this.logo_phaser_text,
+                this.particles_logo,
+            ],
             alpha: { from: 0, to: 1 },
             duration: 2000,
             yoyo: true,
@@ -145,8 +151,6 @@ export class IntroScene extends Phaser.Scene {
                 this.particles_logo.destroy();
             },
         });
-
-        
     }
 
     createLuminusLogo() {
