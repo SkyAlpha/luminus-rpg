@@ -1,3 +1,4 @@
+import { Player } from '../entities/Player';
 import { LuminusDialogBox } from './LuminusDialogBox';
 
 /**
@@ -31,7 +32,7 @@ export class LuminusTiledInfoBox {
         this.uiScene = uiScene;
         /**
          * player Player Game Object.
-         * @type { Phaser.GameObjects }  */
+         * @type { Player }  */
         this.player = player;
         /**
          * The Dialog box that will show de text from Tiled.
@@ -87,7 +88,7 @@ export class LuminusTiledInfoBox {
          */
         this.scene.physics.add.overlap(
             zones,
-            this.player,
+            this.player.hitZone,
             (zone) => {
                 this.luminusDialogBox.allProperties = zone.properties;
                 this.luminusDialogBox.isOverlapingChat = true;

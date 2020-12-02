@@ -45,11 +45,7 @@ export class HUDScene extends Phaser.Scene {
             .setInteractive();
 
         this.maximize.on('pointerdown', (pointer) => {
-            if (this.scale.isFullscreen) {
-                this.scale.stopFullscreen();
-            } else {
-                this.scale.startFullscreen();
-            }
+            this.scale.toggleFullscreen();
         });
 
         this.scale.on('resize', (resize) => {

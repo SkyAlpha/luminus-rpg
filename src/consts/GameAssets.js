@@ -13,6 +13,11 @@ import close from '../assets/sprites/close.png';
 import logo_phaser from '../assets/sprites/logo.png';
 import luminus_candle from '../assets/sprites/candle.png';
 
+// Particles / Clouds
+import rain from '../assets/sprites/rain.png';
+import particle_warp from '../assets/sprites/particle_warp.png';
+import cloud from '../assets/sprites/clouds/cloud.png';
+
 // Atlas
 import atlas_character_image from '../assets/sprites/character.png';
 import atlas_character_image_json from '../assets/sprites/character.json';
@@ -89,6 +94,20 @@ export const Images = [
     {
         name: 'luminus_candle',
         image: luminus_candle,
+    },
+    {
+        name: 'rain',
+        image: rain,
+    },
+    {
+        name: 'particle_warp',
+        image: particle_warp,
+    },
+
+    //Clouds
+    {
+        name: 'cloud',
+        image: cloud,
     },
 ];
 

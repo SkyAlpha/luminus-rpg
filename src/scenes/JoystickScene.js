@@ -138,6 +138,7 @@ export class JoystickScene extends Phaser.Scene {
                     this.stick.force * this.player.speed,
                     this.player.body.velocity
                 );
+                // this.player.updateMovementDependencies();
             }
         }
     }

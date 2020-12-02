@@ -47,7 +47,18 @@ export class LuminusWarp {
          * @type { string }
          */
         this.propertyWarpName = 'goto';
+
+        /**
+         * Maximum speed that the player can move. User only for caching in this class.
+         * @private
+         * @type { number }
+         */
         this.maxSpeed = this.player.body.maxSpeed;
+
+        /**
+         * @type { Phaser.GameObjects.Particles.ParticleEmitter }
+         */
+        this.particlesConfig = null;
     }
 
     /**
@@ -75,6 +86,30 @@ export class LuminusWarp {
                 warp.width,
                 warp.height
             );
+
+            let emiterZone = new Phaser.Geom.Rectangle(
+                warp.x,
+                warp.y,
+                warp.width,
+                warp.height
+            );
+
+            this.particlesConfig = {
+                angle: -90,
+                frequency: 300,
+                speed: 1,
+                // accelerationY: -1,
+                x: { min: zone.x, max: zone.x + zone.width },
+                y: { min: zone.y, max: zone.y + zone.height },
+                lifespan: { min: 500, max: 2000 },
+                scale: 0.5,
+                alpha: { start: 0.4, end: 0.8 },
+                // radial: true,
+                rotation: 180,
+            };
+            const particles = this.scene.add
+                .particles('particle_warp')
+                .createEmitter(this.particlesConfig);
             this.scene.physics.add.existing(zone);
             zone.body.immovable = true; // Prevents it from moving on collision.
             zone.setOrigin(0, 0);

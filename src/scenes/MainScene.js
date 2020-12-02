@@ -4,6 +4,7 @@ import { Player } from '../entities/Player';
 import { LuminusMovement } from '../plugins/LuminusMovement';
 import { LuminusObjectMarker } from '../plugins/LuminusObjectMarker';
 import AnimatedTiles from '../plugins/AnimatedTiles';
+import { LuminusEnvironmentParticles } from '../plugins/LuminusEnvironmentParticles';
 
 let cursors;
 let map;
@@ -72,11 +73,16 @@ export class MainScene extends Phaser.Scene {
             tileset_overworld,
             inner,
         ]);
+        const overplayer_layer2 = map.createDynamicLayer('overplayer2', [
+            tileset_overworld,
+            inner,
+        ]);
         const collision_layer = map.createDynamicLayer(
             'collision',
             collision_tilset
         );
         overplayer_layer.depth = 99;
+        overplayer_layer2.depth = 100;
         // Hides the collision map.
         collision_layer.alpha = 0;
 
@@ -89,8 +95,6 @@ export class MainScene extends Phaser.Scene {
 
         this.player = new Player(this, spawnPoint.x, spawnPoint.y, 'character');
 
-        this.player.body.setSize(12, 8);
-        this.player.body.offset.y = 20;
         this.player.play('idle-down');
 
         const camera = this.cameras.main;
@@ -138,6 +142,8 @@ export class MainScene extends Phaser.Scene {
         themeSound.play();
 
         this.sys.animatedTiles.init(map);
+        this.particles = new LuminusEnvironmentParticles(this, map);
+        this.particles.createParticles('forest');
     }
 
     update(time, delta) {

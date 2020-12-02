@@ -12,7 +12,7 @@ import { IntroScene } from './scenes/IntroScene';
  */
 const config = {
     type: Phaser.AUTO,
-    parent: 'collision-test',
+    parent: 'luminus-rpg',
     width: 800,
     height: 600,
     scene: [
@@ -25,6 +25,7 @@ const config = {
         VideoPlayerScene,
     ],
     scaleMode: Phaser.Scale.RESIZE,
+    autoCenter: Phaser.Scale.CENTER_BOTH,
     plugins: {
         global: [NineSlicePlugin.DefaultCfg],
     },

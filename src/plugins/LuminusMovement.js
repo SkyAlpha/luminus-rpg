@@ -151,6 +151,7 @@ export class LuminusMovement {
     }
 
     move() {
+        this.player.updateMovementDependencies();
         if (this.scene.input.isActive) {
             // Stop any previous movement from the last frame
             this.player.body.setVelocity(0);
