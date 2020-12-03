@@ -12,6 +12,8 @@ import maximize from '../assets/sprites/maximize.png';
 import close from '../assets/sprites/close.png';
 import logo_phaser from '../assets/sprites/logo.png';
 import luminus_candle from '../assets/sprites/candle.png';
+import cog_settings from '../assets/sprites/cog.png';
+import settings_background from '../assets/sprites/settings_background.png';
 
 // Particles / Clouds
 import rain from '../assets/sprites/rain.png';
@@ -102,6 +104,14 @@ export const Images = [
     {
         name: 'particle_warp',
         image: particle_warp,
+    },
+    {
+        name: 'cog_settings',
+        image: cog_settings,
+    },
+    {
+        name: 'settings_background',
+        image: settings_background,
     },
 
     //Clouds

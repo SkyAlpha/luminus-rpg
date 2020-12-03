@@ -7,6 +7,7 @@ import { HUDScene } from './scenes/HUDScene';
 import { PreloadScene } from './scenes/PreloadScene';
 import { VideoPlayerScene } from './scenes/VideoPlayerScene';
 import { IntroScene } from './scenes/IntroScene';
+import { SettingScene } from './scenes/SettingScene';
 /**
  * @type { Phaser.Core.Config}
  */
@@ -22,6 +23,7 @@ const config = {
         JoystickScene,
         DialogScene,
         HUDScene,
+        SettingScene,
         VideoPlayerScene,
     ],
     scaleMode: Phaser.Scale.RESIZE,

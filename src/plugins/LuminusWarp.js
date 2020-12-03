@@ -102,8 +102,8 @@ export class LuminusWarp {
                 x: { min: zone.x, max: zone.x + zone.width },
                 y: { min: zone.y, max: zone.y + zone.height },
                 lifespan: { min: 500, max: 2000 },
-                scale: 0.5,
-                alpha: { start: 0.4, end: 0.8 },
+                scale: { start: 1.3, end: 0.8 },
+                alpha: { start: 1, end: 0.7 },
                 // radial: true,
                 rotation: 180,
             };

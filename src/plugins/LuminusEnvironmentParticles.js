@@ -89,7 +89,7 @@ export class LuminusEnvironmentParticles {
                 y: { min: originY, max: height },
                 lifespan: 300000,
                 scale: 0.8,
-                alpha: { start: 0.4, end: 0.6 },
+                alpha: { start: 0.5, end: 0.7 },
                 radial: true,
                 maxParticles: 5,
                 rotation: 180,

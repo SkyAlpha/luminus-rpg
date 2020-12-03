@@ -46,6 +46,25 @@ export class LuminusSoundManager {
     }
 
     /**
+     * Sets the new sound volume.
+     * Ranges from 0 to 1.
+     * @param { number } volume
+     */
+    setVolume(volume) {
+        if (this.mainAudioScene) {
+            this.mainAudioScene.sound.volume = volume;
+        }
+    }
+
+    /**
+     * Returns the voluem of the sound.
+     * @returns { number }
+     */
+    getVolume() {
+        return this.mainAudioScene.sound.volume;
+    }
+
+    /**
      * Resumes all the audio from the Scene.
      */
     resumeAllAudio() {
