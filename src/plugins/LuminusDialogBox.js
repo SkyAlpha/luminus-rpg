@@ -213,6 +213,12 @@ export class LuminusDialogBox {
         this.allProperties = null;
 
         /**
+         * If you are using the LuminusGamePadController this variable will be created with the gamepad that is being used.
+         * But only if it's connected.
+         */
+        this.gamepad = null;
+
+        /**
          * Font family to be used. It has to be included in your Phaser project.
          * @type { string }
          */
@@ -300,35 +306,41 @@ export class LuminusDialogBox {
             if (this.buttonB)
                 this.buttonB.on('down', (b) => this.checkButtonDown());
         }
+
+        this.scene.input.gamepad.on('connected', (pad) => {
+            this.gamepad = pad;
+            this.actionButton.setTexture(this.mobileActionButtonSpriteName);
+        });
+        this.scene.input.gamepad.on('down', (pad) => {
+            this.gamepad = pad;
+            this.checkButtonDown();
+        });
     }
 
     checkButtonDown() {
         if (
             this.isOverlapingChat &&
-            (this.keyObj.isDown || this.isMobileButtonPressed()) &&
+            this.checkButtonsPressed() &&
             !this.dialog.visible
         ) {
             // First time, show the Dialog.
             this.showDialog();
             this.player.body.maxSpeed = 0;
-        } else if (
-            this.isAnimatingText &&
-            (this.keyObj.isDown || this.isMobileButtonPressed())
-        ) {
+        } else if (this.isAnimatingText && this.checkButtonsPressed()) {
             // Skips the typping animation.
             this.setText(this.pagesMessage[this.currentPage], false);
         } else if (
             !this.isAnimatingText &&
             this.currentPage !== this.pagesNumber - 1 &&
             this.dialog.visible &&
-            (this.keyObj.isDown || this.isMobileButtonPressed())
+            this.checkButtonsPressed()
         ) {
             // Has more pages.
             this.currentPage++;
             this.dialog.textMessage.text = '';
             this.setText(this.pagesMessage[this.currentPage], true);
         } else if (
-            (this.keyObj.isDown || this.isMobileButtonPressed()) &&
+            this.checkButtonsPressed() &&
             this.dialog.visible &&
             this.dialog.textMessage &&
             this.dialog.textMessage.active
@@ -343,6 +355,17 @@ export class LuminusDialogBox {
             this.player.body.maxSpeed = this.player.speed;
         }
         this.actionButton.clicked = false;
+    }
+
+    /**
+     * Checks if the action buttons are pressed
+     */
+    checkButtonsPressed() {
+        return (
+            this.keyObj.isDown ||
+            this.isMobileButtonPressed() ||
+            (this.gamepad && this.gamepad.A)
+        );
     }
 
     /**

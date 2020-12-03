@@ -45,7 +45,7 @@ export class LuminusGamePadController extends AnimationNames {
      */
     create() {
         this.scene.input.gamepad.once(
-            'down',
+            'connected',
             (pad, button, index) => {
                 this.gamepad = pad;
             },
@@ -85,8 +85,9 @@ export class LuminusGamePadController extends AnimationNames {
             }
 
             if (
-                this.gamepad.leftStick.x !== 0 ||
-                this.gamepad.leftStick.y !== 0
+                (this.gamepad.leftStick.x !== 0 ||
+                    this.gamepad.leftStick.y !== 0) &&
+                this.player.body.maxSpeed > 0
             ) {
                 this.luminusAnimationManager.animateWithAngle(
                     this.walkPrefixAnimation,

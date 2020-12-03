@@ -103,26 +103,30 @@ export class LuminusMovement extends AnimationNames {
             if (
                 this.cursors.left.isDown ||
                 (this.cursors.left.isDown && this.cursors.down.isDown) ||
-                (this.cursors.left.isDown && this.cursors.up.isDown)
+                (this.cursors.left.isDown &&
+                    this.cursors.up.isDown &&
+                    this.player.body.maxSpeed > 0)
             ) {
                 this.player.body.setVelocityX(-this.player.speed);
                 this.player.anims.play(this.walkLeftAnimationName, true);
             } else if (
                 this.cursors.right.isDown ||
                 (this.cursors.right.isDown && this.cursors.down.isDown) ||
-                (this.cursors.right.isDown && this.cursors.up.isDown)
+                (this.cursors.right.isDown &&
+                    this.cursors.up.isDown &&
+                    this.player.body.maxSpeed > 0)
             ) {
                 this.player.anims.play(this.walkRightAnimationName, true);
                 this.player.body.setVelocityX(this.player.speed);
             }
 
             // Vertical movement
-            if (this.cursors.up.isDown) {
+            if (this.cursors.up.isDown && this.player.body.maxSpeed > 0) {
                 this.player.body.setVelocityY(-this.player.speed);
                 if (!this.cursors.left.isDown && !this.cursors.right.isDown)
                     this.player.anims.play(this.walkUpAnimationName, true);
             }
-            if (this.cursors.down.isDown) {
+            if (this.cursors.down.isDown && this.player.body.maxSpeed > 0) {
                 if (!this.cursors.left.isDown && !this.cursors.right.isDown)
                     this.player.anims.play(this.walkDownAnimationName, true);
                 this.player.body.setVelocityY(this.player.speed);
@@ -141,7 +145,8 @@ export class LuminusMovement extends AnimationNames {
             this.stick.isDown &&
             this.player.body.maxSpeed > 0 &&
             this.stick.force > 0 &&
-            this.scene.input.pointer1.isDown
+            this.scene.input.pointer1.isDown &&
+            this.player.body.maxSpeed > 0
         ) {
             this.luminusAnimationManager.animateWithAngle(
                 this.walkPrefixAnimation,

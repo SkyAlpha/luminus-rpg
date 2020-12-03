@@ -109,10 +109,6 @@ export class MainScene extends Phaser.Scene {
         const interactiveMarkers = new LuminusObjectMarker(this, map);
         interactiveMarkers.create();
 
-        this.scene.launch('DialogScene');
-        this.scene.launch('JoystickScene');
-        this.scene.launch('HUDScene');
-
         // this.cameras.main.disableCull = false;
         // this.cameras.main.setBounds(
         //     0,
@@ -127,6 +123,9 @@ export class MainScene extends Phaser.Scene {
             this.player,
             this.joystickScene
         );
+        this.scene.launch('DialogScene');
+        this.scene.launch('JoystickScene');
+        this.scene.launch('HUDScene');
 
         // Only to give time to the scene to be initialized.
         setTimeout((t) => {
