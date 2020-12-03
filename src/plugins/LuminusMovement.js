@@ -1,10 +1,12 @@
 import Phaser from 'phaser';
+import { AnimationNames } from '../consts/AnimationNames';
 import { LuminusAnimationManager } from './LuminusAnimationManager';
+import { LuminusGamePadController } from './LuminusGamePadController';
 
 /**
  * @class
  */
-export class LuminusMovement {
+export class LuminusMovement extends AnimationNames {
     /**
      * Creates cursors to move the player in the given direction.
      * @param { Phaser.Scene } scene Phaser Scene.
@@ -12,6 +14,7 @@ export class LuminusMovement {
      * @param { Phaser.Scene } joystickScene
      */
     constructor(scene, player, joystickScene) {
+        super(null);
         /**
          * Scene Context.
          * @type { Phaser.Scene }  */
@@ -36,72 +39,6 @@ export class LuminusMovement {
         this.stick = null;
 
         /**
-         * Name of the walk up animation.
-         * @type { string }
-         * @default
-         */
-        this.walkUpAnimationName = 'walk-up';
-
-        /**
-         * Name of the walk right animation.
-         * @type { string }
-         * @default
-         */
-        this.walkRightAnimationName = 'walk-right';
-
-        /**
-         * Name of the walk down animation.
-         * @type { string }
-         * @default
-         */
-        this.walkDownAnimationName = 'walk-down';
-
-        /**
-         * Name of the walk left animation.
-         * @type { string }
-         * @default
-         */
-        this.walkLeftAnimationName = 'walk-left';
-
-        /**
-         * This is specific for those who are using the joystick.
-         *
-         * The Luminus animation manager expects the animations to have a prefix. The sufix is automatically added by the LuminusAnimationManager class, like this:
-         * prefix: 'walk'
-         * sufix: '-right'
-         * By default the prefix is just 'walk' and the sufix is the direction that the player animation should play.
-         *
-         * The luminus animation manager will play the default animation directions
-         * 'up', 'right', 'down', 'left'
-         *
-         * @example
-         * 'walk-right'
-         *
-         *
-         * @type { string }
-         */
-        this.walkPrefixAnimation = 'walk';
-
-        /**
-         * This is specific for those who are using the joystick.
-         *
-         * The Luminus animation manager expects the animations to have a prefix. The sufix is automatically added by the LuminusAnimationManager class, like this:
-         * prefix: 'walk'
-         * sufix: '-right'
-         * By default the prefix is just 'walk' and the sufix is the direction that the player animation should play.
-         *
-         * The luminus animation manager will play the default animation directions
-         * 'up', 'right', 'down', 'left'
-         *
-         * @example
-         * 'walk-right'
-         *
-         *
-         * @type { string }
-         */
-        this.idlePrefixAnimation = 'idle';
-
-        /**
          * The JoystickScene. If it's available, use the joystick to move the Player.
          * @type { Phaser.Scene }
          */
@@ -112,6 +49,13 @@ export class LuminusMovement {
          * @type { LuminusAnimationManager }
          */
         this.luminusAnimationManager = new LuminusAnimationManager(this.player);
+
+        this.luminusGamepadController = new LuminusGamePadController(
+            this.scene,
+            this.player
+        );
+
+        this.luminusGamepadController.create();
 
         if (this.joystickScene) {
             this.joystickScene.events.on('setStick', (payload) => {
@@ -209,6 +153,7 @@ export class LuminusMovement {
                 this.player.body.velocity
             );
         }
+        this.luminusGamepadController.sendInputs();
 
         if (!this.isMoving()) {
             const currrentAnimation = this.player.anims.currentAnim.key;

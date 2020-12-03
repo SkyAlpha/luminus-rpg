@@ -229,7 +229,7 @@ export class SettingScene extends Phaser.Scene {
     createAudioSlider() {
         this.textAudioSlider = this.add.text(
             this.dialog.x + this.margin * 3,
-            this.dialog.y + this.margin * 7,
+            this.dialog.y + this.margin * 10,
             `Audio:`,
             {
                 fontSize: '11px',

@@ -26,6 +26,11 @@ const config = {
         SettingScene,
         VideoPlayerScene,
     ],
+    inputTouch: true,
+    input: {
+        gamepad: true,
+    },
+    inputKeyboard: true,
     scaleMode: Phaser.Scale.RESIZE,
     autoCenter: Phaser.Scale.CENTER_BOTH,
     plugins: {

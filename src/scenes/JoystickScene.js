@@ -133,6 +133,7 @@ export class JoystickScene extends Phaser.Scene {
                 this.stick.isDown &&
                 this.player.body.maxSpeed > 0
             ) {
+                console.log(this.stick.rotation);
                 this.physics.velocityFromRotation(
                     this.stick.rotation,
                     this.stick.force * this.player.speed,

@@ -136,7 +136,7 @@ export class MainScene extends Phaser.Scene {
             });
         }, 300);
 
-        this.sound.volume = 0.5;
+        this.sound.volume = 0.35;
         this.themeSound = this.sound.add('path_to_lake_land', {
             loop: true,
         });
