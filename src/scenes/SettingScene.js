@@ -152,15 +152,6 @@ export class SettingScene extends Phaser.Scene {
         this.settingBackgroundSpriteName = 'settings_background';
     }
 
-    preload() {
-        this.load.scenePlugin({
-            key: 'rexuiplugin',
-            url:
-                'https://raw.githubusercontent.com/rexrainbow/phaser3-rex-notes/master/dist/rexuiplugin.min.js',
-            sceneKey: 'rexUI',
-        });
-    }
-
     create() {
         this.luminusSoundManager = new LuminusSoundManager(this);
         this.luminusSoundManager.create();

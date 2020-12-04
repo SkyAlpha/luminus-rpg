@@ -5,6 +5,7 @@ import { LuminusMovement } from '../plugins/LuminusMovement';
 import { LuminusObjectMarker } from '../plugins/LuminusObjectMarker';
 import AnimatedTiles from '../plugins/AnimatedTiles';
 import { LuminusEnvironmentParticles } from '../plugins/LuminusEnvironmentParticles';
+import { LuminusOutlineEffect } from '../plugins/LuminusOutlineEffect';
 
 let cursors;
 let map;
@@ -69,7 +70,7 @@ export class MainScene extends Phaser.Scene {
             inner,
             tileset_overworld,
         ]);
-        const overplayer_layer = map.createDynamicLayer('overplayer', [
+        this.overplayer_layer = map.createDynamicLayer('overplayer', [
             tileset_overworld,
             inner,
         ]);
@@ -81,7 +82,7 @@ export class MainScene extends Phaser.Scene {
             'collision',
             collision_tilset
         );
-        overplayer_layer.depth = 99;
+        this.overplayer_layer.depth = 99;
         overplayer_layer2.depth = 100;
         // Hides the collision map.
         collision_layer.alpha = 0;
@@ -144,9 +145,21 @@ export class MainScene extends Phaser.Scene {
         this.sys.animatedTiles.init(map);
         this.particles = new LuminusEnvironmentParticles(this, map);
         this.particles.createParticles('forest');
+
+        this.outlineEffect = new LuminusOutlineEffect(this);
+        this.outlineEffect.createLayer();
+        console.log(this);
     }
 
     update(time, delta) {
         this.movement.move();
+        // this.outlineEffect.clear();
+        // this.physics.overlap(
+        //     this.player.hitZone,
+        //     this.overplayer_layer,
+        //     (overlap) => {
+        //         this.outlineEffect.applyEffect(this.player);
+        //     }
+        // );
     }
 }

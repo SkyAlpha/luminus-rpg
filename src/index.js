@@ -8,6 +8,8 @@ import { PreloadScene } from './scenes/PreloadScene';
 import { VideoPlayerScene } from './scenes/VideoPlayerScene';
 import { IntroScene } from './scenes/IntroScene';
 import { SettingScene } from './scenes/SettingScene';
+import OutlineEffectLayerPlugin from 'phaser3-rex-plugins/plugins/outlineeffectlayer-plugin.js';
+import UIPlugin from 'phaser3-rex-plugins/templates/ui/ui-plugin.js';
 /**
  * @type { Phaser.Core.Config}
  */
@@ -26,15 +28,29 @@ const config = {
         SettingScene,
         VideoPlayerScene,
     ],
-    inputTouch: true,
     input: {
         gamepad: true,
+        touch: true,
     },
     inputKeyboard: true,
     scaleMode: Phaser.Scale.RESIZE,
     autoCenter: Phaser.Scale.CENTER_BOTH,
     plugins: {
-        global: [NineSlicePlugin.DefaultCfg],
+        scene: [
+            {
+                key: 'rexUI',
+                plugin: UIPlugin,
+                mapping: 'rexUI',
+            },
+        ],
+        global: [
+            NineSlicePlugin.DefaultCfg,
+            {
+                key: 'rexOutlineEffectLayerPlugin',
+                plugin: OutlineEffectLayerPlugin,
+                start: true,
+            },
+        ],
     },
     dom: {
         createContainer: true,
