@@ -11,6 +11,7 @@ import { SettingScene } from './scenes/SettingScene';
 import OutlineEffectLayerPlugin from 'phaser3-rex-plugins/plugins/outlineeffectlayer-plugin.js';
 import YoutubePlayerPlugin from 'phaser3-rex-plugins/plugins/youtubeplayer-plugin.js';
 import UIPlugin from 'phaser3-rex-plugins/templates/ui/ui-plugin.js';
+import { MobileCheckScene } from './scenes/MobileCheckScene';
 /**
  * @type { Phaser.Core.Config}
  */
@@ -29,6 +30,7 @@ const config = {
         HUDScene,
         SettingScene,
         VideoPlayerScene,
+        MobileCheckScene,
     ],
     input: {
         gamepad: true,

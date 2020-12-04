@@ -118,7 +118,7 @@ export class PreloadScene extends Phaser.Scene {
                 families: ['Press Start 2P'],
             },
             active: () => {
-                this.scene.start('IntroScene');
+                this.scene.start('MobileCheckScene');
             },
         });
     }
