@@ -17,6 +17,8 @@ import settings_background from '../assets/sprites/settings_background.png';
 
 // Particles / Clouds
 import rain from '../assets/sprites/rain.png';
+import dust from '../assets/sprites/dust.png';
+import leaves from '../assets/sprites/leaves.png';
 import particle_warp from '../assets/sprites/particle_warp.png';
 import cloud from '../assets/sprites/clouds/cloud.png';
 
@@ -100,6 +102,14 @@ export const Images = [
     {
         name: 'rain',
         image: rain,
+    },
+    {
+        name: 'dust',
+        image: dust,
+    },
+    {
+        name: 'leaves',
+        image: leaves,
     },
     {
         name: 'particle_warp',

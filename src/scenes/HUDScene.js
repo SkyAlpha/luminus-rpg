@@ -108,6 +108,7 @@ export class HUDScene extends Phaser.Scene {
         this.scale.on('resize', (resize) => {
             this.resizeAll(resize);
         });
+        this.scene.stop(this.settingSceneName);
     }
 
     /**

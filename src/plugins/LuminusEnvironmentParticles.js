@@ -46,6 +46,9 @@ export class LuminusEnvironmentParticles {
     createParticles(zoneName) {
         const zones = this.map.getObjectLayer(this.particlesObjectLayerName);
         const dimensions = zones.objects.find((v) => v.name === zoneName);
+        const dimensions_clouds = zones.objects.find(
+            (v) => v.name === 'clouds'
+        );
         // const emitZone = zones.objects.find(
         //     (v) => v.name === this.particlesEmitZonePrefixName + zoneName
         // );
@@ -56,10 +59,10 @@ export class LuminusEnvironmentParticles {
             dimensions.y
         );
         this.makeClouds(
-            dimensions.width,
-            dimensions.height,
-            dimensions.x,
-            dimensions.y
+            dimensions_clouds.width,
+            dimensions_clouds.height,
+            dimensions_clouds.x,
+            dimensions_clouds.y
         );
     }
 
@@ -82,8 +85,7 @@ export class LuminusEnvironmentParticles {
             {
                 angle: { min: 0, max: 360 },
                 deathZone: { source: deathZone, type: 'onLeave' },
-                emitZone: { source: deathZone, type: 'random', quantity: 5 },
-                frequency: 1000,
+                frequency: 15000,
                 speedX: { min: 5, max: 15 },
                 speedY: { min: 5, max: 15 },
                 x: { min: originX, max: width },
@@ -115,7 +117,7 @@ export class LuminusEnvironmentParticles {
             width,
             height
         );
-        this.particles = this.scene.add.particles('rain', [
+        this.particles = this.scene.add.particles('leaves', [
             {
                 angle: { min: 0, max: 360 },
                 // emitZone: { source: offscreen },
@@ -126,11 +128,13 @@ export class LuminusEnvironmentParticles {
                 x: { min: originX, max: width },
                 y: { min: originY, max: height },
                 lifespan: 10000,
-                scale: { start: 0.8, end: 0.4 },
+                scale: { start: 1.3, end: 0.7 },
                 alpha: { start: 0.4, end: 1 },
                 radial: true,
                 rotation: 180,
             },
+        ]);
+        this.particles = this.scene.add.particles('dust', [
             {
                 angle: { min: 0, max: 360 },
                 // emitZone: { source: offscreen },
@@ -141,7 +145,7 @@ export class LuminusEnvironmentParticles {
                 x: { min: originX, max: width },
                 y: { min: originY, max: height },
                 lifespan: 7000,
-                scale: { start: 0.5, end: 0.2 },
+                scale: { start: 1.3, end: 0.7 },
                 alpha: { start: 0.4, end: 1 },
                 radial: true,
                 rotation: 180,

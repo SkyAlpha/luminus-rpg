@@ -358,7 +358,8 @@ export class LuminusDialogBox {
     }
 
     /**
-     * Checks if the action buttons are pressed
+     * Checks if any action buttons is pressed.
+     * Is it Keyboard / Mobile / GamePad.
      */
     checkButtonsPressed() {
         return (
