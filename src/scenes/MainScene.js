@@ -136,18 +136,19 @@ export class MainScene extends Phaser.Scene {
             });
         }, 300);
 
-        this.sound.volume = 0.35;
-        this.themeSound = this.sound.add('path_to_lake_land', {
-            loop: true,
-        });
-        this.themeSound.play();
-
         this.sys.animatedTiles.init(map);
         this.particles = new LuminusEnvironmentParticles(this, map);
         this.particles.createParticles('forest');
 
         this.outlineEffect = new LuminusOutlineEffect(this);
         this.outlineEffect.createLayer();
+
+        this.sound.volume = 0.35;
+        this.themeSound = this.sound.add('path_to_lake_land', {
+            loop: true,
+        });
+        this.themeSound.play();
+        setTimeout((time) => {}, 1000);
     }
 
     update(time, delta) {

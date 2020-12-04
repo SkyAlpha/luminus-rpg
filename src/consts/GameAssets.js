@@ -42,7 +42,7 @@ import typing_key_02 from '../assets/sound/typing/typing_key_02.mp3';
 import typing_key_03 from '../assets/sound/typing/typing_key_03.mp3';
 import typing_key_04 from '../assets/sound/typing/typing_key_04.mp3';
 import typing_key_05 from '../assets/sound/typing/typing_key_05.mp3';
-import path_to_lake_land from '../assets/sound/path_to_lake_land.ogg';
+import path_to_lake_land from '../assets/sound/path_to_lake_land.mp3';
 
 export const Images = [
     {

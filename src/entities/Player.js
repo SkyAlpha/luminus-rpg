@@ -67,7 +67,7 @@ export class Player extends Phaser.GameObjects.Sprite {
         //  * The dust particles that the entity will emit when it moves.
         //  * @type { Phaser.GameObjects.Particles }
         //  */
-        this.walk_dust = this.scene.add
+        this.walkDust = this.scene.add
             .particles(this.dustParticleName)
             .setDepth(0)
             .createEmitter({
@@ -85,8 +85,8 @@ export class Player extends Phaser.GameObjects.Sprite {
             });
 
         this.setDepth(1);
-        console.log(this.walk_dust);
-        this.walk_dust.on = false;
+        console.log(this.walkDust);
+        this.walkDust.on = false;
         // this.walk_dust.this.walk_dust.pause();
     }
 
