@@ -117,9 +117,17 @@ export class IntroScene extends Phaser.Scene {
          * @default
          */
         this.luminusLogoFontSize = '25px';
+
+        /**
+         * Returns if the device is mobile
+         * @type { string }
+         * @default
+         */
+        this.isMobile = null;
     }
 
     create() {
+        this.isMobile = !this.sys.game.device.os.desktop ? true : false;
         this.centerX = this.scale.width / 2;
         this.centerY = this.scale.height / 2;
         this.timeline = this.tweens.createTimeline();
@@ -156,13 +164,17 @@ export class IntroScene extends Phaser.Scene {
         this.logo_phaser.setPosition(this.centerX, this.centerY);
         this.logo_phaser_text.setPosition(
             this.centerX,
-            this.centerY - this.logo_phaser.height / 2 - 60
+            this.centerY - this.logo_phaser.height / 2 - 30
         );
         this.studioImage.setPosition(this.centerX, this.centerY);
         this.studioText.setPosition(
             this.centerX,
-            this.centerY - this.studioImage.height / 2 - 60
+            this.centerY - this.studioImage.height / 2 - this.mobileMargin()
         );
+    }
+
+    mobileMargin() {
+        return this.isMobile == true ? 10 : 60;
     }
 
     /**
@@ -184,7 +196,7 @@ export class IntroScene extends Phaser.Scene {
             this.centerX,
             this.centerY -
                 (this.logo_phaser.height * this.logo_phaser.scaleY) / 2 -
-                60,
+                this.mobileMargin(),
             this.phaserLogoText,
             {
                 wordWrap: {
