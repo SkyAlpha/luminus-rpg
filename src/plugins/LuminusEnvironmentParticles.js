@@ -82,6 +82,7 @@ export class LuminusEnvironmentParticles {
             {
                 angle: { min: 0, max: 360 },
                 deathZone: { source: deathZone, type: 'onLeave' },
+                emitZone: { source: deathZone, type: 'random', quantity: 5 },
                 frequency: 1000,
                 speedX: { min: 5, max: 15 },
                 speedY: { min: 5, max: 15 },
@@ -91,7 +92,6 @@ export class LuminusEnvironmentParticles {
                 scale: 0.8,
                 alpha: { start: 0.5, end: 0.7 },
                 radial: true,
-                maxParticles: 5,
                 rotation: 180,
             },
         ]);
