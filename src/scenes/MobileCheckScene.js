@@ -30,7 +30,7 @@ export class MobileCheckScene extends Phaser.Scene {
          * @default
          */
         this.textOrientationFullscreen =
-            'Please, rotate your device to Landscape and touch the screen to enable Full Screen mode.';
+            'Please, touch the screen to enable Full Screen mode and rotate your device to Landscape mode.';
 
         /**
          * The text that will be displayed when the user phone is not in landscape mode and is already on Full Screen.
@@ -84,7 +84,7 @@ export class MobileCheckScene extends Phaser.Scene {
     create() {
         this.isMobile = !this.sys.game.device.os.desktop ? true : false;
 
-        if (!this.isMobile) {
+        if (!this.isMobile || this.sys.game.device.os.iPhone) {
             this.goNextScene();
         }
         this.landscapeImage = this.add.image(

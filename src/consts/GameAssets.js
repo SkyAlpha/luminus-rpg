@@ -15,6 +15,7 @@ import luminus_candle from '../assets/sprites/candle.png';
 import cog_settings from '../assets/sprites/cog.png';
 import settings_background from '../assets/sprites/settings_background.png';
 import landscape_mobile from '../assets/sprites/landscape.png';
+import walk_dust from '../assets/sprites/walk_dust.png';
 
 // Particles / Clouds
 import rain from '../assets/sprites/rain.png';
@@ -127,6 +128,10 @@ export const Images = [
     {
         name: 'landscape_mobile',
         image: landscape_mobile,
+    },
+    {
+        name: 'walk_dust',
+        image: walk_dust,
     },
 
     //Clouds

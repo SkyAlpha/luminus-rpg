@@ -56,6 +56,38 @@ export class Player extends Phaser.GameObjects.Sprite {
 
         // Initializes the physics.
         this.setPhysics();
+
+        /**
+         * The particle name of the Sprite / Texture to be used for the the dust movement.
+         * @type { string }
+         */
+        this.dustParticleName = 'walk_dust';
+
+        // /**
+        //  * The dust particles that the entity will emit when it moves.
+        //  * @type { Phaser.GameObjects.Particles }
+        //  */
+        this.walk_dust = this.scene.add
+            .particles(this.dustParticleName)
+            .setDepth(0)
+            .createEmitter({
+                follow: this,
+                speed: 2,
+                scale: { start: 0.1, end: 0.25 },
+                frequency: 300,
+                quantity: 20,
+                lifespan: 1000,
+                rotate: { min: 0, max: 360 },
+                alpha: { start: 1, end: 0.2 },
+                followOffset: {
+                    y: 10,
+                },
+            });
+
+        this.setDepth(1);
+        console.log(this.walk_dust);
+        this.walk_dust.on = false;
+        // this.walk_dust.this.walk_dust.pause();
     }
 
     /**

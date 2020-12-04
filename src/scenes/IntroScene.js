@@ -164,7 +164,7 @@ export class IntroScene extends Phaser.Scene {
         this.logo_phaser.setPosition(this.centerX, this.centerY);
         this.logo_phaser_text.setPosition(
             this.centerX,
-            this.centerY - this.logo_phaser.height / 2 - 30
+            this.centerY - this.logo_phaser.height / 2 - this.mobileMargin()
         );
         this.studioImage.setPosition(this.centerX, this.centerY);
         this.studioText.setPosition(
@@ -174,7 +174,7 @@ export class IntroScene extends Phaser.Scene {
     }
 
     mobileMargin() {
-        return this.isMobile == true ? 10 : 60;
+        return this.isMobile == true ? 30 : 60;
     }
 
     /**

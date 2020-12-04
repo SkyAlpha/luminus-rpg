@@ -167,6 +167,9 @@ export class LuminusMovement extends AnimationNames {
                 this.idlePrefixAnimation
             );
             this.player.anims.play(idleAnimation);
+            this.player.walk_dust.on = false;
+        } else {
+            this.player.walk_dust.on = true;
         }
     }
 }
