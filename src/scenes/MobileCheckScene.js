@@ -13,6 +13,12 @@ export class MobileCheckScene extends Phaser.Scene {
         this.landscapeImage = null;
 
         /**
+         * The Name of the texture / Sprite that will be presented.
+         * @type { string }
+         */
+        this.landscapeImageName = 'landscape_mobile';
+
+        /**
          * The text that will display the tip to the player.
          * @type { Phaser.GameObjects.Text }
          */
@@ -82,14 +88,14 @@ export class MobileCheckScene extends Phaser.Scene {
             this.goNextScene();
         }
         this.landscapeImage = this.add.image(
-            this.scale.width / 2,
-            this.scale.height / 2,
-            'landscape_mobile'
+            this.cameras.main.width / 2,
+            this.cameras.main.height / 2,
+            this.landscapeImageName
         );
 
         this.helpText = this.add.text(
-            this.scale.width / 2,
-            this.scale.height / 2 - this.landscapeImage.height / 2 - 50,
+            this.cameras.main.width / 2,
+            this.cameras.main.height / 2 - this.landscapeImage.height / 2 - 50,
             this.textOrientationFullscreen,
             {
                 wordWrap: {
@@ -100,6 +106,7 @@ export class MobileCheckScene extends Phaser.Scene {
                 fontFamily: this.fontFamily,
             }
         );
+
         this.helpText.setOrigin(0.5, 0.5);
 
         this.tweens.add({
@@ -117,11 +124,16 @@ export class MobileCheckScene extends Phaser.Scene {
         });
 
         this.scale.on('resize', (size) => {
-            this.landscapeImage.setPosition(size.width / 2, size.height / 2);
-            this.helpText.setPosition(
-                size.width / 2,
-                size.height / 2 - this.landscapeImage.height / 2 - 50
-            );
+            if (this.scene.isVisible()) {
+                this.landscapeImage.setPosition(
+                    size.width / 2,
+                    size.height / 2
+                );
+                this.helpText.setPosition(
+                    size.width / 2,
+                    size.height / 2 - this.landscapeImage.height / 2 - 50
+                );
+            }
         });
     }
 
@@ -130,7 +142,7 @@ export class MobileCheckScene extends Phaser.Scene {
      */
     goNextScene() {
         this.scene.launch(this.nextScene).launch();
-        this.scene.stop();
+        this.scene.stop(this.scene.key);
     }
 
     update() {
@@ -150,5 +162,6 @@ export class MobileCheckScene extends Phaser.Scene {
             this.finishedChecks = true;
             this.goNextScene();
         }
+        this.helpText.setWordWrapWidth(this.cameras.main.width - 50);
     }
 }

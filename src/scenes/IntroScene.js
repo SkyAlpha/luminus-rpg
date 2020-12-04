@@ -46,6 +46,77 @@ export class IntroScene extends Phaser.Scene {
          * @type { Phaser.GameObjects.Particles }
          */
         this.particles_logo = null;
+
+        /**
+         * The Studio image game object to display.
+         * @type { Phaser.GameObjects.Image }
+         */
+        this.studioImage = null;
+
+        /**
+         * The text game object to display with the game studio.
+         * @type { Phaser.GameObjects.Text }
+         */
+        this.studioText = null;
+
+        /**
+         * The font size of the text above the logo.
+         * @type { number }
+         * @default
+         */
+        this.logoTextFontSize = 35;
+
+        /**
+         * The phaser logo Sprite / Texture name
+         * @type { string }
+         */
+        this.phaserLogoSpriteName = 'logo_phaser';
+
+        /**
+         * The Phaser logo text.
+         * @type { string }
+         * @default
+         */
+        this.phaserLogoText = 'Proudly created with';
+
+        /**
+         * The phaser logo text.
+         * @type { string }
+         * @default
+         */
+        this.logoPhaserFontFamily = "'Press Start 2P'";
+
+        /**
+         * The Luminus logo sprite / texture name
+         * @type { string }
+         * @default
+         */
+        this.luminusLogo = 'luminus_candle';
+
+        /**
+         * The Luminus logo Text.
+         * @type { string }
+         */
+        this.luminusLogoText = 'Luminus Game Studio';
+
+        /**
+         * Particles Sprite / Texture name.
+         * @type { string }
+         */
+        this.particlesSpriteName = 'flares';
+
+        /**
+         * The Luminus Logo font Family.
+         * @type { strin }
+         */
+        this.luminusLogoFontFamily = "'Press Start 2P'";
+
+        /**
+         * The font size of the text above the luminus logo.
+         * @type { number }
+         * @default
+         */
+        this.luminusLogoFontSize = '25px';
     }
 
     create() {
@@ -69,7 +140,9 @@ export class IntroScene extends Phaser.Scene {
 
         this.scale.on('resize', (size) => {
             // console.log(size);
-            this.resizeAll(size);
+            if (this.scene.isVisible()) {
+                this.resizeAll(size);
+            }
         });
     }
 
@@ -79,11 +152,16 @@ export class IntroScene extends Phaser.Scene {
      */
     resizeAll(size) {
         this.centerX = size.width / 2;
-        this.centerY = size.height;
+        this.centerY = size.height / 2;
         this.logo_phaser.setPosition(this.centerX, this.centerY);
         this.logo_phaser_text.setPosition(
             this.centerX,
             this.centerY - this.logo_phaser.height / 2 - 60
+        );
+        this.studioImage.setPosition(this.centerX, this.centerY);
+        this.studioText.setPosition(
+            this.centerX,
+            this.centerY - this.studioImage.height / 2 - 60
         );
     }
 
@@ -94,17 +172,26 @@ export class IntroScene extends Phaser.Scene {
         this.logo_phaser = this.add.image(
             this.centerX,
             this.centerY,
-            'logo_phaser'
+            this.phaserLogoSpriteName
         );
         this.logo_phaser.alpha = 0;
 
+        if (this.scale.height / this.logo_phaser.height > 0.7) {
+            this.logo_phaser.setScale(0.5);
+        }
+
         this.logo_phaser_text = this.add.text(
             this.centerX,
-            this.centerY - this.logo_phaser.height / 2 - 60,
-            'Proudly created with',
+            this.centerY -
+                (this.logo_phaser.height * this.logo_phaser.scaleY) / 2 -
+                60,
+            this.phaserLogoText,
             {
-                fontFamily: "'Press Start 2P'",
-                fontSize: '35px',
+                wordWrap: {
+                    width: this.cameras.main.width - 50,
+                },
+                fontFamily: this.logoPhaserFontFamily,
+                fontSize: `${this.logoTextFontSize * this.logo_phaser.scale}px`,
             }
         );
         this.logo_phaser_text.setOrigin(0.5, 0.5);
@@ -117,17 +204,21 @@ export class IntroScene extends Phaser.Scene {
         let logoSource = {
             getRandomPoint: (vec) => {
                 do {
-                    let x = Phaser.Math.Between(0, this.logo_phaser.width - 1);
-                    let y = Phaser.Math.Between(0, this.logo_phaser.height - 1);
-                    pixel = textures.getPixel(x, y, 'logo_phaser');
+                    let x = Phaser.Math.Between(
+                        0,
+                        this.logo_phaser.width * this.logo_phaser.scaleX - 1
+                    );
+                    let y = Phaser.Math.Between(
+                        0,
+                        this.logo_phaser.height * this.logo_phaser.scaleY - 1
+                    );
+                    pixel = textures.getPixel(x, y, this.phaserLogoSpriteName);
                     return vec.setTo(x + origin.x, y + origin.y);
                 } while (pixel.alpha < 255);
             },
         };
 
-        this.particles_logo = this.add.particles('flares');
-
-        this.particles_logo.createEmitter({
+        this.particles_logo = this.add.particles(this.particlesSpriteName, {
             x: 0,
             y: 0,
             lifespan: 1000,
@@ -154,27 +245,27 @@ export class IntroScene extends Phaser.Scene {
     }
 
     createLuminusLogo() {
-        const luminus_candle = this.add.image(
+        this.studioImage = this.add.image(
             this.centerX,
             this.centerY,
-            'luminus_candle'
+            this.luminusLogo
         );
-        luminus_candle.alpha = 0;
+        this.studioImage.alpha = 0;
 
-        const logo_candle_text = this.add.text(
+        this.studioText = this.add.text(
             this.centerX,
-            this.centerY - luminus_candle.height / 2 - 60,
-            'Luminus Game Studio',
+            this.centerY - this.studioImage.height / 2 - 60,
+            this.luminusLogoText,
             {
-                fontFamily: "'Press Start 2P'",
-                fontSize: '25px',
+                fontFamily: this.luminusLogoFontFamily,
+                fontSize: this.luminusLogoFontSize,
             }
         );
-        logo_candle_text.setOrigin(0.5, 0.5);
-        logo_candle_text.alpha = 0;
+        this.studioText.setOrigin(0.5, 0.5);
+        this.studioText.alpha = 0;
 
         this.timeline.add({
-            targets: [luminus_candle, logo_candle_text],
+            targets: [this.studioImage, this.studioText],
             alpha: { from: 0, to: 1 },
             duration: 2000,
             yoyo: true,

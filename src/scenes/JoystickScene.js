@@ -74,7 +74,7 @@ export class JoystickScene extends Phaser.Scene {
          * @type { number }
          * @default
          */
-        this.buttonAMultiplierXposition = 0.15;
+        this.buttonAMultiplierXposition = 0.18;
 
         /**
          * Multiplier of the Button A Vertically. The greater the farther of the bottom of the screen.
