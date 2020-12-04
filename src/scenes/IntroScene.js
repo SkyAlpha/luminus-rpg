@@ -50,7 +50,7 @@ export class IntroScene extends Phaser.Scene {
 
     create() {
         this.centerX = this.scale.width / 2;
-        this.centerY = this.scale.height;
+        this.centerY = this.scale.height / 2;
         this.timeline = this.tweens.createTimeline();
 
         // LOGO Part.
@@ -78,8 +78,8 @@ export class IntroScene extends Phaser.Scene {
      * @param { Size } size new size of the game.
      */
     resizeAll(size) {
-        this.centerX = this.scale.width / 2;
-        this.centerY = this.scale.height / 2;
+        this.centerX = size.width / 2;
+        this.centerY = size.height;
         this.logo_phaser.setPosition(this.centerX, this.centerY);
         this.logo_phaser_text.setPosition(
             this.centerX,

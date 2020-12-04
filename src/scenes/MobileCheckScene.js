@@ -77,6 +77,10 @@ export class MobileCheckScene extends Phaser.Scene {
 
     create() {
         this.isMobile = !this.sys.game.device.os.desktop ? true : false;
+
+        if (!this.isMobile) {
+            this.goNextScene();
+        }
         this.landscapeImage = this.add.image(
             this.scale.width / 2,
             this.scale.height / 2,
@@ -121,6 +125,14 @@ export class MobileCheckScene extends Phaser.Scene {
         });
     }
 
+    /**
+     * Moves the player to the next Scene and stops the current Scene.
+     */
+    goNextScene() {
+        this.scene.launch(this.nextScene).launch();
+        this.scene.stop();
+    }
+
     update() {
         if (!this.scale.isLandscape && !this.scale.isFullscreen) {
             this.finishedChecks = false;
@@ -136,8 +148,7 @@ export class MobileCheckScene extends Phaser.Scene {
             this.helpText.setText(this.textFullscreen);
         } else if (!this.finishedChecks) {
             this.finishedChecks = true;
-            this.scene.launch(this.nextScene).launch();
-            this.scene.stop();
+            this.goNextScene();
         }
     }
 }
