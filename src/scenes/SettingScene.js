@@ -27,7 +27,7 @@ export class SettingScene extends Phaser.Scene {
      */
     constructor() {
         super({
-            key: 'SettingsScene',
+            key: 'SettingScene',
         });
 
         /**

@@ -69,7 +69,7 @@ export class HUDScene extends Phaser.Scene {
          * @type { string }
          * @default
          */
-        this.settingSceneName = 'SettingsScene';
+        this.settingSceneName = 'SettingScene';
     }
 
     /**
