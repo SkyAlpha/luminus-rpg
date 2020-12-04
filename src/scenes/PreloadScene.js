@@ -89,6 +89,16 @@ export class PreloadScene extends Phaser.Scene {
     }
 
     create() {
+        // setTimeout((t) => {
+        //     this.scale.startFullscreen();
+        // }, 200);
+        // setTimeout((t) => {
+        //     console.log(
+        //         document.getElementById('luminus-rpg'),
+        //         document.getElementById('luminus-rpg').click()
+        //     );
+        //     this.scale.startFullscreen();
+        // }, 2000);
         Animations.forEach((animation) => {
             this.anims.create({
                 key: animation.key,

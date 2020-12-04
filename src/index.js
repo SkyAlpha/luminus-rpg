@@ -9,13 +9,15 @@ import { VideoPlayerScene } from './scenes/VideoPlayerScene';
 import { IntroScene } from './scenes/IntroScene';
 import { SettingScene } from './scenes/SettingScene';
 import OutlineEffectLayerPlugin from 'phaser3-rex-plugins/plugins/outlineeffectlayer-plugin.js';
+import YoutubePlayerPlugin from 'phaser3-rex-plugins/plugins/youtubeplayer-plugin.js';
 import UIPlugin from 'phaser3-rex-plugins/templates/ui/ui-plugin.js';
 /**
  * @type { Phaser.Core.Config}
  */
 const config = {
-    type: Phaser.AUTO,
-    parent: 'luminus-rpg',
+    type: Phaser.WEBGL,
+    parent: 'luminus-rpg-parent',
+    canvas: document.getElementById('luminus-rpg'),
     width: 800,
     height: 600,
     scene: [
@@ -48,6 +50,11 @@ const config = {
             {
                 key: 'rexOutlineEffectLayerPlugin',
                 plugin: OutlineEffectLayerPlugin,
+                start: true,
+            },
+            {
+                key: 'rexYoutubePlayer',
+                plugin: YoutubePlayerPlugin,
                 start: true,
             },
         ],

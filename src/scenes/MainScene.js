@@ -148,18 +148,18 @@ export class MainScene extends Phaser.Scene {
 
         this.outlineEffect = new LuminusOutlineEffect(this);
         this.outlineEffect.createLayer();
-        console.log(this);
     }
 
     update(time, delta) {
         this.movement.move();
-        // this.outlineEffect.clear();
-        // this.physics.overlap(
-        //     this.player.hitZone,
-        //     this.overplayer_layer,
-        //     (overlap) => {
-        //         this.outlineEffect.applyEffect(this.player);
-        //     }
-        // );
+        this.outlineEffect.clear();
+        this.physics.overlap(
+            this.player.hitZone,
+            this.overplayer_layer,
+            () => {
+                this.outlineEffect.applyEffect(this.player);
+            },
+            (hitZone, tile) => tile.index > -1
+        );
     }
 }

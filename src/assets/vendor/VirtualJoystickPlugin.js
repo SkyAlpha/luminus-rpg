@@ -5,8 +5,6 @@
 //
 // anything defined in a previous bundle is accessed via the
 // orig method which is the require for previous bundles
-
-// eslint-disable-next-line no-global-assign
 parcelRequire = (function (modules, cache, entry, globalName) {
   // Save the require from previous bundle to this closure if any
   var previousRequire = typeof parcelRequire === 'function' && parcelRequire;
@@ -77,8 +75,16 @@ parcelRequire = (function (modules, cache, entry, globalName) {
     }, {}];
   };
 
+  var error;
   for (var i = 0; i < entry.length; i++) {
-    newRequire(entry[i]);
+    try {
+      newRequire(entry[i]);
+    } catch (e) {
+      // Save first error but execute all entries
+      if (!error) {
+        error = e;
+      }
+    }
   }
 
   if (entry.length) {
@@ -103,6 +109,13 @@ parcelRequire = (function (modules, cache, entry, globalName) {
   }
 
   // Override the current require with this new one
+  parcelRequire = newRequire;
+
+  if (error) {
+    // throw error from earlier, _after updating parcelRequire_
+    throw error;
+  }
+
   return newRequire;
 })({"f08c":[function(require,module,exports) {
 var CONST = {
@@ -142,7 +155,7 @@ var CONST = {
   RECT_BUTTON: 4
 };
 module.exports = CONST;
-},{}],"UASB":[function(require,module,exports) {
+},{}],"JJlS":[function(require,module,exports) {
 'use strict';
 
 var has = Object.prototype.hasOwnProperty
@@ -494,7 +507,7 @@ var _eventemitter = _interopRequireDefault(require("eventemitter3"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -502,15 +515,19 @@ function _defineProperties(target, props) { for (var i = 0; i < props.length; i+
 
 function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
 
-function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
-
-function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
-
-function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
 
 /**
  * A `Button` is a virtual button. It belongs to the Virtual Joystick Plugin which is responsible for creating and updating it.
@@ -523,10 +540,10 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
  * 
  * The Button sprites are automatically added to the Scene at the point this Button is created.
  */
-var Button =
-/*#__PURE__*/
-function (_EventEmitter) {
+var Button = /*#__PURE__*/function (_EventEmitter) {
   _inherits(Button, _EventEmitter);
+
+  var _super = _createSuper(Button);
 
   /**
    * @param {Phaser.Scene} scene - A reference to the Scene this stick was created in.
@@ -542,7 +559,7 @@ function (_EventEmitter) {
 
     _classCallCheck(this, Button);
 
-    _this = _possibleConstructorReturn(this, _getPrototypeOf(Button).call(this));
+    _this = _super.call(this);
     /**
      * A reference to the Scene this stick was created in.
      * @type {Phaser.Scene}
@@ -568,6 +585,13 @@ function (_EventEmitter) {
 
     _this.sprite = _this.scene.add.sprite(x, y, texture, upFrame);
     /**
+     * Internal button shape var.
+     * @type {number}
+     * @private
+     */
+
+    _this._shape = shape;
+    /**
      * The hit area of the button in which input events will be detected.
      * @type {Phaser.Geom.Circle|Phaser.Geom.Rectangle} hitArea
      */
@@ -575,7 +599,7 @@ function (_EventEmitter) {
     if (shape === _const.default.CIRC_BUTTON) {
       _this.hitArea = new Phaser.Geom.Circle(_this.sprite.x, _this.sprite.y, _this.sprite.width / 2);
     } else if (shape === _const.default.RECT_BUTTON) {
-      _this.hitArea = new Phaser.Geom.Rectangle(_this.sprite.x, _this.sprite.y, _this.sprite.width, _this.sprite.height);
+      _this.hitArea = new Phaser.Geom.Rectangle(_this.sprite.x - _this.sprite.width / 2, _this.sprite.y - _this.sprite.height / 2, _this.sprite.width, _this.sprite.height);
     }
     /**
      * A reference to the Input Pointer being used to update this button.
@@ -723,6 +747,7 @@ function (_EventEmitter) {
         this.isUp = false;
         this.timeDown = this.key.timeDown;
         this.timeUp = 0;
+        this._timeNext = this.timeDown + this.repeatRate;
         this.emit('down', this, this.key);
       }
     }
@@ -763,6 +788,7 @@ function (_EventEmitter) {
         this.isUp = false;
         this.timeDown = pointer.time;
         this.timeUp = 0;
+        this._timeNext = this.timeDown + this.repeatRate;
         this.emit('down', this, pointer);
       }
     }
@@ -932,7 +958,7 @@ function (_EventEmitter) {
     ,
     set: function set(x) {
       this.sprite.x = x;
-      this.hitArea.x = x;
+      this.hitArea.x = this._shape === _const.default.CIRC_BUTTON ? x : x - this.sprite.width / 2;
     }
     /**
      * The y coordinate the button is rendered at. Value should be given in pixel coordinates based on game dimensions.
@@ -955,7 +981,7 @@ function (_EventEmitter) {
     ,
     set: function set(y) {
       this.sprite.y = y;
-      this.hitArea.y = y;
+      this.hitArea.y = this._shape === _const.default.CIRC_BUTTON ? y : y - this.sprite.height / 2;
     }
     /**
      * The alpha value of the Button.
@@ -1032,7 +1058,13 @@ function (_EventEmitter) {
     ,
     set: function set(value) {
       this.sprite.setScale(value);
-      this.hitArea.setTo(this.sprite.x, this.sprite.y, this.sprite.width);
+
+      if (this._shape === _const.default.CIRC_BUTTON) {
+        this.hitArea.setTo(this.sprite.x, this.sprite.y, this.sprite.width);
+      } else {
+        this.hitArea.setTo(this.sprite.x, this.sprite.y, this.sprite.width, this.sprite.height);
+      }
+
       this._scale = value;
     }
     /**
@@ -1100,7 +1132,7 @@ function (_EventEmitter) {
 
 exports.Button = Button;
 module.exports = Button;
-},{"./const":"f08c","eventemitter3":"UASB"}],"ExWd":[function(require,module,exports) {
+},{"./const":"f08c","eventemitter3":"JJlS"}],"ExWd":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -1116,7 +1148,7 @@ var _VirtualJoystickPlugin = require("./VirtualJoystickPlugin");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -1124,23 +1156,27 @@ function _defineProperties(target, props) { for (var i = 0; i < props.length; i+
 
 function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
 
-function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
-
-function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
-
-function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
 
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
 /**
  * A `BaseStick` is the base virtual joystick class that all other types of stick extend from.
  */
-var BaseStick =
-/*#__PURE__*/
-function (_EventEmitter) {
+var BaseStick = /*#__PURE__*/function (_EventEmitter) {
   _inherits(BaseStick, _EventEmitter);
+
+  var _super = _createSuper(BaseStick);
 
   /**
    * @param {Phaser.Scene} scene - A reference to the Scene this stick was created in.
@@ -1153,7 +1189,7 @@ function (_EventEmitter) {
 
     _classCallCheck(this, BaseStick);
 
-    _this = _possibleConstructorReturn(this, _getPrototypeOf(BaseStick).call(this));
+    _this = _super.call(this);
     /**
      * A reference to the Scene this stick was created in.
      * @type {Phaser.Scene}
@@ -1254,15 +1290,15 @@ function (_EventEmitter) {
     _this.angleFull = 0;
     /**
      * The 4-way direction the stick is currently pointing, if active.
-     * 
+     *
      * @type {Phaser.NONE|Phaser.LEFT|Phaser.RIGHT|Phaser.UP|Phaser.DOWN}
      */
 
     _this.direction = Phaser.NONE;
     /**
      * The quadrant the joystick is in.
-     * Where 315 to 45 degrees is quadrant 0. 
-     * 45 to 135 degrees is quadrant 1. 
+     * Where 315 to 45 degrees is quadrant 0.
+     * 45 to 135 degrees is quadrant 1.
      * 135 to 225 degrees is quadrant 2.
      * 225 to 315 degrees is quadrant 3.
      * @type {integer}
@@ -1277,7 +1313,7 @@ function (_EventEmitter) {
     _this.octant = 0;
     /**
      * A Stick can be motion locked. When locked it can only move along the specified axis.
-     * 
+     *
      * `motionLock = 0` will allow it to move freely.
      * `motionLock = 1` will only allow it to move horizontally.
      * `motionLock = 2` will only allow it to move vertically.
@@ -1298,7 +1334,7 @@ function (_EventEmitter) {
      * @private
      */
 
-    _this._deadZone = distance * 0.10;
+    _this._deadZone = distance * 0.1;
     /**
      * Internal calculation var.
      * @type {number}
@@ -1329,9 +1365,9 @@ function (_EventEmitter) {
   }
   /**
    * Processes the down event for this stick, or starts tracking if required.
-   * 
+   *
    * @private
-   * 
+   *
    * @param {Phaser.Input.Pointer} pointer - The Phaser Pointer that triggered the event.
    */
 
@@ -1380,7 +1416,7 @@ function (_EventEmitter) {
      *
      * @private
      * @emits {UpEvent}
-     * 
+     *
      * @param {Phaser.Input.Pointer} pointer - The Phaser Pointer that triggered the event.
      */
 
@@ -1467,7 +1503,7 @@ function (_EventEmitter) {
      *
      * @private
      * @emits {StickMoveEvent}
-     * 
+     *
      * @param {Phaser.Input.Pointer} pointer - The Phaser Pointer that triggered the event.
      */
 
@@ -1477,7 +1513,7 @@ function (_EventEmitter) {
       var x = pointer.worldX;
       var y = pointer.worldY;
 
-      if (!this.pointer || !this.isDown && !this._tracking) {
+      if (!this.pointer || this.pointer != pointer || !this.isDown && !this._tracking) {
         return;
       }
 
@@ -1552,7 +1588,7 @@ function (_EventEmitter) {
      * The optional spacing parameter allows you to add a border between the edge of the game and the joystick.
      *
      * @param {number} [spacing=0] - The spacing to apply between the edge of the game and the joystick.
-     * 
+     *
      * @return {this} This joystick instance.
      */
 
@@ -1575,7 +1611,7 @@ function (_EventEmitter) {
      * The optional spacing parameter allows you to add a border between the edge of the game and the joystick.
      *
      * @param {number} [spacing=0] - The spacing to apply between the edge of the game and the joystick.
-     * 
+     *
      * @return {this} This joystick instance.
      */
 
@@ -1595,7 +1631,7 @@ function (_EventEmitter) {
     }
     /**
      * Destroys this Stick.
-     * 
+     *
      * Removes all associated event listeners and signals and calls destroy on the stick sprites.
      */
 
@@ -1617,13 +1653,13 @@ function (_EventEmitter) {
     }
     /**
      * A Stick can be motion locked. When locked it can only move along the specified axis.
-     * 
+     *
      * `motionLock = 0` will allow it to move freely.
      * `motionLock = 1` will only allow it to move horizontally.
      * `motionLock = 2` will only allow it to move vertically.
-     * 
+     *
      * @param {integer} [value=0] - The motion lock setting to use.
-     * 
+     *
      * @return {this} This joystick instance.
      */
 
@@ -1637,16 +1673,16 @@ function (_EventEmitter) {
     /**
      * The dead zone is a distance in pixels within which the Stick isn't considered as down or moving.
      * Only when it moves beyond this value does it start dispatching events.
-     * 
-     * By default the deadZone is 15% of the given distance value. 
+     *
+     * By default the deadZone is 15% of the given distance value.
      * So if the distance is 100 pixels then the Stick won't be considered as active until it has moved at least 15 pixels from its base.
-     * 
+     *
      * This value is adjusted for scale.
-     * 
+     *
      * It should never be more than the `Stick.distance` value.
-     * 
+     *
      * @param {integer} [value=0] - The dead zone to use.
-     * 
+     *
      * @return {this} This joystick instance.
      */
 
@@ -1661,7 +1697,7 @@ function (_EventEmitter) {
      * Set the scale of the joystick.
      *
      * @param {number} value - The scale of the joystick.
-     * 
+     *
      * @return {this} This joystick instance.
      */
 
@@ -1675,7 +1711,7 @@ function (_EventEmitter) {
      * Set the alpha of the joystick.
      *
      * @param {number} value - The alpha of the joystick.
-     * 
+     *
      * @return {this} This joystick instance.
      */
 
@@ -1687,12 +1723,12 @@ function (_EventEmitter) {
     }
     /**
      * Set the visibility of the joystick.
-     * 
+     *
      * Note that this dpad will carry on processing and dispatching events even when not visible.
      * If you wish to disable the dpad from processing events see `Stick.enabled`.
      *
      * @param {number} value - The visible state of the joystick.
-     * 
+     *
      * @return {this} This joystick instance.
      */
 
@@ -1706,7 +1742,7 @@ function (_EventEmitter) {
      * Renders out a debug view of this DPad to the given Graphics and Text objects.
      *
      * It optionally renders the geometry involved in the dpad hit areas and calculation line.
-     * 
+     *
      * It also optionally renders text information relating to the current forces and angles.
      *
      * @param {Phaser.GameObjects.Graphics} [graphics] - Renders the geometry involved in the stick hit areas and calculation line to this Graphics object.
@@ -1732,7 +1768,7 @@ function (_EventEmitter) {
     }
     /**
      * The rotation of the stick from its base in radians.
-     * 
+     *
      * @type {number}
      */
 
@@ -1743,10 +1779,10 @@ function (_EventEmitter) {
     }
     /**
      * The current x value of the joystick.
-     * 
+     *
      * This is a value between -1 and 1 calculated based on the distance of the stick from its base.
      * Where -1 is to the left of the base and +1 is to the right.
-     * 
+     *
      * @type {number}
      */
 
@@ -1777,10 +1813,10 @@ function (_EventEmitter) {
     }
     /**
      * The current y value of the joystick.
-     * 
+     *
      * This is a value between -1 and 1 calculated based on the distance of the stick from its base.
      * Where -1 is above the base and +1 is below the base.
-     * 
+     *
      * @type {number}
      */
 
@@ -1801,7 +1837,7 @@ function (_EventEmitter) {
     /**
      * The x coordinate the joystick is rendered at.
      * Use this to change the position of the joystick on-screen.
-     * 
+     *
      * @type {number}
      */
 
@@ -1813,7 +1849,7 @@ function (_EventEmitter) {
     /**
      * The x coordinate the joystick is rendered at. Value should be given in pixel coordinates based on game dimensions.
      * Use this to change the position of the joystick on-screen. Value can even be tweened to display or hide the joystick in interesting ways.
-     * 
+     *
      * @type {number}
      */
     ,
@@ -1836,7 +1872,7 @@ function (_EventEmitter) {
     /**
      * The y coordinate the joystick is rendered at.
      * Use this to change the position of the joystick on-screen.
-     * 
+     *
      * @type {number}
      */
 
@@ -1848,7 +1884,7 @@ function (_EventEmitter) {
     /**
      * The y coordinate the joystick is rendered at. Value should be given in pixel coordinates based on game dimensions.
      * Use this to change the position of the joystick on-screen. Value can even be tweened to display or hide the joystick in interesting ways.
-     * 
+     *
      * @type {number}
      */
     ,
@@ -1870,12 +1906,12 @@ function (_EventEmitter) {
     }
     /**
      * The current force being applied to the joystick.
-     * 
+     *
      * This is a value between 0 and 1 calculated based on the distance of the stick from its base.
      * It can be used to apply speed to physics objects, for example:
-     * 
+     *
      * `ArcadePhysics.velocityFromRotation(Stick.rotation, Stick.force * maxSpeed, Sprite.body.velocity)`
-     * 
+     *
      * @type {number}
      */
 
@@ -1886,11 +1922,11 @@ function (_EventEmitter) {
     }
     /**
      * The current force being applied to the joystick on the horizontal axis.
-     * 
+     *
      * This is a value between 0 and 1 calculated based on the distance of the stick from its base.
      *
      * If you need to know which direction the Stick is facing (i.e. left or right) then see the `x` property value.
-     * 
+     *
      * @type {number}
      */
 
@@ -1901,11 +1937,11 @@ function (_EventEmitter) {
     }
     /**
      * The current force being applied to the joystick on the vertical axis.
-     * 
+     *
      * This is a value between 0 and 1 calculated based on the distance of the stick from its base.
      *
      * If you need to know which direction the Stick is facing (i.e. up or down) then see the `y` property value.
-     * 
+     *
      * @type {number}
      */
 
@@ -1916,9 +1952,9 @@ function (_EventEmitter) {
     }
     /**
      * The filterX value is the forceX value adjusted to be used as the mouse input uniform for a filter.
-     * 
+     *
      * This is a value between 0 and 1 where 0.5 is the center, i.e. the stick un-moved from its base.
-     * 
+     *
      * @type {number}
      */
 
@@ -1926,7 +1962,7 @@ function (_EventEmitter) {
     key: "filterX",
     get: function get() {
       if (this.x === 0) {
-        return 0.50;
+        return 0.5;
       } else {
         var fx = Math.abs(this.forceX) / 2;
 
@@ -1939,9 +1975,9 @@ function (_EventEmitter) {
     }
     /**
      * The filterY value is the forceY value adjusted to be used as the mouse input uniform for a filter.
-     * 
+     *
      * This is a value between 0 and 1 where 0.5 is the center, i.e. the stick un-moved from its base.
-     * 
+     *
      * @type {number}
      */
 
@@ -1949,7 +1985,7 @@ function (_EventEmitter) {
     key: "filterY",
     get: function get() {
       if (this.y === 0) {
-        return 0.50;
+        return 0.5;
       } else {
         var fy = Math.abs(this.forceY) / 2;
 
@@ -1962,7 +1998,7 @@ function (_EventEmitter) {
     }
     /**
      * The alpha value of the Stick.
-     * 
+     *
      * @type {number}
      */
 
@@ -1973,16 +2009,16 @@ function (_EventEmitter) {
     }
     /**
      * The alpha value of the Stick.
-     * 
+     *
      * Adjusting this value changes the alpha property of both the base and stick sprites.
      * Reading it reads the alpha value of the base sprite alone.
      *
      * If you need to give the base and stick sprites *different* alpha values then you can access them directly:
      *
      * `stick.baseSprite.alpha` and `stick.stickSprite.alpha`.
-     * 
+     *
      * Note that DPads only have a `baseSprite`.
-     * 
+     *
      * @type {number}
      */
     ,
@@ -1997,7 +2033,7 @@ function (_EventEmitter) {
     }
     /**
      * The visible state of the Stick.
-     * 
+     *
      * @type {number}
      */
 
@@ -2008,7 +2044,7 @@ function (_EventEmitter) {
     }
     /**
      * The visible state of the Stick.
-     * 
+     *
      * Adjusting this value changes the visible property of both the base and stick sprites.
      * Reading it reads the visible value of the stick sprite alone.
      *
@@ -2018,9 +2054,9 @@ function (_EventEmitter) {
      * If you need to give the base and stick sprites *different* visible values then you can access them directly:
      *
      * `stick.baseSprite.visible` and `stick.stickSprite.visible`.
-     * 
+     *
      * Note that DPads only have a `baseSprite`.
-     * 
+     *
      * @type {number}
      */
     ,
@@ -2035,9 +2071,9 @@ function (_EventEmitter) {
     }
     /**
      * The distance in pixels that the stick needs to move from the base before it's at 'full force'.
-     * 
+     *
      * This value is adjusted for scale.
-     * 
+     *
      * @type {number}
      */
 
@@ -2048,11 +2084,11 @@ function (_EventEmitter) {
     }
     /**
      * The distance in pixels that the stick needs to move from the base before it's at 'full force'.
-     * 
+     *
      * This value is adjusted for scale.
-     * 
+     *
      * It should never be less than the `Stick.deadZone` value.
-     * 
+     *
      * @type {number}
      */
     ,
@@ -2062,10 +2098,10 @@ function (_EventEmitter) {
     /**
      * The dead zone is a distance in pixels within which the Stick isn't considered as down or moving.
      * Only when it moves beyond this value does it start dispatching events.
-     * 
-     * By default the deadZone is 10% of the given distance value. 
+     *
+     * By default the deadZone is 10% of the given distance value.
      * So if the distance is 100 pixels then the Stick won't be considered as active until it has moved at least 10 pixels from its base.
-     * 
+     *
      * @type {number}
      */
 
@@ -2077,14 +2113,14 @@ function (_EventEmitter) {
     /**
      * The dead zone is a distance in pixels within which the Stick isn't considered as down or moving.
      * Only when it moves beyond this value does it start dispatching events.
-     * 
-     * By default the deadZone is 10% of the given distance value. 
+     *
+     * By default the deadZone is 10% of the given distance value.
      * So if the distance is 100 pixels then the Stick won't be considered as active until it has moved at least 10 pixels from its base.
-     * 
+     *
      * This value is adjusted for scale.
-     * 
+     *
      * It should never be more than the `Stick.distance` value.
-     * 
+     *
      * @type {number}
      */
     ,
@@ -2093,7 +2129,7 @@ function (_EventEmitter) {
     }
     /**
      * The scale of the Stick.
-     * 
+     *
      * @type {number}
      */
 
@@ -2105,11 +2141,11 @@ function (_EventEmitter) {
     /**
      * The scale of the Stick. The scale is applied evenly to both the x and y axis of the Stick.
      * You cannot specify a different scale per axis.
-     * 
+     *
      * Adjusting this value changes the scale of both the base and stick sprites and recalculates all of the hit areas.
      *
      * The base and stick sprites must have the same scale.
-     * 
+     *
      * @type {number}
      */
     ,
@@ -2130,7 +2166,7 @@ function (_EventEmitter) {
     /**
      * A Stick that is set to `showOnTouch` will have `visible` set to false until the player presses on the screen.
      * When this happens the Stick is centered on the x/y coordinate of the finger and can be immediately dragged for movement.
-     * 
+     *
      * @type {boolean}
      */
 
@@ -2142,7 +2178,7 @@ function (_EventEmitter) {
     /**
      * A Stick that is set to `showOnTouch` will have `visible` set to false until the player presses on the screen.
      * When this happens the Stick is centered on the x/y coordinate of the finger and can be immediately dragged for movement.
-     * 
+     *
      * @type {boolean}
      */
     ,
@@ -2160,7 +2196,7 @@ function (_EventEmitter) {
 
 exports.BaseStick = BaseStick;
 module.exports = BaseStick;
-},{"./const":"f08c","eventemitter3":"UASB","./VirtualJoystickPlugin":"V2P2"}],"zKIU":[function(require,module,exports) {
+},{"./const":"f08c","eventemitter3":"JJlS","./VirtualJoystickPlugin":"V2P2"}],"zKIU":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -2174,7 +2210,7 @@ var _const = _interopRequireDefault(require("./const"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -2182,19 +2218,23 @@ function _defineProperties(target, props) { for (var i = 0; i < props.length; i+
 
 function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
 
-function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
-
-function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
 function _get(target, property, receiver) { if (typeof Reflect !== "undefined" && Reflect.get) { _get = Reflect.get; } else { _get = function _get(target, property, receiver) { var base = _superPropBase(target, property); if (!base) return; var desc = Object.getOwnPropertyDescriptor(base, property); if (desc.get) { return desc.get.call(receiver); } return desc.value; }; } return _get(target, property, receiver || target); }
 
 function _superPropBase(object, property) { while (!Object.prototype.hasOwnProperty.call(object, property)) { object = _getPrototypeOf(object); if (object === null) break; } return object; }
 
-function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
-
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
 
 /**
  * A `DPad` is a virtual joystick. It belongs to the Virtual Joystick Plugin which is responsible for creating and updating it.
@@ -2212,10 +2252,10 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
  * 
  * The DPad sprites are automatically added to the Scene at the point this DPad is created.
  */
-var DPad =
-/*#__PURE__*/
-function (_BaseStick) {
+var DPad = /*#__PURE__*/function (_BaseStick) {
   _inherits(DPad, _BaseStick);
+
+  var _super = _createSuper(DPad);
 
   /**
    * @param {Phaser.Scene} scene - A reference to the Scene this stick was created in.
@@ -2240,7 +2280,7 @@ function (_BaseStick) {
 
     _classCallCheck(this, DPad);
 
-    _this = _possibleConstructorReturn(this, _getPrototypeOf(DPad).call(this, scene, x, y, size));
+    _this = _super.call(this, scene, x, y, size);
     /**
      * The name of the frame within the texture atlas that contains the 'neutral' state of the dpad. Neutral is the state when the dpad isn't moved at all.
      * @type {string}
@@ -2735,7 +2775,7 @@ var _BaseStick2 = _interopRequireDefault(require("./BaseStick"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -2743,19 +2783,23 @@ function _defineProperties(target, props) { for (var i = 0; i < props.length; i+
 
 function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
 
-function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
-
-function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
 function _get(target, property, receiver) { if (typeof Reflect !== "undefined" && Reflect.get) { _get = Reflect.get; } else { _get = function _get(target, property, receiver) { var base = _superPropBase(target, property); if (!base) return; var desc = Object.getOwnPropertyDescriptor(base, property); if (desc.get) { return desc.get.call(receiver); } return desc.value; }; } return _get(target, property, receiver || target); }
 
 function _superPropBase(object, property) { while (!Object.prototype.hasOwnProperty.call(object, property)) { object = _getPrototypeOf(object); if (object === null) break; } return object; }
 
-function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
-
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
 
 /**
  * A `Stick` is a virtual joystick. It belongs to the Virtual Joystick Plugin which is responsible for creating and updating it.
@@ -2775,10 +2819,10 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
  * is being moved. This allows players to have fine-grained control over your game. If you require just an 'on / off' response you may
  * wish to use the DPad class instead.
  */
-var Stick =
-/*#__PURE__*/
-function (_BaseStick) {
+var Stick = /*#__PURE__*/function (_BaseStick) {
   _inherits(Stick, _BaseStick);
+
+  var _super = _createSuper(Stick);
 
   /**
    * @param {Phaser.Scene} scene - A reference to the Scene this stick was created in.
@@ -2797,7 +2841,7 @@ function (_BaseStick) {
 
     _classCallCheck(this, Stick);
 
-    _this = _possibleConstructorReturn(this, _getPrototypeOf(Stick).call(this, scene, x, y, distance));
+    _this = _super.call(this, scene, x, y, distance);
     /**
      * The name of the frame within the joystick texture atlas that contains the 'base' image.
      * @type {string} baseFrame
@@ -2933,7 +2977,7 @@ var _BaseStick2 = _interopRequireDefault(require("./BaseStick"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -2941,15 +2985,19 @@ function _defineProperties(target, props) { for (var i = 0; i < props.length; i+
 
 function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
 
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
 function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
 
 function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
 
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
+
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
-
-function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
 
 /**
  * A `HiddenStick` is a virtual joystick with no on-screen visuals.
@@ -2964,10 +3012,10 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
  * is being moved. This allows players to have fine-grained control over your game. If you require just an 'on / off' response you may
  * wish to use the DPad class instead.
  */
-var HiddenStick =
-/*#__PURE__*/
-function (_BaseStick) {
+var HiddenStick = /*#__PURE__*/function (_BaseStick) {
   _inherits(HiddenStick, _BaseStick);
+
+  var _super = _createSuper(HiddenStick);
 
   /**
    * @param {Phaser.Scene} scene - A reference to the Scene this stick was created in.
@@ -2978,7 +3026,7 @@ function (_BaseStick) {
 
     _classCallCheck(this, HiddenStick);
 
-    _this = _possibleConstructorReturn(this, _getPrototypeOf(HiddenStick).call(this, scene, 0, 0, distance));
+    _this = _super.call(this, scene, 0, 0, distance);
     _this._showOnTouch = true;
     return _this;
   }
@@ -3020,6 +3068,12 @@ var _HiddenStick = _interopRequireDefault(require("./HiddenStick"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+function _createForOfIteratorHelper(o, allowArrayLike) { var it; if (typeof Symbol === "undefined" || o[Symbol.iterator] == null) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = o[Symbol.iterator](); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it.return != null) it.return(); } finally { if (didErr) throw err; } } }; }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
@@ -3041,9 +3095,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
  * 
  * This plugin can create multiple sticks and buttons and will handle processing and updating them all.
  */
-var VirtualJoystick =
-/*#__PURE__*/
-function () {
+var VirtualJoystick = /*#__PURE__*/function () {
   /**
    * @param {Phaser.Scene} scene - A reference to the Scene that has installed this plugin.
    * @param {Phaser.Plugins.PluginManager} pluginManager - A reference to the Plugin Manager.
@@ -3331,30 +3383,20 @@ function () {
     key: "removeButton",
     value: function removeButton(button) {
       if (Array.isArray(button)) {
-        var _iteratorNormalCompletion = true;
-        var _didIteratorError = false;
-        var _iteratorError = undefined;
+        var _iterator = _createForOfIteratorHelper(button),
+            _step;
 
         try {
-          for (var _iterator = button[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+          for (_iterator.s(); !(_step = _iterator.n()).done;) {
             var b = _step.value;
             this.buttons.remove(b);
             b.destroy();
             this._pointerTotal--;
           }
         } catch (err) {
-          _didIteratorError = true;
-          _iteratorError = err;
+          _iterator.e(err);
         } finally {
-          try {
-            if (!_iteratorNormalCompletion && _iterator.return != null) {
-              _iterator.return();
-            }
-          } finally {
-            if (_didIteratorError) {
-              throw _iteratorError;
-            }
-          }
+          _iterator.f();
         }
       } else {
         this.buttons.remove(button);
@@ -3373,52 +3415,32 @@ function () {
   }, {
     key: "update",
     value: function update(time) {
-      var _iteratorNormalCompletion2 = true;
-      var _didIteratorError2 = false;
-      var _iteratorError2 = undefined;
+      var _iterator2 = _createForOfIteratorHelper(this.sticks),
+          _step2;
 
       try {
-        for (var _iterator2 = this.sticks[Symbol.iterator](), _step2; !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
+        for (_iterator2.s(); !(_step2 = _iterator2.n()).done;) {
           var stick = _step2.value;
           stick.update(time);
         }
       } catch (err) {
-        _didIteratorError2 = true;
-        _iteratorError2 = err;
+        _iterator2.e(err);
       } finally {
-        try {
-          if (!_iteratorNormalCompletion2 && _iterator2.return != null) {
-            _iterator2.return();
-          }
-        } finally {
-          if (_didIteratorError2) {
-            throw _iteratorError2;
-          }
-        }
+        _iterator2.f();
       }
 
-      var _iteratorNormalCompletion3 = true;
-      var _didIteratorError3 = false;
-      var _iteratorError3 = undefined;
+      var _iterator3 = _createForOfIteratorHelper(this.buttons),
+          _step3;
 
       try {
-        for (var _iterator3 = this.buttons[Symbol.iterator](), _step3; !(_iteratorNormalCompletion3 = (_step3 = _iterator3.next()).done); _iteratorNormalCompletion3 = true) {
+        for (_iterator3.s(); !(_step3 = _iterator3.n()).done;) {
           var button = _step3.value;
           button.update(time);
         }
       } catch (err) {
-        _didIteratorError3 = true;
-        _iteratorError3 = err;
+        _iterator3.e(err);
       } finally {
-        try {
-          if (!_iteratorNormalCompletion3 && _iterator3.return != null) {
-            _iterator3.return();
-          }
-        } finally {
-          if (_didIteratorError3) {
-            throw _iteratorError3;
-          }
-        }
+        _iterator3.f();
       }
     }
     /**
@@ -3440,52 +3462,33 @@ function () {
     key: "destroy",
     value: function destroy() {
       this.shutdown();
-      var _iteratorNormalCompletion4 = true;
-      var _didIteratorError4 = false;
-      var _iteratorError4 = undefined;
+
+      var _iterator4 = _createForOfIteratorHelper(this.sticks),
+          _step4;
 
       try {
-        for (var _iterator4 = this.sticks[Symbol.iterator](), _step4; !(_iteratorNormalCompletion4 = (_step4 = _iterator4.next()).done); _iteratorNormalCompletion4 = true) {
+        for (_iterator4.s(); !(_step4 = _iterator4.n()).done;) {
           var stick = _step4.value;
           stick.destroy();
         }
       } catch (err) {
-        _didIteratorError4 = true;
-        _iteratorError4 = err;
+        _iterator4.e(err);
       } finally {
-        try {
-          if (!_iteratorNormalCompletion4 && _iterator4.return != null) {
-            _iterator4.return();
-          }
-        } finally {
-          if (_didIteratorError4) {
-            throw _iteratorError4;
-          }
-        }
+        _iterator4.f();
       }
 
-      var _iteratorNormalCompletion5 = true;
-      var _didIteratorError5 = false;
-      var _iteratorError5 = undefined;
+      var _iterator5 = _createForOfIteratorHelper(this.buttons),
+          _step5;
 
       try {
-        for (var _iterator5 = this.buttons[Symbol.iterator](), _step5; !(_iteratorNormalCompletion5 = (_step5 = _iterator5.next()).done); _iteratorNormalCompletion5 = true) {
+        for (_iterator5.s(); !(_step5 = _iterator5.n()).done;) {
           var button = _step5.value;
           button.destroy();
         }
       } catch (err) {
-        _didIteratorError5 = true;
-        _iteratorError5 = err;
+        _iterator5.e(err);
       } finally {
-        try {
-          if (!_iteratorNormalCompletion5 && _iterator5.return != null) {
-            _iterator5.return();
-          }
-        } finally {
-          if (_didIteratorError5) {
-            throw _iteratorError5;
-          }
-        }
+        _iterator5.f();
       }
 
       this.sticks.clear();
@@ -3525,4 +3528,4 @@ VirtualJoystick.CIRC_BUTTON = 3;
 VirtualJoystick.RECT_BUTTON = 4;
 module.exports = VirtualJoystick;
 },{"./const":"f08c","./Button":"rYfP","./DPad":"zKIU","./Stick":"hrBt","./HiddenStick":"CCUp"}]},{},["V2P2"], "VirtualJoystickPlugin")
-//# sourceMappingURL=/VirtualJoystickPlugin.map
+//# sourceMappingURL=/VirtualJoystickPlugin.js.map

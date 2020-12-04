@@ -103,9 +103,7 @@ export class JoystickScene extends Phaser.Scene {
             const position_stick =
                 Math.sqrt(
                     this.cameras.main.width ** 2 + this.cameras.main.height ** 2
-                ) * 0.1;
-
-            console.log(position_stick);
+                ) * this.stickPositionMultiplier;
 
             this.stick = this.pad
                 .addStick(0, 0, 120, this.atlasName, 'base', 'stick')
@@ -162,7 +160,7 @@ export class JoystickScene extends Phaser.Scene {
             });
         }
 
-        this.debugText = this.add.text(0, 0);
+        // this.debugText = this.add.text(0, 0);
     }
 
     update() {

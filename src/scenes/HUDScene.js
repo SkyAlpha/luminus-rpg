@@ -92,7 +92,7 @@ export class HUDScene extends Phaser.Scene {
             )
             .setInteractive();
 
-        this.maximize.on('pointerdown', (pointer) => {
+        this.maximize.on('pointerup', (pointer) => {
             this.scale.toggleFullscreen();
         });
 

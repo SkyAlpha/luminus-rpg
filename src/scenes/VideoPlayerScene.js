@@ -99,11 +99,6 @@ export class VideoPlayerScene extends Phaser.Scene {
     }
 
     preload() {
-        this.load.plugin(
-            'rexyoutubeplayerplugin',
-            'https://raw.githubusercontent.com/rexrainbow/phaser3-rex-notes/master/dist/rexyoutubeplayerplugin.min.js',
-            true
-        );
         this.luminusSoundManager = new LuminusSoundManager(this);
         this.luminusSoundManager.create();
         this.luminusSoundManager.stopAllAudio();
