@@ -85,7 +85,6 @@ export class Player extends Phaser.GameObjects.Sprite {
             });
 
         this.setDepth(1);
-        console.log(this.walkDust);
         this.walkDust.on = false;
         // this.walk_dust.this.walk_dust.pause();
     }

@@ -37,7 +37,9 @@ export class LuminusObjectMarker {
     create() {
         const infoObjects = this.map.getObjectLayer(this.tiledObjectLayer);
         infoObjects.objects.forEach((infoObj) => {
-            this.scene.add.image(infoObj.x, infoObj.y, this.markerSpriteName);
+            this.scene.add
+                .image(infoObj.x, infoObj.y, this.markerSpriteName)
+                .setDepth(2);
         });
     }
 }
