@@ -118,23 +118,24 @@ export class MainScene extends Phaser.Scene {
         //     map.heightInPixels
         // );
 
+        this.scene.launch('JoystickScene', {
+            player: this.player,
+            map: map,
+        });
+
+        this.scene.launch('DialogScene', {
+            player: this.player,
+            map: map,
+        });
+
         this.joystickScene = this.scene.get('JoystickScene');
         this.movement = new LuminusMovement(
             this,
             this.player,
             this.joystickScene
         );
-        this.scene.launch('DialogScene');
-        this.scene.launch('JoystickScene');
-        this.scene.launch('HUDScene');
 
-        // Only to give time to the scene to be initialized.
-        setTimeout((t) => {
-            this.events.emit('setConfiguration', {
-                player: this.player,
-                map,
-            });
-        }, 300);
+        this.scene.launch('HUDScene');
 
         this.sys.animatedTiles.init(map);
         this.particles = new LuminusEnvironmentParticles(this, map);
@@ -148,7 +149,6 @@ export class MainScene extends Phaser.Scene {
             loop: true,
         });
         this.themeSound.play();
-        setTimeout((time) => {}, 1000);
     }
 
     update(time, delta) {

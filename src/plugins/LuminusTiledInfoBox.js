@@ -38,11 +38,7 @@ export class LuminusTiledInfoBox {
          * The Dialog box that will show de text from Tiled.
          * @type { LuminusDialogBox }
          */
-        this.luminusDialogBox = new LuminusDialogBox(
-            this.uiScene,
-            this.player,
-            this.map
-        );
+        this.luminusDialogBox = new LuminusDialogBox(this.uiScene, this.player);
         /**
          * Name of the object Layer in the "Tiled" software. <a href="https://www.mapeditor.org/">Tiled</a>
          * Check Tiled Docs to learn more <a href="https://doc.mapeditor.org/en/stable/manual/objects/">Tiled</a>
@@ -64,24 +60,26 @@ export class LuminusTiledInfoBox {
         // Rules to show informations!
         const infoObjects = this.map.getObjectLayer(this.tiledObjectLayer);
         let zones = [];
-        infoObjects.objects.forEach((infoObj) => {
-            let zone = this.scene.add.zone(
-                infoObj.x,
-                infoObj.y,
-                infoObj.width,
-                infoObj.height
-            );
-            this.scene.physics.add.existing(zone);
-            zone.setOrigin(0, 0);
-            zone.body.immovable = true;
-            zones.push({
-                ...zone,
-                message: infoObj.properties.find(
-                    (f) => f.name === this.messageAttribute
-                ).value,
-                properties: infoObj.properties,
+        if (infoObjects && infoObjects.objects) {
+            infoObjects.objects.forEach((infoObj) => {
+                let zone = this.scene.add.zone(
+                    infoObj.x,
+                    infoObj.y,
+                    infoObj.width,
+                    infoObj.height
+                );
+                this.scene.physics.add.existing(zone);
+                zone.setOrigin(0, 0);
+                zone.body.immovable = true;
+                zones.push({
+                    ...zone,
+                    message: infoObj.properties.find(
+                        (f) => f.name === this.messageAttribute
+                    ).value,
+                    properties: infoObj.properties,
+                });
             });
-        });
+        }
 
         /**
          * Checks if the player is overlapping the Tiled map Zone.

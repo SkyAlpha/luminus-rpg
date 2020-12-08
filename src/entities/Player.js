@@ -11,7 +11,7 @@ export class Player extends Phaser.GameObjects.Sprite {
          * Maximum speed to be used for the player.
          * @type { number }
          */
-        this.speed = 45;
+        this.speed = 50;
 
         /**
          * Defines the hitzone width.

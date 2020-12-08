@@ -18,27 +18,28 @@ export class DialogScene extends Phaser.Scene {
         this.map = null;
     }
 
+    /**
+     *
+     * @param { any } args The arguments object.
+     */
+    init(args) {
+        console.log(args);
+        this.player = args.player;
+        this.map = args.map;
+    }
+
     create() {
         this.mainScene = this.scene.get('MainScene');
-
-        this.mainScene.events.on(
-            'setConfiguration',
-            (args) => {
-                this.player = args.player;
-                this.map = args.map;
-                /**
-                 * @type { LuminusTiledInfoBox }
-                 */
-                this.luminusTiledInfoBox = new LuminusTiledInfoBox(
-                    this.mainScene,
-                    this.player,
-                    this.map,
-                    this
-                );
-                this.luminusTiledInfoBox.create();
-            },
+        /**
+         * @type { LuminusTiledInfoBox }
+         */
+        this.luminusTiledInfoBox = new LuminusTiledInfoBox(
+            this.mainScene,
+            this.player,
+            this.map,
             this
         );
+        this.luminusTiledInfoBox.create();
 
         this.scale.on('resize', (resize) => {
             if (

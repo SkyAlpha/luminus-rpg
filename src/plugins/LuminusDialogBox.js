@@ -298,14 +298,19 @@ export class LuminusDialogBox {
         });
 
         const joystickScene = this.scene.scene.get('JoystickScene');
-        if ((joystickScene && joystickScene.buttonA) || joystickScene.buttonB) {
-            this.buttonA = joystickScene.buttonA;
-            this.buttonB = joystickScene.buttonB;
-            if (this.buttonA)
-                this.buttonA.on('down', (b) => this.checkButtonDown());
-            if (this.buttonB)
-                this.buttonB.on('down', (b) => this.checkButtonDown());
-        }
+        joystickScene.events.on('JoystickReady', (done) => {
+            if (
+                (joystickScene && joystickScene.buttonA) ||
+                joystickScene.buttonB
+            ) {
+                this.buttonA = joystickScene.buttonA;
+                this.buttonB = joystickScene.buttonB;
+                if (this.buttonA)
+                    this.buttonA.on('down', (b) => this.checkButtonDown());
+                if (this.buttonB)
+                    this.buttonB.on('down', (b) => this.checkButtonDown());
+            }
+        });
 
         this.scene.input.gamepad.on('connected', (pad) => {
             this.gamepad = pad;

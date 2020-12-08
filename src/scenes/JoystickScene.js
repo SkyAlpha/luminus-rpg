@@ -94,12 +94,18 @@ export class JoystickScene extends Phaser.Scene {
         this.load.atlas(this.atlasName, joystick_atlas_image, joystick_json);
     }
 
+    /**
+     *
+     * @param { any } args The initial arguments.
+     */
+    init(args) {
+        this.player = args.player;
+    }
+
     create() {
         this.input.addPointer(6);
         this.isMobile = !this.sys.game.device.os.desktop ? true : false;
         if (this.isMobile) {
-            this.mainScene = this.scene.get('MainScene');
-
             const position_stick =
                 Math.sqrt(
                     this.cameras.main.width ** 2 + this.cameras.main.height ** 2
@@ -126,14 +132,7 @@ export class JoystickScene extends Phaser.Scene {
             // this.buttonB.posX = this.cameras.main.width - 50;
             // this.buttonB.posY = this.cameras.main.height - 250;
 
-            this.mainScene.events.on(
-                'setConfiguration',
-                (args) => {
-                    this.player = args.player;
-                    this.events.emit('setStick', this.stick);
-                },
-                this
-            );
+            this.events.emit('setStick', this.stick);
 
             this.scale.on('resize', (resize) => {
                 if (this.stick) {
@@ -159,7 +158,7 @@ export class JoystickScene extends Phaser.Scene {
                 }
             });
         }
-
+        this.events.emit('JoystickReady');
         // this.debugText = this.add.text(0, 0);
     }
 

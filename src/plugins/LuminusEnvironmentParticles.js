@@ -29,6 +29,10 @@ export class LuminusEnvironmentParticles {
          */
         this.particlesObjectLayerName = 'particles';
 
+        /**
+         * The name of the clouds particles, should be the name of the image that you gave on phaser.
+         * @type { string }
+         */
         this.cloudParticleName = 'cloud';
 
         // /**
@@ -49,9 +53,6 @@ export class LuminusEnvironmentParticles {
         const dimensions_clouds = zones.objects.find(
             (v) => v.name === 'clouds'
         );
-        // const emitZone = zones.objects.find(
-        //     (v) => v.name === this.particlesEmitZonePrefixName + zoneName
-        // );
         this.makeDust(
             dimensions.width,
             dimensions.height,

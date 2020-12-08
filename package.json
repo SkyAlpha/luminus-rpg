@@ -38,6 +38,7 @@
     "webpack-merge": "^4.2.2"
   },
   "dependencies": {
+    "@mikewesthad/dungeon": "^2.0.1",
     "css-loader": "^5.0.1",
     "ink-docstrap": "^1.3.2",
     "nes.css": "^2.3.0",

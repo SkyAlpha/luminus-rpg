@@ -17,6 +17,9 @@ import settings_background from '../assets/sprites/settings_background.png';
 import landscape_mobile from '../assets/sprites/landscape.png';
 import walk_dust from '../assets/sprites/walk_dust.png';
 
+// Maps
+import dungeon_map from '../assets/maps/dungeon/dungeon_tileset.png';
+
 // Particles / Clouds
 import rain from '../assets/sprites/rain.png';
 import dust from '../assets/sprites/dust.png';
@@ -132,6 +135,10 @@ export const Images = [
     {
         name: 'walk_dust',
         image: walk_dust,
+    },
+    {
+        name: 'dungeon_tiles',
+        image: dungeon_map,
     },
 
     //Clouds
