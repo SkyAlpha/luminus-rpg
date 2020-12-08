@@ -1,4 +1,5 @@
 import Phaser from 'phaser';
+import { BaseEntity } from './BaseEntity';
 
 export class Player extends Phaser.GameObjects.Sprite {
     constructor(scene, x, y, texture) {
@@ -114,3 +115,5 @@ export class Player extends Phaser.GameObjects.Sprite {
         }
     }
 }
+
+Object.assign(Player.prototype, BaseEntity);

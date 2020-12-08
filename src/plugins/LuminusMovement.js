@@ -96,80 +96,85 @@ export class LuminusMovement extends AnimationNames {
 
     move() {
         this.player.updateMovementDependencies();
-        if (this.scene.input.isActive) {
-            // Stop any previous movement from the last frame
-            this.player.body.setVelocity(0);
-            // Horizontal movement
+        if (!this.player.isAtacking) {
+            if (this.scene.input.isActive) {
+                // Stop any previous movement from the last frame
+                this.player.body.setVelocity(0);
+                // Horizontal movement
+                if (
+                    this.cursors.left.isDown ||
+                    (this.cursors.left.isDown && this.cursors.down.isDown) ||
+                    (this.cursors.left.isDown &&
+                        this.cursors.up.isDown &&
+                        this.player.body.maxSpeed > 0)
+                ) {
+                    this.player.body.setVelocityX(-this.player.speed);
+                    this.player.anims.play(this.walkLeftAnimationName, true);
+                } else if (
+                    this.cursors.right.isDown ||
+                    (this.cursors.right.isDown && this.cursors.down.isDown) ||
+                    (this.cursors.right.isDown &&
+                        this.cursors.up.isDown &&
+                        this.player.body.maxSpeed > 0)
+                ) {
+                    this.player.anims.play(this.walkRightAnimationName, true);
+                    this.player.body.setVelocityX(this.player.speed);
+                }
+
+                // Vertical movement
+                if (this.cursors.up.isDown && this.player.body.maxSpeed > 0) {
+                    this.player.body.setVelocityY(-this.player.speed);
+                    if (!this.cursors.left.isDown && !this.cursors.right.isDown)
+                        this.player.anims.play(this.walkUpAnimationName, true);
+                }
+                if (this.cursors.down.isDown && this.player.body.maxSpeed > 0) {
+                    if (!this.cursors.left.isDown && !this.cursors.right.isDown)
+                        this.player.anims.play(
+                            this.walkDownAnimationName,
+                            true
+                        );
+                    this.player.body.setVelocityY(this.player.speed);
+                }
+
+                // Normalize and scale the velocity so that player can't move faster along a diagonal
+                this.player.body.velocity.normalize().scale(this.player.speed);
+            } else {
+                // Stops the movement if there is no pressed key.
+                this.player.body.setVelocityY(0);
+                this.player.body.setVelocityX(0);
+            }
+
             if (
-                this.cursors.left.isDown ||
-                (this.cursors.left.isDown && this.cursors.down.isDown) ||
-                (this.cursors.left.isDown &&
-                    this.cursors.up.isDown &&
-                    this.player.body.maxSpeed > 0)
+                this.stick &&
+                this.stick.isDown &&
+                this.player.body.maxSpeed > 0 &&
+                this.stick.force > 0 &&
+                this.scene.input.pointer1.isDown &&
+                this.player.body.maxSpeed > 0
             ) {
-                this.player.body.setVelocityX(-this.player.speed);
-                this.player.anims.play(this.walkLeftAnimationName, true);
-            } else if (
-                this.cursors.right.isDown ||
-                (this.cursors.right.isDown && this.cursors.down.isDown) ||
-                (this.cursors.right.isDown &&
-                    this.cursors.up.isDown &&
-                    this.player.body.maxSpeed > 0)
-            ) {
-                this.player.anims.play(this.walkRightAnimationName, true);
-                this.player.body.setVelocityX(this.player.speed);
+                this.luminusAnimationManager.animateWithAngle(
+                    this.walkPrefixAnimation,
+                    this.stick.rotation
+                );
+                this.scene.physics.velocityFromRotation(
+                    this.stick.rotation,
+                    this.stick.force * this.player.speed,
+                    this.player.body.velocity
+                );
             }
+            this.luminusGamepadController.sendInputs();
 
-            // Vertical movement
-            if (this.cursors.up.isDown && this.player.body.maxSpeed > 0) {
-                this.player.body.setVelocityY(-this.player.speed);
-                if (!this.cursors.left.isDown && !this.cursors.right.isDown)
-                    this.player.anims.play(this.walkUpAnimationName, true);
+            if (!this.isMoving()) {
+                const currrentAnimation = this.player.anims.currentAnim.key;
+                const splitAnimation = currrentAnimation.split('-');
+
+                this.player.anims.play(
+                    `${this.idlePrefixAnimation}-${splitAnimation[1]}`
+                );
+                this.player.walkDust.on = false;
+            } else {
+                this.player.walkDust.on = true;
             }
-            if (this.cursors.down.isDown && this.player.body.maxSpeed > 0) {
-                if (!this.cursors.left.isDown && !this.cursors.right.isDown)
-                    this.player.anims.play(this.walkDownAnimationName, true);
-                this.player.body.setVelocityY(this.player.speed);
-            }
-
-            // Normalize and scale the velocity so that player can't move faster along a diagonal
-            this.player.body.velocity.normalize().scale(this.player.speed);
-        } else {
-            // Stops the movement if there is no pressed key.
-            this.player.body.setVelocityY(0);
-            this.player.body.setVelocityX(0);
-        }
-
-        if (
-            this.stick &&
-            this.stick.isDown &&
-            this.player.body.maxSpeed > 0 &&
-            this.stick.force > 0 &&
-            this.scene.input.pointer1.isDown &&
-            this.player.body.maxSpeed > 0
-        ) {
-            this.luminusAnimationManager.animateWithAngle(
-                this.walkPrefixAnimation,
-                this.stick.rotation
-            );
-            this.scene.physics.velocityFromRotation(
-                this.stick.rotation,
-                this.stick.force * this.player.speed,
-                this.player.body.velocity
-            );
-        }
-        this.luminusGamepadController.sendInputs();
-
-        if (!this.isMoving()) {
-            const currrentAnimation = this.player.anims.currentAnim.key;
-            const idleAnimation = currrentAnimation.replace(
-                this.walkPrefixAnimation,
-                this.idlePrefixAnimation
-            );
-            this.player.anims.play(idleAnimation);
-            this.player.walkDust.on = false;
-        } else {
-            this.player.walkDust.on = true;
         }
     }
 }

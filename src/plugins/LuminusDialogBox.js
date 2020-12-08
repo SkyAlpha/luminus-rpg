@@ -489,6 +489,7 @@ export class LuminusDialogBox {
             this.actionButton.visible = false;
             this.interactionIcon.visible = false;
             this.isOverlapingChat = false;
+            this.player.canAtack = true;
         }
     }
 

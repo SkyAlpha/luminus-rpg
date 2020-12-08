@@ -26,13 +26,15 @@ const config = {
         PreloadScene,
         IntroScene,
         MainScene,
+        DungeonScene,
+        MobileCheckScene,
+
+        // UI Scenes should be loaded after the game Scenes.
         JoystickScene,
         DialogScene,
         HUDScene,
         SettingScene,
         VideoPlayerScene,
-        MobileCheckScene,
-        DungeonScene,
     ],
     input: {
         gamepad: true,

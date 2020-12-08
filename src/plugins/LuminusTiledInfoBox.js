@@ -93,6 +93,7 @@ export class LuminusTiledInfoBox {
                 this.luminusDialogBox.actionButton.visible = true;
                 this.luminusDialogBox.interactionIcon.visible = true;
                 this.luminusDialogBox.dialogMessage = zone.message.trim();
+                this.player.canAtack = false;
             },
             (d) => {
                 return this.luminusDialogBox.canShowDialog;

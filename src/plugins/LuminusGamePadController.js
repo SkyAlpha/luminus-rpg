@@ -34,7 +34,7 @@ export class LuminusGamePadController extends AnimationNames {
 
         /**
          * The gamepad that will control the player. The default value is null.
-         * @type { Phaser.Input.Gamepad. Gamepad }
+         * @type { Phaser.Input.Gamepad.Gamepad }
          * @default
          */
         this.gamepad = null;

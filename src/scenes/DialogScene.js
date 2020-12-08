@@ -23,7 +23,6 @@ export class DialogScene extends Phaser.Scene {
      * @param { any } args The arguments object.
      */
     init(args) {
-        console.log(args);
         this.player = args.player;
         this.map = args.map;
     }

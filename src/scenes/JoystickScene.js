@@ -3,6 +3,7 @@ import joystick from '../assets/vendor/VirtualJoystickPlugin';
 import joystick_atlas_image from '../assets/sprites/joystick-0.png';
 import joystick_json from '../assets/sprites/joystick.json';
 import { Player } from '../entities/Player';
+import { LuminusBattleManager } from '../plugins/LuminusBattleManager';
 
 export class JoystickScene extends Phaser.Scene {
     constructor() {
@@ -82,6 +83,12 @@ export class JoystickScene extends Phaser.Scene {
          * @default
          */
         this.buttonAMultiplierYposition = 0.25;
+
+        /**
+         * The game battle manager.
+         * @type { LuminusBattleManager }
+         */
+        this.luminusBattleManager = null;
     }
 
     preload() {
@@ -160,32 +167,45 @@ export class JoystickScene extends Phaser.Scene {
         }
         this.events.emit('JoystickReady');
         // this.debugText = this.add.text(0, 0);
+        this.createButtonActions();
+        this.luminusBattleManager = new LuminusBattleManager();
+    }
+
+    /**
+     * Creates the button actions Trigger. Will dispatch events to atk, chat, etc.
+     */
+    createButtonActions() {
+        this.buttonA.on('down', (buttonA) => {
+            if (this.player.canAtack && !this.player.isAtacking) {
+                this.luminusBattleManager.atack(this.player);
+            }
+        });
     }
 
     update() {
-        if (this.debugText)
-            this.debugText.setText(
-                `Pointer 1: ${this.input.pointer1.isDown}, Pointer 2: ${this.input.pointer2.isDown})`
-            );
-        if (
-            this.useOnScreenControls &&
-            this.player &&
-            this.player.body &&
-            this.input.pointer1.isDown &&
-            !this.input.pointer2.isDown
-        ) {
-            if (
-                this.stick &&
-                this.stick.isDown &&
-                this.player.body.maxSpeed > 0
-            ) {
-                this.physics.velocityFromRotation(
-                    this.stick.rotation,
-                    this.stick.force * this.player.speed,
-                    this.player.body.velocity
-                );
-                // this.player.updateMovementDependencies();
-            }
-        }
+        // if (this.debugText)
+        //     this.debugText.setText(
+        //         `Pointer 1: ${this.input.pointer1.isDown}, Pointer 2: ${this.input.pointer2.isDown})`
+        //     );
+        // if (
+        //     this.useOnScreenControls &&
+        //     this.player &&
+        //     this.player.body &&
+        //     this.input.pointer1.isDown &&
+        //     !this.input.pointer2.isDown
+        // ) {
+        //     if (
+        //         this.stick &&
+        //         this.stick.isDown &&
+        //         this.player.body.maxSpeed > 0
+        //     ) {
+        //         this.physics.velocityFromRotation(
+        //             this.stick.rotation,
+        //             this.stick.force * this.player.speed,
+        //             this.player.body.velocity
+        //         );
+        //         // this.player.updateMovementDependencies();
+        //     }
+        // }
     }
 }

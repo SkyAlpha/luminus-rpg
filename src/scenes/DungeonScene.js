@@ -24,7 +24,7 @@ export class DungeonScene extends Phaser.Scene {
         this.player.play('idle-down');
 
         this.cameras.main.startFollow(this.player);
-        // this.cameras.main.setZoom(2.5);
+        this.cameras.main.setZoom(2.5);
         // camera.setBounds(
         //     0,
         //     0,
