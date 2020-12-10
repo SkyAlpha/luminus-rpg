@@ -48,6 +48,12 @@ export class DungeonScene extends Phaser.Scene {
             this.player,
             this.joystickScene
         );
+
+        this.enemy = this.physics.add.sprite(
+            this.dungeon.map.widthInPixels / 2,
+            this.dungeon.map.heightInPixels / 2 + 100,
+            'player'
+        );
     }
 
     update() {

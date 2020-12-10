@@ -4,43 +4,51 @@ import { BaseEntity } from './BaseEntity';
 export class Player extends Phaser.GameObjects.Sprite {
     constructor(scene, x, y, texture) {
         super(scene, x, y, texture);
+        Object.assign(Player.prototype, BaseEntity);
         /**
          * scene Scene Context.
          * @type { Phaser.Scene }  */
         this.scene = scene;
+
         /**
          * Maximum speed to be used for the player.
          * @type { number }
+         * @default
          */
         this.speed = 50;
 
         /**
          * Defines the hitzone width.
          * @type { number }
+         * @default
          */
         this.hitZoneWidth = 12;
 
         /**
          * Defines the hitzone height.
          * @type { number }
+         * @default
          */
         this.hitZoneHeigth = 21;
 
         /**
          * Defines the body width. This will be used to check for collisions while moving.
          * @type { number }
+         * @default
          */
         this.bodyWidth = 12;
 
         /**
          * Defines the body width. This will be used to check for collisions while moving.
          * @type { number }
+         * @default
          */
         this.bodyHeight = 8;
 
         /**
          * Checks the body offset Y. Should be changed acconrdinglly to your sprite size.
          * @type { number }
+         * @default
          */
         this.bodyOffsetY = 20;
 
@@ -61,6 +69,7 @@ export class Player extends Phaser.GameObjects.Sprite {
         /**
          * The particle name of the Sprite / Texture to be used for the the dust movement.
          * @type { string }
+         * @default
          */
         this.dustParticleName = 'walk_dust';
 
@@ -115,5 +124,3 @@ export class Player extends Phaser.GameObjects.Sprite {
         }
     }
 }
-
-Object.assign(Player.prototype, BaseEntity);

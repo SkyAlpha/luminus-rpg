@@ -10,8 +10,14 @@ export const BaseEntity = {
     isAtacking: false,
 
     /**
-     * Controls if the plater can atack.
+     * Controls if the player can atack.
      * @type { boolean }
      */
     canAtack: true,
+
+    /**
+     * This variable controls when the atack hitbox will appear.
+     * @type { boolean }
+     */
+    showHitBox: false,
 };

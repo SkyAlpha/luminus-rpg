@@ -1,6 +1,7 @@
 import Phaser from 'phaser';
 import { AnimationNames } from '../consts/AnimationNames';
 import { LuminusAnimationManager } from './LuminusAnimationManager';
+import { LuminusBattleManager } from './LuminusBattleManager';
 
 /**
  * @class
@@ -38,12 +39,19 @@ export class LuminusGamePadController extends AnimationNames {
          * @default
          */
         this.gamepad = null;
+
+        /**
+         * The Luminus Battle Manager.
+         * @type { LuminusBattleManager }
+         */
+        this.luminusBattleManager = null;
     }
 
     /**
      * Inicializes the PLugin.
      */
     create() {
+        this.luminusBattleManager = new LuminusBattleManager();
         this.scene.input.gamepad.once(
             'connected',
             (pad, button, index) => {
@@ -51,6 +59,12 @@ export class LuminusGamePadController extends AnimationNames {
             },
             this
         );
+
+        this.scene.input.gamepad.on('down', (pad) => {
+            if (pad.A) {
+                this.luminusBattleManager.atack(this.player);
+            }
+        });
     }
 
     /**

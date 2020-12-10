@@ -30,6 +30,8 @@ import cloud from '../assets/sprites/clouds/cloud.png';
 // Atlas
 import atlas_character_image from '../assets/sprites/character.png';
 import atlas_character_image_json from '../assets/sprites/character.json';
+import atlas_slash_image from '../assets/sprites/slash.png';
+import atlas_slash_image_json from '../assets/sprites/slash.json';
 import atlas_flares_image from '../assets/sprites/flares.png';
 import atlas_flares_image_json from '../assets/sprites/flares.json';
 import atlas_chat_bubble_animation_image from '../assets/sprites/chat_bubble_animation.png';
@@ -46,6 +48,12 @@ import typing_key_03 from '../assets/sound/typing/typing_key_03.mp3';
 import typing_key_04 from '../assets/sound/typing/typing_key_04.mp3';
 import typing_key_05 from '../assets/sound/typing/typing_key_05.mp3';
 import path_to_lake_land from '../assets/sound/path_to_lake_land.mp3';
+
+// SFX
+// Atack
+import atack01 from '../assets/sound/sfx/atk/atack01.mp3';
+import atack02 from '../assets/sound/sfx/atk/atack02.mp3';
+import atack03 from '../assets/sound/sfx/atk/atack03.mp3';
 
 export const Images = [
     {
@@ -164,6 +172,11 @@ export const AtlasConfig = [
         image: atlas_chat_bubble_animation_image,
         json: atlas_chat_bubble_animation_image_json,
     },
+    {
+        name: 'slash',
+        image: atlas_slash_image,
+        json: atlas_slash_image_json,
+    },
 ];
 
 export const TilemapConfig = [
@@ -200,5 +213,20 @@ export const LuminusAudios = [
     {
         name: 'path_to_lake_land',
         audio: path_to_lake_land,
+    },
+
+    // SFX
+    // Atack
+    {
+        name: 'atack01',
+        audio: atack01,
+    },
+    {
+        name: 'atack02',
+        audio: atack02,
+    },
+    {
+        name: 'atack03',
+        audio: atack03,
     },
 ];

@@ -120,6 +120,18 @@ export const Animations = [
         repeat: 0,
     },
 
+    // Slash atack animation
+    {
+        atlas: 'slash',
+        key: 'slash',
+        frameRate: 16,
+        prefix: 'slash/slash',
+        start: 0,
+        end: 3,
+        zeroPad: 2,
+        repeat: 0,
+    },
+
     // Chat iteraction box.
     {
         atlas: 'chat_bubble_animation',
