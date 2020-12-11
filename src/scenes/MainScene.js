@@ -6,8 +6,8 @@ import { LuminusObjectMarker } from '../plugins/LuminusObjectMarker';
 import AnimatedTiles from '../plugins/AnimatedTiles';
 import { LuminusEnvironmentParticles } from '../plugins/LuminusEnvironmentParticles';
 import { LuminusOutlineEffect } from '../plugins/LuminusOutlineEffect';
+import { LuminusEnemyZones } from '../plugins/LuminusEnemyZones';
 
-let cursors;
 let map;
 
 export class MainScene extends Phaser.Scene {
@@ -149,6 +149,11 @@ export class MainScene extends Phaser.Scene {
             loop: true,
         });
         this.themeSound.play();
+
+        this.enemies = [];
+
+        this.luminusEnemyZones = new LuminusEnemyZones(this, map);
+        this.luminusEnemyZones.create();
     }
 
     update(time, delta) {

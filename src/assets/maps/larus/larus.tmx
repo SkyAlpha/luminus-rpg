@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.4" tiledversion="1.4.3" orientation="orthogonal" renderorder="right-down" width="100" height="100" tilewidth="16" tileheight="16" infinite="1" nextlayerid="14" nextobjectid="78">
+<map version="1.4" tiledversion="1.4.3" orientation="orthogonal" renderorder="right-down" width="100" height="100" tilewidth="16" tileheight="16" infinite="1" nextlayerid="15" nextobjectid="88">
  <editorsettings>
   <export target="larus.json" format="json"/>
  </editorsettings>
@@ -869,6 +869,49 @@ Olha o tamanho deste buraco!!! Será que era um tesouro?</property>
     <property name="message" value="Ouvi falar que aqui tem uma torre com um canhão poderoso!!"/>
    </properties>
   </object>
+ </objectgroup>
+ <objectgroup id="14" name="enemies">
+  <object id="78" x="-830.667" y="-492.667" width="160.667" height="95.3333">
+   <properties>
+    <property name="number" type="int" value="5"/>
+   </properties>
+  </object>
+  <object id="79" x="-996" y="-65.3333" width="126" height="61.3333">
+   <properties>
+    <property name="number" type="int" value="3"/>
+   </properties>
+  </object>
+  <object id="80" x="-858" y="142.667" width="146" height="93.3333">
+   <properties>
+    <property name="number" type="int" value="5"/>
+   </properties>
+  </object>
+  <object id="81" x="-292.667" y="-52.6667" width="85.3333" height="56.6667">
+   <properties>
+    <property name="number" type="int" value="2"/>
+   </properties>
+  </object>
+  <object id="82" x="-981.333" y="-335.333" width="84" height="79.3333">
+   <properties>
+    <property name="number" type="int" value="3"/>
+   </properties>
+  </object>
+  <object id="83" x="-334" y="-410" width="72.6667" height="66">
+   <properties>
+    <property name="number" type="int" value="2"/>
+   </properties>
+  </object>
+  <object id="84" x="-496.667" y="-270.667" width="84" height="68.6667">
+   <properties>
+    <property name="number" type="int" value="2"/>
+   </properties>
+  </object>
+  <object id="85" x="-778.667" y="-134.667" width="115.333" height="62">
+   <properties>
+    <property name="number" type="int" value="3"/>
+   </properties>
+  </object>
+  <object id="86" x="-1217.33" y="179.333" width="30" height="27.3333"/>
  </objectgroup>
  <objectgroup id="13" name="particles" visible="0">
   <object id="57" name="forest" x="-1282" y="-768" width="1106" height="1050"/>

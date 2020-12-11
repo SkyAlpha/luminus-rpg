@@ -1,0 +1,964 @@
+{
+	"textures": [
+		{
+			"image": "bat.png",
+			"format": "RGBA8888",
+			"size": {
+				"w": 176,
+				"h": 94
+			},
+			"scale": 1,
+			"frames": [
+				{
+					"filename": "bat/atk-up/bat00",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 30,
+						"h": 14
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 30,
+						"h": 14
+					},
+					"frame": {
+						"x": 4,
+						"y": 4,
+						"w": 30,
+						"h": 14
+					}
+				},
+				{
+					"filename": "bat/atk-up/bat03",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 30,
+						"h": 13
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 30,
+						"h": 13
+					},
+					"frame": {
+						"x": 42,
+						"y": 4,
+						"w": 30,
+						"h": 13
+					}
+				},
+				{
+					"filename": "bat/atk-down/bat00",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 30,
+						"h": 11
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 30,
+						"h": 11
+					},
+					"frame": {
+						"x": 80,
+						"y": 4,
+						"w": 30,
+						"h": 11
+					}
+				},
+				{
+					"filename": "bat/atk-down/bat01",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 28,
+						"h": 12
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 28,
+						"h": 12
+					},
+					"frame": {
+						"x": 118,
+						"y": 4,
+						"w": 28,
+						"h": 12
+					}
+				},
+				{
+					"filename": "bat/atk-up/bat01",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 24,
+						"h": 16
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 24,
+						"h": 16
+					},
+					"frame": {
+						"x": 80,
+						"y": 23,
+						"w": 24,
+						"h": 16
+					}
+				},
+				{
+					"filename": "bat/atk-up/bat04",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 24,
+						"h": 15
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 24,
+						"h": 15
+					},
+					"frame": {
+						"x": 42,
+						"y": 25,
+						"w": 24,
+						"h": 15
+					}
+				},
+				{
+					"filename": "bat/atk-down/bat02",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 18,
+						"h": 15
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 18,
+						"h": 15
+					},
+					"frame": {
+						"x": 4,
+						"y": 26,
+						"w": 18,
+						"h": 15
+					}
+				},
+				{
+					"filename": "bat/atk-down/bat04",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 18,
+						"h": 13
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 18,
+						"h": 13
+					},
+					"frame": {
+						"x": 154,
+						"y": 4,
+						"w": 18,
+						"h": 13
+					}
+				},
+				{
+					"filename": "bat/atk-up/bat02",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 16,
+						"h": 16
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 16,
+						"h": 16
+					},
+					"frame": {
+						"x": 112,
+						"y": 24,
+						"w": 16,
+						"h": 16
+					}
+				},
+				{
+					"filename": "bat/atk-right/bat02",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 15,
+						"h": 18
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 15,
+						"h": 18
+					},
+					"frame": {
+						"x": 74,
+						"y": 47,
+						"w": 15,
+						"h": 18
+					}
+				},
+				{
+					"filename": "bat/atk-right/bat03",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 15,
+						"h": 17
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 15,
+						"h": 17
+					},
+					"frame": {
+						"x": 74,
+						"y": 73,
+						"w": 15,
+						"h": 17
+					}
+				},
+				{
+					"filename": "bat/atk-right/bat00",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 14,
+						"h": 17
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 14,
+						"h": 17
+					},
+					"frame": {
+						"x": 30,
+						"y": 48,
+						"w": 14,
+						"h": 17
+					}
+				},
+				{
+					"filename": "bat/atk-right/bat01",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 14,
+						"h": 16
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 14,
+						"h": 16
+					},
+					"frame": {
+						"x": 52,
+						"y": 48,
+						"w": 14,
+						"h": 16
+					}
+				},
+				{
+					"filename": "bat/atk-right/bat04",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 14,
+						"h": 14
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 14,
+						"h": 14
+					},
+					"frame": {
+						"x": 52,
+						"y": 72,
+						"w": 14,
+						"h": 14
+					}
+				},
+				{
+					"filename": "bat/atk-down/bat03",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 30,
+						"h": 11
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 30,
+						"h": 11
+					},
+					"frame": {
+						"x": 80,
+						"y": 4,
+						"w": 30,
+						"h": 11
+					}
+				},
+				{
+					"filename": "bat/idle-down/bat00",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 30,
+						"h": 11
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 30,
+						"h": 11
+					},
+					"frame": {
+						"x": 80,
+						"y": 4,
+						"w": 30,
+						"h": 11
+					}
+				},
+				{
+					"filename": "bat/idle-down/bat03",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 30,
+						"h": 11
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 30,
+						"h": 11
+					},
+					"frame": {
+						"x": 80,
+						"y": 4,
+						"w": 30,
+						"h": 11
+					}
+				},
+				{
+					"filename": "bat/walk-down/bat00",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 30,
+						"h": 11
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 30,
+						"h": 11
+					},
+					"frame": {
+						"x": 80,
+						"y": 4,
+						"w": 30,
+						"h": 11
+					}
+				},
+				{
+					"filename": "bat/walk-down/bat03",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 30,
+						"h": 11
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 30,
+						"h": 11
+					},
+					"frame": {
+						"x": 80,
+						"y": 4,
+						"w": 30,
+						"h": 11
+					}
+				},
+				{
+					"filename": "bat/idle-down/bat01",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 28,
+						"h": 12
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 28,
+						"h": 12
+					},
+					"frame": {
+						"x": 118,
+						"y": 4,
+						"w": 28,
+						"h": 12
+					}
+				},
+				{
+					"filename": "bat/walk-down/bat01",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 28,
+						"h": 12
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 28,
+						"h": 12
+					},
+					"frame": {
+						"x": 118,
+						"y": 4,
+						"w": 28,
+						"h": 12
+					}
+				},
+				{
+					"filename": "bat/idle-down/bat02",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 18,
+						"h": 15
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 18,
+						"h": 15
+					},
+					"frame": {
+						"x": 4,
+						"y": 26,
+						"w": 18,
+						"h": 15
+					}
+				},
+				{
+					"filename": "bat/walk-down/bat02",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 18,
+						"h": 15
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 18,
+						"h": 15
+					},
+					"frame": {
+						"x": 4,
+						"y": 26,
+						"w": 18,
+						"h": 15
+					}
+				},
+				{
+					"filename": "bat/idle-down/bat04",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 18,
+						"h": 13
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 18,
+						"h": 13
+					},
+					"frame": {
+						"x": 154,
+						"y": 4,
+						"w": 18,
+						"h": 13
+					}
+				},
+				{
+					"filename": "bat/walk-down/bat04",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 18,
+						"h": 13
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 18,
+						"h": 13
+					},
+					"frame": {
+						"x": 154,
+						"y": 4,
+						"w": 18,
+						"h": 13
+					}
+				},
+				{
+					"filename": "bat/idle-right/bat00",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 14,
+						"h": 17
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 14,
+						"h": 17
+					},
+					"frame": {
+						"x": 30,
+						"y": 48,
+						"w": 14,
+						"h": 17
+					}
+				},
+				{
+					"filename": "bat/walk-right/bat00",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 14,
+						"h": 17
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 14,
+						"h": 17
+					},
+					"frame": {
+						"x": 30,
+						"y": 48,
+						"w": 14,
+						"h": 17
+					}
+				},
+				{
+					"filename": "bat/idle-right/bat01",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 14,
+						"h": 16
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 14,
+						"h": 16
+					},
+					"frame": {
+						"x": 52,
+						"y": 48,
+						"w": 14,
+						"h": 16
+					}
+				},
+				{
+					"filename": "bat/walk-right/bat01",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 14,
+						"h": 16
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 14,
+						"h": 16
+					},
+					"frame": {
+						"x": 52,
+						"y": 48,
+						"w": 14,
+						"h": 16
+					}
+				},
+				{
+					"filename": "bat/idle-right/bat02",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 15,
+						"h": 18
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 15,
+						"h": 18
+					},
+					"frame": {
+						"x": 74,
+						"y": 47,
+						"w": 15,
+						"h": 18
+					}
+				},
+				{
+					"filename": "bat/walk-right/bat02",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 15,
+						"h": 18
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 15,
+						"h": 18
+					},
+					"frame": {
+						"x": 74,
+						"y": 47,
+						"w": 15,
+						"h": 18
+					}
+				},
+				{
+					"filename": "bat/idle-right/bat03",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 15,
+						"h": 17
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 15,
+						"h": 17
+					},
+					"frame": {
+						"x": 74,
+						"y": 73,
+						"w": 15,
+						"h": 17
+					}
+				},
+				{
+					"filename": "bat/walk-right/bat03",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 15,
+						"h": 17
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 15,
+						"h": 17
+					},
+					"frame": {
+						"x": 74,
+						"y": 73,
+						"w": 15,
+						"h": 17
+					}
+				},
+				{
+					"filename": "bat/idle-right/bat04",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 14,
+						"h": 14
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 14,
+						"h": 14
+					},
+					"frame": {
+						"x": 52,
+						"y": 72,
+						"w": 14,
+						"h": 14
+					}
+				},
+				{
+					"filename": "bat/walk-right/bat04",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 14,
+						"h": 14
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 14,
+						"h": 14
+					},
+					"frame": {
+						"x": 52,
+						"y": 72,
+						"w": 14,
+						"h": 14
+					}
+				},
+				{
+					"filename": "bat/idle-up/bat00",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 30,
+						"h": 14
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 30,
+						"h": 14
+					},
+					"frame": {
+						"x": 4,
+						"y": 4,
+						"w": 30,
+						"h": 14
+					}
+				},
+				{
+					"filename": "bat/walk-up/bat00",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 30,
+						"h": 14
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 30,
+						"h": 14
+					},
+					"frame": {
+						"x": 4,
+						"y": 4,
+						"w": 30,
+						"h": 14
+					}
+				},
+				{
+					"filename": "bat/idle-up/bat01",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 24,
+						"h": 16
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 24,
+						"h": 16
+					},
+					"frame": {
+						"x": 80,
+						"y": 23,
+						"w": 24,
+						"h": 16
+					}
+				},
+				{
+					"filename": "bat/walk-up/bat01",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 24,
+						"h": 16
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 24,
+						"h": 16
+					},
+					"frame": {
+						"x": 80,
+						"y": 23,
+						"w": 24,
+						"h": 16
+					}
+				},
+				{
+					"filename": "bat/idle-up/bat02",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 16,
+						"h": 16
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 16,
+						"h": 16
+					},
+					"frame": {
+						"x": 112,
+						"y": 24,
+						"w": 16,
+						"h": 16
+					}
+				},
+				{
+					"filename": "bat/walk-up/bat02",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 16,
+						"h": 16
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 16,
+						"h": 16
+					},
+					"frame": {
+						"x": 112,
+						"y": 24,
+						"w": 16,
+						"h": 16
+					}
+				},
+				{
+					"filename": "bat/idle-up/bat03",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 30,
+						"h": 13
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 30,
+						"h": 13
+					},
+					"frame": {
+						"x": 42,
+						"y": 4,
+						"w": 30,
+						"h": 13
+					}
+				},
+				{
+					"filename": "bat/walk-up/bat03",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 30,
+						"h": 13
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 30,
+						"h": 13
+					},
+					"frame": {
+						"x": 42,
+						"y": 4,
+						"w": 30,
+						"h": 13
+					}
+				},
+				{
+					"filename": "bat/idle-up/bat04",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 24,
+						"h": 15
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 24,
+						"h": 15
+					},
+					"frame": {
+						"x": 42,
+						"y": 25,
+						"w": 24,
+						"h": 15
+					}
+				},
+				{
+					"filename": "bat/walk-up/bat04",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 24,
+						"h": 15
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 24,
+						"h": 15
+					},
+					"frame": {
+						"x": 42,
+						"y": 25,
+						"w": 24,
+						"h": 15
+					}
+				}
+			]
+		}
+	],
+	"meta": {
+		"app": "http://free-tex-packer.com",
+		"version": "0.6.6"
+	}
+}

@@ -30,6 +30,8 @@ import cloud from '../assets/sprites/clouds/cloud.png';
 // Atlas
 import atlas_character_image from '../assets/sprites/character.png';
 import atlas_character_image_json from '../assets/sprites/character.json';
+import atlas_bat_image from '../assets/sprites/bat.png';
+import atlas_bat_image_json from '../assets/sprites/bat.json';
 import atlas_slash_image from '../assets/sprites/slash.png';
 import atlas_slash_image_json from '../assets/sprites/slash.json';
 import atlas_flares_image from '../assets/sprites/flares.png';
@@ -54,6 +56,10 @@ import path_to_lake_land from '../assets/sound/path_to_lake_land.mp3';
 import atack01 from '../assets/sound/sfx/atk/atack01.mp3';
 import atack02 from '../assets/sound/sfx/atk/atack02.mp3';
 import atack03 from '../assets/sound/sfx/atk/atack03.mp3';
+
+import damage01 from '../assets/sound/sfx/damage/damage01.mp3';
+import damage02 from '../assets/sound/sfx/damage/damage02.mp3';
+import damage03 from '../assets/sound/sfx/damage/damage03.mp3';
 
 export const Images = [
     {
@@ -177,6 +183,11 @@ export const AtlasConfig = [
         image: atlas_slash_image,
         json: atlas_slash_image_json,
     },
+    {
+        name: 'bat',
+        image: atlas_bat_image,
+        json: atlas_bat_image_json,
+    },
 ];
 
 export const TilemapConfig = [
@@ -228,5 +239,18 @@ export const LuminusAudios = [
     {
         name: 'atack03',
         audio: atack03,
+    },
+    // Damage
+    {
+        name: 'damage01',
+        audio: damage01,
+    },
+    {
+        name: 'damage02',
+        audio: damage02,
+    },
+    {
+        name: 'damage03',
+        audio: damage03,
     },
 ];
