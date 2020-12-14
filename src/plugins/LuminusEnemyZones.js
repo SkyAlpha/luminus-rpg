@@ -1,4 +1,5 @@
 import Phaser from 'phaser';
+import { Enemy } from '../entities/Enemy';
 
 /**
  * @class
@@ -46,6 +47,13 @@ export class LuminusEnemyZones {
          * @default
          */
         this.numberPropertyName = 'number';
+
+        /**
+         * The texture that will be applyed to the enemy.
+         * @type { string }
+         * @default
+         */
+        this.texturePropertyName = 'texture';
     }
 
     /**
@@ -71,19 +79,37 @@ export class LuminusEnemyZones {
                     0
                 );
                 if (this.createFromProperties && infoObj.properties) {
-                    const number = infoObj.properties.find(
+                    let number = infoObj.properties.find(
                         (f) => f.name === this.numberPropertyName
-                    ).value;
+                    );
+
+                    if (number) {
+                        number = number.value;
+                    }
+
+                    let texture = infoObj.properties.find(
+                        (f) => f.name === this.texturePropertyName
+                    );
+
+                    if (texture) {
+                        texture = texture.value;
+                    }
                     for (let i = 0; i < number; i++) {
                         const pos = Phaser.Geom.Rectangle.Random(spriteBounds);
-                        const enemy = this.scene.physics.add.sprite(
+                        const enemy = new Enemy(
+                            this.scene,
                             pos.x,
                             pos.y,
-                            'bat'
+                            texture ? texture : 'bat'
                         );
-                        enemy.anims.play('bat-idle-down');
-                        enemy.body.setSize(enemy.body.width, enemy.body.height);
-                        enemy.body.immovable = true;
+                        const idleAnimation = texture
+                            ? `${texture}-idle-down`
+                            : `bat-idle-down`;
+                        console.log(enemy.width);
+                        console.log(enemy.body.width);
+                        enemy.anims.play(idleAnimation);
+                        console.log(enemy.width);
+                        enemy.body.setSize(enemy.width, enemy.height);
                         this.scene.enemies.push(enemy);
                     }
                 }

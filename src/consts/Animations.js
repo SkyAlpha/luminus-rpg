@@ -1,7 +1,9 @@
 import { Bat } from './enemies/bat';
+import { Rat } from './enemies/rat';
 
 export const Animations = [
     ...Bat,
+    ...Rat,
     {
         atlas: 'character',
         key: 'idle-down',

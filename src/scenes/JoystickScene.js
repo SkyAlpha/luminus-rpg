@@ -175,11 +175,13 @@ export class JoystickScene extends Phaser.Scene {
      * Creates the button actions Trigger. Will dispatch events to atk, chat, etc.
      */
     createButtonActions() {
-        this.buttonA.on('down', (buttonA) => {
-            if (this.player.canAtack && !this.player.isAtacking) {
-                this.luminusBattleManager.atack(this.player);
-            }
-        });
+        if (this.buttonA) {
+            this.buttonA.on('down', (buttonA) => {
+                if (this.player.canAtack && !this.player.isAtacking) {
+                    this.luminusBattleManager.atack(this.player);
+                }
+            });
+        }
     }
 
     update() {
