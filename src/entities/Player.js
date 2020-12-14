@@ -1,4 +1,5 @@
 import Phaser from 'phaser';
+import { LuminusKeyboardMouseController } from '../plugins/LuminusKeyboardMouseController';
 import { BaseEntity } from './BaseEntity';
 
 export class Player extends Phaser.GameObjects.Sprite {
@@ -96,7 +97,13 @@ export class Player extends Phaser.GameObjects.Sprite {
 
         this.setDepth(1);
         this.walkDust.on = false;
+
         // this.walk_dust.this.walk_dust.pause();
+        this.luminusKeyboardMouseController = new LuminusKeyboardMouseController(
+            this.scene,
+            this
+        );
+        this.luminusKeyboardMouseController.create();
     }
 
     /**

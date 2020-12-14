@@ -2,6 +2,7 @@ import Phaser from 'phaser';
 import { LuminusMovement } from '../plugins/LuminusMovement';
 import { Player } from '../entities/Player';
 import { LuminusDungeonGenerator } from '../plugins/LuminusDungeonGenerator';
+import { LuminusKeyboardMouseController } from '../plugins/LuminusKeyboardMouseController';
 
 export class DungeonScene extends Phaser.Scene {
     constructor() {
