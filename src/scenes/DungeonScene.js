@@ -21,10 +21,9 @@ export class DungeonScene extends Phaser.Scene {
             this,
             this.dungeon.map.widthInPixels / 2,
             this.dungeon.map.heightInPixels / 2,
-            'character'
+            'character',
+            this.dungeon.map
         );
-
-        this.player.play('idle-down');
 
         this.cameras.main.startFollow(this.player);
         this.cameras.main.setZoom(2.5);
@@ -40,17 +39,8 @@ export class DungeonScene extends Phaser.Scene {
             player: this.player,
             map: this.dungeon.map,
         });
-        this.scene.launch('JoystickScene', {
-            player: this.player,
-            map: this.dungeon.map,
-        });
+
         this.scene.launch('HUDScene');
-        this.joystickScene = this.scene.get('JoystickScene');
-        this.movement = new LuminusMovement(
-            this,
-            this.player,
-            this.joystickScene
-        );
 
         var spriteBounds = Phaser.Geom.Rectangle.Inflate(
             Phaser.Geom.Rectangle.Clone(
@@ -80,7 +70,5 @@ export class DungeonScene extends Phaser.Scene {
         this.sound.volume = 0.2;
     }
 
-    update() {
-        this.movement.move();
-    }
+    update() {}
 }

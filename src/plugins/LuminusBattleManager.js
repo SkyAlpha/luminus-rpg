@@ -9,11 +9,11 @@ export class LuminusBattleManager extends AnimationNames {
      */
     constructor() {
         super();
-        /**
-         * An array of enemies. This will be the
-         * @type { Phaser.GameObjects.Sprite []}
-         */
-        this.enemies = null;
+        // /**
+        //  * An array of enemies. This will be the
+        //  * @type { Phaser.GameObjects.Sprite []}
+        //  */
+        // this.enemies = null;
 
         /**
          * The name of the SFX of the atack being performed.

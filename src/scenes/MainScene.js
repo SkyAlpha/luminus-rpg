@@ -129,11 +129,6 @@ export class MainScene extends Phaser.Scene {
         });
 
         this.joystickScene = this.scene.get('JoystickScene');
-        this.movement = new LuminusMovement(
-            this,
-            this.player,
-            this.joystickScene
-        );
 
         this.scene.launch('HUDScene');
 
@@ -157,7 +152,6 @@ export class MainScene extends Phaser.Scene {
     }
 
     update(time, delta) {
-        this.movement.move();
         this.outlineEffect.clear();
         this.physics.overlap(
             this.player.hitZone,

@@ -1,9 +1,10 @@
 import Phaser from 'phaser';
 import { LuminusKeyboardMouseController } from '../plugins/LuminusKeyboardMouseController';
+import { LuminusMovement } from '../plugins/LuminusMovement';
 import { BaseEntity } from './BaseEntity';
 
 export class Player extends Phaser.GameObjects.Sprite {
-    constructor(scene, x, y, texture) {
+    constructor(scene, x, y, texture, map) {
         super(scene, x, y, texture);
         Object.assign(Player.prototype, BaseEntity);
         /**
@@ -98,12 +99,48 @@ export class Player extends Phaser.GameObjects.Sprite {
         this.setDepth(1);
         this.walkDust.on = false;
 
-        // this.walk_dust.this.walk_dust.pause();
+        /**
+         * The class responsible for managing Keyboard and Mouse inputs.
+         * @type { LuminusKeyboardMouseController }
+         */
         this.luminusKeyboardMouseController = new LuminusKeyboardMouseController(
             this.scene,
             this
         );
         this.luminusKeyboardMouseController.create();
+
+        this.scene.scene.launch('JoystickScene', {
+            player: this,
+            map: map,
+        });
+
+        /**
+         * The Joystick Scene.
+         * @type { JoystickScene }
+         */
+        this.joystickScene = this.scene.scene.get('JoystickScene');
+
+        /**
+         * This object is responsible for moving the entity.
+         * @type { LuminusMovement }
+         */
+        this.luminusMovement = new LuminusMovement(
+            this.scene,
+            this,
+            this.joystickScene
+        );
+
+        this.play('idle-down');
+
+        // All the dependencies that need to be inside the update game loop.
+        this.scene.events.on('update', this.onUpdate, this);
+    }
+
+    /**
+     * This method is called every game loop. Anything that depends on it (update game loop method) should be put in here.
+     */
+    onUpdate() {
+        if (this.luminusMovement) this.luminusMovement.move();
     }
 
     /**

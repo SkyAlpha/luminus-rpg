@@ -99,5 +99,89 @@ export class AnimationNames {
          * @default
          */
         this.idlePrefixAnimation = 'idle';
+
+        /**
+         * This is specific for those who are using the joystick.
+         *
+         * The Luminus animation manager expects the animations to have a prefix.
+         * The sufix is can be changed in this variable:
+         * prefix: 'walk'
+         * sufix: '-up'
+         * By default the prefix is just 'walk' and the sufix is the direction that the player animation should play.
+         *
+         * The luminus animation manager will play the default animation directions
+         * 'up', 'right', 'down', 'left'
+         *
+         * @example
+         * 'walk-up'
+         *
+         *
+         * @type { string }
+         * @default
+         */
+        this.upAnimationSufix = '-up';
+
+        /**
+         * This is specific for those who are using the joystick.
+         *
+         * The Luminus animation manager expects the animations to have a prefix.
+         * The sufix is can be changed in this variable:
+         * prefix: 'walk'
+         * sufix: '-down'
+         * By default the prefix is just 'walk' and the sufix is the direction that the player animation should play.
+         *
+         * The luminus animation manager will play the default animation directions
+         * 'up', 'right', 'down', 'left'
+         *
+         * @example
+         * 'walk-down'
+         *
+         *
+         * @type { string }
+         * @default
+         */
+        this.downAnimationSufix = '-down';
+
+        /**
+         * This is specific for those who are using the joystick.
+         *
+         * The Luminus animation manager expects the animations to have a prefix.
+         * The sufix is can be changed in this variable:
+         * prefix: 'walk'
+         * sufix: '-right'
+         * By default the prefix is just 'walk' and the sufix is the direction that the player animation should play.
+         *
+         * The luminus animation manager will play the default animation directions
+         * 'up', 'right', 'down', 'left'
+         *
+         * @example
+         * 'walk-right'
+         *
+         *
+         * @type { string }
+         * @default
+         */
+        this.rightAnimationSufix = '-right';
+
+        /**
+         * This is specific for those who are using the joystick.
+         *
+         * The Luminus animation manager expects the animations to have a prefix.
+         * The sufix is can be changed in this variable:
+         * prefix: 'walk'
+         * sufix: '-left'
+         * By default the prefix is just 'walk' and the sufix is the direction that the player animation should play.
+         *
+         * The luminus animation manager will play the default animation directions
+         * 'up', 'right', 'down', 'left'
+         *
+         * @example
+         * 'walk-left'
+         *
+         *
+         * @type { string }
+         * @default
+         */
+        this.leftAnimationSufix = '-left';
     }
 }

@@ -105,10 +105,7 @@ export class LuminusEnemyZones {
                         const idleAnimation = texture
                             ? `${texture}-idle-down`
                             : `bat-idle-down`;
-                        console.log(enemy.width);
-                        console.log(enemy.body.width);
                         enemy.anims.play(idleAnimation);
-                        console.log(enemy.width);
                         enemy.body.setSize(enemy.width, enemy.height);
                         this.scene.enemies.push(enemy);
                     }
