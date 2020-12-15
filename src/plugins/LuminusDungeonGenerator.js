@@ -31,6 +31,20 @@ export class LuminusDungeonGenerator {
         this.map = null;
 
         /**
+         * The tile height of the tileset
+         * @type { number }
+         * @default
+         */
+        this.tileHeight = 48;
+
+        /**
+         * The tile width of the tileset
+         * @type { number }
+         * @default
+         */
+        this.tileWidth = 48;
+
+        /**
          * The tilemap width in Tiles.
          * @type { number }
          * @default

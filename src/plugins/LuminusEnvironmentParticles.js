@@ -1,3 +1,6 @@
+/**
+ * @class
+ */
 export class LuminusEnvironmentParticles {
     /**
      * This class is responsible for creating the environment particles of the game.

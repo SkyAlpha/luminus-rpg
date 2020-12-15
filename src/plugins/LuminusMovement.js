@@ -95,7 +95,6 @@ export class LuminusMovement extends AnimationNames {
     }
 
     move() {
-        this.player.updateMovementDependencies();
         if (!this.player.isAtacking) {
             if (this.scene.input.isActive) {
                 // Stop any previous movement from the last frame

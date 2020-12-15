@@ -1,5 +1,8 @@
 import Phaser from 'phaser';
 
+/**
+ * @class
+ */
 export class LuminusVideoOpener {
     /**
      * Gets the video link from the Tile object properties.

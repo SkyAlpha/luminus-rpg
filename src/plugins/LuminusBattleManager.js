@@ -18,14 +18,14 @@ export class LuminusBattleManager extends AnimationNames {
 
         /**
          * The name of the SFX of the atack being performed.
-         * @type { string [] }
+         * @type { string[] }
          * @default
          */
         this.atackSoundAnimationNames = ['atack01', 'atack02', 'atack03'];
 
         /**
          * The name of the SFX of a damage being done.
-         * @type { string [] }
+         * @type { string[] }
          * @default
          */
         this.damageSoundNames = ['damage01', 'damage02', 'damage03'];

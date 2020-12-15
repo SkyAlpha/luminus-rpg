@@ -42,29 +42,29 @@ export class DungeonScene extends Phaser.Scene {
         });
 
         this.scene.launch('HUDScene');
-
-        var spriteBounds = Phaser.Geom.Rectangle.Inflate(
-            Phaser.Geom.Rectangle.Clone(
-                this.add.rectangle(
-                    this.dungeon.map.widthInPixels / 2,
-                    this.dungeon.map.heightInPixels / 2,
-                    250,
-                    250
-                )
-            ),
-            0,
-            0
-        );
-
         this.enemies = [];
-        for (let i = 0; i < 10; i++) {
-            const pos = Phaser.Geom.Rectangle.Random(spriteBounds);
-            const enemy = this.physics.add.sprite(pos.x, pos.y, 'bat');
-            enemy.anims.play('bat-idle-down');
-            enemy.body.setSize(enemy.body.width, enemy.body.height);
-            enemy.body.immovable = true;
-            this.enemies.push(enemy);
-        }
+        this.dungeon.dungeon.rooms.forEach((room) => {
+            var spriteBounds = Phaser.Geom.Rectangle.Inflate(
+                Phaser.Geom.Rectangle.Clone(
+                    this.add.rectangle(
+                        (room.x + 1) * this.dungeon.tileWidth,
+                        (room.y + 1) * this.dungeon.tileWidth,
+                        (room.width - 3) * this.dungeon.tileWidth,
+                        (room.height - 3) * this.dungeon.tileWidth
+                    )
+                ),
+                0,
+                0
+            );
+            for (let i = 0; i < 5; i++) {
+                const pos = Phaser.Geom.Rectangle.Random(spriteBounds);
+                const enemy = this.physics.add.sprite(pos.x, pos.y, 'bat');
+                enemy.anims.play('bat-idle-down');
+                enemy.body.setSize(enemy.body.width, enemy.body.height);
+                enemy.body.immovable = true;
+                this.enemies.push(enemy);
+            }
+        });
 
         this.physics.add.collider(this.player, this.enemies);
 

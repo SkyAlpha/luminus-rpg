@@ -29,7 +29,7 @@ export class LuminusEnemyZones {
 
         /**
          * Array of zones that will be created after it's
-         * @type { Phaser.GameObjects.Zone [] }
+         * @type { Phaser.GameObjects.Zone[] }
          * @default
          */
         this.zones = [];

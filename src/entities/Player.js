@@ -3,10 +3,18 @@ import { LuminusKeyboardMouseController } from '../plugins/LuminusKeyboardMouseC
 import { LuminusMovement } from '../plugins/LuminusMovement';
 import { BaseEntity } from './BaseEntity';
 
+/**
+ * @class
+ * @extends Phaser.GameObjects.Sprite
+ * {@link https://photonstorm.github.io/phaser3-docs/Phaser.GameObjects.Sprite.html| Docs}
+ * @extends BaseEntity
+ */
 export class Player extends Phaser.GameObjects.Sprite {
     constructor(scene, x, y, texture, map) {
         super(scene, x, y, texture);
-        Object.assign(Player.prototype, BaseEntity);
+
+        Object.assign(this, BaseEntity);
+
         /**
          * scene Scene Context.
          * @type { Phaser.Scene }  */
@@ -17,7 +25,7 @@ export class Player extends Phaser.GameObjects.Sprite {
          * @type { number }
          * @default
          */
-        this.speed = 50;
+        this.speed = 70;
 
         /**
          * Defines the hitzone width.
@@ -140,6 +148,7 @@ export class Player extends Phaser.GameObjects.Sprite {
      * This method is called every game loop. Anything that depends on it (update game loop method) should be put in here.
      */
     onUpdate() {
+        this.updateMovementDependencies();
         if (this.luminusMovement) this.luminusMovement.move();
     }
 
