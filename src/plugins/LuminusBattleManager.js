@@ -9,11 +9,12 @@ export class LuminusBattleManager extends AnimationNames {
      */
     constructor() {
         super();
-        // /**
-        //  * An array of enemies. This will be the
-        //  * @type { Phaser.GameObjects.Sprite []}
-        //  */
-        // this.enemies = null;
+        /**
+         * The name of the variables that the battle scene will look for to do overlaps and deal damage.
+         * @type { string }
+         * @default
+         */
+        this.enemiesVariableName = 'enemies';
 
         /**
          * The name of the SFX of the atack being performed.
@@ -206,7 +207,7 @@ export class LuminusBattleManager extends AnimationNames {
                 (start) => {
                     atacker.scene.physics.overlap(
                         hitBoxSprite,
-                        atacker.scene.enemies,
+                        atacker.scene[this.enemiesVariableName],
                         (h, e) => {
                             canDamage = false;
                             this.phaserJuice.add(e).flash();
