@@ -56,11 +56,13 @@ export class HUDScene extends Phaser.Scene {
         /**
          * The maximixe Image that will change the resolution.
          * @type { Phaser.GameObjects.Image }
+         * @default
          */
         this.maximize = null;
         /**
          * The Settings Image that will change the resolution.
          * @type { Phaser.GameObjects.Image }
+         * @default
          */
         this.settingsIcon = null;
 

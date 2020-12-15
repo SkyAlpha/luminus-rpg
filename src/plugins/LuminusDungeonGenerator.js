@@ -19,52 +19,63 @@ export class LuminusDungeonGenerator {
         /**
          * The proceduraly generation Dungeon.
          * @type { Dungeon }
+         * @default
          */
         this.dungeon = null;
 
         /**
          * The tilemap that the dungeon will be created on.
          * @type { Phaser.Tilemaps.Tilemap }
+         * @default
          */
         this.map = null;
 
         /**
          * The tilemap width in Tiles.
          * @type { number }
+         * @default
          */
         this.mapWidth = 50;
 
         /**
          * The tilemap width in Tiles.
          * @type { number }
+         * @default
          */
         this.mapHeight = 50;
 
         /**
          * The name of the image that the tileset will be createds of.
          * @type { string }
+         * @default
          */
         this.tilesetName = 'dungeon_tiles';
 
         /**
          * The minimum size of the room
          * @type { number }
+         * @default
          */
         this.minSizeRoom = 7;
 
         /**
          * The maximum size of the room
          * @type { number }
+         * @default
          */
         this.maxSizeRoom = 14;
 
         /**
          * The maximum number of rooms of the dungeon
          * @type { number }
+         * @default
          */
         this.maxRooms = 12;
     }
 
+    /**
+     * Creates the dungeon.
+     */
     create() {
         this.dungeon = new Dungeon({
             width: this.mapWidth,

@@ -25,26 +25,31 @@ export class LuminusWarp {
         /**
          * Duration of the fade time of the camera.
          * @type { number }
+         * @default
          */
         this.defaultFadeTime = 1000;
         /**
          * Duration of the fade in time of the camera.
          * @type { number }
+         * @default
          */
         this.fadeOutTime = this.defaultFadeTime;
         /**
          * Duration of the fade in time of the camera.
          * @type { number }
+         * @default
          */
         this.fadeInTime = this.defaultFadeTime;
         /**
          * Name of the object defined in the Tiled Software to pull the Warps from.
          * @type { string }
+         * @default
          */
         this.warpObjectName = 'warps'; // Default name of the warps object created in the Tiled Software.
         /**
          * Name of  property of the object defined in the Tiled Software to pull the destination position from.
          * @type { string }
+         * @default
          */
         this.propertyWarpName = 'goto';
 
@@ -52,11 +57,13 @@ export class LuminusWarp {
          * Maximum speed that the player can move. User only for caching in this class.
          * @private
          * @type { number }
+         * @default
          */
         this.maxSpeed = this.player.body.maxSpeed;
 
         /**
          * @type { Phaser.GameObjects.Particles.ParticleEmitter }
+         * @default
          */
         this.particlesConfig = null;
     }

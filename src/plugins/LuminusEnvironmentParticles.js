@@ -53,18 +53,23 @@ export class LuminusEnvironmentParticles {
         const dimensions_clouds = zones.objects.find(
             (v) => v.name === 'clouds'
         );
-        this.makeDust(
-            dimensions.width,
-            dimensions.height,
-            dimensions.x,
-            dimensions.y
-        );
-        this.makeClouds(
-            dimensions_clouds.width,
-            dimensions_clouds.height,
-            dimensions_clouds.x,
-            dimensions_clouds.y
-        );
+
+        if (dimensions) {
+            this.makeDust(
+                dimensions.width,
+                dimensions.height,
+                dimensions.x,
+                dimensions.y
+            );
+        }
+        if (dimensions_clouds) {
+            this.makeClouds(
+                dimensions_clouds.width,
+                dimensions_clouds.height,
+                dimensions_clouds.x,
+                dimensions_clouds.y
+            );
+        }
     }
 
     /**

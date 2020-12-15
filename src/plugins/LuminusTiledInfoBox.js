@@ -15,6 +15,7 @@ export class LuminusTiledInfoBox {
      * @param {Phaser.Scene} scene Scene Context.
      * @param {Phaser.GameObjects} player Player Game Object.
      * @param {Phaser.Tilemaps.Tilemap} map Tile Map to get the object from.
+     * @param {Phaser.Scene} uiScene the User interface Scene. Usually this is an overlay Scene, so the game objects don be affected by the game zoom and don't lose quality on Scale.
      */
     constructor(scene, player, map, uiScene) {
         /**
@@ -42,12 +43,16 @@ export class LuminusTiledInfoBox {
         /**
          * Name of the object Layer in the "Tiled" software. <a href="https://www.mapeditor.org/">Tiled</a>
          * Check Tiled Docs to learn more <a href="https://doc.mapeditor.org/en/stable/manual/objects/">Tiled</a>
-         * @type {string} */
+         * @type {string}
+         * @default
+         * */
         this.tiledObjectLayer = 'info';
 
         /**
          * Object Attribute that the you created in the Tiled Software to define your messages.
-         * @type {string}  */
+         * @type {string}
+         * @default
+         * */
         this.messageAttribute = 'message';
     }
 

@@ -35,10 +35,11 @@ export class LuminusKeyboardMouseController {
      * Created all logic for keyboard and mouse.
      */
     create() {
+        const isMobile = !this.scene.sys.game.device.os.desktop ? true : false;
         this.scene.input.mouse.disableContextMenu();
         this.luminusBattleManager = new LuminusBattleManager();
         this.scene.input.on('pointerdown', (pointer) => {
-            if (pointer.leftButtonDown()) {
+            if (pointer.leftButtonDown() && !isMobile) {
                 this.luminusBattleManager.atack(this.player);
             }
         });

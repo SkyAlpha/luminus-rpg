@@ -10,7 +10,7 @@ export class LuminusMovement extends AnimationNames {
     /**
      * Creates cursors to move the player in the given direction.
      * @param { Phaser.Scene } scene Phaser Scene.
-     * @param { Phaser.GameObjects } player the player that the cursors will move.
+     * @param { Phaser.Physics.Arcade.Sprite } player the player that the cursors will move.
      * @param { Phaser.Scene } joystickScene
      */
     constructor(scene, player, joystickScene) {
@@ -22,7 +22,7 @@ export class LuminusMovement extends AnimationNames {
 
         /**
          * player Player Game Object.
-         * @type { Phaser.GameObjects.Sprite }  */
+         * @type { Phaser.Physics.Arcade.Sprite }  */
         this.player = player;
 
         /**

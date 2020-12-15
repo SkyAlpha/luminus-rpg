@@ -1,6 +1,7 @@
 import Phaser from 'phaser';
 
 /**
+ * The Introduction Scene.
  * @class
  */
 export class IntroScene extends Phaser.Scene {
@@ -69,6 +70,7 @@ export class IntroScene extends Phaser.Scene {
         /**
          * The phaser logo Sprite / Texture name
          * @type { string }
+         * @default
          */
         this.phaserLogoSpriteName = 'logo_phaser';
 
@@ -96,18 +98,21 @@ export class IntroScene extends Phaser.Scene {
         /**
          * The Luminus logo Text.
          * @type { string }
+         * @default
          */
         this.luminusLogoText = 'Luminus Game Studio';
 
         /**
          * Particles Sprite / Texture name.
          * @type { string }
+         * @default
          */
         this.particlesSpriteName = 'flares';
 
         /**
          * The Luminus Logo font Family.
          * @type { strin }
+         * @default
          */
         this.luminusLogoFontFamily = "'Press Start 2P'";
 

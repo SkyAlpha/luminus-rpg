@@ -1,5 +1,7 @@
 import Phaser from 'phaser';
-
+/**
+ * @class
+ */
 export class MobileCheckScene extends Phaser.Scene {
     constructor() {
         super({
@@ -15,12 +17,14 @@ export class MobileCheckScene extends Phaser.Scene {
         /**
          * The Name of the texture / Sprite that will be presented.
          * @type { string }
+         * @default
          */
         this.landscapeImageName = 'landscape_mobile';
 
         /**
          * The text that will display the tip to the player.
          * @type { Phaser.GameObjects.Text }
+         * @default
          */
         this.helpText = null;
 
@@ -65,12 +69,14 @@ export class MobileCheckScene extends Phaser.Scene {
         /**
          * Show if the device is mobile or not.
          * @type { boolean }
+         * @default
          */
         this.isMobile = null;
 
         /**
          * Tells the update if the checks are finished so it can change the player to the next Scene.
          * @type { boolean }
+         * @default
          */
         this.finishedChecks = false;
 

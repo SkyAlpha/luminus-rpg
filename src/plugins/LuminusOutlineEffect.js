@@ -1,3 +1,4 @@
+import Phaser from 'phaser';
 /**
  * @class
  */
@@ -18,14 +19,30 @@ export class LuminusOutlineEffect {
          * @type { RexOutlineEffectLayer }
          */
         this.effectLayer = null;
+
+        /**
+         * the color of the outline.
+         * @type { Phaser.Display.Color }
+         * @default
+         */
+        this.outlineColor = 0xff0000;
+
+        /**
+         * The outline Thickness. The bigger the number, the bigger the thickness.
+         * @type { number }
+         */
+        this.outlineThickness = 1;
     }
 
+    /**
+     * Creates the layer that the outline will be put on.
+     */
     createLayer() {
         this.effectLayer = this.scene.add
             .rexOutlineEffectLayer({
                 knockout: true,
-                outlineColor: 0xff0000,
-                thickness: 1,
+                outlineColor: this.outlineColor,
+                thickness: this.outlineThickness,
             })
             .setDepth(99999);
     }

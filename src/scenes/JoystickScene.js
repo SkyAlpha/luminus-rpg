@@ -5,6 +5,9 @@ import joystick_json from '../assets/sprites/joystick.json';
 import { Player } from '../entities/Player';
 import { LuminusBattleManager } from '../plugins/LuminusBattleManager';
 
+/**
+ * @class
+ */
 export class JoystickScene extends Phaser.Scene {
     constructor() {
         super({
@@ -30,12 +33,14 @@ export class JoystickScene extends Phaser.Scene {
         /**
          * The name of the Button A to make it easy to use it for comparisons.
          * @type { string }
+         * @default
          */
         this.buttonAName = 'mobile_ButtonA';
 
         /**
          * The name of the Button B to make it easy to use it for comparisons.
          * @type { string }
+         * @default
          */
         this.buttonBName = 'mobile_ButtonB';
 
@@ -54,6 +59,7 @@ export class JoystickScene extends Phaser.Scene {
         /**
          * Name of the atlas.
          * @type { string }
+         * @default
          */
         this.atlasName = 'joystick';
 

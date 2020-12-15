@@ -24,6 +24,7 @@ export class LuminusTypingSoundManager {
 
         /**
          * @type { Phaser.Sound.BaseSound }
+         * @default
          */
         this.spaceAudioManager = null;
 
@@ -43,17 +44,21 @@ export class LuminusTypingSoundManager {
         /**
          * An Array of Phaser Audio that will play the specific audios.
          * @type { Phaser.Sound.BaseSound[] }
-         * @defualt
+         * @default
          */
         this.letterAudios = [];
 
         /**
          * The Current letter typed index.
          * @type { number }
+         * @default
          */
         this.letterTypedIndex = 0;
     }
 
+    /**
+     * Creates all the audios to play when the dialog scene is typping a text.
+     */
     create() {
         this.spaceAudioManager = this.scene.sound.add(this.spaceSoundName);
         for (let i = 0; i < this.typingKeySounds.length; i++) {

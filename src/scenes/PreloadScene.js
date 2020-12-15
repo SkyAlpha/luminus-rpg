@@ -8,7 +8,14 @@ import {
     TilemapConfig,
 } from '../consts/GameAssets';
 
+/**
+ * @class
+ */
 export class PreloadScene extends Phaser.Scene {
+    /**
+     * This Scene is responsible for loading all game assets of the game.
+     * While it is loading, it will present a progressbar with the loading progress.
+     */
     constructor() {
         super({
             key: 'PreloadScene',

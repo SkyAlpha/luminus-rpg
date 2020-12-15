@@ -9,10 +9,11 @@ export class DungeonScene extends Phaser.Scene {
         super({
             key: 'DungeonScene',
         });
-
-        this.enemiesVariableName = 'enemies';
     }
 
+    /**
+     * Creates the Dungeon Scene
+     */
     create() {
         this.dungeon = new LuminusDungeonGenerator(this);
         this.dungeon.create();

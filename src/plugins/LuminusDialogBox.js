@@ -13,7 +13,7 @@ export class LuminusDialogBox {
      * It's possible to set the Action Hotkey, Action button Sprite, Dialog Sprite image,
      * Interaction icon above player.
      * @param { Phaser.Scene } scene Scene Context.
-     * @param { Phaser.GameObjects } player Player Game Object.
+     * @param { Phaser.Physics.Arcade.Sprite } player Player Game Object.
      */
     constructor(scene, player) {
         /**
@@ -21,13 +21,15 @@ export class LuminusDialogBox {
          * @type { Phaser.Scene }  */
         this.scene = scene;
         /**
-         * player Player Game Object.
+         * Player Game Object.
          * @type { Player }  */
         this.player = player;
 
         /**
          * Name of the sprite image that will be the dialog.
-         *  @type { string } */
+         *  @type { string }
+         * @default
+         * */
         this.dialogSpriteName = 'dialog';
 
         /**
@@ -47,6 +49,7 @@ export class LuminusDialogBox {
         /**
          * The name of the animation that the iteraction icon will play.
          * @type { string }
+         * @default
          */
         this.animationIteractionIconName = 'chat_bubble_animation';
 
@@ -59,15 +62,21 @@ export class LuminusDialogBox {
 
         /**
          * Current action button key code.
-         * @type { Phaser.Input.Keyboard.KeyCodes } */
+         * @type { Phaser.Input.Keyboard.KeyCodes }
+         * @default
+         *  */
         this.actionButtonKeyCode = Phaser.Input.Keyboard.KeyCodes.SPACE;
         /**
          * Dialog height.
-         * @type { number }  */
+         * @type { number }
+         * @default
+         *   */
         this.dialogHeight = 150; // Dialog Height
         /**
          * Margin of the dialog. Used to make spaces in the dialog.
-         * @type { number }  */
+         * @type { number }
+         * @default
+         *   */
         this.margin = 15;
         /**
          * Width and Height of the corner Slice.
@@ -81,39 +90,57 @@ export class LuminusDialogBox {
          * // 2	[ topBottom, leftRight ]	The first element is used for the top and bottom, the second element is used as the for the left and right
          * // 3	[ top, rightLeft, bottom ]	The first element is used for the top, second is used for the right and left, and the third element is used for the bottom
          * // 4	[ top, right, bottom, left ]	Each element is assigned to a specific side
-         * @type { number | Array<number> }  */
+         * @type { number | Array<number> }
+         * @default
+         *   */
         this.nineSliceOffsets = 23;
         /**
          * Safe area of the scaling areas..
-         * @type { number }  */
+         * @type { number }
+         * @default
+         *   */
         this.nineSliceSafeArea = 14;
         /**
          * Sacele of the action button sprite.
-         * @type { number }  */
+         * @type { number }
+         * @default
+         *   */
         this.actionSpriteScale = 0.5;
         /**
          * Spelling speed of the text in the dialog box. Bigger is faster.
-         * @type { number }  */
+         * @type { number }
+         * @default
+         *  */
         this.dialogSpeed = 100;
         /**
          * Dialog font size.
-         * @type { number }  */
+         * @type { number }
+         * @default
+         *  */
         this.fontSize = 20;
         /**
          * Current dialog page.
-         * @type { number }  */
+         * @type { number }
+         * @default
+         *  */
         this.currentPage = 0;
         /**
          * Dialog font width.
-         * @type { number }  */
+         * @type { number }
+         * @default
+         *   */
         this.fontWidth = this.fontSize - 5;
         /**
          * Maximum number of lines.
-         * @type { number }  */
+         * @type { number }
+         * @default
+         *  */
         this.dialogMaxLines = 5;
         /**
          * Space between lines of the dialog text.
-         * @type { number }  */
+         * @type { number }
+         * @default
+         *  */
         this.letterSpacing = 0;
         /**
          * Width of the camera view port.
@@ -131,15 +158,21 @@ export class LuminusDialogBox {
         this.textWidth = this.cameraWidth - this.margin * 3; // Defines the text Width.
         /**
          * Rather it can show de dialog of not.
-         * @type { boolean }  */
+         * @type { boolean }
+         * @default
+         *  */
         this.canShowDialog = true;
         /**
          * Defines if the player is overlapping the text zone.
-         * @type { boolean }  */
+         * @type { boolean }
+         * @default
+         *  */
         this.isOverlapingChat = false;
         /**
          * Defines if the text is in spelling/typping animation.
-         * @type { boolean }  */
+         * @type { boolean }
+         * @default
+         *  */
         this.isAnimatingText = false;
 
         /**
@@ -157,24 +190,28 @@ export class LuminusDialogBox {
         /**
          * Button A
          * @type { Button }
+         * @default
          */
         this.buttonA = null;
 
         /**
          * Button B
          * @type { Button }
+         * @default
          */
         this.buttonB = null;
 
         /**
          * Action Button for general devices.
          * @type { Phaser.GameObjects.Image }
+         * @default
          */
         this.actionButton = null;
 
         /**
          * The Dialog that will show the text.
          * @type { NineSlice }
+         * @default
          */
         this.dialog = null;
 
@@ -202,6 +239,7 @@ export class LuminusDialogBox {
         /**
          * The Typing sound Manager. This will make sounds while typing the letters.
          * @type { LuminusTypingSoundManager }
+         * @default
          */
         this.luminusTypingSoundManager = null;
 
@@ -209,18 +247,22 @@ export class LuminusDialogBox {
          * Array with all properties that come with the Message Box. This will allow us to create videos, and more interactions
          * with the player as we wish.
          * @type { Array }
+         * @default
          */
         this.allProperties = null;
 
         /**
          * If you are using the LuminusGamePadController this variable will be created with the gamepad that is being used.
          * But only if it's connected.
+         * @type { Phaser.Input.Gamepad }
+         * @default
          */
         this.gamepad = null;
 
         /**
          * Font family to be used. It has to be included in your Phaser project.
          * @type { string }
+         * @default
          */
         this.fontFamily = 'Monospace, "Press Start 2P"';
     }
