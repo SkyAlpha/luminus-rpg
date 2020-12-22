@@ -151,6 +151,13 @@ export class MainScene extends Phaser.Scene {
         this.luminusEnemyZones.create();
     }
 
+    /**
+     * Stops all scene music.
+     */
+    stopSceneMusic() {
+        this.themeSound.stop();
+    }
+
     update(time, delta) {
         this.outlineEffect.clear();
         this.physics.overlap(

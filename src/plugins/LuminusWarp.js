@@ -54,6 +54,13 @@ export class LuminusWarp {
         this.propertyWarpName = 'goto';
 
         /**
+         * The name of the property to check when the warp should actually change the player to a new Scene. Like a Dungeon Scene.
+         * @type { string }
+         * @default
+         */
+        this.propertyChangeScene = 'scene';
+
+        /**
          * Maximum speed that the player can move. User only for caching in this class.
          * @private
          * @type { number }
@@ -139,15 +146,27 @@ export class LuminusWarp {
                 const dest = destinations.find(
                     (d) =>
                         d.id ===
-                        warp_point.warp.properties.filter(
+                        warp_point.warp.properties.find(
                             (f) => f.name === this.propertyWarpName
-                        )[0].value
+                        ).value
                 );
-                this.scene.cameras.main.fade(this.fadeOutTime);
-                if (dest) {
+                const isScene = warp_point.warp.properties.find(
+                    (f) => f.name === this.propertyChangeScene
+                );
+
+                if (dest && isScene === undefined) {
+                    this.scene.cameras.main.fade(this.fadeOutTime);
                     player.x = dest.x;
                     player.y = dest.y;
                     this.scene.cameras.main.fadeIn(this.fadeInTime);
+                } else if (isScene) {
+                    const scene = warp_point.warp.properties.find(
+                        (f) => f.name === this.propertyWarpName
+                    ).value;
+                    console.log(this.scene);
+                    this.scene.scene.switch(scene);
+                    this.scene.stopSceneMusic();
+                    // this.scene.scene.launch(scene);
                 }
             }
         );

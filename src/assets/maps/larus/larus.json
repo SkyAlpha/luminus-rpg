@@ -1260,7 +1260,7 @@
          "startx":-96,
          "starty":-64,
          "type":"tilelayer",
-         "visible":true,
+         "visible":false,
          "width":176,
          "x":0,
          "y":0
@@ -1278,7 +1278,7 @@
                         {
                          "name":"message",
                          "type":"string",
-                         "value":"Estes pratos parecem bem limpos."
+                         "value":"- I'm so glad the house is clean and organized."
                         }],
                  "rotation":0,
                  "type":"",
@@ -1295,7 +1295,7 @@
                         {
                          "name":"message",
                          "type":"string",
-                         "value":"Esta cadeira parece fr\u00e1gil. Melhor n\u00e3o sentar nela."
+                         "value":"- This is a weak chair. I think it's better not to sit on it."
                         }],
                  "rotation":0,
                  "type":"",
@@ -1312,7 +1312,7 @@
                         {
                          "name":"message",
                          "type":"string",
-                         "value":"Ainda bem que eu arrumei a minha cama antes de sair de casa. Minha esposa ficaria furiosa se voltasse para casa e a encontrasse desarrumada."
+                         "value":"- I can only rest once I clear all the monster in the dungeon inside the east side dungeon."
                         }],
                  "rotation":0,
                  "type":"",
@@ -1329,7 +1329,7 @@
                         {
                          "name":"message",
                          "type":"string",
-                         "value":"Ser\u00e1 que tem uma B\u00edblia aqui?\n\n......"
+                         "value":"- There is only one book here that I haven't read. I will come back here to read it once I'm able to find my glasses."
                         }],
                  "rotation":0,
                  "type":"",
@@ -1346,7 +1346,7 @@
                         {
                          "name":"message",
                          "type":"string",
-                         "value":"WoW!!!\nAcho que este canh\u00e3o de guerra ainda funciona! Ser\u00e1 que consigo subir nesta torre para testar? *-*"
+                         "value":"-  Wonder if I can climb this tower and shoot some cannon balls."
                         }],
                  "rotation":0,
                  "type":"",
@@ -1363,7 +1363,7 @@
                         {
                          "name":"message",
                          "type":"string",
-                         "value":"Pobre animal...."
+                         "value":"- This one I remember to battle...."
                         }],
                  "rotation":0,
                  "type":"",
@@ -1380,7 +1380,7 @@
                         {
                          "name":"message",
                          "type":"string",
-                         "value":"A casa do lenhador est\u00e1 fechada. Vou voltar mais tarde..."
+                         "value":"- The lumberjack's house is closed. I will come back leter on."
                         }],
                  "rotation":0,
                  "type":"",
@@ -1397,7 +1397,7 @@
                         {
                          "name":"message",
                          "type":"string",
-                         "value":"O Snoop deixou toda a comida para tr\u00e1s. Este c\u00e3osinho...."
+                         "value":"- Snoop has already left for his daily walk."
                         }],
                  "rotation":0,
                  "type":"",
@@ -1414,7 +1414,7 @@
                         {
                          "name":"message",
                          "type":"string",
-                         "value":"Alguma coisa caiu nesta grama, olha como ela est\u00e1 preta!! Ouvi dizer que esta casa possui muitos mist\u00e9rios.... =O"
+                         "value":"- I always wanted to see what is inside this house. Maybe some day I will Figure out how to enter in it."
                         }],
                  "rotation":0,
                  "type":"",
@@ -1424,21 +1424,21 @@
                  "y":-421
                 }, 
                 {
-                 "height":53,
+                 "height":69,
                  "id":52,
                  "name":"treasure_hole",
                  "properties":[
                         {
                          "name":"message",
                          "type":"string",
-                         "value":"Parece que algu\u00e9m tirou algo grande daqui!\nOlha o tamanho deste buraco!!! Ser\u00e1 que era um tesouro?"
+                         "value":"Be careful not to fall in this hole! They say there is a dungeon down there."
                         }],
                  "rotation":0,
                  "type":"",
                  "visible":true,
                  "width":46.5,
-                 "x":-223.5,
-                 "y":-211.5
+                 "x":-223,
+                 "y":-175.5
                 }, 
                 {
                  "height":55.3333,
@@ -1448,7 +1448,7 @@
                         {
                          "name":"message",
                          "type":"string",
-                         "value":"O lenhador trabalha muito mesmo! Olha quanta lenha tem aqui!"
+                         "value":"- Looks like the lumberjack likes to chop some wood \ud83d\ude06"
                         }],
                  "rotation":0,
                  "type":"",
@@ -1465,7 +1465,7 @@
                         {
                          "name":"message",
                          "type":"string",
-                         "value":"Estas flores est\u00e3o lindas. Vou colher algumas para milady."
+                         "value":"- These flowers are beautiful. I will grab some for my lady."
                         }],
                  "rotation":0,
                  "type":"",
@@ -1482,7 +1482,7 @@
                         {
                          "name":"message",
                          "type":"string",
-                         "value":"Ol\u00e1! Seja bem vindo ao Luminus RPG, uma experi\u00eancia interativa de explora\u00e7\u00e3o e aprendizado. Este prot\u00f3tipo tem como objetivo apresentar o potencial da educa\u00e7\u00e3o por meio de jogos, ou \"gamifica\u00e7\u00e3o\" educacional. Explore o mapa e sempre que aparecer um bal\u00e3osinho em cima da sua cabe\u00e7a aperte o bot\u00e3o de a\u00e7\u00e3o para interagir com o objeto. Aproveite o jogo!!"
+                         "value":"Welcome to the Luminus RPG, a PhaserJS template for creating Action RPG Games. This is a Work in Progress project, so expect to find Bugs. If you find any, please contact me on the Phaser Discord server @SkyAlpha. That's me YaY!! Thx for playing this game."
                         }],
                  "rotation":0,
                  "type":"",
@@ -1499,7 +1499,7 @@
                         {
                          "name":"message",
                          "type":"string",
-                         "value":"Eu poderia ficar olhando para este lago o dia todo....."
+                         "value":"- I could stand here ans look at this view all day long....."
                         }],
                  "rotation":0,
                  "type":"",
@@ -1510,30 +1510,13 @@
                 }, 
                 {
                  "height":22.25,
-                 "id":61,
-                 "name":"bones",
-                 "properties":[
-                        {
-                         "name":"message",
-                         "type":"string",
-                         "value":"Este aqui era dos grandes!!"
-                        }],
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":22.75,
-                 "x":-819.375,
-                 "y":235.375
-                }, 
-                {
-                 "height":22.25,
                  "id":62,
                  "name":"bones",
                  "properties":[
                         {
                          "name":"message",
                          "type":"string",
-                         "value":"Ossos de um animal morto. Ser\u00e1 que ainda existem animais vivos nesta regi\u00e3o?"
+                         "value":"- These are animal bones, I can't remember that I killed these ones."
                         }],
                  "rotation":0,
                  "type":"",
@@ -1541,23 +1524,6 @@
                  "width":22.75,
                  "x":-784.875,
                  "y":128.875
-                }, 
-                {
-                 "height":21.5,
-                 "id":64,
-                 "name":"Cannon_tip",
-                 "properties":[
-                        {
-                         "name":"message",
-                         "type":"string",
-                         "value":"Ouvi falar que aqui tem uma torre com um canh\u00e3o poderoso!!"
-                        }],
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":97.5,
-                 "x":-736.5,
-                 "y":6
                 }],
          "opacity":1,
          "properties":[
@@ -1645,7 +1611,7 @@
                  "y":-52.6667
                 }, 
                 {
-                 "height":157.8333,
+                 "height":157.833,
                  "id":82,
                  "name":"",
                  "properties":[
@@ -1663,7 +1629,7 @@
                  "type":"",
                  "visible":true,
                  "width":114.5,
-                 "x":-1003.833,
+                 "x":-1003.83,
                  "y":-410.833
                 }, 
                 {
@@ -1730,7 +1696,7 @@
                 }],
          "opacity":1,
          "type":"objectgroup",
-         "visible":true,
+         "visible":false,
          "x":0,
          "y":0
         }, 
@@ -1942,7 +1908,7 @@
                 }],
          "opacity":1,
          "type":"objectgroup",
-         "visible":true,
+         "visible":false,
          "x":0,
          "y":0
         }, 
@@ -2066,10 +2032,32 @@
                  "width":16,
                  "x":-1184,
                  "y":-164
+                }, 
+                {
+                 "height":31.5,
+                 "id":88,
+                 "name":"dungeon",
+                 "properties":[
+                        {
+                         "name":"goto",
+                         "type":"string",
+                         "value":"DungeonScene"
+                        }, 
+                        {
+                         "name":"scene",
+                         "type":"bool",
+                         "value":true
+                        }],
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":28,
+                 "x":-214.5,
+                 "y":-200.5
                 }],
          "opacity":1,
          "type":"objectgroup",
-         "visible":false,
+         "visible":true,
          "x":0,
          "y":0
         }, 
@@ -2087,8 +2075,8 @@
                  "type":"",
                  "visible":true,
                  "width":0,
-                 "x":-1161.67,
-                 "y":-632.333
+                 "x":-1158.17,
+                 "y":-635.333
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -2097,7 +2085,7 @@
          "y":0
         }],
  "nextlayerid":15,
- "nextobjectid":88,
+ "nextobjectid":89,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.4.3",

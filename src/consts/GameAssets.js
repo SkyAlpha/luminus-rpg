@@ -16,6 +16,7 @@ import cog_settings from '../assets/sprites/cog.png';
 import settings_background from '../assets/sprites/settings_background.png';
 import landscape_mobile from '../assets/sprites/landscape.png';
 import walk_dust from '../assets/sprites/walk_dust.png';
+import fog_mask from '../assets/sprites/mask.png';
 
 // Maps
 import dungeon_map from '../assets/maps/dungeon/dungeon_tileset.png';
@@ -52,6 +53,8 @@ import typing_key_03 from '../assets/sound/typing/typing_key_03.mp3';
 import typing_key_04 from '../assets/sound/typing/typing_key_04.mp3';
 import typing_key_05 from '../assets/sound/typing/typing_key_05.mp3';
 import path_to_lake_land from '../assets/sound/path_to_lake_land.mp3';
+import dungeon_ambient from '../assets/sound/dungeon_ambient.mp3';
+import dark_theme from '../assets/sound/dark_theme.mp3';
 
 // SFX
 // Atack
@@ -156,6 +159,10 @@ export const Images = [
         name: 'dungeon_tiles',
         image: dungeon_map,
     },
+    {
+        name: 'fog_mask',
+        image: fog_mask,
+    },
 
     //Clouds
     {
@@ -231,6 +238,14 @@ export const LuminusAudios = [
     {
         name: 'path_to_lake_land',
         audio: path_to_lake_land,
+    },
+    {
+        name: 'dungeon_ambient',
+        audio: dungeon_ambient,
+    },
+    {
+        name: 'dark_theme',
+        audio: dark_theme,
     },
 
     // SFX

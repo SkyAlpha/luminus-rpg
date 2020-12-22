@@ -145,10 +145,17 @@ export class Player extends Phaser.GameObjects.Sprite {
     }
 
     /**
+     * The default pre update method from the Sprite Game Object.
+     */
+    preUpdate(time, delta) {
+        super.preUpdate(time, delta);
+        this.updateMovementDependencies();
+    }
+
+    /**
      * This method is called every game loop. Anything that depends on it (update game loop method) should be put in here.
      */
     onUpdate() {
-        this.updateMovementDependencies();
         if (this.luminusMovement) this.luminusMovement.move();
     }
 

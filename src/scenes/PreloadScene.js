@@ -8,6 +8,8 @@ import {
     TilemapConfig,
 } from '../consts/GameAssets';
 
+// import nesCss from 'node_modules/nes.css/css/nes.min.css';
+
 /**
  * @class
  */
@@ -50,7 +52,7 @@ export class PreloadScene extends Phaser.Scene {
         });
 
         // Custom CSS
-        this.load.css('nescss', 'node_modules/nes.css/css/nes.min.css');
+        // this.load.css('nescss', nesCss);
 
         let progressBar = this.add.graphics();
         let progressBox = this.add.graphics();
@@ -125,9 +127,9 @@ export class PreloadScene extends Phaser.Scene {
                 families: ['Press Start 2P'],
             },
             active: () => {
-                // this.scene.start('MobileCheckScene');
+                this.scene.start('MobileCheckScene');
                 // this.scene.start('IntroScene');
-                this.scene.start('DungeonScene');
+                // this.scene.start('DungeonScene');
                 // this.scene.start('MainScene');
             },
         });

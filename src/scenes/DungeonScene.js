@@ -3,6 +3,7 @@ import { LuminusMovement } from '../plugins/LuminusMovement';
 import { Player } from '../entities/Player';
 import { LuminusDungeonGenerator } from '../plugins/LuminusDungeonGenerator';
 import { LuminusKeyboardMouseController } from '../plugins/LuminusKeyboardMouseController';
+import { LuminusFogWarManager } from '../plugins/LuminusFogWarManager';
 
 export class DungeonScene extends Phaser.Scene {
     constructor() {
@@ -68,8 +69,28 @@ export class DungeonScene extends Phaser.Scene {
 
         this.physics.add.collider(this.player, this.enemies);
 
-        this.sound.volume = 0.2;
+        this.sound.volume = 0.4;
+
+        this.themeSong = this.sound.add('dark_theme', {
+            loop: true,
+        });
+        this.themeSong.play();
+
+        this.ambientSound = this.sound.add('dungeon_ambient', {
+            volume: 1,
+            loop: true,
+        });
+        this.ambientSound.play();
+
+        this.fog = new LuminusFogWarManager(
+            this,
+            this.dungeon.map,
+            this.player
+        );
+        this.fog.createFog();
     }
 
-    update() {}
+    update() {
+        this.fog.updateFog();
+    }
 }

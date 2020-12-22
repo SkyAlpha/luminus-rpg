@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.4" tiledversion="1.4.3" orientation="orthogonal" renderorder="right-down" width="100" height="100" tilewidth="16" tileheight="16" infinite="1" nextlayerid="15" nextobjectid="88">
+<map version="1.4" tiledversion="1.4.3" orientation="orthogonal" renderorder="right-down" width="100" height="100" tilewidth="16" tileheight="16" infinite="1" nextlayerid="15" nextobjectid="89">
  <editorsettings>
   <export target="larus.json" format="json"/>
  </editorsettings>
@@ -646,7 +646,7 @@
   </chunk>
   </data>
  </layer>
- <layer id="3" name="collision" width="100" height="100">
+ <layer id="3" name="collision" width="100" height="100" visible="0">
   <data encoding="base64">
    <chunk x="-80" y="-64" width="16" height="16">
    AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACJCQAAiQkAAIkJAACJCQAAiQkAAA==
@@ -776,95 +776,81 @@
   </properties>
   <object id="21" name="plates_house" x="1110" y="18.1818" width="26.5455" height="5.09091">
    <properties>
-    <property name="message" value="Estes pratos parecem bem limpos."/>
+    <property name="message" value="- I'm so glad the house is clean and organized."/>
    </properties>
   </object>
   <object id="29" name="bad_chair" x="1055.5" y="31.5" width="25" height="45">
    <properties>
-    <property name="message" value="Esta cadeira parece frágil. Melhor não sentar nela."/>
+    <property name="message" value="- This is a weak chair. I think it's better not to sit on it."/>
    </properties>
   </object>
   <object id="30" name="beautiful_bed" x="911" y="369.5" width="49.5" height="52">
    <properties>
-    <property name="message" value="Ainda bem que eu arrumei a minha cama antes de sair de casa. Minha esposa ficaria furiosa se voltasse para casa e a encontrasse desarrumada."/>
+    <property name="message" value="- I can only rest once I clear all the monster in the dungeon inside the east side dungeon."/>
    </properties>
   </object>
   <object id="31" name="books" x="981" y="372.5" width="70" height="38.5">
    <properties>
-    <property name="message">Será que tem uma Bíblia aqui?
-
-......</property>
+    <property name="message" value="- There is only one book here that I haven't read. I will come back here to read it once I'm able to find my glasses."/>
    </properties>
   </object>
   <object id="44" name="cannon" x="-1281.25" y="-144.5" width="60.75" height="128.5">
    <properties>
-    <property name="message">WoW!!!
-Acho que este canhão de guerra ainda funciona! Será que consigo subir nesta torre para testar? *-*</property>
+    <property name="message" value="-  Wonder if I can climb this tower and shoot some cannon balls."/>
    </properties>
   </object>
   <object id="47" name="bones" x="-769.75" y="188.5" width="22.75" height="22.25">
    <properties>
-    <property name="message" value="Pobre animal...."/>
+    <property name="message" value="- This one I remember to battle...."/>
    </properties>
   </object>
   <object id="49" name="lumberjacks_house" x="-258.5" y="-760" width="80.5" height="83.5">
    <properties>
-    <property name="message" value="A casa do lenhador está fechada. Vou voltar mais tarde..."/>
+    <property name="message" value="- The lumberjack's house is closed. I will come back leter on."/>
    </properties>
   </object>
   <object id="50" name="dogs_house" x="-971.5" y="-216" width="51.3333" height="66">
    <properties>
-    <property name="message" value="O Snoop deixou toda a comida para trás. Este cãosinho...."/>
+    <property name="message" value="- Snoop has already left for his daily walk."/>
    </properties>
   </object>
   <object id="51" name="dark_grass" x="-1133.5" y="-421" width="103" height="111.5">
    <properties>
-    <property name="message" value="Alguma coisa caiu nesta grama, olha como ela está preta!! Ouvi dizer que esta casa possui muitos mistérios.... =O"/>
+    <property name="message" value="- I always wanted to see what is inside this house. Maybe some day I will Figure out how to enter in it."/>
    </properties>
   </object>
-  <object id="52" name="treasure_hole" x="-223.5" y="-211.5" width="46.5" height="53">
+  <object id="52" name="treasure_hole" x="-223" y="-175.5" width="46.5" height="69">
    <properties>
-    <property name="message">Parece que alguém tirou algo grande daqui!
-Olha o tamanho deste buraco!!! Será que era um tesouro?</property>
+    <property name="message" value="Be careful not to fall in this hole! They say there is a dungeon down there."/>
    </properties>
   </object>
   <object id="53" name="logs" x="-548.667" y="-760" width="82.6667" height="55.3333">
    <properties>
-    <property name="message" value="O lenhador trabalha muito mesmo! Olha quanta lenha tem aqui!"/>
+    <property name="message" value="- Looks like the lumberjack likes to chop some wood 😆"/>
    </properties>
   </object>
   <object id="56" name="farm" x="-307.333" y="-624" width="124.667" height="67.3333">
    <properties>
-    <property name="message" value="Estas flores estão lindas. Vou colher algumas para milady."/>
+    <property name="message" value="- These flowers are beautiful. I will grab some for my lady."/>
    </properties>
   </object>
   <object id="59" name="initial_info" x="-1117" y="-704" width="27" height="123">
    <properties>
-    <property name="message" value="Olá! Seja bem vindo ao Luminus RPG, uma experiência interativa de exploração e aprendizado. Este protótipo tem como objetivo apresentar o potencial da educação por meio de jogos, ou &quot;gamificação&quot; educacional. Explore o mapa e sempre que aparecer um balãosinho em cima da sua cabeça aperte o botão de ação para interagir com o objeto. Aproveite o jogo!!"/>
+    <property name="message" value="Welcome to the Luminus RPG, a PhaserJS template for creating Action RPG Games. This is a Work in Progress project, so expect to find Bugs. If you find any, please contact me on the Phaser Discord server @SkyAlpha. That's me YaY!! Thx for playing this game."/>
    </properties>
   </object>
   <object id="60" name="side_lake" x="-592" y="89" width="52.5" height="92.5">
    <properties>
-    <property name="message" value="Eu poderia ficar olhando para este lago o dia todo....."/>
-   </properties>
-  </object>
-  <object id="61" name="bones" x="-819.375" y="235.375" width="22.75" height="22.25">
-   <properties>
-    <property name="message" value="Este aqui era dos grandes!!"/>
+    <property name="message" value="- I could stand here ans look at this view all day long....."/>
    </properties>
   </object>
   <object id="62" name="bones" x="-784.875" y="128.875" width="22.75" height="22.25">
    <properties>
-    <property name="message" value="Ossos de um animal morto. Será que ainda existem animais vivos nesta região?"/>
-   </properties>
-  </object>
-  <object id="64" name="Cannon_tip" x="-736.5" y="6" width="97.5" height="21.5">
-   <properties>
-    <property name="message" value="Ouvi falar que aqui tem uma torre com um canhão poderoso!!"/>
+    <property name="message" value="- These are animal bones, I can't remember that I killed these ones."/>
    </properties>
   </object>
  </objectgroup>
- <objectgroup id="14" name="enemies">
+ <objectgroup id="14" name="enemies" visible="0">
   <object id="78" x="-830.667" y="-492.667" width="160.667" height="95.3333">
    <properties>
     <property name="number" type="int" value="5"/>
@@ -912,7 +898,7 @@ Olha o tamanho deste buraco!!! Será que era um tesouro?</property>
   <object id="57" name="forest" x="-1282" y="-768" width="1106" height="1050"/>
   <object id="77" name="clouds" x="-1460" y="-950" width="1482" height="1370"/>
  </objectgroup>
- <objectgroup id="10" name="markers">
+ <objectgroup id="10" name="markers" visible="0">
   <object id="35" x="1062.5" y="53">
    <point/>
   </object>
@@ -956,7 +942,7 @@ Olha o tamanho deste buraco!!! Será que era um tesouro?</property>
    <point/>
   </object>
  </objectgroup>
- <objectgroup id="5" name="warps" visible="0">
+ <objectgroup id="5" name="warps">
   <object id="15" name="go_field" x="1027.08" y="-45.1667" width="9.375" height="6.875">
    <properties>
     <property name="goto" type="object" value="42"/>
@@ -989,9 +975,15 @@ Olha o tamanho deste buraco!!! Será que era um tesouro?</property>
     <property name="goto" type="object" value="16"/>
    </properties>
   </object>
+  <object id="88" name="dungeon" x="-214.5" y="-200.5" width="28" height="31.5">
+   <properties>
+    <property name="goto" value="DungeonScene"/>
+    <property name="scene" type="bool" value="true"/>
+   </properties>
+  </object>
  </objectgroup>
  <objectgroup id="6" name="spawn" visible="0">
-  <object id="11" name="Spawn Point" x="-1161.67" y="-632.333">
+  <object id="11" name="Spawn Point" x="-1158.17" y="-635.333">
    <point/>
   </object>
  </objectgroup>
