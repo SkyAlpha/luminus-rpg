@@ -4,6 +4,7 @@ import { Player } from '../entities/Player';
 import { LuminusDungeonGenerator } from '../plugins/LuminusDungeonGenerator';
 import { LuminusKeyboardMouseController } from '../plugins/LuminusKeyboardMouseController';
 import { LuminusFogWarManager } from '../plugins/LuminusFogWarManager';
+import { Enemy } from '../entities/Enemy';
 
 export class DungeonScene extends Phaser.Scene {
     constructor() {
@@ -59,10 +60,7 @@ export class DungeonScene extends Phaser.Scene {
             );
             for (let i = 0; i < 5; i++) {
                 const pos = Phaser.Geom.Rectangle.Random(spriteBounds);
-                const enemy = this.physics.add.sprite(pos.x, pos.y, 'bat');
-                enemy.anims.play('bat-idle-down');
-                enemy.body.setSize(enemy.body.width, enemy.body.height);
-                enemy.body.immovable = true;
+                const enemy = new Enemy(this, pos.x, pos.y, 'bat');
                 this.enemies.push(enemy);
             }
         });

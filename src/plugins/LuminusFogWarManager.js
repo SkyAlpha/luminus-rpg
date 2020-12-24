@@ -111,7 +111,7 @@ export class LuminusFogWarManager {
             this.player.y,
             this.maskTextureName
         );
-        this.imageMask.scale = 2;
+        this.imageMask.scale = 1.5;
         this.imageMask.visible = false;
 
         // this.renderTexture.mask.invertAlpha = true;

@@ -1,5 +1,6 @@
 import { AnimationNames } from '../consts/AnimationNames';
 import PhaserJuice from 'phaser3-juice-plugin';
+import { Enemy } from '../entities/Enemy';
 /**
  * @class
  */
@@ -77,6 +78,14 @@ export class LuminusBattleManager extends AnimationNames {
          * @type { PhaserJuice }
          */
         this.phaserJuice = null;
+
+        /**
+         * The atack variation. This number represents a percentage of variation of the damage.
+         * The damage can be higher than the base damage, or lower than the base damage.
+         * @type { number }
+         * @default
+         */
+        this.variation = 10;
     }
 
     /**
@@ -168,6 +177,55 @@ export class LuminusBattleManager extends AnimationNames {
     }
 
     /**
+     * Damages the target and manages any dependencies like decreasing the health, killing the target and any other thing needed.
+     * @param { Player } atacker Usually the atacker is the player.
+     * @param { Enemy } target  Usually the target is the enemy.
+     */
+    takeDamage(atacker, target) {
+        // Randomizes the name of the damage sound.
+        const damageName = this.damageSoundNames[
+            Math.floor(Math.random() * this.damageSoundNames.length)
+        ];
+        const damage = this.randomDamage(atacker.atack);
+        if (damage - target.defense > 0) {
+            target.healthBar.decrease(damage - target.defense);
+            target.health -= damage - target.defense;
+        } else {
+            target.health -= 1;
+        }
+        this.phaserJuice.add(target).flash();
+        atacker.scene.sound.add(damageName).play();
+        if (target.health <= 0) {
+            setTimeout((t) => {
+                target.anims.stop();
+                target.destroyAll();
+            }, 400);
+        }
+        /**
+         * Makes random damage.
+         * Decreses the health based on the target defense.
+         * Updates the Health Bar.
+         * Kills the target if it reaches the 0 or less hit points.
+         */
+    }
+
+    /**
+     * Generates a random damage to deal to the target.
+     * @param { number } damage
+     */
+    randomDamage(damage) {
+        let variationDamage = damage * (this.variation / 100);
+
+        if (Math.random() > 0.5) {
+            variationDamage = damage + variationDamage;
+        } else {
+            variationDamage = damage - variationDamage;
+        }
+
+        return variationDamage;
+    }
+
+    /**
      * This method will perform the atack routine, checking for enemies within range.
      * The atacker should have a body in order to stop him from walking as the movement is expected to be done with Velocity.
      * @param { Phaser.Physics.Arcade.Sprite } atacker the atacker.
@@ -188,10 +246,7 @@ export class LuminusBattleManager extends AnimationNames {
             const animationName = this.atackSoundAnimationNames[
                 Math.floor(Math.random() * this.atackSoundAnimationNames.length)
             ];
-            // Randomizes the name of the damage sound.
-            const damageName = this.damageSoundNames[
-                Math.floor(Math.random() * this.damageSoundNames.length)
-            ];
+
             const hitBoxSprite = this.createHitBox(atacker);
             hitBoxSprite.anims.play('slash');
             // Animations events have to come before the animation is played, they are triggered propperly.
@@ -210,14 +265,7 @@ export class LuminusBattleManager extends AnimationNames {
                         atacker.scene[this.enemiesVariableName],
                         (h, e) => {
                             canDamage = false;
-                            this.phaserJuice.add(e).flash();
-                            atacker.scene.sound.add(damageName).play();
-                            setTimeout((t) => {
-                                if (e) {
-                                    e.anims.stop();
-                                    e.destroy();
-                                }
-                            }, 400);
+                            this.takeDamage(atacker, e);
                         },
                         (controler) => {
                             return canDamage;

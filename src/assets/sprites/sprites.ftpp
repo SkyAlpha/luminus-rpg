@@ -1,0 +1,82 @@
+{
+  "meta": {
+    "version": "0.6.6"
+  },
+  "savePath": "/Users/jonatan/Documents/Projects/games/collision/src/assets/sprites",
+  "images": [
+    {
+      "name": "buttonA.png",
+      "path": "/Users/jonatan/Documents/Projects/games/collision/src/assets/sprites/buttonA.png",
+      "folder": ""
+    },
+    {
+      "name": "dust.png",
+      "path": "/Users/jonatan/Documents/Projects/games/collision/src/assets/sprites/dust.png",
+      "folder": ""
+    },
+    {
+      "name": "leaves.png",
+      "path": "/Users/jonatan/Documents/Projects/games/collision/src/assets/sprites/leaves.png",
+      "folder": ""
+    },
+    {
+      "name": "maximize.png",
+      "path": "/Users/jonatan/Documents/Projects/games/collision/src/assets/sprites/maximize.png",
+      "folder": ""
+    },
+    {
+      "name": "particle_warp.png",
+      "path": "/Users/jonatan/Documents/Projects/games/collision/src/assets/sprites/particle_warp.png",
+      "folder": ""
+    },
+    {
+      "name": "question_mark.png",
+      "path": "/Users/jonatan/Documents/Projects/games/collision/src/assets/sprites/question_mark.png",
+      "folder": ""
+    },
+    {
+      "name": "rain.png",
+      "path": "/Users/jonatan/Documents/Projects/games/collision/src/assets/sprites/rain.png",
+      "folder": ""
+    },
+    {
+      "name": "space.png",
+      "path": "/Users/jonatan/Documents/Projects/games/collision/src/assets/sprites/space.png",
+      "folder": ""
+    },
+    {
+      "name": "walk_dust.png",
+      "path": "/Users/jonatan/Documents/Projects/games/collision/src/assets/sprites/walk_dust.png",
+      "folder": ""
+    }
+  ],
+  "folders": [],
+  "packOptions": {
+    "textureName": "sprites",
+    "textureFormat": "png",
+    "removeFileExtension": true,
+    "prependFolderName": false,
+    "base64Export": false,
+    "tinify": false,
+    "tinifyKey": "",
+    "scale": 1,
+    "disableSmoothing": false,
+    "filter": "none",
+    "exporter": "Phaser 3",
+    "fileName": "pack-result",
+    "savePath": "/Users/jonatan/Documents/Projects/games/collision/src/assets/sprites",
+    "width": 2048,
+    "height": 2048,
+    "fixedSize": false,
+    "powerOfTwo": false,
+    "padding": 6,
+    "extrude": 0,
+    "allowRotation": false,
+    "allowTrim": true,
+    "trimMode": "trim",
+    "alphaThreshold": "0",
+    "detectIdentical": true,
+    "packer": "MaxRectsBin",
+    "packerMethod": "BestAreaFit"
+  }
+}

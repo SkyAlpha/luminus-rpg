@@ -1437,8 +1437,8 @@
                  "type":"",
                  "visible":true,
                  "width":46.5,
-                 "x":-223,
-                 "y":-175.5
+                 "x":-223.5,
+                 "y":-149.5
                 }, 
                 {
                  "height":55.3333,
@@ -1482,7 +1482,7 @@
                         {
                          "name":"message",
                          "type":"string",
-                         "value":"Welcome to the Luminus RPG, a PhaserJS template for creating Action RPG Games. This is a Work in Progress project, so expect to find Bugs. If you find any, please contact me on the Phaser Discord server @SkyAlpha. That's me YaY!! Thx for playing this game."
+                         "value":"Welcome to the Luminus RPG, a PhaserJS template for creating Action RPG Games. This is a Work in Progress project, so expect to find Bugs. If you find any, please contact me on the Phaser Discord server @SkyAlpha. I hope you enjoy the experience. Thx for playing."
                         }],
                  "rotation":0,
                  "type":"",
@@ -1611,7 +1611,7 @@
                  "y":-52.6667
                 }, 
                 {
-                 "height":157.833,
+                 "height":86.333,
                  "id":82,
                  "name":"",
                  "properties":[
@@ -1628,9 +1628,9 @@
                  "rotation":0,
                  "type":"",
                  "visible":true,
-                 "width":114.5,
-                 "x":-1003.83,
-                 "y":-410.833
+                 "width":121,
+                 "x":-1003.33,
+                 "y":-346.333
                 }, 
                 {
                  "height":66,
@@ -2057,7 +2057,7 @@
                 }],
          "opacity":1,
          "type":"objectgroup",
-         "visible":true,
+         "visible":false,
          "x":0,
          "y":0
         }, 

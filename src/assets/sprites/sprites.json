@@ -1,0 +1,208 @@
+{
+	"textures": [
+		{
+			"image": "sprites.png",
+			"format": "RGBA8888",
+			"size": {
+				"w": 163,
+				"h": 191
+			},
+			"scale": 1,
+			"frames": [
+				{
+					"filename": "space",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 100,
+						"h": 100
+					},
+					"spriteSourceSize": {
+						"x": 2,
+						"y": 26,
+						"w": 96,
+						"h": 48
+					},
+					"frame": {
+						"x": 6,
+						"y": 6,
+						"w": 96,
+						"h": 48
+					}
+				},
+				{
+					"filename": "buttonA",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 100,
+						"h": 100
+					},
+					"spriteSourceSize": {
+						"x": 9,
+						"y": 9,
+						"w": 82,
+						"h": 82
+					},
+					"frame": {
+						"x": 6,
+						"y": 66,
+						"w": 82,
+						"h": 82
+					}
+				},
+				{
+					"filename": "maximize",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 32,
+						"h": 32
+					},
+					"spriteSourceSize": {
+						"x": 2,
+						"y": 3,
+						"w": 29,
+						"h": 26
+					},
+					"frame": {
+						"x": 114,
+						"y": 6,
+						"w": 29,
+						"h": 26
+					}
+				},
+				{
+					"filename": "question_mark",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 13,
+						"h": 12
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 13,
+						"h": 12
+					},
+					"frame": {
+						"x": 6,
+						"y": 160,
+						"w": 13,
+						"h": 12
+					}
+				},
+				{
+					"filename": "walk_dust",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 9,
+						"h": 9
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 9,
+						"h": 9
+					},
+					"frame": {
+						"x": 100,
+						"y": 66,
+						"w": 9,
+						"h": 9
+					}
+				},
+				{
+					"filename": "rain",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 8,
+						"h": 8
+					},
+					"spriteSourceSize": {
+						"x": 3,
+						"y": 3,
+						"w": 2,
+						"h": 2
+					},
+					"frame": {
+						"x": 155,
+						"y": 6,
+						"w": 2,
+						"h": 2
+					}
+				},
+				{
+					"filename": "dust",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 1,
+						"h": 1
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 1,
+						"h": 1
+					},
+					"frame": {
+						"x": 6,
+						"y": 184,
+						"w": 1,
+						"h": 1
+					}
+				},
+				{
+					"filename": "leaves",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 1,
+						"h": 1
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 1,
+						"h": 1
+					},
+					"frame": {
+						"x": 31,
+						"y": 160,
+						"w": 1,
+						"h": 1
+					}
+				},
+				{
+					"filename": "particle_warp",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 1,
+						"h": 1
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 1,
+						"h": 1
+					},
+					"frame": {
+						"x": 100,
+						"y": 87,
+						"w": 1,
+						"h": 1
+					}
+				}
+			]
+		}
+	],
+	"meta": {
+		"app": "http://free-tex-packer.com",
+		"version": "0.6.6"
+	}
+}

@@ -4,19 +4,20 @@ import inner from '../assets/maps/tilesets/Inner-extruded.png';
 import collision_tile from '../assets/maps/tilesets/collision.png';
 import player_image from '../assets/sprites/player.png';
 import dialog from '../assets/sprites/dialog_paper.png';
-import space from '../assets/sprites/space_key.png';
+import space from '../assets/sprites/space.png';
 import buttonA from '../assets/sprites/buttonA.png';
 import question_mark from '../assets/sprites/question_mark.png';
 import spread from '../assets/sprites/spread.png';
 import maximize from '../assets/sprites/maximize.png';
-import close from '../assets/sprites/close.png';
+import close from '../assets/sprites/close_button.png';
 import logo_phaser from '../assets/sprites/logo.png';
 import luminus_candle from '../assets/sprites/candle.png';
-import cog_settings from '../assets/sprites/cog.png';
+import cog_settings from '../assets/sprites/cog_settings.png';
 import settings_background from '../assets/sprites/settings_background.png';
 import landscape_mobile from '../assets/sprites/landscape.png';
 import walk_dust from '../assets/sprites/walk_dust.png';
 import fog_mask from '../assets/sprites/mask.png';
+import health from '../assets/sprites/health.png';
 
 // Maps
 import dungeon_map from '../assets/maps/dungeon/dungeon_tileset.png';
@@ -163,6 +164,10 @@ export const Images = [
         name: 'fog_mask',
         image: fog_mask,
     },
+    {
+        name: 'health',
+        image: health,
+    },
 
     //Clouds
     {
@@ -210,6 +215,7 @@ export const TilemapConfig = [
         json: tile_map_json,
     },
 ];
+
 export const LuminusAudios = [
     {
         name: 'space_sound',

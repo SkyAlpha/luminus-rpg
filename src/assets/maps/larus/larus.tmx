@@ -819,7 +819,7 @@
     <property name="message" value="- I always wanted to see what is inside this house. Maybe some day I will Figure out how to enter in it."/>
    </properties>
   </object>
-  <object id="52" name="treasure_hole" x="-223" y="-175.5" width="46.5" height="69">
+  <object id="52" name="treasure_hole" x="-223.5" y="-149.5" width="46.5" height="69">
    <properties>
     <property name="message" value="Be careful not to fall in this hole! They say there is a dungeon down there."/>
    </properties>
@@ -836,7 +836,7 @@
   </object>
   <object id="59" name="initial_info" x="-1117" y="-704" width="27" height="123">
    <properties>
-    <property name="message" value="Welcome to the Luminus RPG, a PhaserJS template for creating Action RPG Games. This is a Work in Progress project, so expect to find Bugs. If you find any, please contact me on the Phaser Discord server @SkyAlpha. That's me YaY!! Thx for playing this game."/>
+    <property name="message" value="Welcome to the Luminus RPG, a PhaserJS template for creating Action RPG Games. This is a Work in Progress project, so expect to find Bugs. If you find any, please contact me on the Phaser Discord server @SkyAlpha. I hope you enjoy the experience. Thx for playing."/>
    </properties>
   </object>
   <object id="60" name="side_lake" x="-592" y="89" width="52.5" height="92.5">
@@ -871,7 +871,7 @@
     <property name="number" type="int" value="2"/>
    </properties>
   </object>
-  <object id="82" x="-1003.83" y="-410.833" width="114.5" height="157.833">
+  <object id="82" x="-1003.33" y="-346.333" width="121" height="86.333">
    <properties>
     <property name="number" type="int" value="3"/>
     <property name="texture" value="rat"/>
@@ -942,7 +942,7 @@
    <point/>
   </object>
  </objectgroup>
- <objectgroup id="5" name="warps">
+ <objectgroup id="5" name="warps" visible="0">
   <object id="15" name="go_field" x="1027.08" y="-45.1667" width="9.375" height="6.875">
    <properties>
     <property name="goto" type="object" value="42"/>

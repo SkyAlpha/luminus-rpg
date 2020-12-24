@@ -2,18 +2,21 @@ import Phaser from 'phaser';
 import { LuminusKeyboardMouseController } from '../plugins/LuminusKeyboardMouseController';
 import { LuminusMovement } from '../plugins/LuminusMovement';
 import { BaseEntity } from './BaseEntity';
+import { EntityStatus } from './EntityStatus';
 
 /**
  * @class
  * @extends Phaser.GameObjects.Sprite
  * {@link https://photonstorm.github.io/phaser3-docs/Phaser.GameObjects.Sprite.html| Docs}
  * @extends BaseEntity
+ * @extends EntityStatus
  */
 export class Player extends Phaser.GameObjects.Sprite {
     constructor(scene, x, y, texture, map) {
         super(scene, x, y, texture);
 
         Object.assign(this, BaseEntity);
+        Object.assign(this, EntityStatus);
 
         /**
          * scene Scene Context.
