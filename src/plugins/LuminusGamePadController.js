@@ -52,15 +52,21 @@ export class LuminusGamePadController extends AnimationNames {
      */
     create() {
         this.luminusBattleManager = new LuminusBattleManager();
-        this.scene.input.gamepad.once(
+        this.scene.input.gamepad.on(
             'connected',
             (pad, button, index) => {
-                this.gamepad = pad;
+                console.log('GamePad Connected');
+                if (!this.gamepad) {
+                    this.gamepad = pad;
+                }
             },
             this
         );
 
         this.scene.input.gamepad.on('down', (pad) => {
+            if (!this.gamepad) {
+                this.gamepad = pad;
+            }
             if (pad.A) {
                 this.luminusBattleManager.atack(this.player);
             }

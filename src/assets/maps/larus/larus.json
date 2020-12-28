@@ -2052,12 +2052,12 @@
                  "type":"",
                  "visible":true,
                  "width":28,
-                 "x":-214.5,
-                 "y":-200.5
+                 "x":-214,
+                 "y":-201.5
                 }],
          "opacity":1,
          "type":"objectgroup",
-         "visible":false,
+         "visible":true,
          "x":0,
          "y":0
         }, 

@@ -942,7 +942,7 @@
    <point/>
   </object>
  </objectgroup>
- <objectgroup id="5" name="warps" visible="0">
+ <objectgroup id="5" name="warps">
   <object id="15" name="go_field" x="1027.08" y="-45.1667" width="9.375" height="6.875">
    <properties>
     <property name="goto" type="object" value="42"/>
@@ -975,7 +975,7 @@
     <property name="goto" type="object" value="16"/>
    </properties>
   </object>
-  <object id="88" name="dungeon" x="-214.5" y="-200.5" width="28" height="31.5">
+  <object id="88" name="dungeon" x="-214" y="-201.5" width="28" height="31.5">
    <properties>
     <property name="goto" value="DungeonScene"/>
     <property name="scene" type="bool" value="true"/>

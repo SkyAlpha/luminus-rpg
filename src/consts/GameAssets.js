@@ -56,6 +56,7 @@ import typing_key_05 from '../assets/sound/typing/typing_key_05.mp3';
 import path_to_lake_land from '../assets/sound/path_to_lake_land.mp3';
 import dungeon_ambient from '../assets/sound/dungeon_ambient.mp3';
 import dark_theme from '../assets/sound/dark_theme.mp3';
+import forest from '../assets/sound/forest.mp3';
 
 // SFX
 // Atack
@@ -252,6 +253,10 @@ export const LuminusAudios = [
     {
         name: 'dark_theme',
         audio: dark_theme,
+    },
+    {
+        name: 'forest',
+        audio: forest,
     },
 
     // SFX

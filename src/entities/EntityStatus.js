@@ -26,7 +26,7 @@ export const EntityStatus = {
     defense: 1,
 
     /**
-     * The entity speed. The greater the faster.
+     * The entity movement speed. The greater the faster.
      * @type { number }
      * @default
      */

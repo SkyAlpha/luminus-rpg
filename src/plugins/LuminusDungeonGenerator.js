@@ -110,17 +110,17 @@ export class LuminusDungeonGenerator {
             },
         });
 
-        this.dungeon.drawToConsole({
-            empty: ' ',
-            emptyColor: 'rgb(0, 0, 0)',
-            wall: '#',
-            wallColor: 'rgb(255, 0, 0)',
-            floor: '0',
-            floorColor: 'rgb(210, 210, 210)',
-            door: 'x',
-            doorColor: 'rgb(0, 0, 255)',
-            fontSize: '8px',
-        });
+        // this.dungeon.drawToConsole({
+        //     empty: ' ',
+        //     emptyColor: 'rgb(0, 0, 0)',
+        //     wall: '#',
+        //     wallColor: 'rgb(255, 0, 0)',
+        //     floor: '0',
+        //     floorColor: 'rgb(210, 210, 210)',
+        //     door: 'x',
+        //     doorColor: 'rgb(0, 0, 255)',
+        //     fontSize: '8px',
+        // });
 
         // Create a blank map
         this.map = this.scene.make.tilemap({

@@ -163,8 +163,11 @@ export class LuminusWarp {
                     const scene = warp_point.warp.properties.find(
                         (f) => f.name === this.propertyWarpName
                     ).value;
-                    console.log(this.scene);
                     this.scene.scene.switch(scene);
+                    if (this.scene.player) {
+                        this.scene.player.luminusMovement = null;
+                        this.scene.player.destroy();
+                    }
                     this.scene.stopSceneMusic();
                     // this.scene.scene.launch(scene);
                 }
