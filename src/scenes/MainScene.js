@@ -118,10 +118,10 @@ export class MainScene extends Phaser.Scene {
         //     map.heightInPixels
         // );
 
-        this.scene.launch('JoystickScene', {
-            player: this.player,
-            map: map,
-        });
+        // this.scene.launch('JoystickScene', {
+        //     player: this.player,
+        //     map: map,
+        // });
 
         this.scene.launch('DialogScene', {
             player: this.player,

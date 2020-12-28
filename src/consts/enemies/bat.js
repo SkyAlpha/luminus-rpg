@@ -1,4 +1,5 @@
 export const Bat = [
+    // Down
     {
         atlas: 'bat',
         key: 'bat-idle-down',
@@ -29,6 +30,7 @@ export const Bat = [
         zeroPad: 2,
         repeat: -1,
     },
+    // Right
     {
         atlas: 'bat',
         key: 'bat-idle-right',
@@ -54,6 +56,37 @@ export const Bat = [
         key: 'bat-walk-right',
         frameRate: 8,
         prefix: 'bat/walk-right/bat',
+        start: 0,
+        end: 4,
+        zeroPad: 2,
+        repeat: -1,
+    },
+    // Up
+    {
+        atlas: 'bat',
+        key: 'bat-idle-up',
+        frameRate: 8,
+        prefix: 'bat/idle-up/bat',
+        start: 0,
+        end: 4,
+        zeroPad: 2,
+        repeat: -1,
+    },
+    {
+        atlas: 'bat',
+        key: 'bat-atk-up',
+        frameRate: 8,
+        prefix: 'bat/atk-up/bat',
+        start: 0,
+        end: 4,
+        zeroPad: 2,
+        repeat: -1,
+    },
+    {
+        atlas: 'bat',
+        key: 'bat-walk-up',
+        frameRate: 8,
+        prefix: 'bat/walk-up/bat',
         start: 0,
         end: 4,
         zeroPad: 2,

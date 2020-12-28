@@ -164,12 +164,7 @@ export class LuminusMovement extends AnimationNames {
             this.luminusGamepadController.sendInputs();
 
             if (!this.isMoving()) {
-                const currrentAnimation = this.player.anims.currentAnim.key;
-                const splitAnimation = currrentAnimation.split('-');
-
-                this.player.anims.play(
-                    `${this.idlePrefixAnimation}-${splitAnimation[1]}`
-                );
+                this.luminusAnimationManager.setIdleAnimation();
                 this.player.walkDust.on = false;
             } else {
                 this.player.walkDust.on = true;

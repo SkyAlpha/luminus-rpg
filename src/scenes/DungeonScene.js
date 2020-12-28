@@ -38,10 +38,12 @@ export class DungeonScene extends Phaser.Scene {
         // );
 
         this.physics.add.collider(this.player, this.dungeon.groundLayer);
-        this.scene.launch('JoystickScene', {
-            player: this.player,
-            map: this.dungeon.map,
-        });
+        // if (!this.scene.isActive('JoystickScene')) {
+        //     this.scene.launch('JoystickScene', {
+        //         player: this.player,
+        //         map: this.dungeon.map,
+        //     });
+        // }
         this.scene.launch('DialogScene', {
             player: this.player,
             map: this.dungeon.map,

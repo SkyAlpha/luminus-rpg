@@ -199,7 +199,7 @@ export class LuminusBattleManager extends AnimationNames {
             setTimeout((t) => {
                 target.anims.stop();
                 target.destroyAll();
-            }, 400);
+            }, 100);
         }
         /**
          * Makes random damage.

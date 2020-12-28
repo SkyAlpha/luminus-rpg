@@ -20,4 +20,10 @@ export const BaseEntity = {
      * @type { boolean }
      */
     showHitBox: false,
+
+    /**
+     * The perception range of the entity. Usualy the field of view. For enemies it should be used to atack the player onde it's inside the perception radius.
+     * @type { number }
+     */
+    perceptionRange: 75,
 };

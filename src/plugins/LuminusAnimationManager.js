@@ -1,5 +1,6 @@
 import Phaser from 'phaser';
 import { AnimationNames } from '../consts/AnimationNames';
+import { PlayerConfig } from '../consts/player/Player';
 
 /**
  * @class
@@ -63,6 +64,7 @@ export class LuminusAnimationManager extends AnimationNames {
             parseFloat(angle).toFixed(2) < 0.66
         ) {
             this.entity.anims.play(animation + this.rightAnimationSufix, true);
+            this.entity.flipX = false;
         } else if (
             parseFloat(angle).toFixed(2) > -2.33 &&
             parseFloat(angle).toFixed(2) < -0.66
@@ -74,7 +76,23 @@ export class LuminusAnimationManager extends AnimationNames {
             (parseFloat(angle).toFixed(2) <= 3.14 &&
                 parseFloat(angle).toFixed(2) > 2.33)
         ) {
-            this.entity.anims.play(animation + this.leftAnimationSufix, true);
+            if (
+                this.entity.anims.animationManager.exists(
+                    animation + this.leftAnimationSufix,
+                    true
+                )
+            ) {
+                this.entity.anims.play(
+                    animation + this.leftAnimationSufix,
+                    true
+                );
+            } else {
+                this.entity.anims.play(
+                    animation + this.rightAnimationSufix,
+                    true
+                );
+                this.entity.flipX = true;
+            }
         } else if (
             parseFloat(angle).toFixed(2) <= 2.33 &&
             parseFloat(angle).toFixed(2) > 0.66
@@ -83,6 +101,24 @@ export class LuminusAnimationManager extends AnimationNames {
         }
 
         this.lastAnimation = this.entity.anims.currentAnim.key;
+    }
+
+    /**
+     * Changes the current walking, atacking or whatever action animation for an idle animation, and keeps the orientation.
+     * If its walkinh right then it should stop in the idle-right animation.
+     */
+    setIdleAnimation() {
+        const currrentAnimation = this.entity.anims.currentAnim.key;
+        if (!currrentAnimation.includes('idle')) {
+            const splitAnimation = currrentAnimation.split('-');
+            let changedAnimaton;
+            if (this.entity.texture.key === PlayerConfig.texture) {
+                changedAnimaton = `${this.idlePrefixAnimation}-${splitAnimation[1]}`;
+            } else {
+                changedAnimaton = `${this.entity.texture.key}-${this.idlePrefixAnimation}-${splitAnimation[2]}`;
+            }
+            this.entity.anims.play(changedAnimaton);
+        }
     }
 
     /**
