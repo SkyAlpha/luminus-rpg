@@ -59,6 +59,7 @@ export class LuminusAnimationManager extends AnimationNames {
      * It must be defined in your configuration file, and or spriting software of your choice.
      */
     animateWithAngle(animation, angle) {
+        const texture = this.entity.texture.key;
         if (
             parseFloat(angle).toFixed(2) > -0.66 &&
             parseFloat(angle).toFixed(2) < 0.66
@@ -109,14 +110,9 @@ export class LuminusAnimationManager extends AnimationNames {
      */
     setIdleAnimation() {
         const currrentAnimation = this.entity.anims.currentAnim.key;
-        if (!currrentAnimation.includes('idle')) {
+        if (!currrentAnimation.includes('idle') && !this.entity.isAtacking) {
             const splitAnimation = currrentAnimation.split('-');
-            let changedAnimaton;
-            if (this.entity.texture.key === PlayerConfig.texture) {
-                changedAnimaton = `${this.idlePrefixAnimation}-${splitAnimation[1]}`;
-            } else {
-                changedAnimaton = `${this.entity.texture.key}-${this.idlePrefixAnimation}-${splitAnimation[2]}`;
-            }
+            let changedAnimaton = `${this.entity.texture.key}-${this.idlePrefixAnimation}-${splitAnimation[2]}`;
             this.entity.anims.play(changedAnimaton);
         }
     }

@@ -5,7 +5,7 @@ export const PlayerConfig = {
 export const Player = [
     {
         atlas: PlayerConfig.texture,
-        key: 'idle-down',
+        key: `${PlayerConfig.texture}-idle-down`,
         frameRate: 4,
         prefix: 'idle-down/idle-down',
         start: 0,
@@ -15,7 +15,7 @@ export const Player = [
     },
     {
         atlas: PlayerConfig.texture,
-        key: 'idle-right',
+        key: `${PlayerConfig.texture}-idle-right`,
         frameRate: 4,
         prefix: 'idle-right/idle-right',
         start: 0,
@@ -25,7 +25,7 @@ export const Player = [
     },
     {
         atlas: PlayerConfig.texture,
-        key: 'idle-left',
+        key: `${PlayerConfig.texture}-idle-left`,
         frameRate: 4,
         prefix: 'idle-left/idle-left',
         start: 0,
@@ -35,7 +35,7 @@ export const Player = [
     },
     {
         atlas: PlayerConfig.texture,
-        key: 'idle-up',
+        key: `${PlayerConfig.texture}-idle-up`,
         frameRate: 4,
         prefix: 'idle-up/idle-up',
         start: 0,
@@ -45,7 +45,7 @@ export const Player = [
     },
     {
         atlas: PlayerConfig.texture,
-        key: 'walk-down',
+        key: `${PlayerConfig.texture}-walk-down`,
         frameRate: 4,
         prefix: 'walk-down/character-down',
         start: 0,
@@ -55,7 +55,7 @@ export const Player = [
     },
     {
         atlas: PlayerConfig.texture,
-        key: 'walk-right',
+        key: `${PlayerConfig.texture}-walk-right`,
         frameRate: 4,
         prefix: 'walk-right/character-right',
         start: 0,
@@ -65,7 +65,7 @@ export const Player = [
     },
     {
         atlas: PlayerConfig.texture,
-        key: 'walk-left',
+        key: `${PlayerConfig.texture}-walk-left`,
         frameRate: 4,
         prefix: 'walk-left/character-left',
         start: 0,
@@ -75,7 +75,7 @@ export const Player = [
     },
     {
         atlas: PlayerConfig.texture,
-        key: 'walk-up',
+        key: `${PlayerConfig.texture}-walk-up`,
         frameRate: 4,
         prefix: 'walk-up/character-up',
         start: 0,
@@ -85,7 +85,7 @@ export const Player = [
     },
     {
         atlas: PlayerConfig.texture,
-        key: 'atk-up',
+        key: `${PlayerConfig.texture}-atk-up`,
         frameRate: 8,
         prefix: 'atk-up/atk-up',
         start: 0,
@@ -95,7 +95,7 @@ export const Player = [
     },
     {
         atlas: PlayerConfig.texture,
-        key: 'atk-right',
+        key: `${PlayerConfig.texture}-atk-right`,
         frameRate: 8,
         prefix: 'atk-right/atk-right',
         start: 0,
@@ -105,7 +105,7 @@ export const Player = [
     },
     {
         atlas: PlayerConfig.texture,
-        key: 'atk-down',
+        key: `${PlayerConfig.texture}-atk-down`,
         frameRate: 10,
         prefix: 'atk-down/atk-down',
         start: 0,
@@ -115,7 +115,7 @@ export const Player = [
     },
     {
         atlas: PlayerConfig.texture,
-        key: 'atk-left',
+        key: `${PlayerConfig.texture}-atk-left`,
         frameRate: 8,
         prefix: 'atk-left/atk-left',
         start: 0,

@@ -96,6 +96,7 @@ export class LuminusMovement extends AnimationNames {
 
     move() {
         if (!this.player.isAtacking) {
+            const texture = this.player.texture.key;
             if (this.scene.input.isActive) {
                 // Stop any previous movement from the last frame
                 this.player.body.setVelocity(0);
@@ -108,7 +109,10 @@ export class LuminusMovement extends AnimationNames {
                         this.player.body.maxSpeed > 0)
                 ) {
                     this.player.body.setVelocityX(-this.player.speed);
-                    this.player.anims.play(this.walkLeftAnimationName, true);
+                    this.player.anims.play(
+                        texture + '-' + this.walkLeftAnimationName,
+                        true
+                    );
                 } else if (
                     this.cursors.right.isDown ||
                     (this.cursors.right.isDown && this.cursors.down.isDown) ||
@@ -116,7 +120,10 @@ export class LuminusMovement extends AnimationNames {
                         this.cursors.up.isDown &&
                         this.player.body.maxSpeed > 0)
                 ) {
-                    this.player.anims.play(this.walkRightAnimationName, true);
+                    this.player.anims.play(
+                        texture + '-' + this.walkRightAnimationName,
+                        true
+                    );
                     this.player.body.setVelocityX(this.player.speed);
                 }
 
@@ -124,12 +131,15 @@ export class LuminusMovement extends AnimationNames {
                 if (this.cursors.up.isDown && this.player.body.maxSpeed > 0) {
                     this.player.body.setVelocityY(-this.player.speed);
                     if (!this.cursors.left.isDown && !this.cursors.right.isDown)
-                        this.player.anims.play(this.walkUpAnimationName, true);
+                        this.player.anims.play(
+                            texture + '-' + this.walkUpAnimationName,
+                            true
+                        );
                 }
                 if (this.cursors.down.isDown && this.player.body.maxSpeed > 0) {
                     if (!this.cursors.left.isDown && !this.cursors.right.isDown)
                         this.player.anims.play(
-                            this.walkDownAnimationName,
+                            texture + '-' + this.walkDownAnimationName,
                             true
                         );
                     this.player.body.setVelocityY(this.player.speed);
@@ -151,8 +161,9 @@ export class LuminusMovement extends AnimationNames {
                 this.scene.input.pointer1.isDown &&
                 this.player.body.maxSpeed > 0
             ) {
+                const texture = this.player.texture.key;
                 this.luminusAnimationManager.animateWithAngle(
-                    this.walkPrefixAnimation,
+                    `${texture}-${this.walkPrefixAnimation}`,
                     this.stick.rotation
                 );
                 this.scene.physics.velocityFromRotation(
@@ -165,9 +176,9 @@ export class LuminusMovement extends AnimationNames {
 
             if (!this.isMoving()) {
                 this.luminusAnimationManager.setIdleAnimation();
-                this.player.walkDust.on = false;
+                if (this.player.walkDust) this.player.walkDust.on = false;
             } else {
-                this.player.walkDust.on = true;
+                if (this.player.walkDust) this.player.walkDust.on = true;
             }
         }
     }

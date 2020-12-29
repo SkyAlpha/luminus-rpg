@@ -5,15 +5,18 @@ import { LuminusHealthBar } from '../plugins/LuminusHealthBar';
 import { BaseEntity } from './BaseEntity';
 import { EntityStatus } from './EntityStatus';
 import { Player } from './Player';
+import uniqid from 'uniqid';
+import { LuminusBattleManager } from '../plugins/LuminusBattleManager';
 
+/**
+ * @class
+ * The enemy class.
+ * @param { Phaser.Scene } scene the parent scene of this enemy.
+ * @extends BaseEntity
+ * @extends EntityStatus
+ * @extends AnimationNames
+ */
 export class Enemy extends Phaser.Physics.Arcade.Sprite {
-    /**
-     * The Phaser Scene that this Enemy is a child.
-     * @param { Phaser.Scene } scene the parent scene of this enemy.
-     * @extends BaseEntity
-     * @extends EntityStatus
-     * @extends AnimationNames
-     */
     constructor(scene, x, y, texture) {
         super(scene, x, y, texture);
         Object.assign(this, BaseEntity);
@@ -27,10 +30,30 @@ export class Enemy extends Phaser.Physics.Arcade.Sprite {
         this.scene = scene;
 
         /**
+         * the unique ID of the enemy.
+         * @type { string }
+         */
+        this.id = uniqid();
+
+        /**
          * The luminus animation manager.
          * @type { LuminusAnimationManager }
          */
         this.luminusAnimationManager = new LuminusAnimationManager(this);
+
+        this.luminusBattleManager = new LuminusBattleManager();
+
+        /**
+         * The zone that will interact as a hitzone.
+         * @type { Phaser.GameObjects.Zone }
+         */
+        this.hitZone = this.scene.add.zone(
+            this.x,
+            this.y,
+            this.width,
+            this.height
+        );
+        this.scene.physics.add.existing(this.hitZone);
 
         // TODO - Change the offsets to a JSON file or DataBase so it's not HardCoded.
         this.healthBar = new LuminusHealthBar(
@@ -58,14 +81,16 @@ export class Enemy extends Phaser.Physics.Arcade.Sprite {
         this.container = new Phaser.GameObjects.Container(this.scene, x, y, [
             this,
             this.healthBar,
+            this.hitZone,
         ]);
 
         this.scene.add.existing(this.container);
         this.scene.physics.add.existing(this.container);
 
+        const idleDown = `${this.idlePrefixAnimation}${this.downAnimationSufix}`;
         const idleAnimation = texture
-            ? `${texture}-idle-down`
-            : `bat-idle-down`;
+            ? `${texture}-${idleDown}`
+            : `bat-${idleDown}`;
 
         this.anims.play(idleAnimation);
         // All the dependencies that need to be inside the update game loop.
@@ -91,10 +116,7 @@ export class Enemy extends Phaser.Physics.Arcade.Sprite {
             this.container.y,
             this.perceptionRange
         );
-        const angle = Math.atan2(
-            this.container.body.velocity.y,
-            this.container.body.velocity.x
-        );
+
         for (let target of enemiesInRange) {
             if (target.gameObject.constructor.name === 'Player') {
                 let overlaps = false;
@@ -104,18 +126,26 @@ export class Enemy extends Phaser.Physics.Arcade.Sprite {
                     (t, enemy) => {
                         overlaps = true;
                         this.stopMovement();
+                        if (this.canAtack)
+                            this.luminusBattleManager.atack(this);
+                        // TODO - Should Atack the player once it overlaps him.
                     }
                 );
                 inRange = true;
                 // Moves only if it's not overlaped. It prevents some Weird behaviors to happen.
-                if (!overlaps) {
+                if (!overlaps && !this.isAtacking) {
                     this.scene.physics.moveToObject(
                         this.container,
                         target.gameObject,
                         30
                     );
+
+                    const angle = Math.atan2(
+                        this.container.body.velocity.y,
+                        this.container.body.velocity.x
+                    );
                     this.luminusAnimationManager.animateWithAngle(
-                        this.texture.key + '-' + this.walkPrefixAnimation,
+                        `${this.texture.key}-${this.walkPrefixAnimation}`,
                         angle
                     );
                     this.changeBodySize(this.width, this.height);
@@ -124,7 +154,6 @@ export class Enemy extends Phaser.Physics.Arcade.Sprite {
                 // console.log(this.container.body.velocity);
             }
         }
-
         if (!inRange) {
             this.stopMovement();
         }

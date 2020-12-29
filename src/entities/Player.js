@@ -141,7 +141,7 @@ export class Player extends Phaser.GameObjects.Sprite {
             this.joystickScene
         );
 
-        this.play('idle-down');
+        this.play('character-idle-down');
 
         // All the dependencies that need to be inside the update game loop.
         this.scene.events.on('update', this.onUpdate, this);

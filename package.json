@@ -45,6 +45,7 @@
     "phaser": "^3.50.0",
     "phaser3-juice-plugin": "git+https://github.com/RetroVX/phaser3-juice-plugin.git",
     "phaser3-nineslice": "^0.5.0",
-    "phaser3-rex-plugins": "^1.1.31"
+    "phaser3-rex-plugins": "^1.1.31",
+    "uniqid": "^5.2.0"
   }
 }

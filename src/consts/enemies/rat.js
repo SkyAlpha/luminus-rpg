@@ -13,12 +13,12 @@ export const Rat = [
     {
         atlas: 'rat',
         key: 'rat-atk-down',
-        frameRate: 4,
+        frameRate: 2,
         prefix: 'rat/atk-down/rat',
         start: 0,
         end: 4,
         zeroPad: 2,
-        repeat: -1,
+        repeat: 0,
     },
     {
         atlas: 'rat',
@@ -35,7 +35,7 @@ export const Rat = [
     {
         atlas: 'rat',
         key: 'rat-idle-right',
-        frameRate: 4,
+        frameRate: 1,
         prefix: 'rat/idle-right/rat',
         start: 0,
         end: 2,
@@ -55,18 +55,18 @@ export const Rat = [
     {
         atlas: 'rat',
         key: 'rat-atk-right',
-        frameRate: 4,
+        frameRate: 2,
         prefix: 'rat/atk-right/rat',
         start: 0,
-        end: 6,
+        end: 4,
         zeroPad: 2,
-        repeat: -1,
+        repeat: 0,
     },
     // UP
     {
         atlas: 'rat',
         key: 'rat-idle-up',
-        frameRate: 4,
+        frameRate: 1,
         prefix: 'rat/idle-up/rat',
         start: 0,
         end: 4,
@@ -86,11 +86,11 @@ export const Rat = [
     {
         atlas: 'rat',
         key: 'rat-atk-up',
-        frameRate: 4,
+        frameRate: 2,
         prefix: 'rat/atk-up/rat',
         start: 0,
         end: 4,
         zeroPad: 2,
-        repeat: -1,
+        repeat: 0,
     },
 ];

@@ -238,8 +238,9 @@ export class LuminusBattleManager extends AnimationNames {
             );
             atacker.isAtacking = true;
             atacker.canAtack = false;
-            atacker.walkDust.on = false;
+            if (atacker.walkDust) atacker.walkDust.on = false;
             atacker.body.maxSpeed = 0;
+            const texture = atacker.texture.key;
             const currrentAnimation = atacker.anims.currentAnim.key;
             const atackAnimation = currrentAnimation.split('-');
             // Randomizes the name of the atack sound.
@@ -248,59 +249,56 @@ export class LuminusBattleManager extends AnimationNames {
             ];
 
             const hitBoxSprite = this.createHitBox(atacker);
-            hitBoxSprite.anims.play('slash');
+            hitBoxSprite.anims.play(this.hitboxSpriteName);
             // Animations events have to come before the animation is played, they are triggered propperly.
-            atacker.once(
-                `animationstart-${this.atkPrefixAnimation}-${atackAnimation[1]}`,
-                (start) => {
+            atacker.once(`animationstart`, (start) => {
+                if (
+                    start.key ===
+                    `${texture}-${this.atkPrefixAnimation}-${atackAnimation[2]}`
+                ) {
                     atacker.scene.sound.add(animationName).play();
                 }
-            );
-            let canDamage = true;
-            console.log(`animationupdate-`);
-            atacker.once(`animationupdate`, (animationStatus) => {
+            });
+            // Stores the enemies that where atacked on the current animation.
+            let atackedEnemies = [];
+            atacker.on(`animationupdate`, (animationStatus) => {
                 if (
                     animationStatus.key ===
-                    `${this.atkPrefixAnimation}-${atackAnimation[1]}`
+                    `${texture}-${this.atkPrefixAnimation}-${atackAnimation[2]}`
                 ) {
                     atacker.scene.physics.overlap(
                         hitBoxSprite,
                         atacker.scene[this.enemiesVariableName],
                         (h, e) => {
-                            canDamage = false;
                             this.takeDamage(atacker, e);
+                            e.canTakeDamage = false;
+                            atacker.canAtack = false;
+                            atackedEnemies.push(e);
                         },
-                        (controler) => {
-                            return canDamage;
+                        (h, e) => {
+                            return e.canTakeDamage;
                         }
                     );
                 }
             });
-
             atacker.once(
-                `animationcomplete-${this.atkPrefixAnimation}-${atackAnimation[1]}`,
-                (done) => {
+                `animationcomplete-${texture}-${this.atkPrefixAnimation}-${atackAnimation[2]}`,
+                (animationState) => {
                     atacker.isAtacking = false;
                     atacker.body.maxSpeed = atacker.speed;
                     atacker.canAtack = true; // Enables the atack once the player finishes the animation
-                    canDamage = true;
+                    atackedEnemies.forEach((e) => {
+                        e.canTakeDamage = true;
+                    });
                     hitBoxSprite.destroy();
                 },
                 this
             );
 
             atacker.anims.play(
-                `${this.atkPrefixAnimation}-${atackAnimation[1]}`,
+                `${texture}-${this.atkPrefixAnimation}-${atackAnimation[2]}`,
                 true
             );
-
-            /**
-             * - Animate. OK
-             * - Add Sound When Atacking. OK
-             * - Dispatch the Slashes.
-             * - Check for Slash and enemies collision.
-             * - Deal the Damages.
-             */
         }
     }
 }

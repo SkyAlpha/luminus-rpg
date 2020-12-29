@@ -1,4 +1,5 @@
 import Phaser from 'phaser';
+import { AnimationNames } from '../consts/AnimationNames';
 import { Enemy } from '../entities/Enemy';
 
 /**
@@ -9,8 +10,10 @@ export class LuminusEnemyZones {
      * Sets a zone to create enemies within that Range.
      * @param { Phaser.Scene } scene Parent Scene.
      * @param { Phaser.Tilemaps.DynamicTilemapLayer | Phaser.Tilemaps.StaticTilemapLayer} map Tile Map to get the zones from.
+     * @extends AnimationNames
      */
     constructor(scene, map) {
+        Object.assign(this, new AnimationNames());
         /**
          * Scene Context where it will create the markers.
          * @type { Phaser.Scene }  */
@@ -102,9 +105,10 @@ export class LuminusEnemyZones {
                             pos.y,
                             texture ? texture : 'bat'
                         );
+                        const idleDown = `${this.idlePrefixAnimation}${this.downAnimationSufix}`;
                         const idleAnimation = texture
-                            ? `${texture}-idle-down`
-                            : `bat-idle-down`;
+                            ? `${texture}-${idleDown}`
+                            : `bat-${idleDown}`;
                         enemy.anims.play(idleAnimation);
                         enemy.body.setSize(enemy.width, enemy.height);
                         this.scene.enemies.push(enemy);
@@ -112,6 +116,7 @@ export class LuminusEnemyZones {
                 }
                 this.zones.push(zone);
             });
+            this.scene.physics.add.collider(this.scene.enemies, null);
         }
     }
 }

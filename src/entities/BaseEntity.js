@@ -1,7 +1,15 @@
+import uniqid from 'uniqid';
+
 /**
  * @namespace
  */
 export const BaseEntity = {
+    /**
+     * A Unique ID to identify the Entity.
+     * @type { string }
+     * @default null
+     */
+    id: null,
     /**
      * Controls if the entity is atacking.
      * @type { boolean }
@@ -14,6 +22,12 @@ export const BaseEntity = {
      * @type { boolean }
      */
     canAtack: true,
+
+    /**
+     * Controls if the entity can take damage.
+     * @type { boolean }
+     */
+    canTakeDamage: true,
 
     /**
      * This variable controls when the atack hitbox will appear.

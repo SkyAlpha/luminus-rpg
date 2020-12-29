@@ -77,6 +77,7 @@ export class LuminusGamePadController extends AnimationNames {
      * Performs the movement action to the player using the GamePad.
      */
     sendInputs() {
+        const texture = this.player.texture.key;
         if (this.gamepad) {
             if (
                 this.gamepad.left ||
@@ -84,24 +85,36 @@ export class LuminusGamePadController extends AnimationNames {
                 (this.gamepad.left && this.gamepad.up)
             ) {
                 this.player.body.setVelocityX(-this.player.speed);
-                this.player.anims.play(this.walkLeftAnimationName, true);
+                this.player.anims.play(
+                    texture + '-' + this.walkLeftAnimationName,
+                    true
+                );
             } else if (
                 this.gamepad.right ||
                 (this.gamepad.right && this.gamepad.down) ||
                 (this.gamepad.right && this.gamepad.up)
             ) {
-                this.player.anims.play(this.walkRightAnimationName, true);
+                this.player.anims.play(
+                    texture + '-' + this.walkRightAnimationName,
+                    true
+                );
                 this.player.body.setVelocityX(this.player.speed);
             }
 
             if (this.gamepad.up) {
                 this.player.body.setVelocityY(-this.player.speed);
                 if (!this.gamepad.left && !this.gamepad.right)
-                    this.player.anims.play(this.walkUpAnimationName, true);
+                    this.player.anims.play(
+                        texture + '-' + this.walkUpAnimationName,
+                        true
+                    );
             } else if (this.gamepad.down) {
                 this.player.body.setVelocityY(this.player.speed);
                 if (!this.gamepad.left && !this.gamepad.right)
-                    this.player.anims.play(this.walkDownAnimationName, true);
+                    this.player.anims.play(
+                        texture + '-' + this.walkDownAnimationName,
+                        true
+                    );
             }
 
             if (
