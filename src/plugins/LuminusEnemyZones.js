@@ -106,7 +106,7 @@ export class LuminusEnemyZones {
                             ? `${texture}-idle-down`
                             : `bat-idle-down`;
                         enemy.anims.play(idleAnimation);
-                        enemy.changeBodySize(enemy.width, enemy.height);
+                        enemy.body.setSize(enemy.width, enemy.height);
                         this.scene.enemies.push(enemy);
                     }
                 }

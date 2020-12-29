@@ -95,30 +95,49 @@ export class Enemy extends Phaser.Physics.Arcade.Sprite {
             this.container.body.velocity.y,
             this.container.body.velocity.x
         );
-        for (let enemy of enemiesInRange) {
-            if (enemy.gameObject.constructor.name === 'Player') {
+        for (let target of enemiesInRange) {
+            if (target.gameObject.constructor.name === 'Player') {
+                let overlaps = false;
+                this.scene.physics.overlap(
+                    target.gameObject.hitZone,
+                    this,
+                    (t, enemy) => {
+                        overlaps = true;
+                        this.stopMovement();
+                    }
+                );
                 inRange = true;
-                this.scene.physics.moveToObject(
-                    this.container,
-                    enemy.gameObject,
-                    30
-                );
+                // Moves only if it's not overlaped. It prevents some Weird behaviors to happen.
+                if (!overlaps) {
+                    this.scene.physics.moveToObject(
+                        this.container,
+                        target.gameObject,
+                        30
+                    );
+                    this.luminusAnimationManager.animateWithAngle(
+                        this.texture.key + '-' + this.walkPrefixAnimation,
+                        angle
+                    );
+                    this.changeBodySize(this.width, this.height);
+                }
 
-                this.luminusAnimationManager.animateWithAngle(
-                    this.texture.key + '-' + this.walkPrefixAnimation,
-                    angle
-                );
-                this.changeBodySize(this.width, this.height);
                 // console.log(this.container.body.velocity);
             }
         }
 
         if (!inRange) {
-            this.container.body.setAcceleration(0, 0);
-            this.container.body.setVelocity(0, 0);
-            this.luminusAnimationManager.setIdleAnimation();
-            this.changeBodySize(this.width, this.height);
+            this.stopMovement();
         }
+    }
+
+    /**
+     * Stops all movement of the entity.
+     */
+    stopMovement() {
+        this.container.body.setAcceleration(0, 0);
+        this.container.body.setVelocity(0, 0);
+        this.luminusAnimationManager.setIdleAnimation();
+        this.changeBodySize(this.width, this.height);
     }
 
     /**

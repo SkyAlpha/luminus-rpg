@@ -257,9 +257,12 @@ export class LuminusBattleManager extends AnimationNames {
                 }
             );
             let canDamage = true;
-            atacker.on(
-                `animationupdate-${this.atkPrefixAnimation}-${atackAnimation[1]}`,
-                (start) => {
+            console.log(`animationupdate-`);
+            atacker.once(`animationupdate`, (animationStatus) => {
+                if (
+                    animationStatus.key ===
+                    `${this.atkPrefixAnimation}-${atackAnimation[1]}`
+                ) {
                     atacker.scene.physics.overlap(
                         hitBoxSprite,
                         atacker.scene[this.enemiesVariableName],
@@ -272,7 +275,7 @@ export class LuminusBattleManager extends AnimationNames {
                         }
                     );
                 }
-            );
+            });
 
             atacker.once(
                 `animationcomplete-${this.atkPrefixAnimation}-${atackAnimation[1]}`,

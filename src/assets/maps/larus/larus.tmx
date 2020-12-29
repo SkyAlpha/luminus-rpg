@@ -850,7 +850,7 @@
    </properties>
   </object>
  </objectgroup>
- <objectgroup id="14" name="enemies" visible="0">
+ <objectgroup id="14" name="enemies">
   <object id="78" x="-830.667" y="-492.667" width="160.667" height="95.3333">
    <properties>
     <property name="number" type="int" value="5"/>
@@ -871,7 +871,7 @@
     <property name="number" type="int" value="2"/>
    </properties>
   </object>
-  <object id="82" x="-1003.33" y="-346.333" width="121" height="86.333">
+  <object id="82" x="-1060.33" y="-621.333" width="121" height="86.333">
    <properties>
     <property name="number" type="int" value="3"/>
     <property name="texture" value="rat"/>
