@@ -39,13 +39,18 @@ export class LuminusKeyboardMouseController {
         this.scene.input.mouse.disableContextMenu();
         this.luminusBattleManager = new LuminusBattleManager();
         this.scene.input.on('pointerdown', (pointer) => {
-            if (pointer.leftButtonDown() && !isMobile) {
+            if (
+                pointer.leftButtonDown() &&
+                !isMobile &&
+                this.player &&
+                this.player.active
+            ) {
                 this.luminusBattleManager.atack(this.player);
             }
         });
 
         this.scene.input.keyboard.on('keydown', (keydown) => {
-            if (keydown.keyCode === 32) {
+            if (keydown.keyCode === 32 && this.player && this.player.active) {
                 this.luminusBattleManager.atack(this.player);
             }
         });

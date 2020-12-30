@@ -547,7 +547,7 @@ export class LuminusDialogBox {
      * @param { number } height new Height.
      */
     resizeComponents(width, height) {
-        if (width !== 0 && height !== 0) {
+        if (width !== 0 && height !== 0 && this.player && this.player.active) {
             this.interactionIcon.setPosition(
                 width / 2,
                 height / 2 - this.player.container.body.height * 2.5

@@ -305,8 +305,10 @@ export class LuminusBattleManager extends AnimationNames {
                         (h, e) => {
                             this.takeDamage(atacker, e);
                             e.canTakeDamage = false;
-                            atacker.canAtack = false;
                             atackedEnemies.push(e);
+                            setTimeout((t) => {
+                                atacker.canAtack = false;
+                            }, 2000);
                         },
                         (h, e) => {
                             return e.canTakeDamage;

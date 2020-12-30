@@ -67,7 +67,7 @@ export class LuminusGamePadController extends AnimationNames {
             if (!this.gamepad) {
                 this.gamepad = pad;
             }
-            if (pad.A) {
+            if (pad.A && this.player && this.player.active) {
                 this.luminusBattleManager.atack(this.player);
             }
         });
@@ -94,6 +94,7 @@ export class LuminusGamePadController extends AnimationNames {
                 (this.gamepad.right && this.gamepad.down) ||
                 (this.gamepad.right && this.gamepad.up)
             ) {
+                console.log(texture + '-' + this.walkRightAnimationName);
                 this.player.anims.play(
                     texture + '-' + this.walkRightAnimationName,
                     true
@@ -123,7 +124,7 @@ export class LuminusGamePadController extends AnimationNames {
                 this.player.container.body.maxSpeed > 0
             ) {
                 this.luminusAnimationManager.animateWithAngle(
-                    this.walkPrefixAnimation,
+                    `${texture}-${this.walkPrefixAnimation}`,
                     Phaser.Math.Angle.Wrap(this.gamepad.leftStick.angle())
                 );
                 this.scene.physics.velocityFromRotation(

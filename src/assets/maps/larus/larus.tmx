@@ -770,7 +770,7 @@
   </chunk>
   </data>
  </layer>
- <objectgroup id="7" name="info" visible="0">
+ <objectgroup id="7" name="info">
   <properties>
    <property name="message" value="Essa lenha está sequinha. Há muitos dias não vemos chuva."/>
   </properties>
@@ -806,7 +806,7 @@
   </object>
   <object id="49" name="lumberjacks_house" x="-258.5" y="-760" width="80.5" height="83.5">
    <properties>
-    <property name="message" value="- The lumberjack's house is closed. I will come back leter on."/>
+    <property name="message" value="- The lumberjack's house is closed. I will come back later on."/>
    </properties>
   </object>
   <object id="50" name="dogs_house" x="-971.5" y="-216" width="51.3333" height="66">
@@ -826,7 +826,7 @@
   </object>
   <object id="53" name="logs" x="-548.667" y="-760" width="82.6667" height="55.3333">
    <properties>
-    <property name="message" value="- Looks like the lumberjack likes to chop some wood 😆"/>
+    <property name="message" value="- Looks like the lumberjack chops a lot of wood 😆"/>
    </properties>
   </object>
   <object id="56" name="farm" x="-307.333" y="-624" width="124.667" height="67.3333">

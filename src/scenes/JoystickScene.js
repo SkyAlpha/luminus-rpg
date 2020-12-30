@@ -183,7 +183,12 @@ export class JoystickScene extends Phaser.Scene {
     createButtonActions() {
         if (this.buttonA) {
             this.buttonA.on('down', (buttonA) => {
-                if (this.player.canAtack && !this.player.isAtacking) {
+                if (
+                    this.player &&
+                    this.player.active &&
+                    this.player.canAtack &&
+                    !this.player.isAtacking
+                ) {
                     this.luminusBattleManager.atack(this.player);
                 }
             });
