@@ -46,8 +46,8 @@ export class LuminusAnimationManager extends AnimationNames {
         // If is colliding should always show the trigger button.
         // Pressing space button, should show the chat.
         return (
-            this.entity.body.velocity.x !== 0 ||
-            this.entity.body.velocity.y !== 0
+            this.entity.container.body.velocity.x !== 0 ||
+            this.entity.container.body.velocity.y !== 0
         );
     }
 
@@ -123,8 +123,8 @@ export class LuminusAnimationManager extends AnimationNames {
      */
     isMoving() {
         return (
-            this.entity.body.velocity.x !== 0 ||
-            this.entity.body.velocity.y !== 0
+            this.entity.container.body.velocity.x !== 0 ||
+            this.entity.container.body.velocity.y !== 0
         );
     }
 }

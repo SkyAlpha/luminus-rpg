@@ -311,7 +311,7 @@ export class LuminusDialogBox {
             .sprite(
                 this.scene.cameras.main.midPoint.x,
                 this.scene.cameras.main.midPoint.y -
-                    this.player.body.height * 2.5,
+                    this.player.container.body.height * 2.5,
                 this.interactionSpriteName
             )
             .setDepth(99999)
@@ -372,7 +372,7 @@ export class LuminusDialogBox {
         ) {
             // First time, show the Dialog.
             this.showDialog();
-            this.player.body.maxSpeed = 0;
+            this.player.container.body.maxSpeed = 0;
         } else if (this.isAnimatingText && this.checkButtonsPressed()) {
             // Skips the typping animation.
             this.setText(this.pagesMessage[this.currentPage], false);
@@ -399,7 +399,7 @@ export class LuminusDialogBox {
             this.canShowDialog = true;
             this.actionButton.visible = false;
             this.interactionIcon.visible = false;
-            this.player.body.maxSpeed = this.player.speed;
+            this.player.container.body.maxSpeed = this.player.speed;
         }
         this.actionButton.clicked = false;
     }
@@ -508,12 +508,18 @@ export class LuminusDialogBox {
      * @returns { boolean }
      */
     isMoving() {
-        // If is colliding should always show the trigger button.
-        // Pressing space button, should show the chat.
-        return (
-            this.player.body.velocity.x !== 0 ||
-            this.player.body.velocity.y !== 0
-        );
+        if (
+            this.player &&
+            this.player.container &&
+            this.player.container.body
+        ) {
+            // If is colliding should always show the trigger button.
+            // Pressing space button, should show the chat.
+            return (
+                this.player.container.body.velocity.x !== 0 ||
+                this.player.container.body.velocity.y !== 0
+            );
+        }
     }
 
     /**
@@ -524,7 +530,7 @@ export class LuminusDialogBox {
         if (
             this.actionButton &&
             this.isMoving() &&
-            this.player.body.touching.none &&
+            this.player.container.body.touching.none &&
             this.isOverlapingChat &&
             !this.dialog.visible
         ) {
@@ -544,7 +550,7 @@ export class LuminusDialogBox {
         if (width !== 0 && height !== 0) {
             this.interactionIcon.setPosition(
                 width / 2,
-                height / 2 - this.player.body.height * 2.5
+                height / 2 - this.player.container.body.height * 2.5
             );
 
             this.cameraWidth = width;

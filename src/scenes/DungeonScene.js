@@ -71,7 +71,7 @@ export class DungeonScene extends Phaser.Scene {
             }
         });
 
-        this.physics.add.collider(this.player, this.enemies);
+        this.physics.add.collider(this.player.container, this.enemies);
 
         this.sound.volume = 0.4;
 

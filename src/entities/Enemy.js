@@ -18,7 +18,7 @@ import { LuminusBattleManager } from '../plugins/LuminusBattleManager';
  */
 export class Enemy extends Phaser.Physics.Arcade.Sprite {
     constructor(scene, x, y, texture) {
-        super(scene, x, y, texture);
+        super(scene, 0, 0, texture);
         Object.assign(this, BaseEntity);
         Object.assign(this, EntityStatus);
         Object.assign(this, new AnimationNames());
@@ -36,6 +36,12 @@ export class Enemy extends Phaser.Physics.Arcade.Sprite {
         this.id = uniqid();
 
         /**
+         * The enemy movement speed in pixels per second.
+         * @type { number }
+         */
+        this.speed = 30;
+
+        /**
          * The luminus animation manager.
          * @type { LuminusAnimationManager }
          */
@@ -47,12 +53,7 @@ export class Enemy extends Phaser.Physics.Arcade.Sprite {
          * The zone that will interact as a hitzone.
          * @type { Phaser.GameObjects.Zone }
          */
-        this.hitZone = this.scene.add.zone(
-            this.x,
-            this.y,
-            this.width,
-            this.height
-        );
+        this.hitZone = this.scene.add.zone(0, 0, this.width, this.height);
         this.scene.physics.add.existing(this.hitZone);
 
         // TODO - Change the offsets to a JSON file or DataBase so it's not HardCoded.
@@ -136,8 +137,8 @@ export class Enemy extends Phaser.Physics.Arcade.Sprite {
                 if (!overlaps && !this.isAtacking) {
                     this.scene.physics.moveToObject(
                         this.container,
-                        target.gameObject,
-                        30
+                        target.gameObject.container,
+                        this.speed
                     );
 
                     const angle = Math.atan2(

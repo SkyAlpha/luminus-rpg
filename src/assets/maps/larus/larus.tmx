@@ -770,7 +770,7 @@
   </chunk>
   </data>
  </layer>
- <objectgroup id="7" name="info">
+ <objectgroup id="7" name="info" visible="0">
   <properties>
    <property name="message" value="Essa lenha está sequinha. Há muitos dias não vemos chuva."/>
   </properties>
@@ -942,7 +942,7 @@
    <point/>
   </object>
  </objectgroup>
- <objectgroup id="5" name="warps">
+ <objectgroup id="5" name="warps" visible="0">
   <object id="15" name="go_field" x="1027.08" y="-45.1667" width="9.375" height="6.875">
    <properties>
     <property name="goto" type="object" value="42"/>
@@ -982,7 +982,7 @@
    </properties>
   </object>
  </objectgroup>
- <objectgroup id="6" name="spawn" visible="0">
+ <objectgroup id="6" name="spawn">
   <object id="11" name="Spawn Point" x="-1158.17" y="-635.333">
    <point/>
   </object>

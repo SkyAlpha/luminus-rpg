@@ -84,7 +84,7 @@ export class LuminusGamePadController extends AnimationNames {
                 (this.gamepad.left && this.gamepad.down) ||
                 (this.gamepad.left && this.gamepad.up)
             ) {
-                this.player.body.setVelocityX(-this.player.speed);
+                this.player.container.body.setVelocityX(-this.player.speed);
                 this.player.anims.play(
                     texture + '-' + this.walkLeftAnimationName,
                     true
@@ -98,18 +98,18 @@ export class LuminusGamePadController extends AnimationNames {
                     texture + '-' + this.walkRightAnimationName,
                     true
                 );
-                this.player.body.setVelocityX(this.player.speed);
+                this.player.container.body.setVelocityX(this.player.speed);
             }
 
             if (this.gamepad.up) {
-                this.player.body.setVelocityY(-this.player.speed);
+                this.player.container.body.setVelocityY(-this.player.speed);
                 if (!this.gamepad.left && !this.gamepad.right)
                     this.player.anims.play(
                         texture + '-' + this.walkUpAnimationName,
                         true
                     );
             } else if (this.gamepad.down) {
-                this.player.body.setVelocityY(this.player.speed);
+                this.player.container.body.setVelocityY(this.player.speed);
                 if (!this.gamepad.left && !this.gamepad.right)
                     this.player.anims.play(
                         texture + '-' + this.walkDownAnimationName,
@@ -120,7 +120,7 @@ export class LuminusGamePadController extends AnimationNames {
             if (
                 (this.gamepad.leftStick.x !== 0 ||
                     this.gamepad.leftStick.y !== 0) &&
-                this.player.body.maxSpeed > 0
+                this.player.container.body.maxSpeed > 0
             ) {
                 this.luminusAnimationManager.animateWithAngle(
                     this.walkPrefixAnimation,
@@ -129,11 +129,13 @@ export class LuminusGamePadController extends AnimationNames {
                 this.scene.physics.velocityFromRotation(
                     this.gamepad.leftStick.angle(),
                     this.player.speed,
-                    this.player.body.velocity
+                    this.player.container.body.velocity
                 );
             }
 
-            this.player.body.velocity.normalize().scale(this.player.speed);
+            this.player.container.body.velocity
+                .normalize()
+                .scale(this.player.speed);
         }
     }
 }

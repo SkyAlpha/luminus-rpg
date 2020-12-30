@@ -76,8 +76,8 @@ export class LuminusMovement extends AnimationNames {
      */
     isMoving() {
         return (
-            this.player.body.velocity.x !== 0 ||
-            this.player.body.velocity.y !== 0
+            this.player.container.body.velocity.x !== 0 ||
+            this.player.container.body.velocity.y !== 0
         );
     }
 
@@ -95,90 +95,121 @@ export class LuminusMovement extends AnimationNames {
     }
 
     move() {
-        if (!this.player.isAtacking) {
-            const texture = this.player.texture.key;
-            if (this.scene.input.isActive) {
-                // Stop any previous movement from the last frame
-                this.player.body.setVelocity(0);
-                // Horizontal movement
-                if (
-                    this.cursors.left.isDown ||
-                    (this.cursors.left.isDown && this.cursors.down.isDown) ||
-                    (this.cursors.left.isDown &&
-                        this.cursors.up.isDown &&
-                        this.player.body.maxSpeed > 0)
-                ) {
-                    this.player.body.setVelocityX(-this.player.speed);
-                    this.player.anims.play(
-                        texture + '-' + this.walkLeftAnimationName,
-                        true
-                    );
-                } else if (
-                    this.cursors.right.isDown ||
-                    (this.cursors.right.isDown && this.cursors.down.isDown) ||
-                    (this.cursors.right.isDown &&
-                        this.cursors.up.isDown &&
-                        this.player.body.maxSpeed > 0)
-                ) {
-                    this.player.anims.play(
-                        texture + '-' + this.walkRightAnimationName,
-                        true
-                    );
-                    this.player.body.setVelocityX(this.player.speed);
-                }
-
-                // Vertical movement
-                if (this.cursors.up.isDown && this.player.body.maxSpeed > 0) {
-                    this.player.body.setVelocityY(-this.player.speed);
-                    if (!this.cursors.left.isDown && !this.cursors.right.isDown)
-                        this.player.anims.play(
-                            texture + '-' + this.walkUpAnimationName,
-                            true
-                        );
-                }
-                if (this.cursors.down.isDown && this.player.body.maxSpeed > 0) {
-                    if (!this.cursors.left.isDown && !this.cursors.right.isDown)
-                        this.player.anims.play(
-                            texture + '-' + this.walkDownAnimationName,
-                            true
-                        );
-                    this.player.body.setVelocityY(this.player.speed);
-                }
-
-                // Normalize and scale the velocity so that player can't move faster along a diagonal
-                this.player.body.velocity.normalize().scale(this.player.speed);
-            } else {
-                // Stops the movement if there is no pressed key.
-                this.player.body.setVelocityY(0);
-                this.player.body.setVelocityX(0);
-            }
-
-            if (
-                this.stick &&
-                this.stick.isDown &&
-                this.player.body.maxSpeed > 0 &&
-                this.stick.force > 0 &&
-                this.scene.input.pointer1.isDown &&
-                this.player.body.maxSpeed > 0
-            ) {
+        if (
+            this.player &&
+            this.player.container &&
+            this.player.container.body
+        ) {
+            this.player.container.body.setVelocity(0);
+            if (!this.player.isAtacking) {
                 const texture = this.player.texture.key;
-                this.luminusAnimationManager.animateWithAngle(
-                    `${texture}-${this.walkPrefixAnimation}`,
-                    this.stick.rotation
-                );
-                this.scene.physics.velocityFromRotation(
-                    this.stick.rotation,
-                    this.stick.force * this.player.speed,
-                    this.player.body.velocity
-                );
-            }
-            this.luminusGamepadController.sendInputs();
+                if (this.scene.input.isActive) {
+                    // Stop any previous movement from the last frame
 
-            if (!this.isMoving()) {
-                this.luminusAnimationManager.setIdleAnimation();
-                if (this.player.walkDust) this.player.walkDust.on = false;
-            } else {
-                if (this.player.walkDust) this.player.walkDust.on = true;
+                    // Horizontal movement
+                    if (
+                        this.cursors.left.isDown ||
+                        (this.cursors.left.isDown &&
+                            this.cursors.down.isDown) ||
+                        (this.cursors.left.isDown &&
+                            this.cursors.up.isDown &&
+                            this.player.container.body.maxSpeed > 0)
+                    ) {
+                        this.player.container.body.setVelocityX(
+                            -this.player.speed
+                        );
+                        this.player.anims.play(
+                            texture + '-' + this.walkLeftAnimationName,
+                            true
+                        );
+                    } else if (
+                        this.cursors.right.isDown ||
+                        (this.cursors.right.isDown &&
+                            this.cursors.down.isDown) ||
+                        (this.cursors.right.isDown &&
+                            this.cursors.up.isDown &&
+                            this.player.container.body.maxSpeed > 0)
+                    ) {
+                        this.player.anims.play(
+                            texture + '-' + this.walkRightAnimationName,
+                            true
+                        );
+                        this.player.container.body.setVelocityX(
+                            this.player.speed
+                        );
+                    }
+
+                    // Vertical movement
+                    if (
+                        this.cursors.up.isDown &&
+                        this.player.container.body.maxSpeed > 0
+                    ) {
+                        this.player.container.body.setVelocityY(
+                            -this.player.speed
+                        );
+                        if (
+                            !this.cursors.left.isDown &&
+                            !this.cursors.right.isDown
+                        )
+                            this.player.anims.play(
+                                texture + '-' + this.walkUpAnimationName,
+                                true
+                            );
+                    }
+                    if (
+                        this.cursors.down.isDown &&
+                        this.player.container.body.maxSpeed > 0
+                    ) {
+                        if (
+                            !this.cursors.left.isDown &&
+                            !this.cursors.right.isDown
+                        )
+                            this.player.anims.play(
+                                texture + '-' + this.walkDownAnimationName,
+                                true
+                            );
+                        this.player.container.body.setVelocityY(
+                            this.player.speed
+                        );
+                    }
+
+                    // Normalize and scale the velocity so that player can't move faster along a diagonal
+                    this.player.container.body.velocity
+                        .normalize()
+                        .scale(this.player.speed);
+                } else {
+                    // Stops the movement if there is no pressed key.
+                    this.player.container.body.setVelocityY(0);
+                    this.player.container.body.setVelocityX(0);
+                }
+
+                if (
+                    this.stick &&
+                    this.stick.isDown &&
+                    this.player.container.body.maxSpeed > 0 &&
+                    this.stick.force > 0 &&
+                    this.scene.input.pointer1.isDown &&
+                    this.player.container.body.maxSpeed > 0
+                ) {
+                    const texture = this.player.texture.key;
+                    this.luminusAnimationManager.animateWithAngle(
+                        `${texture}-${this.walkPrefixAnimation}`,
+                        this.stick.rotation
+                    );
+                    this.scene.physics.velocityFromRotation(
+                        this.stick.rotation,
+                        this.stick.force * this.player.speed,
+                        this.player.container.body.velocity
+                    );
+                }
+                this.luminusGamepadController.sendInputs();
+
+                if (!this.isMoving()) {
+                    this.luminusAnimationManager.setIdleAnimation();
+                    if (this.player.walkDust) this.player.walkDust.on = false;
+                } else {
+                    if (this.player.walkDust) this.player.walkDust.on = true;
+                }
             }
         }
     }

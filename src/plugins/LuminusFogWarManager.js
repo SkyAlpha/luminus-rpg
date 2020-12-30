@@ -107,8 +107,8 @@ export class LuminusFogWarManager {
         this.noVisionRT.depth = 99999999999999999999999999;
 
         this.imageMask = this.scene.add.image(
-            this.player.x,
-            this.player.y,
+            this.player.container.x,
+            this.player.container.y,
             this.maskTextureName
         );
         this.imageMask.scale = 1.5;
@@ -125,8 +125,8 @@ export class LuminusFogWarManager {
         this.renderTexture.fill(0x000000, 0.7);
         this.renderTexture.setTint(0x0a2948);
         if (this.player && this.imageMask) {
-            this.imageMask.x = this.player.x;
-            this.imageMask.y = this.player.y;
+            this.imageMask.x = this.player.container.x;
+            this.imageMask.y = this.player.container.y;
             this.noVisionRT.erase(this.imageMask);
             this.renderTexture.erase(this.imageMask);
             this.renderTexture.erase(this.imageMask);

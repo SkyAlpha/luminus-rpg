@@ -1,4 +1,5 @@
 import Phaser from 'phaser';
+import { LuminusHealthBar } from '../plugins/LuminusHealthBar';
 import { LuminusKeyboardMouseController } from '../plugins/LuminusKeyboardMouseController';
 import { LuminusMovement } from '../plugins/LuminusMovement';
 import { BaseEntity } from './BaseEntity';
@@ -6,14 +7,14 @@ import { EntityStatus } from './EntityStatus';
 
 /**
  * @class
- * @extends Phaser.GameObjects.Sprite
- * {@link https://photonstorm.github.io/phaser3-docs/Phaser.GameObjects.Sprite.html| Docs}
+ * @extends Phaser.Physics.Arcade.Sprite
+ * {@link https://photonstorm.github.io/phaser3-docs/Phaser.Physics.Arcade.Sprite.html| Docs}
  * @extends BaseEntity
  * @extends EntityStatus
  */
-export class Player extends Phaser.GameObjects.Sprite {
+export class Player extends Phaser.Physics.Arcade.Sprite {
     constructor(scene, x, y, texture, map) {
-        super(scene, x, y, texture);
+        super(scene, 0, 0, texture);
 
         Object.assign(this, BaseEntity);
         Object.assign(this, EntityStatus);
@@ -63,21 +64,28 @@ export class Player extends Phaser.GameObjects.Sprite {
          * @type { number }
          * @default
          */
-        this.bodyOffsetY = 20;
+        this.bodyOffsetY = 2;
 
         /**
          * The zone that will interact as a hitzone.
          * @type { Phaser.GameObjects.Zone }
          */
-        this.hitZone = this.scene.add.zone(
-            this.x,
-            this.y,
-            this.width,
-            this.height
-        );
+        this.hitZone = this.scene.add.zone(0, 0, this.width, this.height);
 
-        // Initializes the physics.
-        this.setPhysics();
+        // TODO - Change the offsets to a JSON file or DataBase so it's not HardCoded.
+        /**
+         * The Health Bar.
+         * @type { LuminusHealthBar }
+         */
+        this.healthBar = new LuminusHealthBar(
+            this.scene,
+            0,
+            0,
+            this.width * 2,
+            this.health,
+            this.width / 2.2,
+            -(this.height / 2)
+        );
 
         /**
          * The particle name of the Sprite / Texture to be used for the the dust movement.
@@ -85,6 +93,16 @@ export class Player extends Phaser.GameObjects.Sprite {
          * @default
          */
         this.dustParticleName = 'walk_dust';
+
+        /**
+         * The container that holds the player game objects.
+         * @type { Phaser.GameObjects.Container }
+         */
+        this.container = new Phaser.GameObjects.Container(this.scene, x, y, [
+            this,
+            this.healthBar,
+            this.hitZone,
+        ]);
 
         // /**
         //  * The dust particles that the entity will emit when it moves.
@@ -94,7 +112,7 @@ export class Player extends Phaser.GameObjects.Sprite {
             .particles(this.dustParticleName)
             .setDepth(0)
             .createEmitter({
-                follow: this,
+                follow: this.container.body,
                 speed: 2,
                 scale: { start: 0.1, end: 0.25 },
                 frequency: 300,
@@ -143,6 +161,9 @@ export class Player extends Phaser.GameObjects.Sprite {
 
         this.play('character-idle-down');
 
+        // Initializes the physics.
+        this.setPhysics();
+
         // All the dependencies that need to be inside the update game loop.
         this.scene.events.on('update', this.onUpdate, this);
     }
@@ -172,8 +193,23 @@ export class Player extends Phaser.GameObjects.Sprite {
         this.body.offset.y = this.bodyOffsetY;
         this.body.maxSpeed = this.speed;
 
+        this.scene.add.existing(this.container);
+        this.scene.physics.add.existing(this.container);
+        this.container.body.setSize(this.bodyWidth, this.bodyHeight);
+        this.container.body.offset.y = this.bodyOffsetY;
+        this.container.body.offset.x = -(this.bodyWidth / 2);
+        this.container.body.maxSpeed = this.speed;
+
         this.scene.physics.add.existing(this.hitZone);
         this.hitZone.body.setSize(this.hitZoneWidth, this.hitZoneHeigth);
+    }
+
+    /**
+     * Destroys all the sprite dependencies.
+     */
+    destroyAll() {
+        this.container.destroy();
+        this.destroy();
     }
 
     /**
@@ -181,9 +217,9 @@ export class Player extends Phaser.GameObjects.Sprite {
      * You should put any updates that require movement iteraction here.
      */
     updateMovementDependencies() {
-        if (this.hitZone) {
-            this.hitZone.x = this.x;
-            this.hitZone.y = this.y;
-        }
+        // if (this.hitZone) {
+        //     this.hitZone.x = this.x;
+        //     this.hitZone.y = this.y;
+        // }
     }
 }

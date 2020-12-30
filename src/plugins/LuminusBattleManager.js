@@ -95,8 +95,8 @@ export class LuminusBattleManager extends AnimationNames {
      */
     createHitBox(atacker) {
         const hitbox = atacker.scene.physics.add.sprite(
-            atacker.x,
-            atacker.y,
+            atacker.container.x,
+            atacker.container.y,
             this.hitboxSpriteName,
             0
         );
@@ -110,9 +110,9 @@ export class LuminusBattleManager extends AnimationNames {
                 hitbox,
                 rotation,
                 {
-                    x: atacker.x,
+                    x: atacker.container.x,
                     y:
-                        atacker.y -
+                        atacker.container.y -
                         atacker.hitZone.body.height / this.hitboxOffsetDividerY,
                 },
                 atacker
@@ -125,7 +125,10 @@ export class LuminusBattleManager extends AnimationNames {
             this.setHitboxRotation(
                 hitbox,
                 rotation,
-                { x: atacker.x + atacker.hitZone.body.width, y: atacker.y },
+                {
+                    x: atacker.container.x + atacker.hitZone.body.width,
+                    y: atacker.container.y,
+                },
                 atacker
             );
         } else if (
@@ -137,9 +140,9 @@ export class LuminusBattleManager extends AnimationNames {
                 hitbox,
                 rotation,
                 {
-                    x: atacker.x,
+                    x: atacker.container.x,
                     y:
-                        atacker.y +
+                        atacker.container.y +
                         atacker.hitZone.body.height / this.hitboxOffsetDividerY,
                 },
                 atacker
@@ -152,7 +155,10 @@ export class LuminusBattleManager extends AnimationNames {
             this.setHitboxRotation(
                 hitbox,
                 rotation,
-                { x: atacker.x - atacker.hitZone.body.width, y: atacker.y },
+                {
+                    x: atacker.container.x - atacker.hitZone.body.width,
+                    y: atacker.container.y,
+                },
                 atacker
             );
         }
@@ -188,7 +194,8 @@ export class LuminusBattleManager extends AnimationNames {
         ];
         const damage = this.randomDamage(atacker.atack);
         if (damage - target.defense > 0) {
-            target.healthBar.decrease(damage - target.defense);
+            if (target.healthBar)
+                target.healthBar.decrease(damage - target.defense);
             target.health -= damage - target.defense;
         } else {
             target.health -= 1;
@@ -250,6 +257,12 @@ export class LuminusBattleManager extends AnimationNames {
 
             const hitBoxSprite = this.createHitBox(atacker);
             hitBoxSprite.anims.play(this.hitboxSpriteName);
+            // Destroys the atack if the atacker dies.
+            hitBoxSprite.on('animationupdate', (animationState) => {
+                if (!atacker) {
+                    hitBoxSprite.destroy();
+                }
+            });
             // Animations events have to come before the animation is played, they are triggered propperly.
             atacker.once(`animationstart`, (start) => {
                 if (
@@ -264,11 +277,31 @@ export class LuminusBattleManager extends AnimationNames {
             atacker.on(`animationupdate`, (animationStatus) => {
                 if (
                     animationStatus.key ===
-                    `${texture}-${this.atkPrefixAnimation}-${atackAnimation[2]}`
+                        `${texture}-${this.atkPrefixAnimation}-${atackAnimation[2]}` &&
+                    atacker.constructor.name === 'Player'
                 ) {
                     atacker.scene.physics.overlap(
                         hitBoxSprite,
                         atacker.scene[this.enemiesVariableName],
+
+                        (h, e) => {
+                            this.takeDamage(atacker, e);
+                            e.canTakeDamage = false;
+                            atacker.canAtack = false;
+                            atackedEnemies.push(e);
+                        },
+                        (h, e) => {
+                            return e.canTakeDamage;
+                        }
+                    );
+                } else if (
+                    animationStatus.key ===
+                        `${texture}-${this.atkPrefixAnimation}-${atackAnimation[2]}` &&
+                    atacker.constructor.name === 'Enemy'
+                ) {
+                    atacker.scene.physics.overlap(
+                        hitBoxSprite,
+                        atacker.scene['player'],
                         (h, e) => {
                             this.takeDamage(atacker, e);
                             e.canTakeDamage = false;

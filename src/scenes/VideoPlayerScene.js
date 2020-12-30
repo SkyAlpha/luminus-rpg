@@ -140,7 +140,8 @@ export class VideoPlayerScene extends Phaser.Scene {
     init(data) {
         this.videoId = data.videoId;
         this.player = data.player;
-        if (this.player && this.player.body) this.player.body.maxSpeed = 0;
+        if (this.player && this.player.container.body)
+            this.player.container.body.maxSpeed = 0;
     }
 
     /**
@@ -162,8 +163,8 @@ export class VideoPlayerScene extends Phaser.Scene {
             // Closes the Video Scene when the player clicks the Close button.
             this.closeButton.on('pointerdown', (pointer) => {
                 // Just to make sure everything works if thereis no player.
-                if (this.player && this.player.body)
-                    this.player.body.maxSpeed = this.player.speed;
+                if (this.player && this.player.container.body)
+                    this.player.container.body.maxSpeed = this.player.speed;
                 this.luminusSoundManager.resumeAllAudio();
                 this.scene.stop();
             });

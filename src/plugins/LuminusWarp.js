@@ -61,12 +61,12 @@ export class LuminusWarp {
         this.propertyChangeScene = 'scene';
 
         /**
-         * Maximum speed that the player can move. User only for caching in this class.
+         * Maximum speed that the player can move. Used only for caching the value in this class.
          * @private
          * @type { number }
          * @default
          */
-        this.maxSpeed = this.player.body.maxSpeed;
+        this.maxSpeed = this.player.container.body.maxSpeed;
 
         /**
          * @type { Phaser.GameObjects.Particles.ParticleEmitter }
@@ -156,8 +156,8 @@ export class LuminusWarp {
 
                 if (dest && isScene === undefined) {
                     this.scene.cameras.main.fade(this.fadeOutTime);
-                    player.x = dest.x;
-                    player.y = dest.y;
+                    player.container.x = dest.x;
+                    player.container.y = dest.y;
                     this.scene.cameras.main.fadeIn(this.fadeInTime);
                 } else if (isScene) {
                     const scene = warp_point.warp.properties.find(

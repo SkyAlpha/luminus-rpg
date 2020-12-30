@@ -99,11 +99,11 @@ export class MainScene extends Phaser.Scene {
         this.player.play('idle-down');
 
         const camera = this.cameras.main;
-        camera.startFollow(this.player);
+        camera.startFollow(this.player.container);
 
         // camera.setBounds(0, 0, map.widthInPixels, map.heightInPixels);
 
-        this.physics.add.collider(this.player, collision_layer);
+        this.physics.add.collider(this.player.container, collision_layer);
 
         const phaserWarp = new LuminusWarp(this, this.player, map);
         phaserWarp.createWarps();
