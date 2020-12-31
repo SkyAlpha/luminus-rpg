@@ -177,6 +177,7 @@ export class Enemy extends Phaser.Physics.Arcade.Sprite {
      */
     changeBodySize(width, height) {
         this.body.setSize(width, height);
+        this.hitZone.body.setSize(width, height);
         this.container.body.setSize(width, height);
         this.container.body.setOffset(-(width / 2), -(height / 2));
     }

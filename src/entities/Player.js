@@ -166,6 +166,10 @@ export class Player extends Phaser.Physics.Arcade.Sprite {
 
         // All the dependencies that need to be inside the update game loop.
         this.scene.events.on('update', this.onUpdate, this);
+
+        // Debug color lines.
+        this.container.body.debugBodyColor = 0xffffff;
+        this.body.debugBodyColor = 0xffff00;
     }
 
     /**
@@ -190,7 +194,7 @@ export class Player extends Phaser.Physics.Arcade.Sprite {
         this.scene.add.existing(this);
         this.scene.physics.add.existing(this);
         this.body.setSize(this.bodyWidth, this.bodyHeight);
-        this.body.offset.y = this.bodyOffsetY;
+        this.body.offset.y = this.height / 1.8;
         this.body.maxSpeed = this.speed;
 
         this.scene.add.existing(this.container);

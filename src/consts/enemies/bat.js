@@ -18,7 +18,7 @@ export const Bat = [
         start: 0,
         end: 4,
         zeroPad: 2,
-        repeat: -1,
+        repeat: 0,
     },
     {
         atlas: 'bat',
@@ -49,7 +49,7 @@ export const Bat = [
         start: 0,
         end: 4,
         zeroPad: 2,
-        repeat: -1,
+        repeat: 0,
     },
     {
         atlas: 'bat',
@@ -80,7 +80,7 @@ export const Bat = [
         start: 0,
         end: 4,
         zeroPad: 2,
-        repeat: -1,
+        repeat: 0,
     },
     {
         atlas: 'bat',

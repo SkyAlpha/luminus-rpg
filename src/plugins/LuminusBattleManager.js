@@ -118,7 +118,8 @@ export class LuminusBattleManager extends AnimationNames {
                 atacker
             );
         } else if (
-            atacker.frame.name.includes(this.atackDirectionFrameName.right)
+            atacker.frame.name.includes(this.atackDirectionFrameName.right) &&
+            !atacker.flipX
         ) {
             hitbox.body.setOffset(-4, 0);
             const rotation = 0;
@@ -148,7 +149,8 @@ export class LuminusBattleManager extends AnimationNames {
                 atacker
             );
         } else if (
-            atacker.frame.name.includes(this.atackDirectionFrameName.left)
+            atacker.frame.name.includes(this.atackDirectionFrameName.left) ||
+            atacker.flipX
         ) {
             hitbox.body.setOffset(4, 0);
             const rotation = -3.14;
@@ -257,27 +259,22 @@ export class LuminusBattleManager extends AnimationNames {
 
             const hitBoxSprite = this.createHitBox(atacker);
             hitBoxSprite.anims.play(this.hitboxSpriteName);
-            // Destroys the atack if the atacker dies.
-            hitBoxSprite.on('animationupdate', (animationState) => {
-                if (!atacker) {
-                    hitBoxSprite.destroy();
-                }
-            });
-            // Animations events have to come before the animation is played, they are triggered propperly.
-            atacker.once(`animationstart`, (start) => {
-                if (
-                    start.key ===
-                    `${texture}-${this.atkPrefixAnimation}-${atackAnimation[2]}`
-                ) {
-                    atacker.scene.sound.add(animationName).play();
-                }
-            });
             // Stores the enemies that where atacked on the current animation.
             let atackedEnemies = [];
-            atacker.on(`animationupdate`, (animationStatus) => {
+            // Destroys the atack if the atacker dies.
+            atacker.scene.events.on('update', (update) => {
                 if (
-                    animationStatus.key ===
-                        `${texture}-${this.atkPrefixAnimation}-${atackAnimation[2]}` &&
+                    hitBoxSprite &&
+                    hitBoxSprite.active &&
+                    atacker &&
+                    !atacker.active
+                ) {
+                    hitBoxSprite.destroy();
+                }
+
+                if (
+                    atacker &&
+                    atacker.active &&
                     atacker.constructor.name === 'Player'
                 ) {
                     atacker.scene.physics.overlap(
@@ -295,8 +292,8 @@ export class LuminusBattleManager extends AnimationNames {
                         }
                     );
                 } else if (
-                    animationStatus.key ===
-                        `${texture}-${this.atkPrefixAnimation}-${atackAnimation[2]}` &&
+                    atacker &&
+                    atacker.active &&
                     atacker.constructor.name === 'Enemy'
                 ) {
                     atacker.scene.physics.overlap(
@@ -316,6 +313,16 @@ export class LuminusBattleManager extends AnimationNames {
                     );
                 }
             });
+            // Animations events have to come before the animation is played, they are triggered propperly.
+            atacker.once(`animationstart`, (start) => {
+                if (
+                    start.key ===
+                    `${texture}-${this.atkPrefixAnimation}-${atackAnimation[2]}`
+                ) {
+                    atacker.scene.sound.add(animationName).play();
+                }
+            });
+
             atacker.once(
                 `animationcomplete-${texture}-${this.atkPrefixAnimation}-${atackAnimation[2]}`,
                 (animationState) => {
