@@ -5,11 +5,18 @@
  */
 export const EntityStatus = {
     /**
-     * The health points of an entity.
+     * The Current health points of an entity.
      * @type { number }
      * @default
      */
     health: 10,
+
+    /**
+     * The Initial health points of an entity.
+     * @type { number }
+     * @default
+     */
+    baseHealth: 10,
 
     /**
      * The atack points of an entity

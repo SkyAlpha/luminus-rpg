@@ -13,7 +13,7 @@ export const Bat = [
     {
         atlas: 'bat',
         key: 'bat-atk-down',
-        frameRate: 8,
+        frameRate: 5,
         prefix: 'bat/atk-down/bat',
         start: 0,
         end: 4,
@@ -44,7 +44,7 @@ export const Bat = [
     {
         atlas: 'bat',
         key: 'bat-atk-right',
-        frameRate: 8,
+        frameRate: 5,
         prefix: 'bat/atk-right/bat',
         start: 0,
         end: 4,
@@ -75,7 +75,7 @@ export const Bat = [
     {
         atlas: 'bat',
         key: 'bat-atk-up',
-        frameRate: 8,
+        frameRate: 5,
         prefix: 'bat/atk-up/bat',
         start: 0,
         end: 4,

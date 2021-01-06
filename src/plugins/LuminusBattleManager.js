@@ -1,6 +1,7 @@
 import { AnimationNames } from '../consts/AnimationNames';
 import PhaserJuice from 'phaser3-juice-plugin';
 import { Enemy } from '../entities/Enemy';
+import { Player } from '../entities/Player';
 /**
  * @class
  */
@@ -11,11 +12,18 @@ export class LuminusBattleManager extends AnimationNames {
     constructor() {
         super();
         /**
-         * The name of the variables that the battle scene will look for to do overlaps and deal damage.
+         * The name of the variables that the battle scene will look for to do overlaps and deal damage to the Enemy.
          * @type { string }
          * @default
          */
         this.enemiesVariableName = 'enemies';
+
+        /**
+         * The name of the variables that the battle scene will look for to do overlaps and deal damage to the Player.
+         * @type { string }
+         * @default
+         */
+        this.playerVariableName = 'player';
 
         /**
          * The name of the SFX of the atack being performed.
@@ -86,6 +94,27 @@ export class LuminusBattleManager extends AnimationNames {
          * @default
          */
         this.variation = 10;
+
+        /**
+         * The lifetime of the Enemy Hitbox.
+         * This deifnes how long the Hitbox will keep moving towards the enemy.
+         * @type { number }
+         */
+        this.enemyHitboxLifetime = 200;
+
+        /**
+         * The name of the Enemy Constructor Class.
+         * @type { string }
+         * @default
+         */
+        this.enemyConstructorName = Enemy.name;
+
+        /**
+         * The name of the Player Constructor Class.
+         * @type { string }
+         * @default
+         */
+        this.PlayerConstructorName = Player.name;
     }
 
     /**
@@ -101,7 +130,9 @@ export class LuminusBattleManager extends AnimationNames {
             0
         );
 
-        hitbox.alpha = 0.4;
+        hitbox.body.debugBodyColor = 0xff00ff;
+
+        hitbox.alpha = 0.3;
         hitbox.depth = 50;
         if (atacker.frame.name.includes(this.atackDirectionFrameName.up)) {
             hitbox.body.setOffset(0, 4);
@@ -169,9 +200,9 @@ export class LuminusBattleManager extends AnimationNames {
 
     /**
      * Sets position of the sprite for a given rotation. The rotation should match the atack direction that you want.
-     * @param { Phaser.Physics.Arcade.Sprite } hitbox The hitbox sprite that will changed
-     * @param { number } rotation The rotation in radians
-     * @param { Object } position The new position of the
+     * @param { Phaser.Physics.Arcade.Sprite } hitbox The hitbox sprite that will be changed.
+     * @param { number } rotation The rotation in radians.
+     * @param { Object } position The new position of the hitbox.
      * @param { Phaser.Physics.Arcade.Sprite } atacker The atacker to get the scene from.
      */
     setHitboxRotation(hitbox, rotation, position, atacker) {
@@ -257,8 +288,12 @@ export class LuminusBattleManager extends AnimationNames {
                 Math.floor(Math.random() * this.atackSoundAnimationNames.length)
             ];
 
-            const hitBoxSprite = this.createHitBox(atacker);
-            hitBoxSprite.anims.play(this.hitboxSpriteName);
+            let hitBoxSprite;
+            if (atacker.constructor.name === this.PlayerConstructorName) {
+                hitBoxSprite = this.createHitBox(atacker);
+                hitBoxSprite.anims.play(this.hitboxSpriteName);
+            }
+
             // Stores the enemies that where atacked on the current animation.
             let atackedEnemies = [];
             // Destroys the atack if the atacker dies.
@@ -273,9 +308,11 @@ export class LuminusBattleManager extends AnimationNames {
                 }
 
                 if (
+                    hitBoxSprite &&
+                    hitBoxSprite.active &&
                     atacker &&
                     atacker.active &&
-                    atacker.constructor.name === 'Player'
+                    atacker.constructor.name === this.PlayerConstructorName
                 ) {
                     atacker.scene.physics.overlap(
                         hitBoxSprite,
@@ -292,23 +329,27 @@ export class LuminusBattleManager extends AnimationNames {
                         }
                     );
                 } else if (
+                    hitBoxSprite &&
+                    hitBoxSprite.active &&
                     atacker &&
                     atacker.active &&
-                    atacker.constructor.name === 'Enemy'
+                    atacker.constructor.name === this.enemyConstructorName
                 ) {
                     atacker.scene.physics.overlap(
                         hitBoxSprite,
-                        atacker.scene['player'],
+                        atacker.scene[this.playerVariableName].hitZone,
                         (h, e) => {
-                            this.takeDamage(atacker, e);
-                            e.canTakeDamage = false;
-                            atackedEnemies.push(e);
-                            setTimeout((t) => {
-                                atacker.canAtack = false;
-                            }, 2000);
+                            let enemy = atacker.scene[this.playerVariableName];
+                            this.takeDamage(atacker, enemy);
+                            enemy.canTakeDamage = false;
+                            atackedEnemies.push(enemy);
+                            atacker.canAtack = false;
+                            // if (atacker.anims.getProgress() === 1) {
+                            // }
                         },
                         (h, e) => {
-                            return e.canTakeDamage;
+                            let enemy = atacker.scene[this.playerVariableName];
+                            return enemy.canTakeDamage;
                         }
                     );
                 }
@@ -317,22 +358,45 @@ export class LuminusBattleManager extends AnimationNames {
             atacker.once(`animationstart`, (start) => {
                 if (
                     start.key ===
-                    `${texture}-${this.atkPrefixAnimation}-${atackAnimation[2]}`
+                        `${texture}-${this.atkPrefixAnimation}-${atackAnimation[2]}` &&
+                    atacker.constructor.name === this.PlayerConstructorName
                 ) {
                     atacker.scene.sound.add(animationName).play();
                 }
             });
 
             atacker.once(
-                `animationcomplete-${texture}-${this.atkPrefixAnimation}-${atackAnimation[2]}`,
+                `animationcomplete`,
                 (animationState) => {
-                    atacker.isAtacking = false;
-                    atacker.body.maxSpeed = atacker.speed;
-                    atacker.canAtack = true; // Enables the atack once the player finishes the animation
-                    atackedEnemies.forEach((e) => {
-                        e.canTakeDamage = true;
-                    });
-                    hitBoxSprite.destroy();
+                    if (
+                        animationState.key ===
+                        `${texture}-${this.atkPrefixAnimation}-${atackAnimation[2]}`
+                    ) {
+                        atacker.isAtacking = false;
+                        atacker.body.maxSpeed = atacker.speed;
+                        atacker.canAtack = true; // Enables the atack once the player finishes the animation
+                        if (
+                            atacker.constructor.name ===
+                            this.enemyConstructorName
+                        ) {
+                            hitBoxSprite = this.createHitBox(atacker);
+                            hitBoxSprite.anims.play(this.hitboxSpriteName);
+                            setTimeout((time) => {
+                                this.resetEnemyState(atackedEnemies);
+                                hitBoxSprite.destroy();
+                            }, this.enemyHitboxLifetime);
+                        }
+
+                        if (
+                            hitBoxSprite &&
+                            hitBoxSprite.active &&
+                            atacker.constructor.name !==
+                                this.enemyConstructorName
+                        )
+                            hitBoxSprite.destroy();
+
+                        this.resetEnemyState(atackedEnemies);
+                    }
                 },
                 this
             );
@@ -341,6 +405,18 @@ export class LuminusBattleManager extends AnimationNames {
                 `${texture}-${this.atkPrefixAnimation}-${atackAnimation[2]}`,
                 true
             );
+        }
+    }
+
+    /**
+     * Resets the 'canTakeDamage' state to true.
+     * @param { Phaser.Physics.Arcade.Sprite } atackedEnemies
+     */
+    resetEnemyState(atackedEnemies) {
+        if (atackedEnemies && atackedEnemies.length) {
+            atackedEnemies.forEach((e) => {
+                e.canTakeDamage = true;
+            });
         }
     }
 }
