@@ -112,7 +112,7 @@ export class Player extends Phaser.Physics.Arcade.Sprite {
             .particles(this.dustParticleName)
             .setDepth(0)
             .createEmitter({
-                follow: this.container.body,
+                follow: this.container,
                 speed: 2,
                 scale: { start: 0.1, end: 0.25 },
                 frequency: 300,
@@ -166,10 +166,6 @@ export class Player extends Phaser.Physics.Arcade.Sprite {
 
         // All the dependencies that need to be inside the update game loop.
         this.scene.events.on('update', this.onUpdate, this);
-
-        // Debug color lines.
-        this.container.body.debugBodyColor = 0xffffff;
-        this.body.debugBodyColor = 0xffff00;
     }
 
     /**
@@ -191,7 +187,7 @@ export class Player extends Phaser.Physics.Arcade.Sprite {
      * Initializes the physics
      */
     setPhysics() {
-        this.scene.add.existing(this);
+        // this.scene.add.existing(this);
         this.scene.physics.add.existing(this);
         this.body.setSize(this.bodyWidth, this.bodyHeight);
         this.body.offset.y = this.height / 1.8;
@@ -206,6 +202,10 @@ export class Player extends Phaser.Physics.Arcade.Sprite {
 
         this.scene.physics.add.existing(this.hitZone);
         this.hitZone.body.setSize(this.hitZoneWidth, this.hitZoneHeigth);
+
+        // Debug color lines.
+        this.container.body.debugBodyColor = 0xffffff;
+        this.body.debugBodyColor = 0xffff00;
     }
 
     /**

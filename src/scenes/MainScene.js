@@ -96,8 +96,6 @@ export class MainScene extends Phaser.Scene {
 
         this.player = new Player(this, spawnPoint.x, spawnPoint.y, 'character');
 
-        this.player.play('idle-down');
-
         const camera = this.cameras.main;
         camera.startFollow(this.player.container);
 

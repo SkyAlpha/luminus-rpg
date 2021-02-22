@@ -110,17 +110,17 @@ export class LuminusDungeonGenerator {
             },
         });
 
-        // this.dungeon.drawToConsole({
-        //     empty: ' ',
-        //     emptyColor: 'rgb(0, 0, 0)',
-        //     wall: '#',
-        //     wallColor: 'rgb(255, 0, 0)',
-        //     floor: '0',
-        //     floorColor: 'rgb(210, 210, 210)',
-        //     door: 'x',
-        //     doorColor: 'rgb(0, 0, 255)',
-        //     fontSize: '8px',
-        // });
+        this.dungeon.drawToConsole({
+            empty: ' ',
+            emptyColor: 'rgb(0, 0, 0)',
+            wall: '#',
+            wallColor: 'rgb(255, 0, 0)',
+            floor: '0',
+            floorColor: 'rgb(210, 210, 210)',
+            door: 'x',
+            doorColor: 'rgb(0, 0, 255)',
+            fontSize: '8px',
+        });
 
         // Create a blank map
         this.map = this.scene.make.tilemap({
@@ -227,8 +227,8 @@ export class LuminusDungeonGenerator {
             }
         });
 
-        // Not exactly correct for the tileset since there are more possible floor tiles, but this will
-        // do for the example.
+        // Not exactly correct for the tileset since there are more possible floor tiles,
+        // don`t forget to change it as it pleases your game.
         this.groundLayer.setCollisionByExclusion([-1, 6, 7, 8, 26]);
     }
 }

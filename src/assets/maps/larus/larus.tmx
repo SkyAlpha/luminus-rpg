@@ -983,7 +983,7 @@
   </object>
  </objectgroup>
  <objectgroup id="6" name="spawn">
-  <object id="11" name="Spawn Point" x="-1158.17" y="-635.333">
+  <object id="11" name="Spawn Point" x="-1163.5" y="-628.666">
    <point/>
   </object>
  </objectgroup>

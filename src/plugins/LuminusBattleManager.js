@@ -279,7 +279,7 @@ export class LuminusBattleManager extends AnimationNames {
             atacker.isAtacking = true;
             atacker.canAtack = false;
             if (atacker.walkDust) atacker.walkDust.on = false;
-            atacker.body.maxSpeed = 0;
+            atacker.container.body.maxSpeed = 0;
             const texture = atacker.texture.key;
             const currrentAnimation = atacker.anims.currentAnim.key;
             const atackAnimation = currrentAnimation.split('-');
@@ -373,7 +373,7 @@ export class LuminusBattleManager extends AnimationNames {
                         `${texture}-${this.atkPrefixAnimation}-${atackAnimation[2]}`
                     ) {
                         atacker.isAtacking = false;
-                        atacker.body.maxSpeed = atacker.speed;
+                        atacker.container.body.maxSpeed = atacker.speed;
                         atacker.canAtack = true; // Enables the atack once the player finishes the animation
                         if (
                             atacker.constructor.name ===

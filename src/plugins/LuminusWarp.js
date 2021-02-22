@@ -132,16 +132,16 @@ export class LuminusWarp {
 
         this.scene.cameras.main.on('camerafadeoutstart', (fade) => {
             // Stop moving.
-            this.player.body.maxSpeed = 0;
+            this.player.container.body.maxSpeed = 0;
         });
         this.scene.cameras.main.on('camerafadeincomplete', (fade) => {
-            this.player.body.maxSpeed = this.maxSpeed;
+            this.player.container.body.maxSpeed = this.maxSpeed;
         });
 
         // Sets the collision between the player and the waro points.
         this.scene.physics.add.collider(
             warp_points,
-            this.player,
+            this.player.container,
             (warp_point, player) => {
                 const dest = destinations.find(
                     (d) =>
@@ -156,8 +156,8 @@ export class LuminusWarp {
 
                 if (dest && isScene === undefined) {
                     this.scene.cameras.main.fade(this.fadeOutTime);
-                    player.container.x = dest.x;
-                    player.container.y = dest.y;
+                    this.player.container.x = dest.x;
+                    this.player.container.y = dest.y;
                     this.scene.cameras.main.fadeIn(this.fadeInTime);
                 } else if (isScene) {
                     const scene = warp_point.warp.properties.find(
