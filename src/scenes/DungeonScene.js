@@ -2,7 +2,6 @@ import Phaser from 'phaser';
 import { LuminusMovement } from '../plugins/LuminusMovement';
 import { Player } from '../entities/Player';
 import { LuminusDungeonGenerator } from '../plugins/LuminusDungeonGenerator';
-import { LuminusKeyboardMouseController } from '../plugins/LuminusKeyboardMouseController';
 import { LuminusFogWarManager } from '../plugins/LuminusFogWarManager';
 import { Enemy } from '../entities/Enemy';
 
@@ -28,7 +27,7 @@ export class DungeonScene extends Phaser.Scene {
             this.dungeon.map
         );
 
-        this.cameras.main.startFollow(this.player);
+        this.cameras.main.startFollow(this.player.container);
         this.cameras.main.setZoom(2.5);
         // camera.setBounds(
         //     0,
@@ -37,7 +36,10 @@ export class DungeonScene extends Phaser.Scene {
         //     this.dungeon.map.heightInPixels
         // );
 
-        this.physics.add.collider(this.player, this.dungeon.groundLayer);
+        this.physics.add.collider(
+            this.player.container,
+            this.dungeon.groundLayer
+        );
         // if (!this.scene.isActive('JoystickScene')) {
         //     this.scene.launch('JoystickScene', {
         //         player: this.player,
