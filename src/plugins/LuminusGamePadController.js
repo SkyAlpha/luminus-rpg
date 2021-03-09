@@ -94,7 +94,6 @@ export class LuminusGamePadController extends AnimationNames {
                 (this.gamepad.right && this.gamepad.down) ||
                 (this.gamepad.right && this.gamepad.up)
             ) {
-                console.log(texture + '-' + this.walkRightAnimationName);
                 this.player.anims.play(
                     texture + '-' + this.walkRightAnimationName,
                     true

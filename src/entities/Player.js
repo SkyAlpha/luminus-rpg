@@ -1,4 +1,5 @@
 import Phaser from 'phaser';
+import { ENTITIES } from '../consts/Entities';
 import { LuminusHealthBar } from '../plugins/LuminusHealthBar';
 import { LuminusKeyboardMouseController } from '../plugins/LuminusKeyboardMouseController';
 import { LuminusMovement } from '../plugins/LuminusMovement';
@@ -18,6 +19,12 @@ export class Player extends Phaser.Physics.Arcade.Sprite {
 
         Object.assign(this, BaseEntity);
         Object.assign(this, EntityStatus);
+
+        /**
+         * The name of the Entity. It's used for differenciation of the entityes.
+         * @type { string }
+         */
+        this.entityName = ENTITIES.Player;
 
         /**
          * scene Scene Context.

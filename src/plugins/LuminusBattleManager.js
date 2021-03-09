@@ -2,6 +2,9 @@ import { AnimationNames } from '../consts/AnimationNames';
 import PhaserJuice from 'phaser3-juice-plugin';
 import { Enemy } from '../entities/Enemy';
 import { Player } from '../entities/Player';
+import Phaser from 'phaser';
+import { ENTITIES } from '../consts/Entities';
+
 /**
  * @class
  */
@@ -107,14 +110,14 @@ export class LuminusBattleManager extends AnimationNames {
          * @type { string }
          * @default
          */
-        this.enemyConstructorName = Enemy.name;
+        this.enemyConstructorName = ENTITIES.Enemy;
 
         /**
          * The name of the Player Constructor Class.
          * @type { string }
          * @default
          */
-        this.PlayerConstructorName = Player.name;
+        this.PlayerConstructorName = ENTITIES.Player;
     }
 
     /**
@@ -289,14 +292,14 @@ export class LuminusBattleManager extends AnimationNames {
             ];
 
             let hitBoxSprite;
-            if (atacker.constructor.name === this.PlayerConstructorName) {
+            if (atacker.entityName === this.PlayerConstructorName) {
                 hitBoxSprite = this.createHitBox(atacker);
                 hitBoxSprite.anims.play(this.hitboxSpriteName);
             }
 
             // Stores the enemies that where atacked on the current animation.
             let atackedEnemies = [];
-            // Destroys the atack if the atacker dies.
+            // Destroys the slash atack if the atacker dies.
             atacker.scene.events.on('update', (update) => {
                 if (
                     hitBoxSprite &&
@@ -312,7 +315,7 @@ export class LuminusBattleManager extends AnimationNames {
                     hitBoxSprite.active &&
                     atacker &&
                     atacker.active &&
-                    atacker.constructor.name === this.PlayerConstructorName
+                    atacker.entityName === this.PlayerConstructorName
                 ) {
                     atacker.scene.physics.overlap(
                         hitBoxSprite,
@@ -333,7 +336,7 @@ export class LuminusBattleManager extends AnimationNames {
                     hitBoxSprite.active &&
                     atacker &&
                     atacker.active &&
-                    atacker.constructor.name === this.enemyConstructorName
+                    atacker.entityName === this.enemyConstructorName
                 ) {
                     atacker.scene.physics.overlap(
                         hitBoxSprite,
@@ -355,18 +358,18 @@ export class LuminusBattleManager extends AnimationNames {
                 }
             });
             // Animations events have to come before the animation is played, they are triggered propperly.
-            atacker.once(`animationstart`, (start) => {
+            atacker.once(Phaser.Animations.Events.ANIMATION_START, (start) => {
                 if (
                     start.key ===
                         `${texture}-${this.atkPrefixAnimation}-${atackAnimation[2]}` &&
-                    atacker.constructor.name === this.PlayerConstructorName
+                    atacker.entityName === this.PlayerConstructorName
                 ) {
                     atacker.scene.sound.add(animationName).play();
                 }
             });
 
             atacker.once(
-                `animationcomplete`,
+                Phaser.Animations.Events.ANIMATION_COMPLETE,
                 (animationState) => {
                     if (
                         animationState.key ===
@@ -375,10 +378,7 @@ export class LuminusBattleManager extends AnimationNames {
                         atacker.isAtacking = false;
                         atacker.container.body.maxSpeed = atacker.speed;
                         atacker.canAtack = true; // Enables the atack once the player finishes the animation
-                        if (
-                            atacker.constructor.name ===
-                            this.enemyConstructorName
-                        ) {
+                        if (atacker.entityName === this.enemyConstructorName) {
                             hitBoxSprite = this.createHitBox(atacker);
                             hitBoxSprite.anims.play(this.hitboxSpriteName);
                             setTimeout((time) => {
@@ -390,8 +390,7 @@ export class LuminusBattleManager extends AnimationNames {
                         if (
                             hitBoxSprite &&
                             hitBoxSprite.active &&
-                            atacker.constructor.name !==
-                                this.enemyConstructorName
+                            atacker.entityName !== this.enemyConstructorName
                         )
                             hitBoxSprite.destroy();
 

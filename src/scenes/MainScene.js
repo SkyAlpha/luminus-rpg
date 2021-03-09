@@ -53,35 +53,29 @@ export class MainScene extends Phaser.Scene {
             'collision_tiles'
         );
 
-        const base = map.createDynamicLayer('base', [inner, tileset_overworld]);
-        const overlay = map.createDynamicLayer('overlay', [
+        const base = map.createLayer('base', [inner, tileset_overworld]);
+        const overlay = map.createLayer('overlay', [inner, tileset_overworld]);
+        const overlay2 = map.createLayer('overlay2', [
             inner,
             tileset_overworld,
         ]);
-        const overlay2 = map.createDynamicLayer('overlay2', [
+        const overlay3 = map.createLayer('overlay3', [
             inner,
             tileset_overworld,
         ]);
-        const overlay3 = map.createDynamicLayer('overlay3', [
+        const overlay4 = map.createLayer('overlay4', [
             inner,
             tileset_overworld,
         ]);
-        const overlay4 = map.createDynamicLayer('overlay4', [
-            inner,
-            tileset_overworld,
-        ]);
-        this.overplayer_layer = map.createDynamicLayer('overplayer', [
+        this.overplayer_layer = map.createLayer('overplayer', [
             tileset_overworld,
             inner,
         ]);
-        const overplayer_layer2 = map.createDynamicLayer('overplayer2', [
+        const overplayer_layer2 = map.createLayer('overplayer2', [
             tileset_overworld,
             inner,
         ]);
-        const collision_layer = map.createDynamicLayer(
-            'collision',
-            collision_tilset
-        );
+        const collision_layer = map.createLayer('collision', collision_tilset);
         this.overplayer_layer.depth = 99;
         overplayer_layer2.depth = 100;
         // Hides the collision map.

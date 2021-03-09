@@ -7,6 +7,7 @@ import { EntityStatus } from './EntityStatus';
 import { Player } from './Player';
 import uniqid from 'uniqid';
 import { LuminusBattleManager } from '../plugins/LuminusBattleManager';
+import { ENTITIES } from '../consts/Entities';
 
 /**
  * @class
@@ -22,6 +23,12 @@ export class Enemy extends Phaser.Physics.Arcade.Sprite {
         Object.assign(this, BaseEntity);
         Object.assign(this, EntityStatus);
         Object.assign(this, new AnimationNames());
+
+        /**
+         * The name of the Entity. It's used for differenciation of the entityes.
+         * @type { string }
+         */
+        this.entityName = ENTITIES.Enemy;
 
         /**
          * The phaser scene that this Enemy is a child of.
@@ -118,7 +125,11 @@ export class Enemy extends Phaser.Physics.Arcade.Sprite {
             this.perceptionRange
         );
         for (let target of enemiesInRange) {
-            if (target.gameObject.constructor.name === 'Player') {
+            if (
+                target &&
+                target.gameObject &&
+                target.gameObject.entityName === ENTITIES.Player
+            ) {
                 // console.log('Player');
                 let overlaps = false;
                 this.scene.physics.overlap(

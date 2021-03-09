@@ -13,7 +13,7 @@ export const Animations = [
         key: 'chat_bubble_animation',
         frameRate: 3,
         prefix: 'chat_box_',
-        start: 0,
+        start: 1,
         end: 4,
         zeroPad: 2,
         repeat: -1,
