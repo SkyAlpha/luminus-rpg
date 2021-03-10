@@ -1,4 +1,4 @@
-import Phaser from 'phaser';
+import Phaser, { Game, GameObjects } from 'phaser';
 import { ENTITIES } from '../consts/Entities';
 import { LuminusHealthBar } from '../plugins/LuminusHealthBar';
 import { LuminusKeyboardMouseController } from '../plugins/LuminusKeyboardMouseController';
@@ -17,6 +17,10 @@ export class Player extends Phaser.Physics.Arcade.Sprite {
     constructor(scene, x, y, texture, map) {
         super(scene, 0, 0, texture);
 
+        // Has to call this method, so the animations work propperly.
+        this.addToUpdateList();
+
+        // Here are all classes that this Player Extends.
         Object.assign(this, BaseEntity);
         Object.assign(this, EntityStatus);
 
@@ -170,7 +174,6 @@ export class Player extends Phaser.Physics.Arcade.Sprite {
 
         // Initializes the physics.
         this.setPhysics();
-
         // All the dependencies that need to be inside the update game loop.
         this.scene.events.on('update', this.onUpdate, this);
     }
@@ -180,13 +183,13 @@ export class Player extends Phaser.Physics.Arcade.Sprite {
      */
     preUpdate(time, delta) {
         super.preUpdate(time, delta);
-        this.updateMovementDependencies();
     }
 
     /**
      * This method is called every game loop. Anything that depends on it (update game loop method) should be put in here.
      */
     onUpdate() {
+        this.updateMovementDependencies();
         if (this.luminusMovement) this.luminusMovement.move();
     }
 
