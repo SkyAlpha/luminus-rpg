@@ -129,7 +129,6 @@ export class MainScene extends Phaser.Scene {
         this.particles.createParticles('forest');
 
         this.outlineEffect = new LuminusOutlineEffect(this);
-        this.outlineEffect.createLayer();
 
         this.sound.volume = 0.35;
         this.themeSound = this.sound.add('path_to_lake_land', {
@@ -151,14 +150,14 @@ export class MainScene extends Phaser.Scene {
     }
 
     update(time, delta) {
-        this.outlineEffect.clear();
-        this.physics.overlap(
-            this.player.hitZone,
-            this.overplayer_layer,
-            () => {
-                this.outlineEffect.applyEffect(this.player);
-            },
-            (hitZone, tile) => tile.index > -1
-        );
+        // this.outlineEffect.removeEffect(this.player.container);
+        // this.physics.overlap(
+        //     this.player,
+        //     this.overplayer_layer,
+        //     () => {
+        //         this.outlineEffect.applyEffect(this.player.container);
+        //     },
+        //     (hitZone, tile) => tile.index > -1
+        // );
     }
 }

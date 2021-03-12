@@ -8,7 +8,8 @@ import { PreloadScene } from './scenes/PreloadScene';
 import { VideoPlayerScene } from './scenes/VideoPlayerScene';
 import { IntroScene } from './scenes/IntroScene';
 import { SettingScene } from './scenes/SettingScene';
-import OutlineEffectLayerPlugin from 'phaser3-rex-plugins/plugins/outlineeffectlayer-plugin.js';
+import OutlinePostFx from 'phaser3-rex-plugins/plugins/outlinepipeline.js';
+import OutlinePipelinePlugin from 'phaser3-rex-plugins/plugins/outlinepipeline-plugin.js';
 import YoutubePlayerPlugin from 'phaser3-rex-plugins/plugins/youtubeplayer-plugin.js';
 import UIPlugin from 'phaser3-rex-plugins/templates/ui/ui-plugin.js';
 import { MobileCheckScene } from './scenes/MobileCheckScene';
@@ -43,6 +44,7 @@ const config = {
     inputKeyboard: true,
     scaleMode: Phaser.Scale.RESIZE,
     autoCenter: Phaser.Scale.CENTER_BOTH,
+    pipeline: [OutlinePostFx],
     plugins: {
         scene: [
             {
@@ -54,8 +56,8 @@ const config = {
         global: [
             NineSlicePlugin.DefaultCfg,
             {
-                key: 'rexOutlineEffectLayerPlugin',
-                plugin: OutlineEffectLayerPlugin,
+                key: 'rexOutlinePipeline',
+                plugin: OutlinePipelinePlugin,
                 start: true,
             },
             {
@@ -74,7 +76,7 @@ const config = {
         arcade: {
             gravity: { y: 0 }, // Top down game, so no gravity
             checkCollision: false,
-            debug: true,
+            debug: false,
             debugShowBody: true,
             debugShowStaticBody: true,
             debugShowVelocity: true,

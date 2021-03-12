@@ -1,4 +1,5 @@
 import Phaser from 'phaser';
+import OutlinePostFx from 'phaser3-rex-plugins/plugins/outlinepipeline.js';
 /**
  * @class
  */
@@ -32,41 +33,27 @@ export class LuminusOutlineEffect {
          * @type { number }
          */
         this.outlineThickness = 1;
-    }
 
-    /**
-     * Creates the layer that the outline will be put on.
-     */
-    createLayer() {
-        this.effectLayer = this.scene.add
-            .rexOutlineEffectLayer({
-                knockout: true,
-                outlineColor: this.outlineColor,
-                thickness: this.outlineThickness,
-            })
-            .setDepth(99999);
+        this.outlinePostFxPlugin = this.scene.plugins.get('rexOutlinePipeline');
+        console.log(this.outlinePostFxPlugin);
     }
 
     /**
      * Applies the effect to a Game Object.
-     * @param { Phaser.GameObjects } object
+     * @param { Phaser.Physics.Arcade.Sprite } object
      */
     applyEffect(object) {
-        this.effectLayer.add(object);
+        object.setPostPipeline(OutlinePostFx);
+        var pipelineInstance = this.outlinePostFxPlugin.get(object)[0];
+        pipelineInstance.setOutlineColor(this.outlineColor);
+        pipelineInstance.thickness = this.outlineThickness;
     }
 
     /**
      * Removes the effect to a given Game Object.
-     * @param { Phaser.GameObjects } object
+     * @param { Phaser.Physics.Arcade.Sprite } object
      */
     removeEffect(object) {
-        this.effectLayer.remove(object);
-    }
-
-    /**
-     * Clears the effect from everyone.
-     */
-    clear() {
-        this.effectLayer.clear();
+        object.removePostPipeline(OutlinePostFx);
     }
 }
