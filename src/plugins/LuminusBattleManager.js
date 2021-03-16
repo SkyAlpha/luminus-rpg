@@ -4,6 +4,7 @@ import { Enemy } from '../entities/Enemy';
 import { Player } from '../entities/Player';
 import Phaser from 'phaser';
 import { ENTITIES } from '../consts/Entities';
+import { LuminusDamageDisplay } from './LuminusDamageDisplay';
 
 /**
  * @class
@@ -118,6 +119,12 @@ export class LuminusBattleManager extends AnimationNames {
          * @default
          */
         this.PlayerConstructorName = ENTITIES.Player;
+
+        /**
+         * The LuminusDamageDisplay class, responsible for showing the player the damage dealth to a given Entity / Enemy.
+         * @type { LuminusDamageDisplay }
+         */
+        this.luminusDisplayDamage = null;
     }
 
     /**
@@ -244,6 +251,10 @@ export class LuminusBattleManager extends AnimationNames {
                 target.destroyAll();
             }, 100);
         }
+
+        // Not very Optimized.
+        this.luminusDamageDisplay = new LuminusDamageDisplay(target.scene);
+        this.luminusDamageDisplay.displayDamage(damage, target);
         /**
          * Makes random damage.
          * Decreses the health based on the target defense.
@@ -265,7 +276,7 @@ export class LuminusBattleManager extends AnimationNames {
             variationDamage = damage - variationDamage;
         }
 
-        return variationDamage;
+        return Math.floor(variationDamage);
     }
 
     /**

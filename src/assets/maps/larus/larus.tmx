@@ -871,7 +871,7 @@
     <property name="number" type="int" value="2"/>
    </properties>
   </object>
-  <object id="82" x="-1060.33" y="-621.333" width="121" height="86.333">
+  <object id="82" x="-1091.66" y="-536.666" width="121" height="86.333">
    <properties>
     <property name="number" type="int" value="3"/>
     <property name="texture" value="rat"/>
@@ -983,7 +983,7 @@
   </object>
  </objectgroup>
  <objectgroup id="6" name="spawn">
-  <object id="11" name="Spawn Point" x="-1084.83" y="-459.333">
+  <object id="11" name="Spawn Point" x="-1158.83" y="-621.333">
    <point/>
   </object>
  </objectgroup>
