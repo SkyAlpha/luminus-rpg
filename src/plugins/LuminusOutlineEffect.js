@@ -35,7 +35,6 @@ export class LuminusOutlineEffect {
         this.outlineThickness = 1;
 
         this.outlinePostFxPlugin = this.scene.plugins.get('rexOutlinePipeline');
-        console.log(this.outlinePostFxPlugin);
     }
 
     /**

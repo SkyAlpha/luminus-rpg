@@ -14,7 +14,10 @@ export const DB_SEED_ITEMS = [
         id: 1,
         name: 'Red Potion',
         type: ITEM_TYPE.USABLE,
-        description: 'A small potion that recovers some Health Points [HP].',
-        script: 'rec hp 5',
+        description:
+            'A small potion that recovers a small amount of Health Points [HP].',
+        script: 'rec hp 5;',
+        texture: 'red_potion',
+        sfx: 'heal',
     },
 ];

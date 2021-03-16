@@ -7,6 +7,7 @@ import AnimatedTiles from '../plugins/AnimatedTiles';
 import { LuminusEnvironmentParticles } from '../plugins/LuminusEnvironmentParticles';
 import { LuminusOutlineEffect } from '../plugins/LuminusOutlineEffect';
 import { LuminusEnemyZones } from '../plugins/LuminusEnemyZones';
+import { Item } from '../entities/Item';
 
 let map;
 
@@ -89,6 +90,17 @@ export class MainScene extends Phaser.Scene {
         );
 
         this.player = new Player(this, spawnPoint.x, spawnPoint.y, 'character');
+
+        this.potion = new Item(
+            this,
+            spawnPoint.x,
+            spawnPoint.y + 20,
+            'red_potion'
+        );
+
+        this.physics.add.collider(this.potion, this.player, (item, player) => {
+            item.consume(player);
+        });
 
         const camera = this.cameras.main;
         camera.startFollow(this.player.container);

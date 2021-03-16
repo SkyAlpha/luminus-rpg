@@ -19,6 +19,10 @@ import walk_dust from '../assets/sprites/walk_dust.png';
 import fog_mask from '../assets/sprites/mask.png';
 import health from '../assets/sprites/health.png';
 
+// Consumables
+
+import red_potion from '../assets/sprites/consumables/red_potion.png';
+
 // Maps
 import dungeon_map from '../assets/maps/dungeon/dungeon_tileset.png';
 
@@ -67,6 +71,9 @@ import atack03 from '../assets/sound/sfx/atk/atack03.mp3';
 import damage01 from '../assets/sound/sfx/damage/damage01.mp3';
 import damage02 from '../assets/sound/sfx/damage/damage02.mp3';
 import damage03 from '../assets/sound/sfx/damage/damage03.mp3';
+
+// Consumables
+import heal from '../assets/sound/sfx/consumables/heal.mp3';
 
 export const Images = [
     {
@@ -168,6 +175,10 @@ export const Images = [
     {
         name: 'health',
         image: health,
+    },
+    {
+        name: 'red_potion',
+        image: red_potion,
     },
 
     //Clouds
@@ -285,5 +296,10 @@ export const LuminusAudios = [
     {
         name: 'damage03',
         audio: damage03,
+    },
+    // Consumables
+    {
+        name: 'heal',
+        audio: heal,
     },
 ];

@@ -65,6 +65,15 @@ export class LuminusHealthBar extends Phaser.GameObjects.Sprite {
         return this.health === 0;
     }
 
+    /**
+     * Updated the Health Points of the entity.
+     * @param { number } hp The new HP
+     */
+    update(hp) {
+        this.health = hp;
+        this.draw();
+    }
+
     draw() {
         var d = (this.health * 100) / this.full / 100;
         var x = (this.health / this.full) * 100;
