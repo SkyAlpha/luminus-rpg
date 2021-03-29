@@ -65,7 +65,7 @@ export class LuminusDamageDisplay {
         }
 
         if (isHealing) {
-            this.fontColor = `green`;
+            this.fontColor = 'green';
         }
 
         let damageSprite = this.scene.add.text(position.x, position.y, damage, {
@@ -74,6 +74,7 @@ export class LuminusDamageDisplay {
             fontFamily: this.fontFamily,
             color: this.fontColor,
         });
+
         damageSprite.setOrigin(0.5, 1);
 
         damageSprite.setScale(0.4);

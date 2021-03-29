@@ -99,6 +99,7 @@ export class MainScene extends Phaser.Scene {
         );
 
         this.physics.add.collider(this.potion, this.player, (item, player) => {
+            // TODO - Player Pickup the item.
             item.consume(player);
         });
 
@@ -106,8 +107,6 @@ export class MainScene extends Phaser.Scene {
         camera.startFollow(this.player.container);
 
         // camera.setBounds(0, 0, map.widthInPixels, map.heightInPixels);
-
-        this.physics.add.collider(this.player.container, collision_layer);
 
         const phaserWarp = new LuminusWarp(this, this.player, map);
         phaserWarp.createWarps();

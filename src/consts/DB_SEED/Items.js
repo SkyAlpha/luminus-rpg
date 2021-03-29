@@ -19,5 +19,6 @@ export const DB_SEED_ITEMS = [
         script: 'rec hp 5;',
         texture: 'red_potion',
         sfx: 'heal',
+        stackable: true,
     },
 ];

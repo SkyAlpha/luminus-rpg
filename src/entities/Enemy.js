@@ -142,6 +142,7 @@ export class Enemy extends Phaser.Physics.Arcade.Sprite {
                             this.luminusBattleManager.atack(this);
                     }
                 );
+
                 inRange = true;
                 // Moves only if it's not overlaped. It prevents some Weird behaviors to happen.
                 if (!overlaps && !this.isAtacking) {
@@ -155,6 +156,8 @@ export class Enemy extends Phaser.Physics.Arcade.Sprite {
                         this.container.body.velocity.y,
                         this.container.body.velocity.x
                     );
+
+                    this.scene.physics.velocityFromAngle(angle, this.speed);
                     this.luminusAnimationManager.animateWithAngle(
                         `${this.texture.key}-${this.walkPrefixAnimation}`,
                         angle

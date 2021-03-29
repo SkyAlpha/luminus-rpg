@@ -62,6 +62,12 @@ export class Item extends Phaser.Physics.Arcade.Sprite {
         this.script = itemConfig.script;
 
         /**
+         * Controls if an Item if Stackable.
+         * @type { boolean }
+         */
+        this.stackable = itemConfig.stackable;
+
+        /**
          * The Sound effect that will be played when the item is used.
          * @type { string }
          */
