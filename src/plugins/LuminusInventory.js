@@ -1,6 +1,6 @@
 import { Player } from '../entities/Player';
 
-class LuminusInventoty {
+class LuminusInventory {
     constructor(player) {
         /**
          * The player that will have its inventory managed.

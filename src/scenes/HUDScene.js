@@ -54,6 +54,34 @@ export class HUDScene extends Phaser.Scene {
         this.settingsSpriteOffsetY = 50;
 
         /**
+         * Inventory image/sprite name.
+         * @type { string }
+         * @default
+         */
+        this.inventorySpriteName = 'inventory_box';
+
+        /**
+         * Inventory image/sprite offset X;
+         * @type { number }
+         * @default
+         */
+        this.inventorySpriteOffsetX = 150;
+
+        /**
+         * Inventory image/sprite offset y;
+         * @type { number }
+         * @default
+         */
+        this.inventorySpriteOffsetY = 50;
+
+        /**
+         * The default Scale of the inventory icon.
+         * @type { number }
+         * @default
+         */
+        this.inventorySpriteScale = 1;
+
+        /**
          * The maximixe Image that will change the resolution.
          * @type { Phaser.GameObjects.Image }
          * @default
@@ -65,6 +93,12 @@ export class HUDScene extends Phaser.Scene {
          * @default
          */
         this.settingsIcon = null;
+        /**
+         * The Inventory Image that will open the inventory.
+         * @type { Phaser.GameObjects.Image }
+         * @default
+         */
+        this.inventoryIcon = null;
 
         /**
          * The name of the Settings Scene.
@@ -94,8 +128,21 @@ export class HUDScene extends Phaser.Scene {
             )
             .setInteractive();
 
+        this.inventoryIcon = this.add
+            .image(
+                this.cameras.main.width - this.inventorySpriteOffsetX,
+                this.inventorySpriteOffsetY,
+                this.inventorySpriteName
+            )
+            .setInteractive()
+            .setScale(this.inventorySpriteScale);
+
         this.maximize.on('pointerup', (pointer) => {
             this.scale.toggleFullscreen();
+        });
+
+        this.inventoryIcon.on('pointerup', (pointer) => {
+            console.log('Open Inventory');
         });
 
         // Launch the settings Scene.

@@ -14,6 +14,7 @@ import YoutubePlayerPlugin from 'phaser3-rex-plugins/plugins/youtubeplayer-plugi
 import UIPlugin from 'phaser3-rex-plugins/templates/ui/ui-plugin.js';
 import { MobileCheckScene } from './scenes/MobileCheckScene';
 import { DungeonScene } from './scenes/DungeonScene';
+import { InventoryScene } from './scenes/InventoryScene';
 /**
  * @type { Phaser.Core.Config}
  */
@@ -36,6 +37,7 @@ const config = {
         HUDScene,
         SettingScene,
         VideoPlayerScene,
+        InventoryScene,
     ],
     input: {
         gamepad: true,

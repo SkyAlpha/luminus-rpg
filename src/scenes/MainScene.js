@@ -94,7 +94,7 @@ export class MainScene extends Phaser.Scene {
         this.potion = new Item(
             this,
             spawnPoint.x,
-            spawnPoint.y + 20,
+            spawnPoint.y + 40,
             'red_potion'
         );
 

@@ -18,6 +18,7 @@ import landscape_mobile from '../assets/sprites/landscape.png';
 import walk_dust from '../assets/sprites/walk_dust.png';
 import fog_mask from '../assets/sprites/mask.png';
 import health from '../assets/sprites/health.png';
+import inventory_box from '../assets/sprites/inventory_box.png';
 
 // Consumables
 
@@ -179,6 +180,10 @@ export const Images = [
     {
         name: 'red_potion',
         image: red_potion,
+    },
+    {
+        name: 'inventory_box',
+        image: inventory_box,
     },
 
     //Clouds
