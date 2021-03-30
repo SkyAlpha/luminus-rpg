@@ -130,7 +130,7 @@ export class SettingScene extends Phaser.Scene {
          * @type { number }
          * @default
          */
-        this.closeButtonScale = 0.3;
+        this.closeButtonScale = 1;
 
         /**
          * The slider width.

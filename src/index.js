@@ -35,9 +35,9 @@ const config = {
         JoystickScene,
         DialogScene,
         HUDScene,
+        InventoryScene,
         SettingScene,
         VideoPlayerScene,
-        InventoryScene,
     ],
     input: {
         gamepad: true,

@@ -106,6 +106,13 @@ export class HUDScene extends Phaser.Scene {
          * @default
          */
         this.settingSceneName = 'SettingScene';
+
+        /**
+         * The name of the Inventory Scene.
+         * @type { string }
+         * @default
+         */
+        this.inventorySceneName = 'InventoryScene';
     }
 
     /**
@@ -142,7 +149,11 @@ export class HUDScene extends Phaser.Scene {
         });
 
         this.inventoryIcon.on('pointerup', (pointer) => {
-            console.log('Open Inventory');
+            if (!this.scene.isVisible(this.inventorySceneName)) {
+                this.scene.launch(this.inventorySceneName);
+            } else {
+                this.scene.stop(this.inventorySceneName);
+            }
         });
 
         // Launch the settings Scene.
@@ -157,6 +168,8 @@ export class HUDScene extends Phaser.Scene {
         this.scale.on('resize', (resize) => {
             this.resizeAll(resize);
         });
+        // All Scenes have to be stopped before they are called to launch.
+        this.scene.stop(this.inventorySceneName);
         this.scene.stop(this.settingSceneName);
     }
 
@@ -173,6 +186,11 @@ export class HUDScene extends Phaser.Scene {
         this.settingsIcon.setPosition(
             this.cameras.main.width - this.settingsSpriteOffsetX,
             this.settingsSpriteOffsetY
+        );
+
+        this.inventoryIcon.setPosition(
+            this.cameras.main.width - this.inventorySpriteOffsetX,
+            this.inventorySpriteOffsetY
         );
     }
 }

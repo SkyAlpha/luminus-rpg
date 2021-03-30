@@ -19,6 +19,9 @@ import walk_dust from '../assets/sprites/walk_dust.png';
 import fog_mask from '../assets/sprites/mask.png';
 import health from '../assets/sprites/health.png';
 import inventory_box from '../assets/sprites/inventory_box.png';
+import inventory_background from '../assets/sprites/inventory/inventory_background.png';
+import inventory_title from '../assets/sprites/inventory/inventory_title.png';
+import inventory_slot from '../assets/sprites/inventory/inventory_slot.png';
 
 // Consumables
 
@@ -181,9 +184,23 @@ export const Images = [
         name: 'red_potion',
         image: red_potion,
     },
+
+    // Inventory
     {
         name: 'inventory_box',
         image: inventory_box,
+    },
+    {
+        name: 'inventory_background',
+        image: inventory_background,
+    },
+    {
+        name: 'inventory_title',
+        image: inventory_title,
+    },
+    {
+        name: 'inventory_slot',
+        image: inventory_slot,
     },
 
     //Clouds
