@@ -1,4 +1,5 @@
 import Phaser from 'phaser';
+import { Player } from '../entities/Player';
 import { LuminusSoundManager } from '../plugins/LuminusSoundManager';
 
 /**
@@ -10,6 +11,12 @@ export class HUDScene extends Phaser.Scene {
         super({
             key: 'HUDScene',
         });
+
+        /**
+         * The Player game Object.
+         * @type { Player }
+         */
+        this.player = null;
 
         /**
          * Maximize image/sprite name.
@@ -115,6 +122,10 @@ export class HUDScene extends Phaser.Scene {
         this.inventorySceneName = 'InventoryScene';
     }
 
+    init(args) {
+        this.player = args.player;
+    }
+
     /**
      * Phaser default create scene.
      */
@@ -150,7 +161,9 @@ export class HUDScene extends Phaser.Scene {
 
         this.inventoryIcon.on('pointerup', (pointer) => {
             if (!this.scene.isVisible(this.inventorySceneName)) {
-                this.scene.launch(this.inventorySceneName);
+                this.scene.launch(this.inventorySceneName, {
+                    player: this.player,
+                });
             } else {
                 this.scene.stop(this.inventorySceneName);
             }

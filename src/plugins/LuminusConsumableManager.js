@@ -62,7 +62,6 @@ export class LuminusConsumableManager {
                     true
                 );
                 player.scene.sound.play(item.useSfx);
-                item.destroy();
                 break;
             case 'sp':
                 console.log(`Recover ${action[2]} SP`);

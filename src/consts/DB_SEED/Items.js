@@ -20,5 +20,6 @@ export const DB_SEED_ITEMS = [
         texture: 'red_potion',
         sfx: 'heal',
         stackable: true,
+        inventoryScale: 1.7,
     },
 ];

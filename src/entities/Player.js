@@ -77,6 +77,13 @@ export class Player extends Phaser.Physics.Arcade.Sprite {
          */
         this.bodyOffsetY = 2;
 
+        // TODO - Should get the player's items when he starts the game.
+        /**
+         * An Array with the Item ID's and the number of that specific Item that the player has.
+         * @type { object }
+         */
+        this.items = [];
+
         /**
          * The zone that will interact as a hitzone.
          * @type { Phaser.GameObjects.Zone }

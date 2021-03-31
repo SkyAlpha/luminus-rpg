@@ -91,16 +91,24 @@ export class MainScene extends Phaser.Scene {
 
         this.player = new Player(this, spawnPoint.x, spawnPoint.y, 'character');
 
-        this.potion = new Item(
-            this,
-            spawnPoint.x,
-            spawnPoint.y + 40,
-            'red_potion'
+        this.potions = [];
+        this.potions.push(
+            new Item(this, spawnPoint.x, spawnPoint.y + 40, 'red_potion', 1)
+        );
+        this.potions.push(
+            new Item(
+                this,
+                spawnPoint.x + 60,
+                spawnPoint.y + 40,
+                'red_potion',
+                1
+            )
         );
 
-        this.physics.add.collider(this.potion, this.player, (item, player) => {
+        this.physics.add.collider(this.potions, this.player, (item, player) => {
             // TODO - Player Pickup the item.
-            item.consume(player);
+            item.addInventory(player);
+            console.log(player.items);
         });
 
         const camera = this.cameras.main;
@@ -133,7 +141,7 @@ export class MainScene extends Phaser.Scene {
 
         this.joystickScene = this.scene.get('JoystickScene');
 
-        this.scene.launch('HUDScene');
+        this.scene.launch('HUDScene', { player: this.player });
 
         this.sys.animatedTiles.init(map);
         this.particles = new LuminusEnvironmentParticles(this, map);
@@ -151,6 +159,8 @@ export class MainScene extends Phaser.Scene {
 
         this.luminusEnemyZones = new LuminusEnemyZones(this, map);
         this.luminusEnemyZones.create();
+
+        this.physics.add.collider(this.player.container, collision_layer);
     }
 
     /**

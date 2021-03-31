@@ -1,5 +1,6 @@
 import Phaser from 'phaser';
 import { NineSlice } from 'phaser3-nineslice';
+import { Item } from '../entities/Item';
 import { Player } from '../entities/Player';
 
 export class InventoryScene extends Phaser.Scene {
@@ -147,6 +148,7 @@ export class InventoryScene extends Phaser.Scene {
         this.createTitle();
         this.createSlots();
         this.createCloseButton();
+        this.createItems();
 
         this.scale.on('resize', (resize) => {
             this.resizeAll(resize);
@@ -271,10 +273,60 @@ export class InventoryScene extends Phaser.Scene {
                     )
                     .setScrollFactor(0, 0)
                     .setOrigin(0, 0);
-                this.slots.push({
-                    item: 123,
-                    slot: slot,
-                });
+                this.slots.push(slot);
+            }
+        }
+    }
+
+    /**
+     * Loops through the Player's items and Adds it to the inventory Slots
+     */
+    createItems() {
+        let slotIndex = 0;
+        for (let i = 0; i < this.player.items.length; i++) {
+            let slot = this.slots[slotIndex];
+            let playerItem = this.player.items[i];
+            if (playerItem && playerItem.id) {
+                let text;
+                let item = new Item(
+                    this,
+                    slot.x + slot.width / 2,
+                    slot.y + slot.height / 2 - 7,
+                    null,
+                    playerItem.id
+                );
+                if (item.stackable) {
+                    item.setInteractive();
+                    item.on('pointerup', (pointer) => {
+                        item.consume(this.player);
+                        playerItem.count--;
+                        if (playerItem.count <= 0) {
+                            item.destroy();
+                            delete this.player.items[i];
+                            text.setText('');
+                            // TODO - Rearange the items.
+                        } else {
+                            text.setText(playerItem.count);
+                        }
+                    });
+                    item.setScale(item.inventoryScale);
+                } else {
+                    for (
+                        let noStackCount = 0;
+                        noStackCount < playerItem.count;
+                        noStackCount++
+                    ) {
+                        // TODO - Create the logic for Equipments.
+                    }
+                }
+
+                text = this.add
+                    .text(
+                        item.x,
+                        item.y + 10 + (item.height * item.scaleY) / 2,
+                        playerItem.count
+                    )
+                    .setOrigin(0.5, 0.5);
             }
         }
     }
