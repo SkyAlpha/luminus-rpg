@@ -78,7 +78,7 @@ const config = {
         arcade: {
             gravity: { y: 0 }, // Top down game, so no gravity
             checkCollision: false,
-            debug: false,
+            debug: true,
             debugShowBody: true,
             debugShowStaticBody: true,
             debugShowVelocity: true,

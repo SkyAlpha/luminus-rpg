@@ -225,9 +225,27 @@ export class InventoryScene extends Phaser.Scene {
     }
 
     /**
+     * Destroys all the Slots and its dependencies.
+     */
+    destroySlots() {
+        if (this.slots.length > 0) {
+            this.slots.forEach((slot) => {
+                if (slot.item) {
+                    slot.item.destroy();
+                    slot.text.destroy();
+                }
+                slot.destroy();
+            });
+        }
+        this.slots = [];
+    }
+
+    /**
      * Creates the inventory Slots.
      */
     createSlots() {
+        // Checks if there is any already created slots. If there is, it should destroy them bofore creating new ones.
+        this.destroySlots();
         // The available space for the slots to be drawn.
         let slotsWorkingWidth = Math.abs(
             this.backgroundSlotPadding * 2 -
@@ -256,8 +274,6 @@ export class InventoryScene extends Phaser.Scene {
             slotsWorkingHeight / (this.slotSize + this.slotMargin)
         );
 
-        console.log(slotsWorkingHeight, slotsNumberVertical);
-
         for (let row = 0; row < slotsNumberVertical; row++) {
             for (let col = 0; col < slotsNumberHorizontal; col++) {
                 let slot = this.add
@@ -274,6 +290,67 @@ export class InventoryScene extends Phaser.Scene {
                     .setScrollFactor(0, 0)
                     .setOrigin(0, 0);
                 this.slots.push(slot);
+            }
+        }
+    }
+
+    /**
+     * When resizing, it should change the position of the slots acordingly.
+     */
+    setPositionSlotsItems() {
+        // The available space for the slots to be drawn.
+        let slotsWorkingWidth = Math.abs(
+            this.backgroundSlotPadding * 2 -
+                this.inventoryBackground.width * this.inventoryBackground.scaleX
+        );
+
+        // Max number of Slots taking in count the Available space, Slot Size and Margin.
+        let slotsNumberHorizontal = Math.floor(
+            slotsWorkingWidth / (this.slotSize + this.slotMargin)
+        );
+
+        const padding = Math.ceil(
+            (this.inventoryBackground.width * this.inventoryBackground.scaleX -
+                slotsNumberHorizontal * (this.slotSize + this.slotMargin)) /
+                2
+        );
+
+        let slotsWorkingHeight = Math.abs(
+            this.inventoryBackground.height * this.inventoryBackground.scaleY -
+                this.backgroundSlotPaddingTop -
+                this.backgroundSlotPaddingBottom
+        );
+
+        // Max number of Slots taking in count the Available space, Slot Size and Margin.
+        let slotsNumberVertical = Math.floor(
+            slotsWorkingHeight / (this.slotSize + this.slotMargin)
+        );
+
+        let count = 0;
+        for (let row = 0; row < slotsNumberVertical; row++) {
+            for (let col = 0; col < slotsNumberHorizontal; col++) {
+                let slot = this.slots[count];
+                this.slots[count].setPosition(
+                    this.inventoryBackground.x +
+                        (this.slotSize + this.slotMargin) * col +
+                        padding +
+                        this.slotMargin / 2,
+                    this.inventoryBackground.y +
+                        (this.slotSize + this.slotMargin) * row +
+                        this.backgroundSlotPaddingTop
+                );
+                if (this.slots[count].item) {
+                    let item = this.slots[count].item;
+                    this.slots[count].item.setPosition(
+                        slot.x + slot.width / 2,
+                        slot.y + slot.height / 2 - 7
+                    );
+                    this.slots[count].text.setPosition(
+                        item.x,
+                        item.y + 10 + (item.height * item.scaleY) / 2
+                    );
+                }
+                count++;
             }
         }
     }
@@ -319,6 +396,8 @@ export class InventoryScene extends Phaser.Scene {
                         // TODO - Create the logic for Equipments.
                     }
                 }
+                // Sets the slot item;
+                slot.item = item;
 
                 text = this.add
                     .text(
@@ -327,6 +406,8 @@ export class InventoryScene extends Phaser.Scene {
                         playerItem.count
                     )
                     .setOrigin(0.5, 0.5);
+                // Sets the Text.
+                slot.text = text;
             }
         }
     }
@@ -356,6 +437,21 @@ export class InventoryScene extends Phaser.Scene {
                 this.inventoryBackground.x + this.inventoryBackground.width / 2,
                 this.inventoryBackground.y + 54
             );
+
+            this.inventoryTitleText.setPosition(
+                this.inventoryTitle.x + 11,
+                this.inventoryTitle.y + 7
+            );
+
+            this.closeButton.setPosition(
+                this.inventoryBackground.x +
+                    this.inventoryBackground.width *
+                        this.inventoryBackground.scaleX -
+                    this.backgroundSlotPadding * 1.5,
+                this.inventoryBackground.y + this.backgroundSlotPadding * 1.5
+            );
+
+            this.setPositionSlotsItems();
         }
     }
 }
