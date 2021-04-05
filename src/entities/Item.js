@@ -108,9 +108,8 @@ export class Item extends Phaser.Physics.Arcade.Sprite {
                 count: 1,
             });
         }
+        // Destroy the item that the player has just picked up.
         this.destroy();
-        // Checks if the player already has the item.
-        // If it's Stackable, increase the count of the item.
     }
 
     // TODO - Change to on click event so the player can use the potion from the inventory.

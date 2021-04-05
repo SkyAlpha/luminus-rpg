@@ -29,6 +29,13 @@ export class LuminusKeyboardMouseController {
          * @type { LuminusBattleManager }
          */
         this.luminusBattleManager = null;
+
+        /**
+         * The name of the inventory Scene. It should match the Scene name so the player is able to open the inventory.
+         * @type { string }
+         * @default
+         */
+        this.inventorySceneName = 'InventoryScene';
     }
 
     /**
@@ -52,6 +59,15 @@ export class LuminusKeyboardMouseController {
         this.scene.input.keyboard.on('keydown', (keydown) => {
             if (keydown.keyCode === 32 && this.player && this.player.active) {
                 this.luminusBattleManager.atack(this.player);
+            }
+            if (keydown.keyCode === 73 && this.player && this.player.active) {
+                if (!this.scene.scene.isVisible(this.inventorySceneName)) {
+                    this.scene.scene.launch(this.inventorySceneName, {
+                        player: this.player,
+                    });
+                } else {
+                    this.scene.scene.stop(this.inventorySceneName);
+                }
             }
         });
     }

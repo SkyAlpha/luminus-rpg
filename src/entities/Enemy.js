@@ -22,6 +22,7 @@ export class Enemy extends Phaser.Physics.Arcade.Sprite {
         super(scene, 0, 0, texture);
         Object.assign(this, BaseEntity);
         Object.assign(this, EntityStatus);
+        // Object.assign(this, new MonsterDrops());
         Object.assign(this, new AnimationNames());
 
         /**

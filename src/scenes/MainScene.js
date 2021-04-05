@@ -105,11 +105,18 @@ export class MainScene extends Phaser.Scene {
             )
         );
 
-        this.physics.add.collider(this.potions, this.player, (item, player) => {
-            // TODO - Player Pickup the item.
-            item.addInventory(player);
-            console.log(player.items);
-        });
+        this.physics.add.collider(
+            this.potions,
+            this.player,
+            /**
+             * @param { Item } item the Item that is being picked up.
+             * @param { Player } player The player that is picking the item up.
+             */
+            (item, player) => {
+                // TODO - Player Pickup the item.
+                item.addInventory(player);
+            }
+        );
 
         const camera = this.cameras.main;
         camera.startFollow(this.player.container);

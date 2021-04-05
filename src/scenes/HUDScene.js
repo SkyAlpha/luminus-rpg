@@ -159,6 +159,7 @@ export class HUDScene extends Phaser.Scene {
             this.scale.toggleFullscreen();
         });
 
+        // Launches Inventory Scene.s
         this.inventoryIcon.on('pointerup', (pointer) => {
             if (!this.scene.isVisible(this.inventorySceneName)) {
                 this.scene.launch(this.inventorySceneName, {

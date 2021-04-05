@@ -360,6 +360,7 @@ export class InventoryScene extends Phaser.Scene {
      */
     createItems() {
         let slotIndex = 0;
+        let time = 0;
         for (let i = 0; i < this.player.items.length; i++) {
             let slot = this.slots[slotIndex];
             let playerItem = this.player.items[i];
@@ -375,15 +376,26 @@ export class InventoryScene extends Phaser.Scene {
                 if (item.stackable) {
                     item.setInteractive();
                     item.on('pointerup', (pointer) => {
-                        item.consume(this.player);
-                        playerItem.count--;
-                        if (playerItem.count <= 0) {
-                            item.destroy();
-                            delete this.player.items[i];
-                            text.setText('');
-                            // TODO - Rearange the items.
+                        if (time === 0) {
+                            time = pointer.upTime;
+                            return;
+                        }
+                        let elapsed = Math.abs(time - pointer.upTime);
+                        if (elapsed < 350) {
+                            item.consume(this.player);
+                            playerItem.count--;
+                            if (playerItem.count <= 0) {
+                                item.destroy();
+                                delete this.player.items[i];
+                                text.setText('');
+                                text.destroy();
+                                // TODO - Rearange the items.
+                            } else {
+                                text.setText(playerItem.count);
+                            }
+                            time = 0;
                         } else {
-                            text.setText(playerItem.count);
+                            time = 0;
                         }
                     });
                     item.setScale(item.inventoryScale);
