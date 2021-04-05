@@ -853,46 +853,53 @@
  <objectgroup id="14" name="enemies">
   <object id="78" x="-830.667" y="-492.667" width="160.667" height="95.3333">
    <properties>
+    <property name="id" value="2"/>
     <property name="number" type="int" value="5"/>
    </properties>
   </object>
   <object id="79" x="-996" y="-65.3333" width="126" height="61.3333">
    <properties>
+    <property name="id" value="2"/>
     <property name="number" type="int" value="3"/>
    </properties>
   </object>
   <object id="80" x="-986.5" y="131.667" width="146" height="93.3333">
    <properties>
+    <property name="id" value="2"/>
     <property name="number" type="int" value="5"/>
    </properties>
   </object>
   <object id="81" x="-292.667" y="-52.6667" width="85.3333" height="56.6667">
    <properties>
+    <property name="id" value="2"/>
     <property name="number" type="int" value="2"/>
    </properties>
   </object>
   <object id="82" x="-1091.66" y="-536.666" width="121" height="86.333">
    <properties>
+    <property name="id" value="1"/>
     <property name="number" type="int" value="3"/>
     <property name="texture" value="rat"/>
    </properties>
   </object>
   <object id="83" x="-334" y="-410" width="72.6667" height="66">
    <properties>
+    <property name="id" value="2"/>
     <property name="number" type="int" value="2"/>
    </properties>
   </object>
   <object id="84" x="-496.667" y="-270.667" width="84" height="68.6667">
    <properties>
+    <property name="id" value="2"/>
     <property name="number" type="int" value="2"/>
    </properties>
   </object>
   <object id="85" x="-778.667" y="-134.667" width="115.333" height="62">
    <properties>
+    <property name="id" value="2"/>
     <property name="number" type="int" value="3"/>
    </properties>
   </object>
-  <object id="86" x="-1217.33" y="179.333" width="30" height="27.3333"/>
  </objectgroup>
  <objectgroup id="13" name="particles" visible="0">
   <object id="57" name="forest" x="-1282" y="-768" width="1106" height="1050"/>
@@ -982,7 +989,7 @@
    </properties>
   </object>
  </objectgroup>
- <objectgroup id="6" name="spawn">
+ <objectgroup id="6" name="spawn" visible="0">
   <object id="11" name="Spawn Point" x="-1158.83" y="-621.333">
    <point/>
   </object>

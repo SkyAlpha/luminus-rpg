@@ -370,7 +370,6 @@ export class InventoryScene extends Phaser.Scene {
                     this,
                     slot.x + slot.width / 2,
                     slot.y + slot.height / 2 - 7,
-                    null,
                     playerItem.id
                 );
                 if (item.stackable) {

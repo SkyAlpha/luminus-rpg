@@ -93,3 +93,18 @@ export const Bat = [
         repeat: -1,
     },
 ];
+
+export const BatConfig = {
+    id: 2,
+    name: 'Bat',
+    baseHealth: 10,
+    atack: 3,
+    defense: 1,
+    speed: 30,
+    drops: [
+        {
+            id: 1, // Red Potion
+            chance: 50, // 50% chance of dropping the item
+        },
+    ],
+};

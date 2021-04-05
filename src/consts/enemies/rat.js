@@ -94,3 +94,18 @@ export const Rat = [
         repeat: 0,
     },
 ];
+
+export const RatConfig = {
+    id: 1,
+    name: 'Rat',
+    baseHealth: 10,
+    atack: 2,
+    defense: 1,
+    speed: 25,
+    drops: [
+        {
+            id: 1, // Red Potion
+            chance: 100, // 50% chance of dropping the item
+        },
+    ],
+};

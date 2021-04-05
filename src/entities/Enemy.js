@@ -8,6 +8,8 @@ import { Player } from './Player';
 import uniqid from 'uniqid';
 import { LuminusBattleManager } from '../plugins/LuminusBattleManager';
 import { ENTITIES } from '../consts/Entities';
+import { LuminusDropSystem } from '../plugins/LuminusDropSystem';
+import { EnemiesSeedConfig } from '../consts/enemies/EnemiesSeedConfig';
 
 /**
  * @class
@@ -18,11 +20,13 @@ import { ENTITIES } from '../consts/Entities';
  * @extends AnimationNames
  */
 export class Enemy extends Phaser.Physics.Arcade.Sprite {
-    constructor(scene, x, y, texture) {
+    constructor(scene, x, y, texture, id) {
         super(scene, 0, 0, texture);
+        // TODO - Should get the config from the DB.
+        const enemyConfig = EnemiesSeedConfig.find((c) => c.id === id);
         Object.assign(this, BaseEntity);
         Object.assign(this, EntityStatus);
-        // Object.assign(this, new MonsterDrops());
+
         Object.assign(this, new AnimationNames());
 
         /**
@@ -44,10 +48,40 @@ export class Enemy extends Phaser.Physics.Arcade.Sprite {
         this.id = uniqid();
 
         /**
+         * the Base ID of the item in the Seed Config..
+         * @type { string }
+         */
+        this.commonId = enemyConfig.id;
+
+        /**
+         * The Base Health of the Enemy.
+         * @type { number }
+         */
+        this.baseHealth = enemyConfig.baseHealth;
+
+        /**
+         * The Atack of the Enemy.
+         * @type { number }
+         */
+        this.atack = enemyConfig.atack;
+
+        /**
+         * The defense of the Enemy.
+         * @type { number }
+         */
+        this.defense = enemyConfig.defense;
+
+        /**
          * The enemy movement speed in pixels per second.
          * @type { number }
          */
-        this.speed = 30;
+        this.speed = enemyConfig.speed;
+
+        /**
+         * An Array with the Item ID and Drop chance in percentage
+         * @type { Array }
+         */
+        this.drops = enemyConfig.drops;
 
         /**
          * The luminus animation manager.
@@ -104,6 +138,7 @@ export class Enemy extends Phaser.Physics.Arcade.Sprite {
         this.anims.play(idleAnimation);
         // All the dependencies that need to be inside the update game loop.
         this.scene.events.on('update', this.onUpdate, this);
+        Object.assign(this, new LuminusDropSystem(scene, this, enemyConfig));
     }
 
     /**

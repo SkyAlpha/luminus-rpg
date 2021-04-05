@@ -57,6 +57,13 @@ export class LuminusEnemyZones {
          * @default
          */
         this.texturePropertyName = 'texture';
+
+        /**
+         * The id that will be used to create the enemy.
+         * @type { string }
+         * @default
+         */
+        this.idPropertyName = 'id';
     }
 
     /**
@@ -94,6 +101,10 @@ export class LuminusEnemyZones {
                         (f) => f.name === this.texturePropertyName
                     );
 
+                    let id = infoObj.properties.find(
+                        (f) => f.name === this.idPropertyName
+                    );
+
                     if (texture) {
                         texture = texture.value;
                     }
@@ -103,7 +114,8 @@ export class LuminusEnemyZones {
                             this.scene,
                             pos.x,
                             pos.y,
-                            texture ? texture : 'bat'
+                            texture ? texture : 'bat',
+                            parseInt(id.value)
                         );
                         const idleDown = `${this.idlePrefixAnimation}${this.downAnimationSufix}`;
                         const idleAnimation = texture

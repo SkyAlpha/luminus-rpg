@@ -2,15 +2,16 @@ import Phaser from 'phaser';
 import { v4 as uuidv4 } from 'uuid';
 import { DB_SEED_ITEMS } from '../consts/DB_SEED/Items';
 import { LuminusConsumableManager } from '../plugins/LuminusConsumableManager';
+import { Player } from './Player';
 
 /**
  * This class is the core of an Item. Here you can configure all aspects of it.
  * @class
  */
 export class Item extends Phaser.Physics.Arcade.Sprite {
-    constructor(scene, x, y, texture, id) {
+    constructor(scene, x, y, id) {
         const itemConfig = DB_SEED_ITEMS.find((i) => i.id === id);
-        super(scene, x, y, texture ? texture : itemConfig.texture);
+        super(scene, x, y, itemConfig.texture);
         /**
          * Scene Context.
          * @type { Phaser.Scene }
@@ -84,10 +85,53 @@ export class Item extends Phaser.Physics.Arcade.Sprite {
         this.scene.physics.add.existing(this);
 
         /**
+         * The name of the player variable in the Scene that the player is gaming.
+         * @type { string }
+         */
+        this.scenePlayerVariableName = 'player';
+
+        /**
          * The Class responsible for managing consumable items.
          * @type { LuminusConsumableManager }
          */
         this.luminusConsumableManager = new LuminusConsumableManager();
+
+        this.pickItemLogic();
+    }
+
+    /**
+     * Picks up an item when collides with it.
+     */
+    pickItemLogic() {
+        // Prevents the Player from getting more than one item.
+        let canCollide = true;
+        this.scene.physics.add.collider(
+            this,
+            this.scene[this.scenePlayerVariableName],
+            /**
+             * @param { Item } item the Item that is being picked up.
+             * @param { Player } player The player that is picking the item up.
+             */
+            (item, player) => {
+                canCollide = false;
+                // TODO - Player Pickup the item.
+                this.scene.tweens.add({
+                    targets: item,
+                    props: {
+                        x: player.container.x,
+                        y: player.container.y,
+                        scale: 0.2,
+                    },
+                    onComplete: (tween) => {
+                        if (tween.totalProgress === 1)
+                            item.addInventory(player);
+                    },
+                    ease: 'Quad',
+                    duration: 350,
+                });
+            },
+            () => canCollide
+        );
     }
 
     /**

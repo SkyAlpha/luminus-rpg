@@ -247,6 +247,8 @@ export class LuminusBattleManager extends AnimationNames {
         atacker.scene.sound.add(damageName).play();
         if (target.health <= 0) {
             setTimeout((t) => {
+                if (target.entityName === this.enemyConstructorName)
+                    target.dropItems();
                 target.anims.stop();
                 target.destroyAll();
             }, 100);

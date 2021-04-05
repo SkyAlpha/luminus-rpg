@@ -20,6 +20,6 @@ export const DB_SEED_ITEMS = [
         texture: 'red_potion',
         sfx: 'heal',
         stackable: true,
-        inventoryScale: 1.7,
+        inventoryScale: 1.7, // How much should the item scale when the inventory is opened.
     },
 ];

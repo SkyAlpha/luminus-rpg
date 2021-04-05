@@ -91,32 +91,8 @@ export class MainScene extends Phaser.Scene {
 
         this.player = new Player(this, spawnPoint.x, spawnPoint.y, 'character');
 
-        this.potions = [];
-        this.potions.push(
-            new Item(this, spawnPoint.x, spawnPoint.y + 40, 'red_potion', 1)
-        );
-        this.potions.push(
-            new Item(
-                this,
-                spawnPoint.x + 60,
-                spawnPoint.y + 40,
-                'red_potion',
-                1
-            )
-        );
-
-        this.physics.add.collider(
-            this.potions,
-            this.player,
-            /**
-             * @param { Item } item the Item that is being picked up.
-             * @param { Player } player The player that is picking the item up.
-             */
-            (item, player) => {
-                // TODO - Player Pickup the item.
-                item.addInventory(player);
-            }
-        );
+        new Item(this, spawnPoint.x, spawnPoint.y + 40, 1);
+        new Item(this, spawnPoint.x + 60, spawnPoint.y + 40, 1);
 
         const camera = this.cameras.main;
         camera.startFollow(this.player.container);
