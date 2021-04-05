@@ -18,6 +18,16 @@ import landscape_mobile from '../assets/sprites/landscape.png';
 import walk_dust from '../assets/sprites/walk_dust.png';
 import fog_mask from '../assets/sprites/mask.png';
 import health from '../assets/sprites/health.png';
+// HUD
+import hp_hud from '../assets/sprites/HUD/HP.png';
+import hp_hud_2x from '../assets/sprites/HUD/HP_2x.png';
+import hp_hud_3x from '../assets/sprites/HUD/HP_3x.png';
+import red_bar from '../assets/sprites/HUD/red_bar.png';
+import yellow_bar from '../assets/sprites/HUD/yellow_bar.png';
+import green_bar from '../assets/sprites/HUD/green_bar.png';
+import progressbar_background from '../assets/sprites/HUD/bars_background.png';
+
+// Inventory
 import inventory_box from '../assets/sprites/inventory_box.png';
 import inventory_background from '../assets/sprites/inventory/inventory_background.png';
 import inventory_title from '../assets/sprites/inventory/inventory_title.png';
@@ -183,6 +193,36 @@ export const Images = [
     {
         name: 'red_potion',
         image: red_potion,
+    },
+
+    // HUD
+    {
+        name: 'hp_hud',
+        image: hp_hud,
+    },
+    {
+        name: 'hp_hud_2x',
+        image: hp_hud_2x,
+    },
+    {
+        name: 'hp_hud_3x',
+        image: hp_hud_3x,
+    },
+    {
+        name: 'red_bar',
+        image: red_bar,
+    },
+    {
+        name: 'yellow_bar',
+        image: yellow_bar,
+    },
+    {
+        name: 'green_bar',
+        image: green_bar,
+    },
+    {
+        name: 'progressbar_background',
+        image: progressbar_background,
     },
 
     // Inventory

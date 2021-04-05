@@ -1,5 +1,7 @@
 import Phaser from 'phaser';
 import { Player } from '../entities/Player';
+import { LuminusHUDProgressBar } from '../plugins/HUD/LuminusHUDHealthBar';
+import { LuminusHealthBar } from '../plugins/LuminusHealthBar';
 import { LuminusSoundManager } from '../plugins/LuminusSoundManager';
 
 /**
@@ -120,6 +122,18 @@ export class HUDScene extends Phaser.Scene {
          * @default
          */
         this.inventorySceneName = 'InventoryScene';
+
+        /**
+         * The Image that indicates the HP of the Player.
+         * @type { Phaser.GameObjects.Image }
+         */
+        this.hp_hud = null;
+
+        /**
+         * The Health bar that will display the player's current HP
+         * @type { LuminusHealthBar }
+         */
+        this.health_bar = null;
     }
 
     init(args) {
@@ -130,6 +144,16 @@ export class HUDScene extends Phaser.Scene {
      * Phaser default create scene.
      */
     create() {
+        this.hp_hud = this.add.image(25, 25, 'hp_hud_2x');
+
+        this.health_bar = new LuminusHUDProgressBar(
+            this,
+            this.hp_hud.x,
+            this.hp_hud.y,
+            this.hp_hud.width,
+            this.player
+        );
+
         this.maximize = this.add
             .image(
                 this.cameras.main.width - this.maximizeSpriteOffsetX,

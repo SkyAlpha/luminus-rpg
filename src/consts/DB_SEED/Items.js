@@ -16,7 +16,7 @@ export const DB_SEED_ITEMS = [
         type: ITEM_TYPE.USABLE,
         description:
             'A small potion that recovers a small amount of Health Points [HP].',
-        script: 'rec hp 5;',
+        script: 'rec hp 2;',
         texture: 'red_potion',
         sfx: 'heal',
         stackable: true,

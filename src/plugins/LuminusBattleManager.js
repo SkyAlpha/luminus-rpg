@@ -242,6 +242,11 @@ export class LuminusBattleManager extends AnimationNames {
             target.health -= damage - target.defense;
         } else {
             target.health -= 1;
+            target.healthBar.decrease(1);
+        }
+
+        if (target.luminusHUDProgressBar) {
+            target.luminusHUDProgressBar.updateHealth();
         }
         this.phaserJuice.add(target).flash();
         atacker.scene.sound.add(damageName).play();

@@ -1,5 +1,6 @@
 import Phaser, { Game, GameObjects } from 'phaser';
 import { ENTITIES } from '../consts/Entities';
+import { LuminusHUDProgressBar } from '../plugins/HUD/LuminusHUDHealthBar';
 import { LuminusHealthBar } from '../plugins/LuminusHealthBar';
 import { LuminusKeyboardMouseController } from '../plugins/LuminusKeyboardMouseController';
 import { LuminusMovement } from '../plugins/LuminusMovement';
@@ -104,6 +105,11 @@ export class Player extends Phaser.Physics.Arcade.Sprite {
             this.width / 2.2,
             -(this.height / 2)
         );
+
+        /**
+         * @type { LuminusHUDProgressBar }
+         */
+        this.luminusHUDProgressBar = null;
 
         /**
          * The particle name of the Sprite / Texture to be used for the the dust movement.
