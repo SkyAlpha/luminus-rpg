@@ -46,11 +46,15 @@ export class LuminusHUDProgressBar {
     updateHealth() {
         const HP_percentage =
             (this.player.health / this.player.baseHealth) * 100;
+        console.log(HP_percentage);
         if (HP_percentage > 40) {
+            console.log(1);
             this.healthbar_sprite.setTexture(`green_bar`);
-        } else if (HP_percentage > 20 && HP_percentage < 40) {
+        } else if (HP_percentage >= 20 && HP_percentage <= 40) {
+            console.log(2);
             this.healthbar_sprite.setTexture(`yellow_bar`);
         } else if (HP_percentage < 20) {
+            console.log(3);
             this.healthbar_sprite.setTexture(`red_bar`);
         }
 

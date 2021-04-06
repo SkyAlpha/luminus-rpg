@@ -141,8 +141,8 @@ export class LuminusDungeonGenerator {
             2
         );
 
-        this.groundLayer = this.map.createBlankDynamicLayer('Ground', tileset);
-        this.stuffLayer = this.map.createBlankDynamicLayer('Stuff', tileset);
+        this.groundLayer = this.map.createBlankLayer('Ground', tileset);
+        this.stuffLayer = this.map.createBlankLayer('Stuff', tileset);
 
         this.groundLayer.fill(TILES.BLANK);
 
