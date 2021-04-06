@@ -373,8 +373,8 @@ export class InventoryScene extends Phaser.Scene {
                     playerItem.id
                 );
                 if (item.stackable) {
-                    item.setInteractive();
-                    item.on('pointerup', (pointer) => {
+                    slot.setInteractive();
+                    slot.on('pointerup', (pointer) => {
                         if (time === 0) {
                             time = pointer.upTime;
                             return;

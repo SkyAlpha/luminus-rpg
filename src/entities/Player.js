@@ -1,6 +1,6 @@
 import Phaser, { Game, GameObjects } from 'phaser';
 import { ENTITIES } from '../consts/Entities';
-import { LuminusHUDProgressBar } from '../plugins/HUD/LuminusHUDHealthBar';
+import { LuminusHUDProgressBar } from '../plugins/HUD/LuminusHUDProgressBar';
 import { LuminusHealthBar } from '../plugins/LuminusHealthBar';
 import { LuminusKeyboardMouseController } from '../plugins/LuminusKeyboardMouseController';
 import { LuminusMovement } from '../plugins/LuminusMovement';

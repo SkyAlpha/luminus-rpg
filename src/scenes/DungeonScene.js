@@ -28,7 +28,7 @@ export class DungeonScene extends Phaser.Scene {
         );
 
         this.cameras.main.startFollow(this.player.container);
-        this.cameras.main.setZoom(2.5);
+        // this.cameras.main.setZoom(2.5);
         // camera.setBounds(
         //     0,
         //     0,
@@ -51,7 +51,7 @@ export class DungeonScene extends Phaser.Scene {
             map: this.dungeon.map,
         });
 
-        this.scene.launch('HUDScene');
+        this.scene.launch('HUDScene', { player: this.player });
         this.enemies = [];
         this.dungeon.dungeon.rooms.forEach((room) => {
             var spriteBounds = Phaser.Geom.Rectangle.Inflate(
@@ -68,7 +68,7 @@ export class DungeonScene extends Phaser.Scene {
             );
             for (let i = 0; i < 5; i++) {
                 const pos = Phaser.Geom.Rectangle.Random(spriteBounds);
-                const enemy = new Enemy(this, pos.x, pos.y, 'bat');
+                const enemy = new Enemy(this, pos.x, pos.y, 'bat', 2);
                 this.enemies.push(enemy);
             }
         });
@@ -88,15 +88,15 @@ export class DungeonScene extends Phaser.Scene {
         });
         this.ambientSound.play();
 
-        this.fog = new LuminusFogWarManager(
-            this,
-            this.dungeon.map,
-            this.player
-        );
-        this.fog.createFog();
+        // this.fog = new LuminusFogWarManager(
+        //     this,
+        //     this.dungeon.map,
+        //     this.player
+        // );
+        // this.fog.createFog();
     }
 
     update() {
-        this.fog.updateFog();
+        // this.fog.updateFog();
     }
 }

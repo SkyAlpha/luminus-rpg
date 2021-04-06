@@ -22,6 +22,14 @@ export class LuminusHUDProgressBar {
             .image(x + width / 2 + 20, y, 'green_bar')
             .setOrigin(0, 0.5);
 
+        this.spbar_background = this.scene.add
+            .image(x + width / 2 + 15, y + 20, 'progressbar_background')
+            .setOrigin(0, 0.5);
+
+        this.spbar_sprite = this.scene.add
+            .image(x + width / 2 + 20, y + 20, 'blue_bar')
+            .setOrigin(0, 0.5);
+
         /**
          * The current health points.
          * @type { number }

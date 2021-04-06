@@ -1,8 +1,7 @@
 import Phaser from 'phaser';
 import { Player } from '../entities/Player';
-import { LuminusHUDProgressBar } from '../plugins/HUD/LuminusHUDHealthBar';
+import { LuminusHUDProgressBar } from '../plugins/HUD/LuminusHUDProgressBar';
 import { LuminusHealthBar } from '../plugins/LuminusHealthBar';
-import { LuminusSoundManager } from '../plugins/LuminusSoundManager';
 
 /**
  * Scene for HUD Creation. It contains all the HUD of the game.
@@ -145,6 +144,8 @@ export class HUDScene extends Phaser.Scene {
      */
     create() {
         this.hp_hud = this.add.image(25, 25, 'hp_hud_2x');
+
+        this.sp_hud = this.add.image(25, 45, 'sp_hud_2x');
 
         this.health_bar = new LuminusHUDProgressBar(
             this,

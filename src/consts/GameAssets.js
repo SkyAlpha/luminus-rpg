@@ -22,9 +22,11 @@ import health from '../assets/sprites/health.png';
 import hp_hud from '../assets/sprites/HUD/HP.png';
 import hp_hud_2x from '../assets/sprites/HUD/HP_2x.png';
 import hp_hud_3x from '../assets/sprites/HUD/HP_3x.png';
+import sp_hud_2x from '../assets/sprites/HUD/SP_2x.png';
 import red_bar from '../assets/sprites/HUD/red_bar.png';
 import yellow_bar from '../assets/sprites/HUD/yellow_bar.png';
 import green_bar from '../assets/sprites/HUD/green_bar.png';
+import blue_bar from '../assets/sprites/HUD/blue_bar.png';
 import progressbar_background from '../assets/sprites/HUD/bars_background.png';
 
 // Inventory
@@ -209,6 +211,10 @@ export const Images = [
         image: hp_hud_3x,
     },
     {
+        name: 'sp_hud_2x',
+        image: sp_hud_2x,
+    },
+    {
         name: 'red_bar',
         image: red_bar,
     },
@@ -219,6 +225,10 @@ export const Images = [
     {
         name: 'green_bar',
         image: green_bar,
+    },
+    {
+        name: 'blue_bar',
+        image: blue_bar,
     },
     {
         name: 'progressbar_background',
