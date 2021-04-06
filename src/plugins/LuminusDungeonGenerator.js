@@ -147,17 +147,18 @@ export class LuminusDungeonGenerator {
         this.groundLayer.fill(TILES.BLANK);
 
         // Use the array of rooms generated to place tiles in the map
-        // Note: using an arrow function here so that "this" still refers to our scene
         this.dungeon.rooms.forEach((room) => {
             const { x, y, width, height, left, right, top, bottom } = room;
 
+            //weightedIndexes, tileX, tileY, width, height
+
             // Fill the floor with mostly clean tiles
-            this.groundLayer.weightedRandomize(
+            let random = this.groundLayer.weightedRandomize(
+                TILES.FLOOR,
                 x + 1,
                 y + 1,
                 width - 2,
-                height - 2,
-                TILES.FLOOR
+                height - 2
             );
 
             // Place the room corners tiles
@@ -168,32 +169,32 @@ export class LuminusDungeonGenerator {
 
             // Fill the walls with mostly clean tiles
             this.groundLayer.weightedRandomize(
+                TILES.WALL.TOP,
                 left + 1,
                 top,
                 width - 2,
-                1,
-                TILES.WALL.TOP
+                1
             );
             this.groundLayer.weightedRandomize(
+                TILES.WALL.BOTTOM,
                 left + 1,
                 bottom,
                 width - 2,
-                1,
-                TILES.WALL.BOTTOM
+                1
             );
             this.groundLayer.weightedRandomize(
+                TILES.WALL.LEFT,
                 left,
                 top + 1,
                 1,
-                height - 2,
-                TILES.WALL.LEFT
+                height - 2
             );
             this.groundLayer.weightedRandomize(
+                TILES.WALL.RIGHT,
                 right,
                 top + 1,
                 1,
-                height - 2,
-                TILES.WALL.RIGHT
+                height - 2
             );
 
             // Dungeons have rooms that are connected with doors. Each door has an x & y relative to the

@@ -49,8 +49,7 @@ export class LuminusConsumableManager {
         // TODO - Create an animation to display the usage of a consumable.
         switch (action[1]) {
             case 'hp':
-                console.log(`Recover ${action[2]} HP`);
-                console.log(player.health, player.baseHealth);
+                // console.log(`Recover ${action[2]} HP`);
                 player.health = Math.min(
                     player.baseHealth,
                     (player.health += parseInt(action[2]))

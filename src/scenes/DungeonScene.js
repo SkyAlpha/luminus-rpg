@@ -28,7 +28,7 @@ export class DungeonScene extends Phaser.Scene {
         );
 
         this.cameras.main.startFollow(this.player.container);
-        // this.cameras.main.setZoom(2.5);
+        this.cameras.main.setZoom(2.5);
         // camera.setBounds(
         //     0,
         //     0,
@@ -88,15 +88,15 @@ export class DungeonScene extends Phaser.Scene {
         });
         this.ambientSound.play();
 
-        // this.fog = new LuminusFogWarManager(
-        //     this,
-        //     this.dungeon.map,
-        //     this.player
-        // );
-        // this.fog.createFog();
+        this.fog = new LuminusFogWarManager(
+            this,
+            this.dungeon.map,
+            this.player
+        );
+        this.fog.createFog();
     }
 
     update() {
-        // this.fog.updateFog();
+        this.fog.updateFog();
     }
 }
