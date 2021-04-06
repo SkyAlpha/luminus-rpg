@@ -4,28 +4,69 @@ import Phaser from 'phaser';
  */
 export class LuminusHealthBar extends Phaser.GameObjects.Sprite {
     /**
-     *
-     * @param {*} scene
-     * @param {*} x
-     * @param {*} y
-     * @param {*} width
-     * @param {*} health
-     * @param {*} offX
-     * @param {*} offY
+     * Created a Dynamic health bar.
+     * @param { Phaser.Scene } scene The Phaser Scene that the health bar will be displayed.
+     * @param { number } x X-Axis Positon.
+     * @param { number } y Y-Axis Position.
+     * @param { number } width Width of the sprite.
+     * @param { number } health Max Health of the entity.
+     * @param { number } offX X-Axis Offset.
+     * @param { number } offY Y-Axis offset.
      */
     constructor(scene, x, y, width, health, offX = 0, offY = 0) {
         super(scene, x, y, 'health');
 
-        // this.width = width;
+        /**
+         * The height of the health bar.
+         * @type { number }
+         * @default
+         */
         this.height = 3;
-
+        /**
+         * Current Health of the entity.
+         * @type { number }
+         */
         this.health = health;
+
+        /**
+         * The Maximum Health of the entity.
+         * @type { number }
+         */
         this.full = health;
+
+        /**
+         * X-Axis Offset.
+         * @type { number }
+         */
         this.offX = offX;
+
+        /**
+         * @type { number }
+         * Y-Axis offset.
+         */
         this.offY = offY;
+
+        /**
+         * The size / width of the health bar.
+         * @type { number }
+         */
         this.size = width * 0.43;
+
+        /**
+         * X-Axis Positon.
+         * @type { number }
+         */
         this.x = x - offX;
+        /**
+         * Y-Axis Position.
+         * @type { number }
+         */
         this.y = y - offY;
+        /**
+         * The Alpha / Opacity of the healthbar.
+         * @type { number }
+         * @default
+         */
         this.alpha = 0.8;
         this.setOrigin(0, 0);
         this.setDepth(2);

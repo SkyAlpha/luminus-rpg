@@ -1,3 +1,5 @@
+import { EntityDrops } from '../../models/EntityDrops';
+
 export const Bat = [
     // Down
     {
@@ -102,9 +104,9 @@ export const BatConfig = {
     defense: 1,
     speed: 30,
     drops: [
-        {
-            id: 1, // Red Potion
-            chance: 50, // 50% chance of dropping the item
-        },
+        new EntityDrops(
+            1, // Red Potion
+            50 // 50% chance of dropping the item
+        ),
     ],
 };

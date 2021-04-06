@@ -2,6 +2,7 @@ import Phaser from 'phaser';
 import { ENTITIES } from '../consts/Entities';
 
 /**
+ * This class is responsible for displaying the damage that an entity receives.
  * @class
  */
 export class LuminusDamageDisplay {
@@ -19,6 +20,7 @@ export class LuminusDamageDisplay {
         /**
          * The font size of the text.
          * @type { string }
+         * @default
          */
         this.fontSize = '12px';
 
@@ -35,6 +37,42 @@ export class LuminusDamageDisplay {
          * @default
          */
         this.fontColor = `white`;
+
+        /**
+         * Color of the font when an Enemy hits the Player.
+         * @type { Phaser.Display.Color }
+         * @default
+         */
+        this.enemyDamageColor = `yellow`;
+
+        /**
+         * Color of the font when it's a critial hit.
+         * @type { Phaser.Display.Color }
+         * @default
+         */
+        this.criticalDamageColor = `red`;
+
+        /**
+         * Color of the font when it's healing.
+         * @type { Phaser.Display.Color }
+         * @default
+         */
+        this.heallingColor = 'green';
+
+        /**
+         * The amount of pixels that the font will move in the Y-Axis
+         * @type { number }
+         * @default
+         */
+        this.fontVerticalMovement = 5;
+
+        /**
+         * The amount of time that the vertical movement will take to finish.
+         * @type { number }
+         * @default
+         */
+        this.verticalMovementDuration = 1000;
+
         // this.fontColor = new Phaser.Display.Color(255, 255, 255, 1);
 
         /**
@@ -57,15 +95,15 @@ export class LuminusDamageDisplay {
         };
 
         if (target.entityName === ENTITIES.Player) {
-            this.fontColor = `yellow`;
+            this.fontColor = this.enemyDamageColor;
         }
 
         if (isCritical) {
-            this.fontColor = `red`;
+            this.fontColor = this.criticalDamageColor;
         }
 
         if (isHealing) {
-            this.fontColor = 'green';
+            this.fontColor = this.heallingColor;
         }
 
         let damageSprite = this.scene.add.text(position.x, position.y, damage, {
@@ -81,9 +119,9 @@ export class LuminusDamageDisplay {
 
         let tween = this.scene.add.tween({
             targets: damageSprite,
-            y: position.y - 5,
+            y: position.y - this.fontVerticalMovement,
             alpha: 0,
-            duration: 1000,
+            duration: this.verticalMovementDuration,
             onComplete: (t) => {
                 damageSprite.destroy();
             },

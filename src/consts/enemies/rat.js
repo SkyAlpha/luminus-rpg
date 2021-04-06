@@ -1,3 +1,5 @@
+import { EntityDrops } from '../../models/EntityDrops';
+
 export const Rat = [
     // Down
     {
@@ -103,9 +105,9 @@ export const RatConfig = {
     defense: 1,
     speed: 25,
     drops: [
-        {
-            id: 1, // Red Potion
-            chance: 100, // 50% chance of dropping the item
-        },
+        new EntityDrops(
+            1, // Red Potion
+            100 // 100% chance of dropping the item
+        ),
     ],
 };

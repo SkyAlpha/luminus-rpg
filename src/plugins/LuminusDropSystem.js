@@ -1,5 +1,6 @@
 import { EnemiesSeedConfig } from '../consts/enemies/EnemiesSeedConfig';
 import { Item } from '../entities/Item';
+import { PlayerDrops } from '../models/EntityDrops';
 
 /**
  * This class is responsible for dropping items from a given entity.
@@ -27,7 +28,7 @@ export class LuminusDropSystem {
 
         /**
          * The items that the entity will drop.
-         * @type { Array }
+         * @type { Array.< PlayerDrops > }
          */
         this.drops = entity.drops;
 

@@ -103,6 +103,7 @@ export class LuminusBattleManager extends AnimationNames {
          * The lifetime of the Enemy Hitbox.
          * This deifnes how long the Hitbox will keep moving towards the enemy.
          * @type { number }
+         * @default
          */
         this.enemyHitboxLifetime = 200;
 
