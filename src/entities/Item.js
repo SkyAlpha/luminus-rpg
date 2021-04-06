@@ -114,6 +114,8 @@ export class Item extends Phaser.Physics.Arcade.Sprite {
              */
             (item, player) => {
                 canCollide = false;
+                // Plays the sound of picking up Items.
+                this.scene.sound.play('get_items');
                 // TODO - Player Pickup the item.
                 this.scene.tweens.add({
                     targets: item,

@@ -88,6 +88,9 @@ import damage01 from '../assets/sound/sfx/damage/damage01.mp3';
 import damage02 from '../assets/sound/sfx/damage/damage02.mp3';
 import damage03 from '../assets/sound/sfx/damage/damage03.mp3';
 
+// Interaction
+import get_items from '../assets/sound/sfx/interection/get_items.mp3';
+
 // Consumables
 import heal from '../assets/sound/sfx/consumables/heal.mp3';
 
@@ -368,6 +371,11 @@ export const LuminusAudios = [
     {
         name: 'damage03',
         audio: damage03,
+    },
+    // Interaction
+    {
+        name: 'get_items',
+        audio: get_items,
     },
     // Consumables
     {
