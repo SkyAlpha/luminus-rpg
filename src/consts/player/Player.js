@@ -1,5 +1,6 @@
 export const PlayerConfig = {
     texture: 'character',
+    variableName: 'player',
 };
 
 export const Player = [

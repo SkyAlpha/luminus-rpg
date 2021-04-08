@@ -4,6 +4,7 @@ import { Player } from '../entities/Player';
 import { LuminusDungeonGenerator } from '../plugins/LuminusDungeonGenerator';
 import { LuminusFogWarManager } from '../plugins/LuminusFogWarManager';
 import { Enemy } from '../entities/Enemy';
+import { PlayerConfig } from '../consts/player/Player';
 
 export class DungeonScene extends Phaser.Scene {
     constructor() {
@@ -23,7 +24,7 @@ export class DungeonScene extends Phaser.Scene {
             this,
             this.dungeon.map.widthInPixels / 2,
             this.dungeon.map.heightInPixels / 2,
-            'character',
+            PlayerConfig.texture,
             this.dungeon.map
         );
 

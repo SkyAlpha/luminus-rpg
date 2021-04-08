@@ -1257,10 +1257,16 @@
          "id":3,
          "name":"collision",
          "opacity":1,
+         "properties":[
+                {
+                 "name":"collides",
+                 "type":"bool",
+                 "value":true
+                }],
          "startx":-96,
          "starty":-64,
          "type":"tilelayer",
-         "visible":false,
+         "visible":true,
          "width":176,
          "x":0,
          "y":0
@@ -1722,6 +1728,28 @@
                  "width":115.333,
                  "x":-778.667,
                  "y":-134.667
+                }, 
+                {
+                 "height":92.5,
+                 "id":91,
+                 "name":"",
+                 "properties":[
+                        {
+                         "name":"id",
+                         "type":"string",
+                         "value":"2"
+                        }, 
+                        {
+                         "name":"number",
+                         "type":"int",
+                         "value":3
+                        }],
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":142.25,
+                 "x":-745.75,
+                 "y":-643
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -2113,8 +2141,8 @@
          "x":0,
          "y":0
         }],
- "nextlayerid":15,
- "nextobjectid":89,
+ "nextlayerid":16,
+ "nextobjectid":92,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.4.3",

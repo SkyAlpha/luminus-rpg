@@ -8,8 +8,8 @@ import { LuminusEnvironmentParticles } from '../plugins/LuminusEnvironmentPartic
 import { LuminusOutlineEffect } from '../plugins/LuminusOutlineEffect';
 import { LuminusEnemyZones } from '../plugins/LuminusEnemyZones';
 import { Item } from '../entities/Item';
-
-let map;
+import { PlayerConfig } from '../consts/player/Player';
+import { LuminusMapCreator } from '../plugins/LuminusMapCreator';
 
 export class MainScene extends Phaser.Scene {
     constructor() {
@@ -39,98 +39,41 @@ export class MainScene extends Phaser.Scene {
 
         this.cameras.main.setZoom(2.5);
 
-        map = this.make.tilemap({ key: 'larus' });
-        const tileset_overworld = map.addTilesetImage(
-            'base',
-            'tiles_overworld',
-            16,
-            16,
-            1,
-            2
-        );
-        const inner = map.addTilesetImage('inner', 'inner', 16, 16, 1, 2);
-        const collision_tilset = map.addTilesetImage(
-            'collision',
-            'collision_tiles'
-        );
-
-        const base = map.createLayer('base', [inner, tileset_overworld]);
-        const overlay = map.createLayer('overlay', [inner, tileset_overworld]);
-        const overlay2 = map.createLayer('overlay2', [
-            inner,
-            tileset_overworld,
-        ]);
-        const overlay3 = map.createLayer('overlay3', [
-            inner,
-            tileset_overworld,
-        ]);
-        const overlay4 = map.createLayer('overlay4', [
-            inner,
-            tileset_overworld,
-        ]);
-        this.overplayer_layer = map.createLayer('overplayer', [
-            tileset_overworld,
-            inner,
-        ]);
-        const overplayer_layer2 = map.createLayer('overplayer2', [
-            tileset_overworld,
-            inner,
-        ]);
-        const collision_layer = map.createLayer('collision', collision_tilset);
-        this.overplayer_layer.depth = 99;
-        overplayer_layer2.depth = 100;
-        // Hides the collision map.
-        collision_layer.alpha = 0;
-
-        collision_layer.setCollisionByProperty({ collides: true });
-
-        const spawnPoint = map.findObject(
-            'spawn',
-            (obj) => obj.name === 'Spawn Point'
-        );
-
-        this.player = new Player(this, spawnPoint.x, spawnPoint.y, 'character');
-
-        new Item(this, spawnPoint.x, spawnPoint.y + 40, 1);
-        new Item(this, spawnPoint.x + 60, spawnPoint.y + 40, 1);
+        this.mapCreator = new LuminusMapCreator(this);
+        this.mapCreator.create();
 
         const camera = this.cameras.main;
         camera.startFollow(this.player.container);
 
-        // camera.setBounds(0, 0, map.widthInPixels, map.heightInPixels);
-
-        const phaserWarp = new LuminusWarp(this, this.player, map);
+        const phaserWarp = new LuminusWarp(
+            this,
+            this.player,
+            this.mapCreator.map
+        );
         phaserWarp.createWarps();
-        const interactiveMarkers = new LuminusObjectMarker(this, map);
+        const interactiveMarkers = new LuminusObjectMarker(
+            this,
+            this.mapCreator.map
+        );
         interactiveMarkers.create();
-
-        // this.cameras.main.disableCull = false;
-        // this.cameras.main.setBounds(
-        //     0,
-        //     0,
-        //     map.widthInPixels,
-        //     map.heightInPixels
-        // );
-
-        // this.scene.launch('JoystickScene', {
-        //     player: this.player,
-        //     map: map,
-        // });
 
         this.scene.launch('DialogScene', {
             player: this.player,
-            map: map,
+            map: this.mapCreator.map,
         });
 
         this.joystickScene = this.scene.get('JoystickScene');
 
         this.scene.launch('HUDScene', { player: this.player });
 
-        this.sys.animatedTiles.init(map);
-        this.particles = new LuminusEnvironmentParticles(this, map);
+        this.sys.animatedTiles.init(this.mapCreator.map);
+        this.particles = new LuminusEnvironmentParticles(
+            this,
+            this.mapCreator.map
+        );
         this.particles.createParticles('forest');
 
-        this.outlineEffect = new LuminusOutlineEffect(this);
+        // this.outlineEffect = new LuminusOutlineEffect(this);
 
         this.sound.volume = 0.35;
         this.themeSound = this.sound.add('path_to_lake_land', {
@@ -140,10 +83,16 @@ export class MainScene extends Phaser.Scene {
 
         this.enemies = [];
 
-        this.luminusEnemyZones = new LuminusEnemyZones(this, map);
+        this.luminusEnemyZones = new LuminusEnemyZones(
+            this,
+            this.mapCreator.map
+        );
         this.luminusEnemyZones.create();
 
-        this.physics.add.collider(this.player.container, collision_layer);
+        this.physics.add.collider(
+            this.player.container,
+            this.mapCreator.collisionLayer
+        );
     }
 
     /**
