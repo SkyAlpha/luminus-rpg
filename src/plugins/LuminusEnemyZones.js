@@ -10,7 +10,6 @@ export class LuminusEnemyZones {
      * Sets a zone to create enemies within that Range.
      * @param { Phaser.Scene } scene Parent Scene.
      * @param { Phaser.Tilemaps.DynamicTilemapLayer | Phaser.Tilemaps.StaticTilemapLayer} map Tile Map to get the zones from.
-     * @extends AnimationNames
      */
     constructor(scene, map) {
         Object.assign(this, new AnimationNames());

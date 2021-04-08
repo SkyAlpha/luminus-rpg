@@ -1,14 +1,7 @@
+import { ItemType } from '../../models/ItemType';
+
 export const ITEM_TYPE = {
-    EQUIP: {
-        id: 1,
-        name: 'Equip',
-    },
-    USABLE: {
-        id: 2,
-        name: 'Usable',
-    },
-    MISC: {
-        id: 3,
-        name: 'Misc',
-    },
+    EQUIP: new ItemType(1, 'Equip'),
+    USABLE: new ItemType(2, 'Usable'),
+    MISC: new ItemType(3, 'Misc'),
 };

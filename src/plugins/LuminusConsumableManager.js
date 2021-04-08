@@ -38,7 +38,7 @@ export class LuminusConsumableManager {
 
     /**
      * Recover something based on the given item script.
-     * * @param { Item } item the item that will recover the status.
+     * @param { Item } item the item that will recover the status.
      * @param { string } action The script action that will be performed.
      * @param { Player } player The player that will use the item.
      */

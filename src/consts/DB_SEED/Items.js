@@ -1,6 +1,7 @@
 import { ITEM_TYPE } from './ItemTypes';
 
 /**
+ * @example
  * The 'script' works like this:
  * ACTION, WHAT, AMOUNT
  * ACTION: rec -> recover

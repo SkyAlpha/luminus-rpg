@@ -18,6 +18,7 @@ import { EnemiesSeedConfig } from '../consts/enemies/EnemiesSeedConfig';
  * @extends BaseEntity
  * @extends EntityStatus
  * @extends AnimationNames
+ * @extends LuminusDropSystem
  */
 export class Enemy extends Phaser.Physics.Arcade.Sprite {
     constructor(scene, x, y, texture, id) {
@@ -26,7 +27,6 @@ export class Enemy extends Phaser.Physics.Arcade.Sprite {
         const enemyConfig = EnemiesSeedConfig.find((c) => c.id === id);
         Object.assign(this, BaseEntity);
         Object.assign(this, EntityStatus);
-
         Object.assign(this, new AnimationNames());
 
         /**

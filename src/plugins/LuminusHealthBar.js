@@ -41,8 +41,8 @@ export class LuminusHealthBar extends Phaser.GameObjects.Sprite {
         this.offX = offX;
 
         /**
-         * @type { number }
          * Y-Axis offset.
+         * @type { number }
          */
         this.offY = offY;
 
@@ -75,27 +75,11 @@ export class LuminusHealthBar extends Phaser.GameObjects.Sprite {
         this.draw();
     }
 
-    createTimeline() {
-        this.timelineMovement = this.scene.tweens.createTimeline();
-    }
-
-    playTimeline() {
-        this.timelineMovement.play();
-    }
-
-    stopTimeline() {
-        this.timelineMovement.stop();
-    }
-
-    timelineAdd(x, y, duration = 350) {
-        this.timelineMovement.add({
-            targets: this,
-            x: x,
-            y: y,
-            duration: duration,
-        });
-    }
-
+    /**
+     *
+     * @param { number } dano Damage to deal in the entity.
+     * @returns { number } returns true if the health is zero or less.
+     */
     decrease(dano) {
         this.health -= dano;
 
@@ -103,7 +87,7 @@ export class LuminusHealthBar extends Phaser.GameObjects.Sprite {
             this.health = 0;
         }
         this.draw();
-        return this.health === 0;
+        return this.health <= 0;
     }
 
     /**
@@ -115,6 +99,9 @@ export class LuminusHealthBar extends Phaser.GameObjects.Sprite {
         this.draw();
     }
 
+    /**
+     * Changes the color of the Health bar based on the current entity's health.
+     */
     draw() {
         var d = (this.health * 100) / this.full / 100;
         var x = (this.health / this.full) * 100;
@@ -127,19 +114,14 @@ export class LuminusHealthBar extends Phaser.GameObjects.Sprite {
 
         this.tint = color;
         this.scaleX = (d * this.size) / this.width;
-
-        // Clears the Graphic and Redraws.
-
-        // this.clear();
-        // this.lineStyle(3, color, 0.5);
-        // this.beginPath();
-        // this.moveTo(0 - this.offX, 0 - this.offY);
-        // this.lineTo(d * this.size - this.offX, 0 - this.offY);
-        // // this.lineStyle(1, color, 1); // Debug line
-        // this.closePath();
-        // this.strokePath();
     }
 
+    /**
+     * Gets the correct color, based on the red and green values, so the bar goes from Green (Full health) to RED (Low Health).
+     * @param { number } r red value.
+     * @param { number } g green value.
+     * @returns { string } The new RGB Value
+     */
     rgbToHex(r, g) {
         return '0x' + ((1 << 24) + (r << 16) + (g << 8)).toString(16).slice(1);
     }
