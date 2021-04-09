@@ -1,0 +1,41 @@
+// Modular Showcase styling
+.archive-list {
+    h4 {
+        text-align: left;
+    }
+    input {
+        width: 50%;
+        line-height: 2rem;
+        @include breakpoint(mobile-only) {
+            min-width: 80%;
+        }
+        @include breakpoint(tablet-range) {
+            min-width: 70%;
+        }
+    }
+    textarea {
+        min-width: 80%;
+        min-height: 25rem;
+        @include breakpoint(mobile-only) {
+            min-width: 100%;
+        }
+        @include breakpoint(tablet-range) {
+            min-width: 90%;
+        }
+    }
+    input, textarea {
+        border: 0 none;
+        background: transparentize($core-text, 0.8);
+        box-shadow: none;
+    }
+    label {
+        @extend h4;
+        font-size: 1rem;
+    }
+    button {
+        @extend .button;
+        @extend .default-animation;
+        font-family: $font-family-header;
+        text-transform: uppercase;
+    }
+}

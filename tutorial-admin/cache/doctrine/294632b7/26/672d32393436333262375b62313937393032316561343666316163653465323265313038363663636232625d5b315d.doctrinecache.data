@@ -1,0 +1,16 @@
+1618491703
+a:2:{s:7:"content";s:1580:"<h1><h1 class="center">Setting up your Tiled Map</h1></h1>
+<p>First things first... In this tutorial I will guide you through all the main configurations that your have to do so your Tiled Map works with the Luminus RPG Template.</p>
+<h2>Setup</h2>
+<ul>
+<li><a href="#creating-map">Step 1 - Creating a Map</a></li>
+<li>
+</li>
+</ul>
+<h3><a href="/tiled/setting-up-tiled/" id="creating-map"></a>Step 1 - Creating a Map</h3>
+<p>Open the <a href="https://www.mapeditor.org/">Tiled Map Editor</a> and create a new Map.</p>
+<p><a href="https://i.ibb.co/HGqJWg6/Screen-Shot-2021-04-08-at-09-35-36.png"><img src="https://i.ibb.co/HGqJWg6/Screen-Shot-2021-04-08-at-09-35-36.png" alt="Creating new Map" class="center" /></a></p>
+<p>Once you click the button a window will be prompted to you. Whe are going to change the <code>Tile layer format</code> to <code>Base64 (uncompressed)</code> and the <code>tile size</code> to 16x16 just like the image below. Leave the rest as it is. Click on the <code>Save As...</code> button and save the map inside the <code>src/assets/maps/</code> folder, you should create a folder with your map name and save it inside this new folder.</p>
+<p><a href="https://i.ibb.co/ZVH8kbM/Screen-Shot-2021-04-08-at-09-40-14.png"><img src="https://i.ibb.co/ZVH8kbM/Screen-Shot-2021-04-08-at-09-40-14.png" alt="" class="center" /></a></p>
+<p>You should have something like this.</p>
+<p><a href="https://i.ibb.co/Pr6bxYH/Screen-Shot-2021-04-08-at-09-57-46.png"><img src="https://i.ibb.co/Pr6bxYH/Screen-Shot-2021-04-08-at-09-57-46.png" alt="" class="center" /></a></p>";s:12:"content_meta";N;}

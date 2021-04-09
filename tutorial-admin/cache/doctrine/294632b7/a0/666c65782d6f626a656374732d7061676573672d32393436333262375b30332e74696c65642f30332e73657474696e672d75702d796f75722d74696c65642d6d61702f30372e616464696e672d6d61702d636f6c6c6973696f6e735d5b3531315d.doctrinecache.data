@@ -1,0 +1,20 @@
+1617976831
+O:39:"Grav\Common\Flex\Types\Pages\PageObject":4:{s:4:"type";s:5:"pages";s:3:"key";s:53:"tiled/setting-up-your-tiled-map/adding-map-collisions";s:8:"elements";a:4:{s:4:"root";b:0;s:6:"header";a:2:{s:5:"title";s:21:"Adding Map Collisions";s:4:"menu";s:30:"Step 7 - Adding Map Collisions";}s:11:"frontmatter";s:69:"title: 'Adding Map Collisions'
+menu: 'Step 7 - Adding Map Collisions'";s:8:"markdown";s:1372:"<h1 class="text-center">Step 7 - Adding Map Collisions</h1>
+
+To add collision between the `Player`and the Map is really easy with the Luminus RPG. Fun fact is that I have started this project as a simple Proof of Concept if I could paint map colisions [just like GB Studio](https://develop.gbstudio.dev/docs/scenes/) does. Up until now the folder name that stores this project is called `collision`.
+
+1. Select the layers tab on the Layers Panel.
+2. Select the `collision` layer.
+3. Create a new Property for the `collision` layer called `collides`
+4. Check the `collides`property.
+
+[![](https://i.ibb.co/rHMtqc3/Screen-Shot-2021-04-09-at-10-21-53.png?classes=center)](https://i.ibb.co/rHMtqc3/Screen-Shot-2021-04-09-at-10-21-53.png?target=_blank)
+
+We are not finished yet. I like to use a special Tile to create collisions. As I said I was inspired by GB Studio's collision technique, so I have created a collision tile, a single red tile that represents the tiles that the player can't go. So let's add it to the Tiled Map. I have provided one red square at `src/assets/maps/tilesets/collision.png` so it's easier for you to follow along, it's a red square with 50% Opacity so we can see throught it.
+
+[![](https://i.ibb.co/ChzwTK3/Screen-Shot-2021-04-09-at-10-42-58.png?classes=center)](https://i.ibb.co/ChzwTK3/Screen-Shot-2021-04-09-at-10-42-58.png?target=_blank)
+
+
+
+";}s:7:"storage";a:6:{s:3:"key";s:53:"tiled/setting-up-your-tiled-map/adding-map-collisions";s:11:"storage_key";s:62:"03.tiled/03.setting-up-your-tiled-map/07.adding-map-collisions";s:8:"template";s:7:"default";s:17:"storage_timestamp";i:1617976231;s:8:"markdown";a:1:{s:0:"";a:1:{s:7:"default";i:1617976231;}}s:8:"checksum";s:32:"2be75ff4d67df9b9c20a79d4ce8f9ef0";}}

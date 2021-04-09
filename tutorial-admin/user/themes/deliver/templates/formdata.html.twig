@@ -1,0 +1,12 @@
+{% extends 'partials/base.html.twig' %}
+
+{% block content %}
+  <div class="modular-row bottom ">
+    {{ content|raw }}
+
+    <h2>{{ form.message }}</h2>
+    <p>Here is the summary of what you wrote to us:</p>
+
+    {% include "forms/data.html.twig" %}
+</div>
+{% endblock %}

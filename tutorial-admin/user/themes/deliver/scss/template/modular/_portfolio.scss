@@ -1,0 +1,74 @@
+// variables
+$text-bg:        #EEEEEE;
+$text-padding:   2rem;
+$image-margin:      2rem;
+
+
+// styling
+.portfolio {
+    padding: $text-padding $content-padding;
+    padding-top: $text-padding;
+    padding-bottom: 1rem;
+    text-align: center;
+    @include breakpoint(desktop-only) {
+        text-align: center;
+    }
+    h2 {
+        color: $light-gray;
+    }
+    .notebooks {
+        margin-top: 4rem;
+        .notebook-row {
+            box-shadow: inset 0px -90px 0px -20px $main-bg;
+            margin-left: -$padding-horiz;
+            margin-right: -$padding-horiz;
+            padding-left: $padding-horiz;
+            padding-right: $padding-horiz;
+            background: $text-bg;
+            padding-bottom: 2rem;
+
+            @include breakpoint(mobile-only) {
+                margin-left: -$padding-horiz + 4rem;
+                margin-right: -$padding-horiz + 4rem ;
+            }
+
+            .notebook {
+                min-width: 24%;
+                @include breakpoint(tablet-range) {
+                    width: 100%;
+                }
+                @include breakpoint(desktop-range) {
+                    min-width: 24%;
+                    float: none;
+                }
+                @include breakpoint(small-mobile-range) {
+                    width: 170%;
+                    margin-left: -4.7rem;
+                }
+                h4 {
+                    text-align: left;
+                    margin-bottom: 0;
+                }
+                p {
+                    margin-top: 0;
+                }
+                .desc {
+                    width: 20rem;
+                    margin-left: 2rem;
+                    @include breakpoint(desktop-range) {
+                        width: 100%;
+                    }
+                    @include breakpoint(mobile-only) {
+                        width: 100%;
+                    }
+                    @include breakpoint(small-mobile-range) {
+                        width: 90%;
+                    }
+                    @include breakpoint(tablet-range) {
+                        width: 100%;
+                    }
+                }
+            } 
+        }
+    }
+}

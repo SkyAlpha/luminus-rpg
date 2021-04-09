@@ -1,0 +1,294 @@
+.slideme_container {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.slideme_container ul,
+.slideme_container ol, 
+.slideme {
+    margin: 0;
+    padding: 0;
+}
+
+.slideme_container li, 
+.slideme > li  {
+    display: block;
+    list-style: none;
+}
+
+.slideme_container,
+.slideme {
+    position: relative;
+}
+.slideme_container ol img, 
+.slideme > * img{
+    display: block;
+}
+
+.slideme > *:first-child {
+    opacity: 1;
+    position: relative;
+    z-index: 5;
+}
+
+.slideme > *, 
+.slideme_container .slideme > * {
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    z-index: 0;
+}
+
+.slideme > * {
+    -webkit-transform: translate3d(0, 0, 0);
+    -moz-transform: translate3d(0, 0, 0);
+    -ms-transform: translate3d(0, 0, 0);
+    -o-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+}
+
+.slideme_container .slideme > *.current {
+    opacity: 1;
+    z-index: 5;
+}
+
+.single button.arrow,
+.single .pagination
+ {
+	display: none;
+}
+
+/*
+ * slide
+ */
+
+.slideme-slide > *, 
+.slideme_container .slideme-slide > * {
+    visibility: hidden;
+    z-index: 0;
+}
+
+.slideme-slide > .current,
+.slideme-slide > .next {
+    visibility: visible;
+    z-index: 5;
+}
+
+.slideme-slide > .after {
+    left: 100%;
+}
+
+.slideme-slide > .before {
+    left: -100%;
+}
+
+.slideme-slide.nextClicked > .current,
+.slideme-slide.nextClicked > .next,
+.slideme-slide.prevClicked > .current,
+.slideme-slide.prevClicked > .next {
+    -webkit-transition: left 0.5s cubic-bezier(0.47, 0, 0.745, 0.715);
+    -moz-transition: left 0.5s cubic-bezier(0.47, 0, 0.745, 0.715);
+    -ms-transition: left 0.5s cubic-bezier(0.47, 0, 0.745, 0.715);
+    -o-transition: left 0.5s cubic-bezier(0.47, 0, 0.745, 0.715);
+    transition: left 0.5s cubic-bezier(0.47, 0, 0.745, 0.715);
+}
+
+.slideme-slide.prevClicked > .next, 
+.slideme-slide.nextClicked > .next {
+    left: 0;
+}
+
+.slideme-slide.prevClicked > .current {
+    left: 100%;
+}
+
+.slideme-slide.nextClicked > .current {
+    left: -100%;
+}
+
+/*
+ * zoom
+ */
+
+.slideme-zoom > *, 
+.slideme_container .slideme-zoom > * {
+    opacity: 0;
+    visibility: hidden;
+}
+
+.slideme-zoom > .current {
+    visibility: visible;
+    z-index: 4;
+}
+
+.slideme-zoom > .next {
+    visibility: visible;
+    z-index: 5;
+}
+
+.slideme-zoom > .before, 
+.slideme-zoom.nextClicked > .current {
+    -webkit-transform: scale(1.4);
+    -moz-transform: scale(1.4);
+    -ms-transform: scale(1.4);
+    -o-transform: scale(1.4);
+    transform: scale(1.4);
+}
+
+.slideme-zoom > .after, 
+.slideme-zoom.nextClicked > .next, 
+.slideme-zoom.prevClicked > .current {
+    -webkit-transform: scale(1);
+    -moz-transform: scale(1);
+    -ms-transform: scale(1);
+    -o-transform: scale(1);
+    transform: scale(1);
+    z-index: 5;
+}
+
+.slideme-zoom > .before {
+    z-index: 6;
+}
+
+.slideme-zoom.nextClicked > .current,
+.slideme-zoom.nextClicked > .next,
+.slideme-zoom.prevClicked > .current,
+.slideme-zoom.prevClicked > .next {
+    -webkit-transition: opacity 0.35s cubic-bezier(0.47, 0, 0.745, 0.715), -webkit-transform 0.35s cubic-bezier(0.47, 0, 0.745, 0.715);
+    -moz-transition: opacity 0.35s cubic-bezier(0.47, 0, 0.745, 0.715), -moz-transform 0.35s cubic-bezier(0.47, 0, 0.745, 0.715);
+    -ms-transition: opacity 0.35s cubic-bezier(0.47, 0, 0.745, 0.715), -ms-transform 0.35s cubic-bezier(0.47, 0, 0.745, 0.715);
+    -o-transition: opacity 0.35s cubic-bezier(0.47, 0, 0.745, 0.715), -o-transform 0.35s cubic-bezier(0.47, 0, 0.745, 0.715);
+    transition: opacity 0.35s cubic-bezier(0.47, 0, 0.745, 0.715), transform 0.35s cubic-bezier(0.47, 0, 0.745, 0.715);
+}
+
+.slideme-zoom.nextClicked > .current {
+    opacity: 0;
+}
+
+.slideme-zoom.nextClicked > .after {
+    opacity: 1;
+}
+
+.slideme-zoom.prevClicked > .next {
+    -webkit-transform: scale(1);
+    -moz-transform: scale(1);
+    -ms-transform: scale(1);
+    -o-transform: scale(1);
+    transform: scale(1);
+    opacity: 1;
+    visibility: visible;
+}
+
+/*
+ * fade
+ */
+
+.slideme-fade > *, 
+.slideme_container .slideme-fade > * {
+    opacity: 0;
+    z-index: 0;
+}
+
+.slideme-fade.nextClicked > .current,
+.slideme-fade.nextClicked > .next,
+.slideme-fade.prevClicked > .current,
+.slideme-fade.prevClicked > .next {
+    -webkit-transition: opacity 0.7s cubic-bezier(0.47, 0, 0.745, 0.715);
+    -moz-transition: opacity 0.7s cubic-bezier(0.47, 0, 0.745, 0.715);
+    -ms-transition: opacity 0.7s cubic-bezier(0.47, 0, 0.745, 0.715);
+    -o-transition: opacity 0.7s cubic-bezier(0.47, 0, 0.745, 0.715);
+    transition: opacity 0.7s cubic-bezier(0.47, 0, 0.745, 0.715);
+}
+
+.slideme-fade.nextClicked > .current, 
+.slideme-fade.prevClicked > .current  {
+    opacity: 0;
+    z-index: 5;
+}
+
+.slideme-fade.nextClicked > .next, 
+.slideme-fade.prevClicked > .next  {
+    opacity: 1;
+    z-index: 4;
+}
+
+/*
+ * page
+ */
+
+.slideme-page > .current {
+    visibility: visible;
+    z-index: 4;
+}
+
+.slideme-page > .next {
+    visibility: visible;
+    z-index: 6;
+}
+
+.slideme-page > .after {
+    left: 100%;
+}
+
+.slideme-page > .before {
+    left: -100%;
+}
+
+.slideme-page.nextClicked > .current, 
+.slideme-page.prevClicked > .current {
+    -webkit-transition: visibility 0.5s cubic-bezier(0.47, 0, 0.745, 0.715);
+    -moz-transition: visibility 0.5s cubic-bezier(0.47, 0, 0.745, 0.715);
+    -ms-transition: visibility 0.5s cubic-bezier(0.47, 0, 0.745, 0.715);
+    -o-transition: visibility 0.5s cubic-bezier(0.47, 0, 0.745, 0.715);
+    transition: visibility 0.5s cubic-bezier(0.47, 0, 0.745, 0.715);
+    visibility: hidden;
+}
+
+.slideme-page.nextClicked > .next, 
+.slideme-page.prevClicked > .next {
+    -webkit-transition: left 0.5s cubic-bezier(0.47, 0, 0.745, 0.715);
+    -moz-transition: left 0.5s cubic-bezier(0.47, 0, 0.745, 0.715);
+    -ms-transition: left 0.5s cubic-bezier(0.47, 0, 0.745, 0.715);
+    -o-transition: left 0.5s cubic-bezier(0.47, 0, 0.745, 0.715);
+    transition: left 0.5s cubic-bezier(0.47, 0, 0.745, 0.715);
+    left: 0;
+}
+
+/*
+ *  SLIDEME TOUCH
+ */
+
+.slideme-touch {
+    -webkit-overflow-scrolling: touch;
+    font-size: 0;
+    height: 100%;
+    overflow: hidden;
+    overflow-y: hidden;
+    overflow-x: scroll;
+    white-space: nowrap;
+    width: 100%;
+}
+
+.slideme-touch.snapping {
+    overflow-x: hidden;
+} 
+
+.slideme_container .slideme-touch > * {
+    -webkit-transform: translateZ(0px);
+    display: inline-block;
+    height: 100%;
+    position: relative;
+    width: 100%;
+}
+
+.slideme_container .slideme-touch > * img {
+    display: block;
+    min-height: 1px;
+    min-width: 1px;
+    width: 100%;
+}

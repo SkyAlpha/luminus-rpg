@@ -1,0 +1,168 @@
+@import "showcase";
+@import "features";
+@import "bottom";
+@import "contact";
+@import "text";
+@import "team";
+@import "portfolio";
+
+.logo {
+    h3 {
+        @extend .default-animation;
+        font-size: 2.5rem;
+        font-family: $font-family-logo;
+        line-height: 2rem;
+        margin: 0;
+        float: left;
+        a {
+            color: $core-text;
+        }
+    }
+    h4 {
+        text-align: left;
+    }
+    border-bottom: 1px solid $body-border;
+
+    ul {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+
+        &.social-icons {
+            float: right;
+            line-height: 2rem;
+            margin: 0;
+
+            li {
+                @extend .default-animation;
+                float: left;
+                width: 2.1rem;
+                height: 2.1rem;
+                background: $white;
+                border-radius: 100%;
+                text-align: center;
+                margin-right: 0.8rem;
+                a {
+                    @extend .default-animation;
+                    color: $black;
+                    display: block;
+                    margin-top: 0.1rem;
+                }
+                &:hover {
+                    background: transparentize($white, 0.5);
+                }
+            }
+        }
+    }
+}
+
+// macbook
+    .notebook{
+        display: inline-block;
+        text-align: left;
+        min-width: 33%;
+        position: relative;
+        z-index: 10;
+
+        @include breakpoint(desktop-range) {
+            width: 100%;
+            float: none;
+        }
+        @include breakpoint(tablet-range) {
+            width: 100%;
+            float: none;
+        }
+        @include breakpoint(mobile-only) {
+            width: 100%;
+            float: none;
+        }
+        @include breakpoint(small-mobile-range) {
+            width: 150%;
+            margin-left: -5.1rem;
+            float: none;
+        }
+
+    }
+    .notebook .screen:before {
+        content: "";
+        position: absolute;
+        border-radius: 50%;
+        background: #E5EBED;
+        height: 0.25rem;
+        width: 0.25rem;
+        margin: 0.3125rem 0 0 8.625rem;
+    }
+    .notebook .screen{
+        background:#464C51;
+        border-radius: 0.5rem 0.5rem 0 0;
+        height: 11.72rem;
+        width: 18.28rem;
+        margin: 0 auto;
+
+        .screen-content {
+            height: 10.1rem;
+            width: 16.73rem;
+            position: absolute;
+            z-index: 1;
+            margin-top: 0.8rem;
+            margin-left: 0.8rem;
+            background-size: cover;
+            background-repeat: no-repeat
+        }
+        .screen-content-hover {
+            @extend .default-animation;
+            height: 10.1rem;
+            width: 16.73rem;
+            position: absolute;
+            z-index: 2;
+            opacity: 0;
+            margin-top: 0.8rem;
+            margin-left: 0.8rem;
+            background-color: $core-accent;
+            .fa-plus-square {
+                font-size: 5rem;
+                color: #464C51;
+                margin-top: 2.5rem;
+                margin-left: 5.9rem;
+            }
+            &:hover {
+                opacity: 0.8;
+            }
+        }
+    }
+    .notebook .screen:after{
+        content: "";
+        position: absolute;
+        background: #161B21;
+        height: 10rem;
+        width: 16.63rem;
+        border-radius: 0.125rem;
+        margin: 0.875rem 0 0 0.8125rem;
+        transition: background 1s ease-in-out;
+    }
+
+    .notebook .keyboard {
+        background: #DFDCDC;
+        border-radius: 0 0 0.3125rem 0.3125rem;
+        height: 1.25rem;
+        width: 21.88rem;
+        margin: 0 auto;
+    }
+    .notebook .keyboard:after {
+        content: "";
+        position: absolute;
+        background: #757979;
+        height: 0.375rem;
+        width: 3.125rem;
+        margin: 0 0 0 9.375rem;
+        border-radius: 0 0 0.5rem 0.5rem;
+    }
+    .keyboard:before {
+        content: "";
+        position: absolute;
+        height: 0.5rem;
+        width: 23.13rem;
+        margin: 0.4375rem 0 0 -0.625rem;
+        z-index: -1;
+        border-radius: 100%;
+    }

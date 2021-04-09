@@ -1,0 +1,110 @@
+// variables
+$text-bg:        #EEEEEE;
+$text-padding:   2rem;
+$image-margin:      2rem;
+
+
+// styling
+.callout {
+    background: $text-bg;
+    padding: $text-padding $content-padding;
+    padding-top: $text-padding;
+    padding-bottom: 0;
+    text-align: center;
+    overflow: hidden;
+    clear: both;
+    position: relative;
+    @include breakpoint(desktop-only) {
+        text-align: center;
+    }
+    .callout-line {
+        background: $page-bg;
+        width: 100%;
+        height: 7rem;
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        z-index: 0;
+    }
+    .pricing-container {
+        position: relative;
+        z-index: 10;
+        @include clearfix;
+        margin-top: 2rem;
+        min-height: 31rem;
+        text-align: center;
+        .pricing-item {
+            @extend .default-animation;
+            -webkit-transform:translateZ(0);
+            display: inline-block;
+            width: 24.3%;
+            margin-right: 0.3rem;
+            margin-bottom: 2rem;
+            position: relative;
+            @include breakpoint(mobile-only) {
+                width: 100%;
+            }
+            @include breakpoint(tablet-range) {
+                width: 100%;
+            }
+            @include breakpoint(desktop-range) {
+                width: 22.5%;
+            }
+            &:hover {
+                -webkit-transform:scale(1,1.08);
+                -moz-transform:scale(1,1.08);
+                -ms-transform:scale(1,1.08);
+                -o-transform:scale(1,1.08);
+                transform:scale(1,1.08);
+            }
+            div {
+                background: $main-bg;
+            }
+            .name {
+                @extend .default-animation;
+                background: $core-accent;
+                @extend h4;
+                color: $white;
+                padding: 0.5rem 0;
+            }
+            .info {
+                line-height: 3rem;
+                border-bottom: $border-color 1px solid;
+            }
+            .price {
+                font-weight: bold;
+                color: $light-gray;
+                font-size: 3.5rem;
+                font-family: $font-family-header;
+                font-weight: normal;
+                border-bottom: $border-color 1px solid;
+                line-height: 5rem;
+            }
+            .foot {
+                @extend .default-animation;
+                background: $core-accent;
+                color: $white;
+                text-align: center;
+                padding: 1rem 0;
+                .button {
+                    @extend h4;
+                    @extend .default-animation;
+                    margin: 0;
+                    padding: 0;
+                    width: 9rem;
+                    font-size: 1rem;
+                    line-height: 2.5rem;
+                    color: $white;
+                    display: inline-block;
+                    background: transparentize($white, 0.75);
+                    &:hover {
+                        background: transparentize($white, 0.85);
+                    }
+                }
+            }
+            sup {
+                font-size: 2rem;
+            }
+        }
+    }
+}

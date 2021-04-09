@@ -1,9 +1,12 @@
-# Phaser 3 Webpack Project Template
+# Luminus RPG Project Template
 
-A Phaser 3 project template with ES6 support via [Babel 7](https://babeljs.io/) and [Webpack 4](https://webpack.js.org/)
+Luminus RPG Template with ES6 support via [Babel 7](https://babeljs.io/) and [Webpack 4](https://webpack.js.org/)
 that includes hot-reloading for development and production-ready builds.
 
 Loading images via JavaScript module `import` is also supported.
+
+## Tutorials
+
 
 ## Requirements
 
@@ -16,6 +19,7 @@ Loading images via JavaScript module `import` is also supported.
 | `npm install` | Install project dependencies |
 | `npm start` | Build project and open web server running project |
 | `npm run build` | Builds code bundle with production settings (minification, uglification, etc..) |
+| `npm run jsdoc` | Generates the JSDoc for the Project. After generating the JSDoc Opens your Browser on it. |
 
 ## Writing Code
 

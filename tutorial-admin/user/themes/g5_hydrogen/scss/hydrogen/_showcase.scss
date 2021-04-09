@@ -1,0 +1,49 @@
+#g-showcase {
+	padding: $section-padding 0;
+	background-color: $showcase-background;
+	@if $showcase-image {
+    	background-image: url($showcase-image);
+	}
+	color: $showcase-text-color;
+
+	a {
+		color: lighten($showcase-background, 50%);
+		&:hover {
+			color: $showcase-text-color;
+		}
+	}
+
+	h1, h2, h3, h4, h5, h6, strong {
+		color: $showcase-text-color;
+	}
+
+	.button {
+		background: $accent-color-2;
+		color: $showcase-text-color;
+		&:hover {
+			background: lighten($accent-color-2, 5%);
+		}
+		&:active {
+			background: darken($accent-color-2, 5%);
+		}
+	}
+
+	.g-social {
+		a {
+			background: darken($showcase-background, 6%);
+			border: none;
+			color: $showcase-text-color;
+			@include transition(background 0.2s);
+			&:hover {
+				background: lighten($showcase-background, 6%);
+			}
+		}
+	}
+}
+
+@media print {
+	#g-showcase {
+		background: #fff !important;
+		color: #000 !important;
+	}
+}

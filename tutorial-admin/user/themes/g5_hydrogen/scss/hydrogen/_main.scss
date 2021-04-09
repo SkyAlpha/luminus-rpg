@@ -1,0 +1,16 @@
+#g-page-surround {
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.4);
+}
+
+#g-main {
+	padding: $section-padding 0;
+	background: $main-background;
+	color: $main-text-color;
+}
+
+@media print {
+	#g-main {
+		background: #fff !important;
+		color: #000 !important;
+	}
+}

@@ -1,0 +1,16 @@
+1618510721
+a:2:{s:7:"content";s:1350:"<h1 class="text-center">Step 3 - Creating Object Layers</h1>
+<p>We just created the Tile Layers, now lets create the Object Layers. It follows the same process of the <code>Tile Layer</code> creation, but we will select <code>Object Layer</code> instead.</p>
+<p><a href="https://i.ibb.co/NnF7nB2/Screen-Shot-2021-04-08-at-11-24-24.png"><img src="https://i.ibb.co/NnF7nB2/Screen-Shot-2021-04-08-at-11-24-24.png" alt="" class="center" /></a></p>
+<p>Create the object layers on the following order.</p>
+<ul>
+<li>spawn</li>
+<li>warps</li>
+<li>markers</li>
+<li>particles</li>
+<li>enemies</li>
+<li>info</li>
+</ul>
+<p>These are the Object Layers that the Luminus RPG uses by default, but it's up to you what you will use in your game. Do note that somethings might not work if you don't have these Object layers. Here you don't have to follow any specifig order, feel free to sort it as it pleases you. If you created all the layers you might endup with this.</p>
+<p><a href="https://i.ibb.co/SsJztSs/Screen-Shot-2021-04-08-at-15-06-37.png"><img src="https://i.ibb.co/SsJztSs/Screen-Shot-2021-04-08-at-15-06-37.png" alt="" class="center" /></a></p>
+<h4><a href="/tiled/setting-up-tiled/creating-tile-layers">Previous Step - Creating Tile Layers</a> | <a href="/tiled/setting-up-tiled/creating-my-first-tileset">Next Step - Creating My First Tileset</a></h4>";s:12:"content_meta";N;}

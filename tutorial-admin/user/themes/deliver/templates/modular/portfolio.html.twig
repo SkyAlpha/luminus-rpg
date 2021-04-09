@@ -1,0 +1,56 @@
+<div class="modular-row portfolio">
+    {{ content|raw }}
+    {% if page.header.portfolio %}
+        <div class="notebooks">
+            {% for row in page.header.portfolio|batch(4) %}
+                <div class="notebook-row">
+                    {% for portfolio in row %}
+                        <div class="notebook">
+                            <div class="desc">
+                                <h4>{{ portfolio.title }}</h4>
+                                <p>{{ portfolio.desc }}</p>
+                            </div>
+                            <a href="#portfolioModal{{ portfolio.modalid }}" class="portfolio-link" data-toggle="modal">
+                                <div class='screen'><div class="screen-content" style="background-image: url({{ page.media[portfolio.image].url }})" ></div><div class="screen-content-hover"><i class="fa fa-plus-square"></i></div></div>
+                            </a>
+                            <div class='keyboard'></div>
+                        </div>
+                    {% endfor %}
+                </div>
+            {% endfor %}
+        </div>
+    {% endif %}
+</div>
+
+{% for portfolio in page.header.portfolio %}
+    <div class="portfolio-modal modal" id="portfolioModal{{ portfolio.modalid }}" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-content">
+            <div class="close-modal" data-dismiss="modal"><i class="fa fa-times"></i></div>
+            <div class="modal-body">
+                <h1>{{ portfolio.title }}</h1>
+                <a href="{{ portfolio.url }}">
+                    <img src="{{ page.media[portfolio.image].url }}" class="img-responsive img-centered" alt="{{ portfolio.alt }}">
+                </a>
+                <p>{{ portfolio.desc }}</p>
+                <ul class="client-details">
+                    <li>Client:
+                        <strong>
+                            <a href="{{ portfolio.url }}">{{ portfolio.client }}</a>
+                        </strong>
+                    </li>
+                    <li>Date:
+                        <strong>
+                            {{ portfolio.date }}
+                        </strong>
+                    </li>
+                    <li>Service:
+                        <strong>
+                            {{ portfolio.category }}
+                        </strong>
+                    </li>
+                </ul>
+                <button type="button" class="button" data-dismiss="modal"><i class="fa fa-times"></i> Close</button>
+            </div>
+        </div>
+    </div>
+{% endfor %}

@@ -1,0 +1,12 @@
+1618572658
+a:2:{s:7:"content";s:849:"<h1><h1 class="center">Setting up your Tiled Map</h1></h1>
+<p>First things first... In this tutorial I will guide you through all the main configurations that your have to do so your Tiled Map works with the Luminus RPG Template.</p>
+<h2>Setup</h2>
+<ul>
+<li>Step 1 - <a href="/tiled/setting-up-tiled/creating-a-map">Creating a Map</a></li>
+<li>Step 2 - <a href="/tiled/setting-up-tiled/creating-tile-layers">Creating a Layer</a></li>
+<li>Step 3 - <a href="/tiled/setting-up-tiled/creating-object-layers">Creating Object Layers</a></li>
+<li>Step 4 - <a href="/tiled/setting-up-tiled/creating-my-first-tileset">Creating My First Tileset</a></li>
+<li>Step 5 - <a href="/tiled/setting-up-tiled/creating-our-first-tilemap">Creating Our First Tile Map</a></li>
+</ul>
+<h3><a href="/tiled/setting-up-tiled/creating-a-map">Next Step - Creating a Map</a></h3>";s:12:"content_meta";N;}

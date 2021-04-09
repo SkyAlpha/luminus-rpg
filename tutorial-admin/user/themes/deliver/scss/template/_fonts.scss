@@ -1,0 +1,41 @@
+// Import Google Web Fonts
+@import url(//fonts.googleapis.com/css?family=Montserrat:400|Raleway:300,400,600|Inconsolata|Pacifico);
+
+@font-face {
+    font-family: 'novecento_sans_widedemibold';
+    src: url('../fonts/Novecentosanswide-DemiBold-webfont.eot');
+    src: url('../fonts/Novecentosanswide-DemiBold-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/Novecentosanswide-DemiBold-webfont.woff2') format('woff2'),
+         url('../fonts/Novecentosanswide-DemiBold-webfont.woff') format('woff'),
+         url('../fonts/Novecentosanswide-DemiBold-webfont.ttf') format('truetype'),
+         url('../fonts/Novecentosanswide-DemiBold-webfont.svg#novecento_sans_widedemibold') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+@font-face {
+    font-family: 'novecento_sans_widenormal';
+    src: url('../fonts/Novecentosanswide-Normal-webfont.eot');
+    src: url('../fonts/Novecentosanswide-Normal-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/Novecentosanswide-Normal-webfont.woff2') format('woff2'),
+         url('../fonts/Novecentosanswide-Normal-webfont.woff') format('woff'),
+         url('../fonts/Novecentosanswide-Normal-webfont.ttf') format('truetype'),
+         url('../fonts/Novecentosanswide-Normal-webfont.svg#novecento_sans_widenormal') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+@font-face {
+    font-family: 'novecento_sans_widemedium';
+    src: url('./fonts/Novecentosanswide-Medium-webfont.eot');
+    src: url('./fonts/Novecentosanswide-Medium-webfont.eot?#iefix') format('embedded-opentype'),
+         url('./fonts/Novecentosanswide-Medium-webfont.woff2') format('woff2'),
+         url('./fonts/Novecentosanswide-Medium-webfont.woff') format('woff'),
+         url('./fonts/Novecentosanswide-Medium-webfont.ttf') format('truetype'),
+         url('./fonts/Novecentosanswide-Medium-webfont.svg#novecento_sans_widemedium') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}

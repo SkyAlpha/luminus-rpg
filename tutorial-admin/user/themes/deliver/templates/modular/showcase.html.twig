@@ -1,0 +1,29 @@
+<div id="content-slide">
+  <div class="slideme">
+    {% for slide in page.header.slides %}
+       <div class="modular-row showcase flush-top" {% if page.media[slide.image] %}style="background-image: url({{ page.media[slide.image].url }});"{% endif %}>
+          <h1>{{ slide.heading|raw }}</h1>
+          <h2>{{ slide.subheading }}</h2>
+          <a class="button" href="{{ slide.button_url }}">{{ slide.button_text }}</a>
+      </div>
+  {% endfor %}
+</div>
+</div>
+
+{{ content|raw }}
+
+<script type="text/javascript">
+$('#content-slide').slideme({
+  arrows: {{ site.header_options.arrows }},
+  autoslide: {{ site.header_options.autoslide }},
+  autoslideHoverStop: {{ site.header_options.autoslideHoverStop }},
+  interval: {{ site.header_options.interval }},
+  loop: {{ site.header_options.loop }},
+  pagination: "numbers",
+  transition : '{{ site.header_options.transition }}',
+  itemsForSlide: {{ site.header_options.itemsForSlide }},
+  touch: {{ site.header_options.touch }},
+  swipe: {{ site.header_options.swipe }},
+
+});
+</script>

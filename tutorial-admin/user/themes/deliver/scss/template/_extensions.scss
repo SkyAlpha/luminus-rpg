@@ -1,0 +1,25 @@
+.default-animation {
+	@include transition(all 0.5s ease);
+}
+
+.padding-horiz {
+	padding-left: $padding-horiz;
+	padding-right: $padding-horiz;
+	@include breakpoint(desktop-range) {
+		padding-left: $padding-horiz - 7rem;
+		padding-right: $padding-horiz - 7rem;
+	}
+	@include breakpoint(tablet-range) {
+		padding-left: $padding-horiz - 7rem;
+		padding-right: $padding-horiz - 7rem;
+	}
+	@include breakpoint(mobile-only) {
+		padding-left: $padding-horiz - 13rem;
+		padding-right: $padding-horiz - 13rem;
+	}
+}
+
+.padding-vert {
+	padding-top: $padding-vert;
+	padding-bottom: $padding-vert;
+}

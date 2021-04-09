@@ -1,0 +1,22 @@
+1618583778
+a:2:{s:7:"content";s:3200:"<h1 class="text-center">Step 7 - Adding Map Collisions</h1>
+<p>To add collisions between the <code>Player</code> and the Map is really easy with the Luminus RPG. Fun fact is that I have started this project as a simple Proof of Concept if I could paint map colisions <a href="https://develop.gbstudio.dev/docs/scenes/">just like GB Studio</a> does. Up until now the folder name that stores this project is called <code>collision</code>.</p>
+<ol>
+<li>Select the layers tab on the Layers Panel.</li>
+<li>Select the <code>collision</code> layer.</li>
+<li>Create a new Property for the <code>collision</code> layer called <code>collides</code> as a <code>bool</code> property.</li>
+<li>Check the <code>collides</code>property.</li>
+</ol>
+<p><a href="https://i.ibb.co/rHMtqc3/Screen-Shot-2021-04-09-at-10-21-53.png" target="_blank"><img src="https://i.ibb.co/rHMtqc3/Screen-Shot-2021-04-09-at-10-21-53.png" alt="" class="center" /></a></p>
+<p>We are not finished yet. I like to use a special Tile to create collisions. As I said I was inspired by GB Studio's collision technique, so I have created a collision tile, a single red tile that represents the tiles that the player can't go. So let's add it to the Tiled Map. I have provided one red square at <code>src/assets/maps/tilesets/collision.png</code> so it's easier for you to follow along, it's a red square with 50% Opacity so we can see throught it.</p>
+<p><a href="https://i.ibb.co/ChzwTK3/Screen-Shot-2021-04-09-at-10-42-58.png" target="_blank"><img src="https://i.ibb.co/ChzwTK3/Screen-Shot-2021-04-09-at-10-42-58.png" alt="" class="center" /></a></p>
+<p>Now you have to select the <code>collision</code> layer, select the tileset <code>collision</code>, select the red tile that we have just added and start paiting.</p>
+<p><a href="https://i.ibb.co/WD8pQHj/Screen-Shot-2021-04-09-at-10-58-38.png" target="_blank"><img src="https://i.ibb.co/WD8pQHj/Screen-Shot-2021-04-09-at-10-58-38.png" alt="" class="center" /></a></p>
+<p>I have painted all the brushes that I have created, so the Player can't walk on those tiles. We still need to add one more property to that red tile, we are going to call it <code>collides</code>, it is as a <code>bool</code> property and should be checked, as it should be true.</p>
+<p><a href="https://i.ibb.co/z5jVNw0/Screen-Shot-2021-04-09-at-11-14-20.png" target="_blank"><img src="https://i.ibb.co/z5jVNw0/Screen-Shot-2021-04-09-at-11-14-20.png" alt="" class="center" /></a></p>
+<p>Select the Red Tile and Create the Property <code>collides</code></p>
+<p><a href="https://i.ibb.co/jZKcqFw/Screen-Shot-2021-04-09-at-11-17-07.png" target="_blank"><img src="https://i.ibb.co/jZKcqFw/Screen-Shot-2021-04-09-at-11-17-07.png" alt="" class="center" /></a></p>
+<p>And Check it</p>
+<p><a href="https://i.ibb.co/hMBB0KM/Screen-Shot-2021-04-09-at-11-18-13.png" target="_blank"><img src="https://i.ibb.co/hMBB0KM/Screen-Shot-2021-04-09-at-11-18-13.png" alt="" class="center" /></a></p>
+<p>The <code>LuminusMapCreator</code> takes care of the rest. Just Save, Export and open your Scene again. You should have working collisions between the player and the red tiles you have painted.</p>
+<p>Go check it out on your Scene.</p>";s:12:"content_meta";N;}

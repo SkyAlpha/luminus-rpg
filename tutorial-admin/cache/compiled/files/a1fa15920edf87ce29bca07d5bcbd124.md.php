@@ -1,0 +1,17 @@
+<?php
+return [
+    '@class' => 'Grav\\Common\\File\\CompiledMarkdownFile',
+    'filename' => '/Users/jonatan/Downloads/grav-admin/user/pages/03.tiled/02.setting-up-your-tiled-map/1000001.creating-layers/default.md',
+    'modified' => 1617888213,
+    'data' => [
+        'header' => [
+            'title' => 'Creating Layers'
+        ],
+        'frontmatter' => 'title: \'Creating Layers\'',
+        'markdown' => '# Step 2 - Creating Layers
+
+Now that you have a Tiled Map Created, you should create the layers that the Luminus RPG expects your map to have. By default the new map will have One Layer called `Tile Layer 1`, you should rename it to `base` that is our ground layer. The Tiled layers work just like any Image Editor Software Layer system, the one that is above will cover the one that is below, this will be important as we start to create the other layers.
+
+[![](https://i.ibb.co/94539tJ/Screen-Shot-2021-04-08-at-10-16-26.png?classes=center)](https://i.ibb.co/94539tJ/Screen-Shot-2021-04-08-at-10-16-26.png)'
+    ]
+];

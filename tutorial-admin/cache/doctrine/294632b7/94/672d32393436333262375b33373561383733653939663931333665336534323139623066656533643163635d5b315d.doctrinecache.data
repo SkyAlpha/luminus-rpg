@@ -1,0 +1,8 @@
+1618513369
+a:2:{s:7:"content";s:970:"<h1 class="text-center">Creating our First Tile Map</h1>
+<p>Everything is ready to create your map. Let's do this!! Go to the Layers Panel and select the <code>base</code> Layer, and on Tileset Panel select any tile that you want to use.</p>
+<p><a href="https://i.ibb.co/k3xRKGt/Screen-Shot-2021-04-08-at-15-51-36.png" target="_blank"><img src="https://i.ibb.co/k3xRKGt/Screen-Shot-2021-04-08-at-15-51-36.png" alt="" class="center" /></a></p>
+<p>Now let's Paint the Tiles.</p>
+<p><a href="https://i.ibb.co/PxFBBbH/Screen-Shot-2021-04-08-at-15-59-48.png" target="_blank"><img src="https://i.ibb.co/PxFBBbH/Screen-Shot-2021-04-08-at-15-59-48.png" alt="" class="center" /></a></p>
+<p>Save it and export it as a json file to the same folder that you save the .tmx file.</p>
+<p><a href="https://i.ibb.co/ZN8wcmT/Screen-Shot-2021-04-08-at-16-02-19.png" target="_blank"><img src="https://i.ibb.co/ZN8wcmT/Screen-Shot-2021-04-08-at-16-02-19.png" alt="" class="center" /></a></p>";s:12:"content_meta";N;}

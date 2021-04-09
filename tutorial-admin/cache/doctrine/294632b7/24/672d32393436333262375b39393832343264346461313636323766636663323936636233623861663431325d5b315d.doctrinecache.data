@@ -1,0 +1,105 @@
+1618515961
+a:2:{s:7:"content";s:5136:"<h1 class="text-center">Creating our First Tile Map</h1>
+<p>Everything is ready to create your map. Let's do this!! Go to the Layers Panel and select the <code>base</code> Layer, and on Tileset Panel select any tile that you want to use.</p>
+<p><a href="https://i.ibb.co/k3xRKGt/Screen-Shot-2021-04-08-at-15-51-36.png" target="_blank"><img src="https://i.ibb.co/k3xRKGt/Screen-Shot-2021-04-08-at-15-51-36.png" alt="" class="center" /></a></p>
+<p>Now let's Paint the Tiles.</p>
+<p><a href="https://i.ibb.co/PxFBBbH/Screen-Shot-2021-04-08-at-15-59-48.png" target="_blank"><img src="https://i.ibb.co/PxFBBbH/Screen-Shot-2021-04-08-at-15-59-48.png" alt="" class="center" /></a></p>
+<p>Save it and export it as a json file to the same folder that you save the .tmx file.</p>
+<p><a href="https://i.ibb.co/ZN8wcmT/Screen-Shot-2021-04-08-at-16-02-19.png" target="_blank"><img src="https://i.ibb.co/ZN8wcmT/Screen-Shot-2021-04-08-at-16-02-19.png" alt="" class="center" /></a></p>
+<p>Now let's open up the Luminus RPG Template and create a new Scene under the <code>src/scenes</code> folder</p>
+<pre><code>export class TutorialScene extends Phaser.Scene {
+    constructor() {
+        super({
+            key: 'TutorialScene',
+        });
+    }
+
+    create() {
+    }
+}</code></pre>
+<p>You have to Add it to the index.js file, that has the Phaser's configuration object. Under the <code>scene</code> attribute.</p>
+<p><a href="https://i.ibb.co/4JSWhfc/Screen-Shot-2021-04-08-at-16-05-54.png" target="_blank"><img src="https://i.ibb.co/4JSWhfc/Screen-Shot-2021-04-08-at-16-05-54.png" alt="" class="center" /></a></p>
+<p>Next, let's import the assets on the <code>GameAssets.js</code> file.</p>
+<pre><code>import tutorial_tileset from '../assets/maps/tilesets/tutorial_tileset_extruded.png';
+import tutorial_map_json from '../assets/maps/tutorial/tutorial.json';</code></pre>
+<p>There are some commets that might help you organize your imports, keep an eye on it when your importing these files. Then you should add the files to their specific configuration Arrays.</p>
+<pre><code>export const Images = [
+    ..., // Commented for Code Brevity
+    {
+        name: 'tutorial_tileset',
+        image: tutorial_tileset,
+    },
+    ... // Commented for Code Brevity
+    ];
+
+    export const TilemapConfig = [
+    {
+        name: 'larus',
+        json: tile_map_json,
+    },
+    {
+        name: 'tutorial',
+        json: tutorial_map_json,
+    },
+    ];</code></pre>
+<p>Markdown those names, you will need them now.</p>
+<p>On your Scene file, you should create the LuminusMapCreator object like this.</p>
+<pre><code>import { TilesetImageConfig } from '../models/TilesetImageConfig';
+import { LuminusMapCreator } from '../plugins/LuminusMapCreator';
+
+export class TutorialScene extends Phaser.Scene {
+    constructor() {
+        super({
+            key: 'TutorialScene',
+        });
+    }
+
+    create() {
+        let map = new LuminusMapCreator(this);
+        map.mapName = 'tutorial';
+        map.tilesetImages = [
+            new TilesetImageConfig(
+                'tutorial_tileset_extruded',
+                'tutorial_tileset'
+            ),
+        ];
+        map.create();
+    }
+}</code></pre>
+<p>Now you have to start your scene on the <code>PreloadScene.js</code>, look for something like this in the end of the file. Add the <code>this.scene.start('TutorialScene');</code> under the <code>active()</code> method.</p>
+<pre><code>        WebFont.load({
+            google: {
+                families: ['Press Start 2P'],
+            },
+            active: () =&gt; {
+                this.scene.start('TutorialScene');
+            },
+        });</code></pre>
+<p>Run the <code>npm run start</code> in the root folder of the template, so you can see your map in action.</p>
+<p><a href="https://i.ibb.co/SNpQyr1/Screen-Shot-2021-04-08-at-16-26-20.png" target="_blank"><img src="https://i.ibb.co/SNpQyr1/Screen-Shot-2021-04-08-at-16-26-20.png" alt="" class="center" /></a></p>
+<p>If you're seeing something like the picture above, set your camera to center on 0</p>
+<pre><code>import { TilesetImageConfig } from '../models/TilesetImageConfig';
+import { LuminusMapCreator } from '../plugins/LuminusMapCreator';
+
+export class TutorialScene extends Phaser.Scene {
+    constructor() {
+        super({
+            key: 'TutorialScene',
+        });
+    }
+
+    create() {
+        let map = new LuminusMapCreator(this);
+        map.mapName = 'tutorial';
+        map.tilesetImages = [
+            new TilesetImageConfig(
+                'tutorial_tileset_extruded',
+                'tutorial_tileset'
+            ),
+        ];
+        map.create();
+        this.cameras.main.centerOn(0, 0); // To Solve the issue with the camara position.
+    }
+}</code></pre>
+<p><a href="https://i.ibb.co/ys8vb60/Screen-Shot-2021-04-08-at-16-45-24.png" target="_blank"><img src="https://i.ibb.co/ys8vb60/Screen-Shot-2021-04-08-at-16-45-24.png" alt="" class="center" /></a></p>
+<h4><a href="/tiled/setting-up-tiled/creating-our-first-tile-map">Previous Step - Creating Our First Map</a> | <a href="/tiled/setting-up-tiled/adding-the-player">Next Step - Adding The Player</a></h4>";s:12:"content_meta";N;}

@@ -1,0 +1,11 @@
+1617909459
+O:39:"Grav\Common\Flex\Types\Pages\PageObject":4:{s:4:"type";s:5:"pages";s:3:"key";s:5:"tiled";s:8:"elements";a:4:{s:4:"root";b:0;s:6:"header";a:3:{s:5:"title";s:5:"Tiled";s:4:"menu";s:5:"Tiled";s:4:"slug";s:5:"tiled";}s:11:"frontmatter";s:36:"title: Tiled
+menu: Tiled
+slug: tiled";s:8:"markdown";s:589:"![](https://www.mapeditor.org/img/tiled-logo-header.png?classes=center)
+# <h1 class="text-center">Tiled</h1>
+
+The Luminus RPG Template uses the [Tiled Software](https://www.mapeditor.org/) to create it's maps, so you should be familiar with this software in order to have the best experience. With that sayed, I will guide you thorough all the actions that this template uses to create it's maps.
+
+[Setup Tiled](setting-up-tiled) - Guide to Setup your tiled map so it works with the Luminus RPG Template.
+
+[Creating Enemy Zones](creating-enemy-zones) - Guide to Create Enemies using Tiled.";}s:7:"storage";a:7:{s:3:"key";s:5:"tiled";s:11:"storage_key";s:8:"03.tiled";s:8:"template";s:7:"default";s:17:"storage_timestamp";i:1617902145;s:8:"markdown";a:1:{s:0:"";a:1:{s:7:"default";i:1617902145;}}s:8:"children";a:2:{s:28:"03.setting-up-your-tiled-map";b:0;s:23:"04.creating-enemy-zones";b:0;}s:8:"checksum";s:32:"a327d48c982f26dd3a0c3f8e40bdd564";}}

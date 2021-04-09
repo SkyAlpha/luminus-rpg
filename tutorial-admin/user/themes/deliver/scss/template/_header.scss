@@ -1,0 +1,335 @@
+// Header styling
+
+#header {
+    @extend .padding-horiz;
+    position: absolute;
+    z-index: 10000;
+    width: 100%;
+    height: $header-height;
+    background-color: rgba(255,255,255,0.90);
+    box-shadow: 0 0.05rem 1rem rgba(0,0,0, 0.15);
+
+    > .grid, .logo, #navbar, .social-navigation {
+        height: 50%;
+    }
+    .fa {
+        color: $black;
+    }
+
+    .fixed {
+        background: #fff;
+        padding-left: 14rem;
+        padding-right: 14rem;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        opacity: 0.9;
+        box-shadow: 0 0px 20px 0px rgba(0,0,0,0.2);
+
+        @include breakpoint(mobile-only) {
+            padding-left: 10px;
+            padding-right: 10px;
+        }
+    }
+
+    .logo {
+        h3 {
+            @extend %vertical-align;
+
+            @include breakpoint(mobile-only) {
+                font-size: 1.9rem;
+            }
+        }
+        ul {
+            &.social-icons {
+                @extend %vertical-align;
+            }
+        }
+    }
+
+    .search-box {
+        @extend %vertical-align;
+        display: block;
+        float: right;
+        text-align: right;
+        i {
+            color: $header-text;
+            position: absolute;
+            top: 0.5rem;
+            right: 0.6rem;
+            z-index: -1;
+            cursor: pointer;
+        }
+        input::-webkit-search-decoration,
+        input::-webkit-search-cancel-button {
+            display: none;
+        }
+        input[type=search] {
+            outline: none;
+            cursor: pointer;
+            -webkit-appearance: textfield;
+            -webkit-box-sizing: content-box;
+            font-family: inherit;
+            font-size: 100%;
+            border: 0 none;
+            box-shadow: none;
+            color: transparent;
+            background: transparent;
+            width: 4rem;
+            height: 1.3rem;
+            margin-bottom: 0;
+            font-size:  $core-font-size - 0.1rem;
+            @include transition(all .5s);
+
+            &:focus {
+                width: 10rem;
+                background-color: transparentize($header-text, 0.7);
+                cursor: auto;
+                color: $header-text;
+            }
+        }
+
+        input:-moz-placeholder {
+            color: transparent;
+        }
+        input::-webkit-input-placeholder {
+            color: transparent;
+        }
+
+        @include breakpoint(desktop-only) {
+            text-align: right;
+            position: absolute;
+            right: 10px;
+
+            top: 50%;
+            @include transform(translateY(1rem));
+
+            i {
+                left: 0.6rem;
+            }
+            input[type=search] {
+                padding-right: 2rem;
+                &:focus {
+                    width: 8rem;
+                }
+            }
+        }
+
+    }
+
+    .fixed {
+        .search-box {
+            @include breakpoint(desktop-only) {
+                top: 50%;
+                @include transform(translateY(-50%));
+            }
+        }
+
+        .panel-activation {
+            @include breakpoint(desktop-only) {
+                top: 50% !important;
+                @include transform(translateY(-50%) !important);
+            }
+        }
+    }
+
+    #navbar {
+        font-size: $core-font-size + 0.1rem;
+
+        @include breakpoint(mobile-only) {
+            margin-left: -1rem;
+            margin-right: -1rem;
+
+            &.fixed {
+                margin: 0;
+            }
+        }
+
+        ul {
+
+            margin: 0;
+            padding: 0;
+            list-style: none;
+
+            &.navigation {
+                @extend %vertical-align;
+                display: inline-block;
+                float: left;
+                li {
+                    float: left;
+                    position: relative;
+                    text-transform: uppercase;
+
+                    a {
+                        font-family: $font-family-header;
+                        display: inline-block;
+                        padding: 0.3rem 0.8rem;
+
+                        &.active, &:hover {
+                            color: $core-accent;
+                        }
+                    }
+                    &:first-child a {
+                        padding-left: 0;
+                    }
+
+                    ul {
+                        display: none;
+                        padding: 0;
+                        box-shadow: 0 0.05rem 1rem rgba(0,0,0, 0.15) !important;
+                    }
+
+                    ul ul {
+                        left: 100%;
+                        top: 0;
+                    }
+
+
+                    &:hover {
+                        & > ul {
+                            display: block;
+                            position: absolute;
+                            background: rgba($white, 0.9);
+                            width: 10rem;
+                        }
+
+                        li {
+                            float: none;
+                            margin: 0;
+                            padding: 0;
+
+                            a {
+                                padding: 0.5rem 0.8rem;
+                                display: block;
+
+                                &:before, &:after {
+                                    display: none;
+                                }
+                            }
+
+                            &.active {
+                                & > a {
+                                    background: $core-accent;
+                                    color: $white;
+                                }
+                            }
+                        }
+                    }
+                }
+                @include breakpoint(desktop-only) {
+                    display: none;
+                }
+            }
+        }
+
+        .panel-activation {
+            @extend %vertical-align;
+            padding: 1rem;
+            display: none;
+            font-size: 1.8rem;
+            cursor: pointer;
+            float: right;
+            @include breakpoint(desktop-only) {
+                display: inline-block;
+                position: absolute;
+                left: 0;
+                top: 50%;
+                @include transform(translateY(0));
+            }
+        }
+    }
+}
+
+.modular.header-image #header .fixed {
+    background: #666;
+    @include transition(background 0.3s ease-in-out);
+}
+
+.header-image {
+    &.fullwidth {
+        #body {
+            padding-left: 0;
+            padding-right: 0;
+
+            >.listing-row {
+                padding-left: $padding-horiz;
+                padding-right: $padding-horiz;
+            }
+        }
+    }
+    .listing-row:last-child {
+        margin-bottom: 2rem;
+    }
+
+    #body {
+        .flush-top {
+            margin-top: - $header-height - $padding-vert - 0.5rem;
+            padding-top: $header-height + 4rem;
+        }
+    }
+
+    #breadcrumbs {
+        margin-top: 1rem;
+    }
+
+    #header {
+        background-color: rgba($header-text,0);
+        box-shadow: none;
+
+        #logo h3, #logo a {
+            color: $header-text;
+        }
+        a, .menu-btn {
+            color: $header-text;
+        }
+        a:before, a:after {
+            background-color: rgba($header-text,0.7) !important;
+        }
+
+        #navbar ul.navigation  {
+            ul li a {
+                color: $core-accent;
+                &:hover {
+                    color: darken($core-accent, 20%);
+                }
+            }
+        }
+    }
+}
+.header-lite {
+    #body {
+        padding-top: 12rem;
+    }
+    #header {
+        box-shadow: none;
+        color: $light-gray;
+        a, .menu-btn {
+            color: $light-gray;
+        }
+        .search-box {
+            i {
+                color: $light-gray;
+            }
+            input[type=search] {
+                &:focus {
+                    background-color: transparentize($light-gray, 0.8);
+                }
+            }
+        }
+        li.active a {
+            color: $core-accent;
+        }
+        .logo ul.social-icons li {
+            background: transparentize($light-gray, 0.8);
+            .fa {
+                color: white;
+            }
+            &:hover {
+                .fa {
+                    color: $light-gray;
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,38 @@
+#g-header {
+	background: $header-background;
+	color: $header-text-color;
+	position: relative;
+	z-index: 3;
+
+	a {
+		color: lighten($header-background, 40%);
+		&:hover {
+			color: $header-text-color;
+		}
+	}
+
+	.g-main-nav {
+
+		@include main-nav-colors($header-background, $header-text-color, $main-background, $main-text-color);
+
+		.g-toplevel {
+			@include display(flex);
+			@include flex-flow(row wrap);
+		}
+	}
+
+	@include main-nav-indicators($header-background, $header-text-color);
+
+	.search {
+		input {
+			color: $main-text-color;
+		}
+	}
+}
+
+@media print {
+	#g-header {
+		background: #fff !important;
+		color: #000 !important;
+	}
+}

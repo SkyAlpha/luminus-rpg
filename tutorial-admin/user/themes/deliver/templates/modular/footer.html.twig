@@ -1,0 +1,56 @@
+<div class="modular-row footer {{ page.header.class}}">
+    <div class="footer-items">
+        <div class="footer-module large">
+            <div class="logo">
+                <h3><a href="{{ base_url == '' ? '/' : base_url }}">{{ config.site.title }}</a></h3>
+                {% block social %}
+                    {% include 'partials/social.html.twig' %}
+                {% endblock %}
+
+            </div>
+            {% if site.footer.description %}
+                <p>{{ site.footer.description }}</p>
+            {% endif %}
+        </div>
+        <div class="footer-module"><h4>{{ site.footer.contact_title }}</h4>
+            <p>
+                {% for item in site.contact.address %}
+                    <span>{{ item.line }}</span>
+                {% endfor %}
+            </p>
+            <p>{{ site.author.email }}</p>
+            <p><strong>{{ site.contact.gps }}</strong></p>
+        </div>
+        <div class="footer-module"><h4>{{ site.footer.links_title }}</h4>
+         <ul class="quickmenu">
+            {% for module in site.quicklinks %}
+                <li><i class="fa fa-chevron-right"></i><a href="{% if "base_url:" in module.url %}{{ base_url_absolute }}/{{ module.url|replace({"base_url:": ""}) }}{% else %}{{ module.url }}{% endif %}">{{  module.text }}</a></li>
+            {% endfor %}
+        </ul>
+    </div>
+    <div class="footer-module">
+        <h4>{{ site.footer.newsletter_title }}</h4>
+        <p>{{ site.footer.newsletter_description }}</p>
+
+        <form action="https://feedburner.google.com/fb/a/mailverify" method="post" target="popupwindow" onsubmit="window.open('https://feedburner.google.com/fb/a/mailverify?uri={{ site.footer.feedburner }}', 'popupwindow', 'scrollbars=yes,width=550,height=520');return true" class="newsletter">
+        <input type="text" name="email" value="Email" onclick="if(this.value=='Email')this.value='';" onblur="if(this.value=='')this.value='Email';"/>
+        <input type="hidden" value="karolorzel" name="uri"/>
+        <input type="hidden" name="loc" value="en_US"/>
+        <input type="submit" value="OK" />
+        </form>
+    </div>
+</div>
+<hr>
+<div class="footer-modules">
+    <div class="footer-copyright">
+        {{ site.author.copyright }}
+    </div>
+    <div class="footer-menu">
+    <ul class="othermenu">
+    {% for module in site.othermenu %}
+       <li><a href="{{ module.url }}">{{  module.text }}</a></li>
+    {% endfor %}
+    </ul>
+    </div>
+</div>
+</div>

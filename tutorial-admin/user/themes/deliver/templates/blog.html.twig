@@ -1,0 +1,46 @@
+{% embed 'partials/base.html.twig' %}
+
+{% set collection = page.collection() %}
+{% set base_url = page.url %}
+{% set feed_url = base_url %}
+
+{% if base_url == '/' %}
+{% set base_url = '' %}
+{% endif %}
+
+{% if base_url == base_url_relative %}
+{% set feed_url = base_url~'/'~page.slug %}
+{% endif  %}
+
+{% block content %}
+{% set blog_image = page.media.images|first %}
+
+{% if blog_image %}
+<div class="flush-top blog-header blog-header-image" style="background: {{ page.header.bg_color }} url({{ blog_image.url }}) no-repeat right;">
+	{% else %}
+	<div class="blog-header">
+		{% endif %}
+		{{ page.content|raw }}
+	</div>
+
+	{% if config.plugins.breadcrumbs.enabled %}
+	{% include 'partials/breadcrumbs.html.twig' %}
+	{% endif %}
+
+	<div class="content-wrapper blog-content-list g-grid pure-g-r">
+		<div id="listing" class="g-block pure-u-2-3">
+			{% for child in collection %}
+			{% include 'partials/blog_item.html.twig' with {'page':child, 'truncate':true} %}
+			{% endfor %}
+
+			{% if config.plugins.pagination.enabled and collection.params.pagination %}
+			{% include 'partials/pagination.html.twig' with {'pagination':collection.params.pagination} %}
+			{% endif %}
+		</div>
+		<div id="sidebar" class="g-block size-1-3 pure-u-1-3">
+			{% include 'partials/sidebar.html.twig' %}
+		</div>
+	</div>
+	{% endblock %}
+
+	{% endembed %}

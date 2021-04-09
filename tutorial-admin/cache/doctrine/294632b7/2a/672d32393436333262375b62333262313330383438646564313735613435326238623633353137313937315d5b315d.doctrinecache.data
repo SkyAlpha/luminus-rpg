@@ -1,0 +1,9 @@
+1618511584
+a:2:{s:7:"content";s:1272:"<h1 class="text-center">Creating My First Tileset</h1>
+<p>Before we start creating the Tile Map itself, we need to create the Tilemap, which is nothing but a Spritesheet with the tiles we will use. First of all, you will need to extrude your tiles. <a href="https://github.com/sporadic-labs/tile-extruder">Follow This Guide to extrude your tileset</a>.</p>
+<p>If you don't extrude your tiles they might look like this:</p>
+<p><a href="https://github.com/sporadic-labs/tile-extruder/raw/master/doc-source/images/demo.png" target="_blank"><img src="https://github.com/sporadic-labs/tile-extruder/raw/master/doc-source/images/demo.png" alt="" class="center" /></a></p>
+<p>Once you have extruded your tileset you must add it to the Tiled Editor. Click the <code>New Tileset...</code> under the <code>Tilesets Panel</code>.</p>
+<p><a href="https://i.ibb.co/7vYrW7y/Screen-Shot-2021-04-08-at-15-30-19.png" target="_blank"><img src="https://i.ibb.co/7vYrW7y/Screen-Shot-2021-04-08-at-15-30-19.png" alt="" class="center" /></a></p>
+<p>You should be prompted with this Window.</p>
+<p><a href="https://i.ibb.co/L5X8rPD/Screen-Shot-2021-04-08-at-15-32-33.png" target="_blank"><img src="https://i.ibb.co/L5X8rPD/Screen-Shot-2021-04-08-at-15-32-33.png" alt="" class="center" /></a></p>";s:12:"content_meta";N;}
