@@ -88,6 +88,7 @@ export class LuminusMapCreator {
     }
 
     create() {
+        console.log(this.collisionLayer);
         this.map = this.scene.make.tilemap({ key: this.mapName });
         this.tilesetImages.forEach((tilesetImage) => {
             this.map.addTilesetImage(
@@ -109,14 +110,14 @@ export class LuminusMapCreator {
                 (f) => f.name === this.depthProperty
             );
             if (depth) {
-                currentLayer.depth;
+                currentLayer.depth = depth.value;
             }
             const collides = layer.properties.find(
                 (f) => f.name === this.collisionPropperty
             );
 
             // If you want to see the Collision layer the alpha should be higher than zero.
-            if (collides) {
+            if (collides && collides.value) {
                 currentLayer.alpha = this.collisionLayerAlpha;
 
                 currentLayer.setCollisionByProperty({ collides: true });
@@ -128,7 +129,6 @@ export class LuminusMapCreator {
             this.spawnObjectLayer,
             (obj) => obj.name === this.spawnObjectPoint
         );
-        console.log(spawnPoint);
         if (spawnPoint) {
             this.scene[PlayerConfig.variableName] = new Player(
                 this.scene,
@@ -137,5 +137,14 @@ export class LuminusMapCreator {
                 PlayerConfig.texture
             );
         }
+
+        if (this.collisionLayer) {
+            console.log('COLLIDES');
+            this.scene.physics.add.collider(
+                this.scene[PlayerConfig.variableName].container,
+                this.collisionLayer
+            );
+        }
+        console.log(this);
     }
 }

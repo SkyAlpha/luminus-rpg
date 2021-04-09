@@ -1,14 +1,10 @@
 import Phaser from 'phaser';
 import { LuminusWarp } from '../plugins/LuminusWarp';
-import { Player } from '../entities/Player';
-import { LuminusMovement } from '../plugins/LuminusMovement';
 import { LuminusObjectMarker } from '../plugins/LuminusObjectMarker';
 import AnimatedTiles from '../plugins/AnimatedTiles';
 import { LuminusEnvironmentParticles } from '../plugins/LuminusEnvironmentParticles';
 import { LuminusOutlineEffect } from '../plugins/LuminusOutlineEffect';
 import { LuminusEnemyZones } from '../plugins/LuminusEnemyZones';
-import { Item } from '../entities/Item';
-import { PlayerConfig } from '../consts/player/Player';
 import { LuminusMapCreator } from '../plugins/LuminusMapCreator';
 
 export class MainScene extends Phaser.Scene {
@@ -88,11 +84,6 @@ export class MainScene extends Phaser.Scene {
             this.mapCreator.map
         );
         this.luminusEnemyZones.create();
-
-        this.physics.add.collider(
-            this.player.container,
-            this.mapCreator.collisionLayer
-        );
     }
 
     /**

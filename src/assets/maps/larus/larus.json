@@ -938,6 +938,12 @@
          "id":4,
          "name":"overplayer",
          "opacity":1,
+         "properties":[
+                {
+                 "name":"depth",
+                 "type":"int",
+                 "value":99
+                }],
          "startx":-80,
          "starty":-32,
          "type":"tilelayer",
@@ -961,6 +967,12 @@
          "id":12,
          "name":"overplayer2",
          "opacity":1,
+         "properties":[
+                {
+                 "name":"depth",
+                 "type":"int",
+                 "value":100
+                }],
          "startx":-80,
          "starty":-16,
          "type":"tilelayer",

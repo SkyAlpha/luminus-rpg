@@ -1,5 +1,6 @@
 import tiles from '../assets/maps/tilesets/Overworld.png';
 import tiles_overworld from '../assets/maps/tilesets/Overworld-extruded.png';
+import tutorial_tileset from '../assets/maps/tilesets/tutorial_tileset_extruded.png';
 import inner from '../assets/maps/tilesets/Inner-extruded.png';
 import collision_tile from '../assets/maps/tilesets/collision.png';
 import player_image from '../assets/sprites/player.png';
@@ -65,6 +66,7 @@ import atlas_chat_bubble_animation_image_json from '../assets/sprites/chat_bubbl
 
 // JSON
 import tile_map_json from '../assets/maps/larus/larus.json';
+import tutorial_map_json from '../assets/maps/tutorial/tutorial.json';
 
 // Sound
 import space_sound_key from '../assets/sound/typing/space_sound.mp3';
@@ -102,6 +104,10 @@ export const Images = [
     {
         name: 'tiles_overworld',
         image: tiles_overworld,
+    },
+    {
+        name: 'tutorial_tileset',
+        image: tutorial_tileset,
     },
     {
         name: 'inner',
@@ -300,6 +306,10 @@ export const TilemapConfig = [
     {
         name: 'larus',
         json: tile_map_json,
+    },
+    {
+        name: 'tutorial',
+        json: tutorial_map_json,
     },
 ];
 

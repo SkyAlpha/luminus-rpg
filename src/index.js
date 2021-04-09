@@ -15,6 +15,7 @@ import UIPlugin from 'phaser3-rex-plugins/templates/ui/ui-plugin.js';
 import { MobileCheckScene } from './scenes/MobileCheckScene';
 import { DungeonScene } from './scenes/DungeonScene';
 import { InventoryScene } from './scenes/InventoryScene';
+import { TutorialScene } from './scenes/TutorialScene';
 /**
  * @type { Phaser.Core.Config}
  */
@@ -25,11 +26,13 @@ const config = {
     width: 800,
     height: 600,
     scene: [
+        // Preload should come first
         PreloadScene,
         IntroScene,
         MainScene,
         DungeonScene,
         MobileCheckScene,
+        TutorialScene,
 
         // UI Scenes should be loaded after the game Scenes.
         JoystickScene,

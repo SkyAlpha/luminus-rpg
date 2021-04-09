@@ -130,7 +130,8 @@ export class PreloadScene extends Phaser.Scene {
                 // this.scene.start('MobileCheckScene');
                 // this.scene.start('IntroScene');
                 // this.scene.start('DungeonScene');
-                this.scene.start('MainScene');
+                // this.scene.start('MainScene');
+                this.scene.start('TutorialScene');
             },
         });
     }
