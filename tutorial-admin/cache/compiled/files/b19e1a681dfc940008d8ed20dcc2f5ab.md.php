@@ -2,7 +2,7 @@
 return [
     '@class' => 'Grav\\Common\\File\\CompiledMarkdownFile',
     'filename' => '/Users/jonatan/Documents/Projects/games/collision/tutorial-admin/user/pages/03.tiled/03.setting-up-your-tiled-map/default.md',
-    'modified' => 1617968963,
+    'modified' => 1617992325,
     'data' => [
         'header' => [
             'title' => 'Setting up your Tiled Map',
@@ -21,6 +21,8 @@ First things first... In this tutorial I will guide you through all the main con
 * Step 4 - [Creating My First Tileset](creating-my-first-tileset)
 * Step 5 - [Creating Our First Tile Map](creating-our-first-tile-map)
 * Step 6 - [Adding the Player](adding-the-player)
+* Step 7 - [Adding Map Collisions](adding-map-collisions)
+* Step 8 - [How to Effectivelly Draw a Tile Map](how-to-effectively-draw-a-tile-map)
 
 
 ### [Next Step - Creating a Map](creating-a-map)

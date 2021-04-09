@@ -1,4 +1,4 @@
-1617979776
+1617990236
 O:39:"Grav\Common\Flex\Types\Pages\PageObject":4:{s:4:"type";s:5:"pages";s:3:"key";s:31:"tiled/setting-up-your-tiled-map";s:8:"elements";a:4:{s:4:"root";b:0;s:6:"header";a:2:{s:5:"title";s:25:"Setting up your Tiled Map";s:4:"slug";s:16:"setting-up-tiled";}s:11:"frontmatter";s:57:"title: 'Setting up your Tiled Map'
 slug: setting-up-tiled";s:8:"markdown";s:631:"# <h1 class="center">Setting up your Tiled Map</h1>
     

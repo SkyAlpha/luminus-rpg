@@ -38,4 +38,4 @@ The `LuminusMapCreator` takes care of the rest. Just Save, Export and open your 
 
 Go check it out on your Scene.
 
-
+#### [Previous Step - Adding the Player](../adding-the-player) | [Next Step - How to Effectivelly Draw a Tile Map](../how-to-effectively-draw-a-tile-map)

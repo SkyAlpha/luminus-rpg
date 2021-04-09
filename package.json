@@ -9,7 +9,7 @@
     "jsdoc": "jsdoc src -r -c jsdoc.config.json && npx browser-sync start --server --files 'docs/*.html' --startPath docs/ --watch 'docs/*.html'",
     "tutorial": "npx browser-sync start --server --files 'tutorial/*.html' --startPath tutorial/ --watch 'tutorial/*.html'",
     "serve-tutorial": "cd tutorial-admin && php -S localhost:3500 system/router.php",
-    "wget-tutorial": "wget --mirror --convert-links --adjust-extension --page-requisites --no-parent -P ./  http://localhost:3500 && mv ./localhost:3500 ./tutorial",
+    "wget-tutorial": "wget --mirror --convert-links --adjust-extension --restrict-file-names=windows  --page-requisites --no-parent -e robots=off -P ./  http://localhost:3500 && mv ./localhost+3500 ./tutorial",
     "distwatch": "npx browser-sync start --server 'dist'  --watch 'dist/*.html'",
     "publish-git": "npm run build && cd dist && git init && git remote add pages https://github.com/SkyAlpha/luminus-rpg.github.io && git add -A . && git commit -m \"$npm_config_message\" && git push pages master --force && cd .. "
   },

@@ -1,0 +1,17 @@
+1617992848
+O:39:"Grav\Common\Flex\Types\Pages\PageObject":4:{s:4:"type";s:5:"pages";s:3:"key";s:46:"tiled/setting-up-your-tiled-map/creating-a-map";s:8:"elements";a:4:{s:4:"root";b:0;s:6:"header";a:2:{s:5:"title";s:14:"Creating a Map";s:4:"menu";s:23:"Step 1 - Creating a Map";}s:11:"frontmatter";s:55:"title: 'Creating a Map'
+menu: 'Step 1 - Creating a Map'";s:8:"markdown";s:1184:"<h1 class="text-center">Step 1 - Creating a Map</h1>
+
+Open the [Tiled Map Editor](https://www.mapeditor.org/) and create a new Map.
+
+[![Creating new Map](https://i.ibb.co/HGqJWg6/Screen-Shot-2021-04-08-at-09-35-36.png?classes=center)](https://i.ibb.co/HGqJWg6/Screen-Shot-2021-04-08-at-09-35-36.png)
+
+Once you click the button a window will be prompted to you. We are going to change the `Tile layer format` to `Base64 (uncompressed)` and the `tile size` to 16x16 just like the image below. Leave the rest as it is. Click on the `Save As...` button and save the map inside the `src/assets/maps/` folder, you should create a folder with your map name and save it inside this new folder. The end result should be something like this  `src/assets/maps/tutorial`
+
+[![](https://i.ibb.co/ZVH8kbM/Screen-Shot-2021-04-08-at-09-40-14.png?classes=center)](https://i.ibb.co/ZVH8kbM/Screen-Shot-2021-04-08-at-09-40-14.png)
+
+Once you save it, you should have something like this.
+
+[![](https://i.ibb.co/Pr6bxYH/Screen-Shot-2021-04-08-at-09-57-46.png?classes=center)](https://i.ibb.co/Pr6bxYH/Screen-Shot-2021-04-08-at-09-57-46.png)
+
+#### [Next Step - Creating Tile Layers](../creating-tile-layers)";}s:7:"storage";a:6:{s:3:"key";s:46:"tiled/setting-up-your-tiled-map/creating-a-map";s:11:"storage_key";s:55:"03.tiled/03.setting-up-your-tiled-map/01.creating-a-map";s:8:"template";s:7:"default";s:17:"storage_timestamp";i:1617890533;s:8:"markdown";a:1:{s:0:"";a:1:{s:7:"default";i:1617890533;}}s:8:"checksum";s:32:"8adb0de17becade5d14db847286c8c29";}}

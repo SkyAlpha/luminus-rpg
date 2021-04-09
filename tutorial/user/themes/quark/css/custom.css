@@ -1,0 +1,10 @@
+.center {
+  margin-right: auto;
+    margin-left: auto;
+    justify-content: center;
+    display: flex;
+}
+
+.text-center {
+  text-align: center;
+}

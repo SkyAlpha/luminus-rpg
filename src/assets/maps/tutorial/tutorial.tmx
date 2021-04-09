@@ -8,6 +8,11 @@
  </tileset>
  <tileset firstgid="517" name="collision" tilewidth="16" tileheight="16" tilecount="1" columns="1">
   <image source="../tilesets/collision.png" width="16" height="16"/>
+  <tile id="0">
+   <properties>
+    <property name="collides" type="bool" value="true"/>
+   </properties>
+  </tile>
  </tileset>
  <layer id="1" name="base" width="100" height="100">
   <data encoding="base64">

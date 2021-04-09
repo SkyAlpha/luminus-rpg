@@ -2,11 +2,11 @@
 return [
     '@class' => 'Grav\\Common\\File\\CompiledJsonFile',
     'filename' => '/Users/jonatan/Documents/Projects/games/collision/tutorial-admin/user/data/flex/indexes/pages.json',
-    'modified' => 1617978975,
+    'modified' => 1617992325,
     'data' => [
         'version' => '1.5',
-        'timestamp' => 1617978975,
-        'count' => 13,
+        'timestamp' => 1617992325,
+        'count' => 14,
         'index' => [
             '' => [
                 'key' => '',
@@ -64,22 +64,23 @@ return [
                 'key' => 'tiled/setting-up-your-tiled-map',
                 'storage_key' => '03.tiled/03.setting-up-your-tiled-map',
                 'template' => 'default',
-                'storage_timestamp' => 1617973689,
+                'storage_timestamp' => 1617992325,
                 'markdown' => [
                     '' => [
-                        'default' => 1617968963
+                        'default' => 1617992325
                     ]
                 ],
                 'children' => [
                     '01.creating-a-map' => 1617890533,
                     '02.creating-tile-layers' => 1617904481,
                     '03.creating-object-layers' => 1617905918,
-                    '04.creating-my-first-tileset' => 1617967681,
-                    '05.creating-our-first-tile-map' => 1617911213,
-                    '06.adding-the-player' => 1617973603,
-                    '07.adding-map-collisions' => 1617973689
+                    '04.creating-my-first-tileset' => 1617973744,
+                    '05.creating-our-first-tile-map' => 1617973757,
+                    '06.adding-the-player' => 1617991811,
+                    '07.adding-map-collisions' => 1617990967,
+                    '08.how-to-effectively-draw-a-tile-map' => 1617992248
                 ],
-                'checksum' => '16604c16002fe3ffaaed752ca7132bdf'
+                'checksum' => 'cf822939932393b9eac8950c84c57884'
             ],
             '03.tiled/03.setting-up-your-tiled-map/01.creating-a-map' => [
                 'key' => 'tiled/setting-up-your-tiled-map/creating-a-map',
@@ -145,25 +146,37 @@ return [
                 'key' => 'tiled/setting-up-your-tiled-map/adding-the-player',
                 'storage_key' => '03.tiled/03.setting-up-your-tiled-map/06.adding-the-player',
                 'template' => 'default',
-                'storage_timestamp' => 1617973765,
+                'storage_timestamp' => 1617991811,
                 'markdown' => [
                     '' => [
-                        'default' => 1617973765
+                        'default' => 1617991811
                     ]
                 ],
-                'checksum' => '3b5c680a71dfd154b054e50f2cf15a8a'
+                'checksum' => 'fa5c3d2852d02c6ea8abe12008791c11'
             ],
             '03.tiled/03.setting-up-your-tiled-map/07.adding-map-collisions' => [
                 'key' => 'tiled/setting-up-your-tiled-map/adding-map-collisions',
                 'storage_key' => '03.tiled/03.setting-up-your-tiled-map/07.adding-map-collisions',
                 'template' => 'default',
-                'storage_timestamp' => 1617978975,
+                'storage_timestamp' => 1617990967,
                 'markdown' => [
                     '' => [
-                        'default' => 1617978975
+                        'default' => 1617990967
                     ]
                 ],
-                'checksum' => '83780a69690a444fce797da18af094f9'
+                'checksum' => 'e475d1e5ceaf8ca9cbe082ae367abea8'
+            ],
+            '03.tiled/03.setting-up-your-tiled-map/08.how-to-effectively-draw-a-tile-map' => [
+                'key' => 'tiled/setting-up-your-tiled-map/how-to-effectively-draw-a-tile-map',
+                'storage_key' => '03.tiled/03.setting-up-your-tiled-map/08.how-to-effectively-draw-a-tile-map',
+                'template' => 'default',
+                'storage_timestamp' => 1617992248,
+                'markdown' => [
+                    '' => [
+                        'default' => 1617992248
+                    ]
+                ],
+                'checksum' => '8c4f1ba7ba3dee189d7570bdc3384932'
             ],
             '03.tiled/04.creating-enemy-zones' => [
                 'key' => 'tiled/creating-enemy-zones',

@@ -1,4 +1,4 @@
-1617979776
+1617990236
 O:39:"Grav\Common\Flex\Types\Pages\PageObject":4:{s:4:"type";s:5:"pages";s:3:"key";s:10:"typography";s:8:"elements";a:4:{s:4:"root";b:0;s:6:"header";a:2:{s:5:"title";s:10:"Typography";s:9:"published";b:1;}s:11:"frontmatter";s:33:"title: Typography
 published: true";s:8:"markdown";s:3932:"! Details on the full capabilities of Spectre.css can be found in the [Official Spectre Documentation](https://picturepan2.github.io/spectre/elements.html)
 

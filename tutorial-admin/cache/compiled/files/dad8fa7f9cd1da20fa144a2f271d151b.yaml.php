@@ -2,9 +2,9 @@
 return [
     '@class' => 'Grav\\Common\\File\\CompiledYamlFile',
     'filename' => '/Users/jonatan/Documents/Projects/games/collision/tutorial-admin/user/data/notifications/21232f297a57a5a743894a0e4a801fc3.yaml',
-    'modified' => 1617978051,
+    'modified' => 1617991812,
     'data' => [
-        'last_checked' => 1617978051,
+        'last_checked' => 1617991812,
         'data' => [
             'dashboard' => [
                 0 => [

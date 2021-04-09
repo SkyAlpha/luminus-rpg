@@ -2,7 +2,7 @@
 return [
     '@class' => 'Grav\\Common\\File\\CompiledMarkdownFile',
     'filename' => '/Users/jonatan/Documents/Projects/games/collision/tutorial-admin/user/pages/03.tiled/03.setting-up-your-tiled-map/07.adding-map-collisions/default.md',
-    'modified' => 1617979176,
+    'modified' => 1617990967,
     'data' => [
         'header' => [
             'title' => 'Adding Map Collisions',
@@ -45,7 +45,7 @@ The `LuminusMapCreator` takes care of the rest. Just Save, Export and open your 
 
 Go check it out on your Scene.
 
-
+#### [Previous Step - Adding the Player](../adding-the-player) | [Next Step - How to Effectivelly Draw a Tile Map](../how-to-effectively-draw-a-tile-map)
 '
     ]
 ];

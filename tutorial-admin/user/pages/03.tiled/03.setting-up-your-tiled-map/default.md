@@ -14,6 +14,8 @@ First things first... In this tutorial I will guide you through all the main con
 * Step 4 - [Creating My First Tileset](creating-my-first-tileset)
 * Step 5 - [Creating Our First Tile Map](creating-our-first-tile-map)
 * Step 6 - [Adding the Player](adding-the-player)
+* Step 7 - [Adding Map Collisions](adding-map-collisions)
+* Step 8 - [How to Effectivelly Draw a Tile Map](how-to-effectively-draw-a-tile-map)
 
 
 ### [Next Step - Creating a Map](creating-a-map)
