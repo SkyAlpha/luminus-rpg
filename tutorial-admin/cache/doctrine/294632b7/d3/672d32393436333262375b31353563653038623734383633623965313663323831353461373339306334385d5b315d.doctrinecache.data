@@ -1,0 +1,3 @@
+1618597792
+a:2:{s:7:"content";s:561:"<h1 class="text-center">Step 8 - How to Effectively Draw a Tile Map</h1>
+<p>Now that we have a basic map we can start creating a more complex MAP using the multiple Layers that we have created. Lets clear everything that we have on our current Map and start over. Let's add another Tileset that the Template already uses <code>src/assets/maps/tilesets/Overworld-extruded.png</code>, it's an already extruded tileset, follow the same steps that we used on the <a href="/tiled/setting-up-tiled/creating-my-first-tileset">Step 4 - Creating My First Tileset</a></p>";s:12:"content_meta";N;}
