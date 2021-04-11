@@ -1,0 +1,39 @@
+1618771524
+a:2:{s:7:"content";s:5365:"<h1 class="text-center">Step 8 - How to Effectively Draw a Tile Map</h1>
+<p>Now that we have a basic map we can start creating a more complex MAP using the multiple Layers that we have created. Lets clear everything that we have on our current Map and start over. Let's add another Tileset that the Template already uses <code>src/assets/maps/tilesets/Overworld-extruded.png</code>, it's an already extruded tileset, follow the same steps that we used on the <a href="/tiled/setting-up-tiled/creating-my-first-tileset">Step 4 - Creating My First Tileset</a></p>
+<p><a href="https://i.ibb.co/xYHy2YR/Screen-Shot-2021-04-09-at-15-53-51.png" target="_blank"><img src="https://i.ibb.co/xYHy2YR/Screen-Shot-2021-04-09-at-15-53-51.png" alt="" class="center" /></a></p>
+<p>Before we start drawing anything I will teach you how to create Terrains. Actually, I will leave this job to Mike "My Buddy" (Actually I don't know him) to Teach you. <a href="https://www.youtube.com/watch?v=SIYNuXdDClU&amp;ab_channel=Gamefromscratch%3Ftarget%3D_blank">How to Create Terrains on Tiled.</a></p>
+<p>Having created your terrain, select it, and start to Draw your tiles on the <code>base</code> layer. I have created what I think is Sand (I don't know actually, but I call it Sand). </p>
+<p><a href="https://i.ibb.co/x86gxzL/Screen-Shot-2021-04-11-at-12-50-00.png" target="_blank"><img src="https://i.ibb.co/x86gxzL/Screen-Shot-2021-04-11-at-12-50-00.png" alt="" class="center" /></a></p>
+<p>Now we are going to add a House, but beware that you can't use the base layer to draw it, otherwise the terrain tiles that you have used will be replaced by the house. That's Why we have created other layers to draw upon. Select the <code>overlay</code> layer and place the house on it.</p>
+<p>This house right here.
+<a href="https://i.ibb.co/Mp47tL5/Screen-Shot-2021-04-11-at-12-48-50.png" target="_blank"><img src="https://i.ibb.co/Mp47tL5/Screen-Shot-2021-04-11-at-12-48-50.png" alt="" class="center" /></a></p>
+<p>Using the <code>base</code> layer.
+<a href="https://i.ibb.co/KWYYtnJ/Screen-Shot-2021-04-11-at-12-54-54.png" target="_blank"><img src="https://i.ibb.co/KWYYtnJ/Screen-Shot-2021-04-11-at-12-54-54.png" alt="" class="center" /></a></p>
+<p>Using the <code>overlay</code>
+<a href="https://i.ibb.co/xCCQ6Zq/Screen-Shot-2021-04-11-at-15-16-07.png" target="_blank"><img src="https://i.ibb.co/xCCQ6Zq/Screen-Shot-2021-04-11-at-15-16-07.png" alt="" class="center" /></a></p>
+<p>Did you see the difference? Whenever you need something to be drawn above a tile without loosing what is underneath, create a new layer and draw on it. Now that you know it, let's draw some stuff and set collisions on them. Don't forget that the collisions should be drawn on the <code>collisions</code> layer.</p>
+<p><a href="https://i.ibb.co/8XdHqVJ/Screen-Shot-2021-04-11-at-15-20-45.png" target="_blank"><img src="https://i.ibb.co/8XdHqVJ/Screen-Shot-2021-04-11-at-15-20-45.png" alt="" class="center" /></a></p>
+<p>Let's Place the player somewhere on this map.</p>
+<p><a href="https://i.ibb.co/xDr9VFp/Screen-Shot-2021-04-11-at-15-28-22.png" target="_blank"><img src="https://i.ibb.co/xDr9VFp/Screen-Shot-2021-04-11-at-15-28-22.png" alt="" class="center" /></a></p>
+<p>Don't forget to add the <code>TilesetImageConfig</code> in order to use the <code>overworld</code> tileset that you have create. You can check the JSDoc to learn more about this Class.</p>
+<pre><code>    create() {
+        let map = new LuminusMapCreator(this);
+        map.mapName = 'tutorial';
+        map.tilesetImages = [
+            new TilesetImageConfig(
+                'tutorial_tileset_extruded',
+                'tutorial_tileset'
+            ),
+            new TilesetImageConfig('collision', 'collision_tile'), // Add these lines to use the Collision tiles.
+            new TilesetImageConfig('overworld', 'tiles_overworld'), // Add these lines to use the Overworld Tileset.
+        ];
+        map.create();
+        this.cameras.main.startFollow(this.player.container);
+        this.cameras.main.setZoom(2.5);
+    }</code></pre>
+<p>Now you can walk arround. Try to walk behind the House.</p>
+<p><a href="https://i.ibb.co/RCbHX7n/Screen-Shot-2021-04-11-at-15-37-55.png" target="_blank"><img src="https://i.ibb.co/RCbHX7n/Screen-Shot-2021-04-11-at-15-37-55.png" alt="" class="center" /></a></p>
+<p>This a spected behavior as the player was drawn after the Tile Layers. In order to make the player to be hidden behind the house you have to use another layer. But not only that, we need to create a new property to that Layer called <code>depth</code> and set it to a high number to make sure it wil be drawn always above the player. I will use 99, and I wil use the <code>overplayer</code> layer. Don't forget to erase what ou have drawn on the <code>overlay</code> layer using the eraser, using the (E) key. OH! The <code>overlay</code> layer has to be selected so it erases whats is on the <code>overlay</code> layer.</p>
+<p><a href="https://i.ibb.co/j87FRt8/Screen-Shot-2021-04-11-at-15-44-12.png" target="_blank"><img src="https://i.ibb.co/j87FRt8/Screen-Shot-2021-04-11-at-15-44-12.png" alt="" class="center" /></a></p>
+<p><a href="https://i.ibb.co/GkMkBzB/Screen-Shot-2021-04-11-at-15-41-19.png" target="_blank"><img src="https://i.ibb.co/GkMkBzB/Screen-Shot-2021-04-11-at-15-41-19.png" alt="" class="center" /></a></p>";s:12:"content_meta";N;}
