@@ -916,9 +916,17 @@
    </properties>
   </object>
  </objectgroup>
- <objectgroup id="13" name="particles" visible="0">
-  <object id="57" name="forest" x="-1282" y="-768" width="1106" height="1050"/>
-  <object id="77" name="clouds" x="-1460" y="-950" width="1482" height="1370"/>
+ <objectgroup id="13" name="particles">
+  <object id="57" name="forest" x="-1282" y="-768" width="1106" height="1050">
+   <properties>
+    <property name="particle" value="leaves"/>
+   </properties>
+  </object>
+  <object id="77" name="clouds" x="-1460" y="-950" width="1482" height="1370">
+   <properties>
+    <property name="particle" value="cloud"/>
+   </properties>
+  </object>
  </objectgroup>
  <objectgroup id="10" name="markers" visible="0">
   <object id="35" x="1062.5" y="53">

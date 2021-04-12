@@ -1,0 +1,17 @@
+1618255686
+O:39:"Grav\Common\Flex\Types\Pages\PageObject":4:{s:4:"type";s:5:"pages";s:3:"key";s:60:"tiled/setting-up-your-tiled-map/how-to-add-information-zones";s:8:"elements";a:4:{s:4:"root";b:0;s:6:"header";a:2:{s:5:"title";s:28:"How to Add Information Zones";s:4:"menu";s:38:"Step 10 - How to Add Information Zones";}s:11:"frontmatter";s:84:"title: 'How to Add Information Zones'
+menu: 'Step 10 - How to Add Information Zones'";s:8:"markdown";s:922:"<h1 class="text-center">Step 10 - How to add Information Zones</h1>
+
+It's really easy to add information zones using the Luminus RPG System. Just select the `info` object layer and add a rectangle where the player will be able to interact with the zone. Set a property to this rectangle called `message` of type `string`, then add yous message there. The Luminus Dialog Scene takes care of the rest. Oh! Talking about it, don't forget to launch it on your Scene.
+
+[![](https://i.ibb.co/z5Ddzx5/Screen-Shot-2021-04-12-at-11-17-43.png?classes=center)](https://i.ibb.co/z5Ddzx5/Screen-Shot-2021-04-12-at-11-17-43.png?target=_blank)
+
+```
+        this.scene.launch('DialogScene', {
+            player: this.player,
+            map: map.map,
+            scene: this,
+        });
+```
+
+#### [Previous Step - Adding Environment Particles](../adding-environment-particles) | [Next Step - Adding Help Markers](../adding-help-markers)";}s:7:"storage";a:6:{s:3:"key";s:60:"tiled/setting-up-your-tiled-map/how-to-add-information-zones";s:11:"storage_key";s:69:"03.tiled/03.setting-up-your-tiled-map/10.how-to-add-information-zones";s:8:"template";s:7:"default";s:17:"storage_timestamp";i:1618249875;s:8:"markdown";a:1:{s:0:"";a:1:{s:7:"default";i:1618249875;}}s:8:"checksum";s:32:"ee64438ceff0d9e7cc60be66ba8b806f";}}

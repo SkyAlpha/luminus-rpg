@@ -41,12 +41,12 @@ export class MainScene extends Phaser.Scene {
         const camera = this.cameras.main;
         camera.startFollow(this.player.container);
 
-        const phaserWarp = new LuminusWarp(
+        const luminusWarp = new LuminusWarp(
             this,
             this.player,
             this.mapCreator.map
         );
-        phaserWarp.createWarps();
+        luminusWarp.createWarps();
         const interactiveMarkers = new LuminusObjectMarker(
             this,
             this.mapCreator.map
@@ -56,6 +56,7 @@ export class MainScene extends Phaser.Scene {
         this.scene.launch('DialogScene', {
             player: this.player,
             map: this.mapCreator.map,
+            scene: this,
         });
 
         this.joystickScene = this.scene.get('JoystickScene');
@@ -67,7 +68,7 @@ export class MainScene extends Phaser.Scene {
             this,
             this.mapCreator.map
         );
-        this.particles.createParticles('forest');
+        this.particles.create();
 
         // this.outlineEffect = new LuminusOutlineEffect(this);
 

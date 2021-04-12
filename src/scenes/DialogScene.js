@@ -25,10 +25,10 @@ export class DialogScene extends Phaser.Scene {
     init(args) {
         this.player = args.player;
         this.map = args.map;
+        this.mainScene = args.scene;
     }
 
     create() {
-        this.mainScene = this.scene.get('MainScene');
         /**
          * @type { LuminusTiledInfoBox }
          */

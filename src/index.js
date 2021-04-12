@@ -29,7 +29,7 @@ const config = {
         // Preload should come first
         PreloadScene,
         IntroScene,
-        MainScene,
+        // MainScene,
         DungeonScene,
         MobileCheckScene,
         TutorialScene,

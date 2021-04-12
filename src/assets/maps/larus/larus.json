@@ -1778,6 +1778,12 @@
                  "height":1050,
                  "id":57,
                  "name":"forest",
+                 "properties":[
+                        {
+                         "name":"particle",
+                         "type":"string",
+                         "value":"leaves"
+                        }],
                  "rotation":0,
                  "type":"",
                  "visible":true,
@@ -1789,6 +1795,12 @@
                  "height":1370,
                  "id":77,
                  "name":"clouds",
+                 "properties":[
+                        {
+                         "name":"particle",
+                         "type":"string",
+                         "value":"cloud"
+                        }],
                  "rotation":0,
                  "type":"",
                  "visible":true,
@@ -1798,7 +1810,7 @@
                 }],
          "opacity":1,
          "type":"objectgroup",
-         "visible":false,
+         "visible":true,
          "x":0,
          "y":0
         }, 

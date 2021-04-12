@@ -2,7 +2,7 @@
 return [
     '@class' => 'Grav\\Common\\File\\CompiledMarkdownFile',
     'filename' => '/Users/jonatan/Documents/Projects/games/collision/tutorial-admin/user/pages/03.tiled/03.setting-up-your-tiled-map/08.how-to-effectively-draw-a-tile-map/default.md',
-    'modified' => 1618167881,
+    'modified' => 1618231731,
     'data' => [
         'header' => [
             'title' => 'How to Effectively Draw a Tile Map',
@@ -83,6 +83,8 @@ Save, export and try to walk behind the house again.
 [![](https://i.ibb.co/f9KDcdB/Screen-Shot-2021-04-11-at-15-50-12.png?classes=center)](https://i.ibb.co/f9KDcdB/Screen-Shot-2021-04-11-at-15-50-12.png?target=_blank)
 
 It hides the player now, if you need to draw something above the `overplayer` layer you will have to set a property `depth` with value 100 or more on this new layer, so it gets drawn above the `overplayer` layer. That\'s it. Feel free to create a whole world now, use your imagination.
+
+#### [Previous Step - Adding Map Collisions](../adding-map-collisions) | [Next Step - Adding Environment Particles](../adding-environment-particles)
 '
     ]
 ];

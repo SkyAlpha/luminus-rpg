@@ -29,14 +29,23 @@ export class LuminusEnvironmentParticles {
         /**
          * The particles objects layer name that you defined on the Tiled Software.
          * @type { string }
+         * @default
          */
         this.particlesObjectLayerName = 'particles';
 
         /**
          * The name of the clouds particles, should be the name of the image that you gave on phaser.
          * @type { string }
+         * @default
          */
         this.cloudParticleName = 'cloud';
+
+        /**
+         * The name of the Sprite used for creating the dust particles.
+         * @type { string }
+         * @default
+         */
+        this.dustParticleSprite = 'leaves';
 
         // /**
         //  * The prefix of the emit zone user for clouds. This is user to emit the clouds out of the map.
@@ -48,30 +57,27 @@ export class LuminusEnvironmentParticles {
 
     /**
      * Get the zone from the map to emit the particles just inside that zone, so you can use less memory.
-     * @param { string } zoneName the name of the zone you want to create the particles.
      */
-    createParticles(zoneName) {
+    create() {
         const zones = this.map.getObjectLayer(this.particlesObjectLayerName);
-        const dimensions = zones.objects.find((v) => v.name === zoneName);
-        const dimensions_clouds = zones.objects.find(
-            (v) => v.name === 'clouds'
-        );
-
-        if (dimensions) {
-            this.makeDust(
-                dimensions.width,
-                dimensions.height,
-                dimensions.x,
-                dimensions.y
-            );
-        }
-        if (dimensions_clouds) {
-            this.makeClouds(
-                dimensions_clouds.width,
-                dimensions_clouds.height,
-                dimensions_clouds.x,
-                dimensions_clouds.y
-            );
+        if (zones.objects && zones.objects.length > 0) {
+            zones.objects.forEach((zone) => {
+                zone.properties.forEach((property) => {
+                    if (property.value === this.dustParticleSprite) {
+                        this.makeDust(zone.width, zone.height, zone.x, zone.y);
+                    } else if (property.value === this.cloudParticleName) {
+                        this.makeClouds(
+                            zone.width,
+                            zone.height,
+                            zone.x,
+                            zone.y
+                        );
+                    } else {
+                        // If nothing is specified, then create the basic particle system.
+                        this.makeDust(zone.width, zone.height, zone.x, zone.y);
+                    }
+                });
+            });
         }
     }
 
@@ -126,7 +132,7 @@ export class LuminusEnvironmentParticles {
             width,
             height
         );
-        this.particles = this.scene.add.particles('leaves', [
+        this.particles = this.scene.add.particles(this.dustParticleSprite, [
             {
                 angle: { min: 0, max: 360 },
                 // emitZone: { source: offscreen },

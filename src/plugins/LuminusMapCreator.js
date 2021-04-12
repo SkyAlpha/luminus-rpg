@@ -88,7 +88,6 @@ export class LuminusMapCreator {
     }
 
     create() {
-        console.log(this.collisionLayer);
         this.map = this.scene.make.tilemap({ key: this.mapName });
         this.tilesetImages.forEach((tilesetImage) => {
             this.map.addTilesetImage(
@@ -139,12 +138,10 @@ export class LuminusMapCreator {
         }
 
         if (this.collisionLayer) {
-            console.log('COLLIDES');
             this.scene.physics.add.collider(
                 this.scene[PlayerConfig.variableName].container,
                 this.collisionLayer
             );
         }
-        console.log(this);
     }
 }

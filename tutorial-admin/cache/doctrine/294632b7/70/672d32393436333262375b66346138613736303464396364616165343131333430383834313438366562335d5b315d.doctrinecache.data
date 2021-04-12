@@ -1,0 +1,5 @@
+1618853606
+a:2:{s:7:"content";s:682:"<h1 class="text-center">Step 11 - Adding Help Markers</h1>
+<p>While I was creating this tutorial, I showed the template to some friends that gave me some feedback about the game. Some of them struggled to find the information zones... So... I created markers to show that there is something interact with.</p>
+<p>Open your Tiled Map and the Object Layers, click the <code>markers</code> layer and add a <code>Insert Point (P)</code> to anywhere you whant the marker to show up.</p>
+<p><a href="https://i.ibb.co/q1FH14f/Screen-Shot-2021-04-12-at-14-32-19.png" target="_blank"><img src="https://i.ibb.co/q1FH14f/Screen-Shot-2021-04-12-at-14-32-19.png" alt="" class="center" /></a></p>";s:12:"content_meta";N;}

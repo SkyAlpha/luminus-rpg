@@ -2,14 +2,16 @@
 return [
     '@class' => 'Grav\\Common\\File\\CompiledMarkdownFile',
     'filename' => '/Users/jonatan/Documents/Projects/games/collision/tutorial-admin/user/pages/03.tiled/04.creating-enemy-zones/default.md',
-    'modified' => 1617885013,
+    'modified' => 1618254898,
     'data' => [
         'header' => [
             'title' => 'Creating Enemy Zones',
-            'media_order' => 'Screen Shot 2021-04-07 at 15.40.15.png'
+            'media_order' => 'Screen Shot 2021-04-07 at 15.40.15.png',
+            'menu' => 'Step 13 - Creating Enemy Zones'
         ],
         'frontmatter' => 'title: \'Creating Enemy Zones\'
-media_order: \'Screen Shot 2021-04-07 at 15.40.15.png\'',
+media_order: \'Screen Shot 2021-04-07 at 15.40.15.png\'
+menu: \'Step 13 - Creating Enemy Zones\'',
         'markdown' => '# <h1 class="text-center">Creating Enemy Zones</h1> 
 ![Screen%20Shot%202021-04-07%20at%2015.40.15](Screen%20Shot%202021-04-07%20at%2015.40.15.png "Screen%20Shot%202021-04-07%20at%2015.40.15?classes=center")
 

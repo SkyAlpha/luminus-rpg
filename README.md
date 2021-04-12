@@ -20,6 +20,7 @@ Loading images via JavaScript module `import` is also supported.
 | `npm start` | Build project and open web server running project |
 | `npm run build` | Builds code bundle with production settings (minification, uglification, etc..) |
 | `npm run jsdoc` | Generates the JSDoc for the Project. After generating the JSDoc Opens your Browser on it. |
+| `npm run tutorial` | Opens the Tutorial Page, teaching all the basics of the Template.|
 
 ## Writing Code
 
