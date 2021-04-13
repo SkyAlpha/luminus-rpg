@@ -1,7 +1,0 @@
-1618252318
-O:39:"Grav\Common\Flex\Types\Pages\PageObject":4:{s:4:"type";s:5:"pages";s:3:"key";s:48:"tiled/setting-up-your-tiled-map/how-to-add-warps";s:8:"elements";a:4:{s:4:"root";b:0;s:6:"header";a:2:{s:5:"title";s:16:"How to add Warps";s:4:"menu";s:26:"Step 12 - How to Add Warps";}s:11:"frontmatter";s:60:"title: 'How to add Warps'
-menu: 'Step 12 - How to Add Warps'";s:8:"markdown";s:405:"<h1 class="text-center">Step 12 - How to Add Warps</h1>
-
-Every game has some kind of warp to teleport the player to another destination. The Luminus RPG has one either. Pay attention, because this one is going to be really usefull for you.
-
-Before we create the actual Warp, we need somewhere to go. I will create the House's inner somewhere far from the house, so the player can't see it on a big screen.";}s:7:"storage";a:6:{s:3:"key";s:48:"tiled/setting-up-your-tiled-map/how-to-add-warps";s:11:"storage_key";s:57:"03.tiled/03.setting-up-your-tiled-map/12.how-to-add-warps";s:8:"template";s:7:"default";s:17:"storage_timestamp";i:1618251718;s:8:"markdown";a:1:{s:0:"";a:1:{s:7:"default";i:1618251718;}}s:8:"checksum";s:32:"149c06ccde5e1df9a22b6090ba7b0364";}}

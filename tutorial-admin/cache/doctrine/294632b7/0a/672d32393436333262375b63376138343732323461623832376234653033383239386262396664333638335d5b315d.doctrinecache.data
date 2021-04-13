@@ -1,5 +1,0 @@
-1618574263
-a:2:{s:7:"content";s:529:"<h1 class="text-center">Adding the Player</h1>
-<h3>The Object Layers</h3>
-<p>There is a reason why we have created so many Object Layers in our tile map. They all have a pourpose. We are going to use one of those to add the player to a desired position. First of all, you have to select the Object Layer on the Layers Panel.</p>
-<p><a href="https://i.ibb.co/nrJzzX0/Screen-Shot-2021-04-09-at-08-56-48.png" target="_blank"><img src="https://i.ibb.co/nrJzzX0/Screen-Shot-2021-04-09-at-08-56-48.png" alt="" class="center" /></a></p>";s:12:"content_meta";N;}

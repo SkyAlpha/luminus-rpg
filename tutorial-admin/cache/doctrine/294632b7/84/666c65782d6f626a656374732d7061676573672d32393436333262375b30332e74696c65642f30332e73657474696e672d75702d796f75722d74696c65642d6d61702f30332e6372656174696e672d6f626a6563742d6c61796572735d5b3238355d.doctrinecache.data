@@ -1,6 +1,0 @@
-1617902647
-O:39:"Grav\Common\Flex\Types\Pages\PageObject":4:{s:4:"type";s:5:"pages";s:3:"key";s:54:"tiled/setting-up-your-tiled-map/creating-object-layers";s:8:"elements";a:4:{s:4:"root";b:0;s:6:"header";a:1:{s:5:"title";s:22:"Creating Object Layers";}s:11:"frontmatter";s:31:"title: 'Creating Object Layers'";s:8:"markdown";s:382:"<h1 class="text-center">Step 3 - Creating Object Layers</h1>
-
-We just created the Tile Layers, now lets create the Object Layers. It follows the same process of the `Tile Layer` creation, but we will select `Object Layer` instead.
-
-[![](https://i.ibb.co/NnF7nB2/Screen-Shot-2021-04-08-at-11-24-24.png?classes=center)](https://i.ibb.co/NnF7nB2/Screen-Shot-2021-04-08-at-11-24-24.png)";}s:7:"storage";a:6:{s:3:"key";s:54:"tiled/setting-up-your-tiled-map/creating-object-layers";s:11:"storage_key";s:63:"03.tiled/03.setting-up-your-tiled-map/03.creating-object-layers";s:8:"template";s:7:"default";s:17:"storage_timestamp";i:1617891923;s:8:"markdown";a:1:{s:0:"";a:1:{s:7:"default";i:1617891923;}}s:8:"checksum";s:32:"b7aa8af12655da07199f4571986aa34e";}}

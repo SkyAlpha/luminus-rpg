@@ -1,4 +1,4 @@
-1618859892
+1618923940
 a:2:{s:7:"content";s:4240:"<h1 class="text-center">Step 12 - How to Add Warps</h1>
 <p>Every game has some kind of warp to teleport the player to another destination. The Luminus RPG has one either. Pay attention, because this one is going to be really usefull for you.</p>
 <p>Before we create the actual Warp, we need somewhere to go. I will create the House's inner somewhere far from the house, so the player can't see it on a big screen. I'm going to use a Pre-Loaded asset called <code>inner</code>.</p>
