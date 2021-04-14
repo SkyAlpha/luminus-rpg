@@ -652,7 +652,7 @@
   </chunk>
   </data>
  </layer>
- <layer id="3" name="collision" width="100" height="100">
+ <layer id="3" name="collision" width="100" height="100" visible="0">
   <properties>
    <property name="collides" type="bool" value="true"/>
   </properties>
@@ -916,7 +916,7 @@
    </properties>
   </object>
  </objectgroup>
- <objectgroup id="13" name="particles">
+ <objectgroup id="13" name="particles" visible="0">
   <object id="57" name="forest" x="-1282" y="-768" width="1106" height="1050">
    <properties>
     <property name="particle" value="leaves"/>

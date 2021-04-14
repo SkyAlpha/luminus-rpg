@@ -25,6 +25,13 @@ export const BaseEntity = {
     canAtack: true,
 
     /**
+     * Controls if the player can move.
+     * @type { boolean }
+     * @default
+     */
+    canMove: true,
+
+    /**
      * Controls if the entity can take damage.
      * @type { boolean }
      * @default

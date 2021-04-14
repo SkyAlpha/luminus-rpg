@@ -6,6 +6,7 @@ import { LuminusEnvironmentParticles } from '../plugins/LuminusEnvironmentPartic
 import { LuminusOutlineEffect } from '../plugins/LuminusOutlineEffect';
 import { LuminusEnemyZones } from '../plugins/LuminusEnemyZones';
 import { LuminusMapCreator } from '../plugins/LuminusMapCreator';
+import { Item } from '../entities/Item';
 
 export class MainScene extends Phaser.Scene {
     constructor() {
@@ -85,6 +86,13 @@ export class MainScene extends Phaser.Scene {
             this.mapCreator.map
         );
         this.luminusEnemyZones.create();
+
+        new Item(
+            this,
+            this.player.container.x,
+            this.player.container.y - 30,
+            1
+        );
     }
 
     /**

@@ -209,15 +209,15 @@
   </chunk>
   </data>
  </layer>
- <objectgroup id="10" name="info" visible="0">
+ <objectgroup id="10" name="info">
   <object id="6" name="House_message" x="-63" y="-52.6667" width="142" height="96">
    <properties>
     <property name="message" value="This is a house. Should I enter it?"/>
    </properties>
   </object>
  </objectgroup>
- <objectgroup id="11" name="enemies" visible="0"/>
- <objectgroup id="12" name="particles" visible="0">
+ <objectgroup id="11" name="enemies"/>
+ <objectgroup id="12" name="particles">
   <object id="4" name="dust" x="-359.333" y="-284" width="741.333" height="538">
    <properties>
     <property name="particle" value="leaves"/>
@@ -229,7 +229,7 @@
    </properties>
   </object>
  </objectgroup>
- <objectgroup id="14" name="markers" visible="0">
+ <objectgroup id="14" name="markers">
   <object id="7" name="marker_info_house" x="7.33333" y="-4">
    <point/>
   </object>

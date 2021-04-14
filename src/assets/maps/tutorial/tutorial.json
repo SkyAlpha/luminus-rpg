@@ -207,15 +207,15 @@
                 }],
          "compression":"",
          "encoding":"base64",
-         "height":32,
+         "height":16,
          "id":4,
          "name":"overlay2",
          "opacity":1,
-         "startx":96,
+         "startx":112,
          "starty":-32,
          "type":"tilelayer",
          "visible":true,
-         "width":32,
+         "width":16,
          "x":0,
          "y":0
         }, 
@@ -421,11 +421,11 @@
                  "visible":true,
                  "width":142,
                  "x":-63,
-                 "y":-52.6666666666667
+                 "y":-52.6667
                 }],
          "opacity":1,
          "type":"objectgroup",
-         "visible":false,
+         "visible":true,
          "x":0,
          "y":0
         }, 
@@ -436,7 +436,7 @@
          "objects":[],
          "opacity":1,
          "type":"objectgroup",
-         "visible":false,
+         "visible":true,
          "x":0,
          "y":0
         }, 
@@ -458,8 +458,8 @@
                  "rotation":0,
                  "type":"",
                  "visible":true,
-                 "width":741.333333333333,
-                 "x":-359.333333333333,
+                 "width":741.333,
+                 "x":-359.333,
                  "y":-284
                 }, 
                 {
@@ -476,12 +476,12 @@
                  "type":"",
                  "visible":true,
                  "width":1136,
-                 "x":-513.333333333333,
+                 "x":-513.333,
                  "y":-398
                 }],
          "opacity":1,
          "type":"objectgroup",
-         "visible":false,
+         "visible":true,
          "x":0,
          "y":0
         }, 
@@ -499,12 +499,12 @@
                  "type":"",
                  "visible":true,
                  "width":0,
-                 "x":7.33333333333333,
+                 "x":7.33333,
                  "y":-4
                 }],
          "opacity":1,
          "type":"objectgroup",
-         "visible":false,
+         "visible":true,
          "x":0,
          "y":0
         }, 
@@ -528,10 +528,10 @@
                  "visible":true,
                  "width":13.9375,
                  "x":1857,
-                 "y":-331.9375
+                 "y":-331.938
                 }, 
                 {
-                 "height":11.5454545454545,
+                 "height":11.5455,
                  "id":9,
                  "name":"outter_house",
                  "properties":[
@@ -543,9 +543,9 @@
                  "rotation":0,
                  "type":"",
                  "visible":true,
-                 "width":13.8181818181818,
-                 "x":1.09090909090909,
-                 "y":11.1818181818182
+                 "width":13.8182,
+                 "x":1.09091,
+                 "y":11.1818
                 }, 
                 {
                  "height":0,
@@ -557,7 +557,7 @@
                  "visible":true,
                  "width":0,
                  "x":1864.5,
-                 "y":-293.409090909091
+                 "y":-293.409
                 }, 
                 {
                  "height":0,
@@ -591,8 +591,8 @@
                  "type":"",
                  "visible":true,
                  "width":0,
-                 "x":5.54545121212118,
-                 "y":96.3636363636364
+                 "x":5.54545,
+                 "y":96.3636
                 }],
          "opacity":1,
          "type":"objectgroup",

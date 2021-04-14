@@ -1,4 +1,4 @@
-import Phaser from 'phaser';
+import Phaser, { GameObjects } from 'phaser';
 import { AnimationNames } from '../consts/AnimationNames';
 import { Enemy } from '../entities/Enemy';
 
