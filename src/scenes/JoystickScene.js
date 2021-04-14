@@ -118,7 +118,7 @@ export class JoystickScene extends Phaser.Scene {
     create() {
         this.input.addPointer(6);
         this.isMobile = !this.sys.game.device.os.desktop ? true : false;
-        if (this.isMobile && this.player.canMove) {
+        if (this.isMobile) {
             const position_stick =
                 Math.sqrt(
                     this.cameras.main.width ** 2 + this.cameras.main.height ** 2

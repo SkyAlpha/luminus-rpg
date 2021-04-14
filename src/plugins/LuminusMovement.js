@@ -98,7 +98,8 @@ export class LuminusMovement extends AnimationNames {
         if (
             this.player &&
             this.player.container &&
-            this.player.container.body
+            this.player.container.body &&
+            this.player.canMove
         ) {
             this.player.container.body.setVelocity(0);
             if (!this.player.isAtacking) {
@@ -211,6 +212,10 @@ export class LuminusMovement extends AnimationNames {
                     if (this.player.walkDust) this.player.walkDust.on = true;
                 }
             }
+        } else {
+            if (this.player.walkDust) this.player.walkDust.on = false;
+            this.player.container.body.setVelocity(0);
+            this.luminusAnimationManager.setIdleAnimation();
         }
     }
 }

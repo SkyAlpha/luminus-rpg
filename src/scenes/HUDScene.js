@@ -2,6 +2,7 @@ import Phaser from 'phaser';
 import { Player } from '../entities/Player';
 import { LuminusHUDProgressBar } from '../plugins/HUD/LuminusHUDProgressBar';
 import { LuminusHealthBar } from '../plugins/LuminusHealthBar';
+import { InventorySceneName } from './InventoryScene';
 
 /**
  * Scene for HUD Creation. It contains all the HUD of the game.
@@ -120,7 +121,7 @@ export class HUDScene extends Phaser.Scene {
          * @type { string }
          * @default
          */
-        this.inventorySceneName = 'InventoryScene';
+        this.inventorySceneName = InventorySceneName;
 
         /**
          * The Image that indicates the HP of the Player.

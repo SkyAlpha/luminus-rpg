@@ -3,11 +3,15 @@ import { NineSlice } from 'phaser3-nineslice';
 import { Item } from '../entities/Item';
 import { Player } from '../entities/Player';
 import { LuminusInterfaceController } from '../plugins/LuminusInterfaceController';
+export const InventorySceneName = 'InventoryScene';
 
+/**
+ * @class
+ */
 export class InventoryScene extends Phaser.Scene {
     constructor() {
         super({
-            key: 'InventoryScene',
+            key: InventorySceneName,
         });
 
         /**
@@ -148,6 +152,11 @@ export class InventoryScene extends Phaser.Scene {
          * @type { LuminusInterfaceController }
          */
         this.luminusInterfaceController = null;
+
+        /**
+         *
+         */
+        this.pad = null;
     }
 
     create() {
@@ -157,7 +166,6 @@ export class InventoryScene extends Phaser.Scene {
         this.createSlots();
         this.createCloseButton();
         this.createItems();
-
         this.scale.on('resize', (resize) => {
             this.resizeAll(resize);
         });
@@ -206,11 +214,12 @@ export class InventoryScene extends Phaser.Scene {
         this.luminusInterfaceController.interfaceElements[0][0] = [];
         let firstAction = {
             element: this.closeButton,
-            action: `scene.stop`,
+            action: 'stopScene',
             context: this,
-            args: null,
+            args: 'InventoryScene',
         };
         this.luminusInterfaceController.currentElementAction = firstAction;
+        this.luminusInterfaceController.closeAction = firstAction;
         this.luminusInterfaceController.interfaceElements[0][0].push(
             firstAction
         );
@@ -218,6 +227,12 @@ export class InventoryScene extends Phaser.Scene {
         this.luminusInterfaceController.updateHighlightedElement(
             firstAction.element
         );
+    }
+
+    stopScene() {
+        this.scene.stop();
+        this.player.canMove = true;
+        this.player.canAtack = true;
     }
 
     /**
@@ -456,15 +471,17 @@ export class InventoryScene extends Phaser.Scene {
             let text = slot.text;
             let i = slot.playerItemIndex;
             item.consume(this.player);
-            this.player.items[i].count--;
-            if (this.player.items[i].count <= 0) {
-                item.destroy();
-                delete this.player.items[i];
-                text.setText('');
-                text.destroy();
-                // TODO - Rearange the items.
-            } else {
-                text.setText(this.player.items[i].count);
+            if (this.player.items[i]) {
+                this.player.items[i].count--;
+                if (this.player.items[i].count <= 0) {
+                    item.destroy();
+                    delete this.player.items[i];
+                    text.setText('');
+                    text.destroy();
+                    // TODO - Rearange the items.
+                } else {
+                    text.setText(this.player.items[i].count);
+                }
             }
         }
     }
@@ -476,6 +493,7 @@ export class InventoryScene extends Phaser.Scene {
     init(args) {
         this.player = args.player;
         this.player.canMove = false;
+        this.player.canAtack = false;
     }
 
     update() {}

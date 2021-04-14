@@ -1,5 +1,6 @@
 import Phaser from 'phaser';
 import { AnimationNames } from '../consts/AnimationNames';
+import { InventorySceneName } from '../scenes/InventoryScene';
 import { LuminusAnimationManager } from './LuminusAnimationManager';
 import { LuminusBattleManager } from './LuminusBattleManager';
 
@@ -26,6 +27,11 @@ export class LuminusGamePadController extends AnimationNames {
          * @type { Player }
          */
         this.player = player;
+
+        /**
+         * @type { string }
+         */
+        this.inventorySceneName = InventorySceneName;
 
         /**
          * The luminus animation manager.
@@ -66,6 +72,15 @@ export class LuminusGamePadController extends AnimationNames {
         this.scene.input.gamepad.on('down', (pad) => {
             if (!this.gamepad) {
                 this.gamepad = pad;
+            }
+            if (this.gamepad && this.gamepad.buttons[8].value === 1) {
+                if (!this.scene.scene.isVisible(this.inventorySceneName)) {
+                    this.scene.scene.launch(this.inventorySceneName, {
+                        player: this.player,
+                    });
+                } else {
+                    this.scene.scene.stop(this.inventorySceneName);
+                }
             }
             if (pad.A && this.player && this.player.active) {
                 this.luminusBattleManager.atack(this.player);

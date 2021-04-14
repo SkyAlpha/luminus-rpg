@@ -293,7 +293,7 @@ export class LuminusBattleManager extends AnimationNames {
      * @param { Phaser.Physics.Arcade.Sprite } atacker the atacker.
      */
     atack(atacker) {
-        if (atacker.canAtack && this.player.canMove) {
+        if (atacker.canAtack && atacker.canMove) {
             this.phaserJuice = new PhaserJuice(
                 atacker.scene,
                 atacker.scene.plugins

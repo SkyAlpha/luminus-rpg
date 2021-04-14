@@ -36,9 +36,18 @@ export class LuminusInterfaceController {
 
         /**
          * This is the current element that is selected.
-         * @type { function }
+         * @type { any }
          */
         this.currentElementAction = null;
+
+        /**
+         * This will trigger the Back or close function.
+         * @type { any }
+         */
+        this.closeAction = null;
+
+        console.log(this.scene.input.gamepad);
+        this.pad = this.scene.input.gamepad.pad1;
 
         this.scene.input.on(
             'pointerup',
@@ -56,8 +65,44 @@ export class LuminusInterfaceController {
             }
         );
 
+        if (this.pad) {
+            this.pad.on('down', (pad) => {
+                console.log(this.pad);
+                if (this.pad.down) {
+                    this.moveDown();
+                }
+                if (this.pad.up) {
+                    this.moveUp();
+                }
+                if (this.pad.right) {
+                    this.moveRight();
+                }
+                if (this.pad.left) {
+                    this.moveLeft();
+                }
+
+                if (this.pad.B) {
+                    this.executeFunctionByName(
+                        this.closeAction.action,
+                        this.closeAction.context,
+                        this.closeAction.args
+                    );
+                }
+
+                console.log(this.pad.buttons[9].value);
+
+                if (this.pad.A) {
+                    console.log(this.currentElementAction);
+                    this.executeFunctionByName(
+                        this.currentElementAction.action,
+                        this.currentElementAction.context,
+                        this.currentElementAction.args
+                    );
+                }
+            });
+        }
+
         this.scene.input.keyboard.on('keydown', (keyboard) => {
-            console.log(this.currentElementAction);
             if (keyboard.keyCode === 13)
                 this.executeFunctionByName(
                     this.currentElementAction.action,
@@ -72,7 +117,10 @@ export class LuminusInterfaceController {
      * @returns { Phaser.GameObjects }
      */
     moveRight() {
-        this.hasNoLineData();
+        let hasError = this.hasNoLineData();
+        if (hasError) {
+            return;
+        }
         this.removeSelection(this.currentElementAction.element);
         this.currentMatrixCol++;
         let currentPosition = this.interfaceElements[this.currentLinePosition][
@@ -81,6 +129,7 @@ export class LuminusInterfaceController {
         if (currentPosition) {
             this.currentElementAction = currentPosition;
         } else {
+            this.currentMatrixCol = 0;
             this.currentElementAction = this.interfaceElements[
                 this.currentLinePosition
             ][this.currentMatrixRow][0];
@@ -93,7 +142,10 @@ export class LuminusInterfaceController {
      * @returns { Phaser.GameObjects }
      */
     moveLeft() {
-        this.hasNoLineData();
+        let hasError = this.hasNoLineData();
+        if (hasError) {
+            return;
+        }
         this.removeSelection(this.currentElementAction.element);
         this.currentMatrixCol--;
         let currentPosition = this.interfaceElements[this.currentLinePosition][
@@ -105,8 +157,11 @@ export class LuminusInterfaceController {
             this.currentElementAction = this.interfaceElements[
                 this.currentLinePosition
             ][this.currentMatrixRow][
-                this.interfaceElements[this.currentLinePosition].length - 1
+                this.interfaceElements[this.currentLinePosition].length
             ];
+            this.currentMatrixCol = this.interfaceElements[
+                this.currentLinePosition
+            ].length;
         }
         this.updateHighlightedElement(this.currentElementAction.element);
     }
@@ -253,6 +308,7 @@ export class LuminusInterfaceController {
     }
 
     executeFunctionByName(functionName, context, args) {
+        console.log(functionName);
         var args = Array.prototype.slice.call(arguments, 2);
         var namespaces = functionName.split('.');
         var func = namespaces.pop();
