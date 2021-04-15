@@ -42,10 +42,12 @@ export class LuminusOutlineEffect {
      * @param { Phaser.Physics.Arcade.Sprite } object
      */
     applyEffect(object) {
-        object.setPostPipeline(OutlinePostFx);
-        var pipelineInstance = this.outlinePostFxPlugin.get(object)[0];
-        pipelineInstance.setOutlineColor(this.outlineColor);
-        pipelineInstance.thickness = this.outlineThickness;
+        if (object && object.scene && object.scene.sys) {
+            object.setPostPipeline(OutlinePostFx);
+            var pipelineInstance = this.outlinePostFxPlugin.get(object)[0];
+            pipelineInstance.setOutlineColor(this.outlineColor);
+            pipelineInstance.thickness = this.outlineThickness;
+        }
     }
 
     /**
@@ -53,6 +55,8 @@ export class LuminusOutlineEffect {
      * @param { Phaser.Physics.Arcade.Sprite } object
      */
     removeEffect(object) {
-        object.removePostPipeline(OutlinePostFx);
+        if (object && object.scene && object.scene.sys) {
+            object.removePostPipeline(OutlinePostFx);
+        }
     }
 }

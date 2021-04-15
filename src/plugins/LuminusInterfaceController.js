@@ -133,6 +133,7 @@ export class LuminusInterfaceController {
     }
 
     close() {
+        this.outlineEffect.outlinePostFxPlugin.destroy();
         this.executeFunctionByName(
             this.closeAction.action,
             this.closeAction.context,
@@ -323,12 +324,14 @@ export class LuminusInterfaceController {
 
     updateHighlightedElement(element) {
         // element.tint = 0xff00ff;
-        if (element) this.outlineEffect.applyEffect(element);
+        if (this.scene && this.scene.sys && element)
+            this.outlineEffect.applyEffect(element);
     }
 
     removeSelection(element) {
         // element.tint = 0xffffff;
-        if (element) this.outlineEffect.removeEffect(element);
+        if (this.scene && this.scene.sys && element)
+            this.outlineEffect.removeEffect(element);
     }
 
     hasNoLineData() {
