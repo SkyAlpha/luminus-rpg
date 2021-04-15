@@ -66,8 +66,24 @@ export class LuminusInterfaceController {
         );
 
         if (this.pad) {
+            let difference = 0;
+            this.scene.events.on('update', (time, delta) => {
+                if (difference === 0) {
+                    difference = time;
+                } else if (Math.abs(time - difference) > 75) {
+                    if (this.pad.axes[0].getValue() === 1) {
+                        this.moveRight();
+                    } else if (this.pad.axes[0].getValue() === -1) {
+                        this.moveLeft();
+                    } else if (this.pad.axes[1].getValue() === -1) {
+                        this.moveUp();
+                    } else if (this.pad.axes[1].getValue() === 1) {
+                        this.moveDown();
+                    }
+                    difference = 0;
+                }
+            });
             this.pad.on('down', (pad) => {
-                console.log(this.pad);
                 if (this.pad.down) {
                     this.moveDown();
                 }
@@ -88,8 +104,6 @@ export class LuminusInterfaceController {
                         this.closeAction.args
                     );
                 }
-
-                console.log(this.pad.buttons[9].value);
 
                 if (this.pad.A) {
                     console.log(this.currentElementAction);
