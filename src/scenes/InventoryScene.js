@@ -148,6 +148,13 @@ export class InventoryScene extends Phaser.Scene {
         this.titleFontFamily = "'Press Start 2P'";
 
         /**
+         * The close and open sound of the inventory.
+         * @type { string }
+         * @default
+         */
+        this.inventoryOpenClose = 'inventory_cloth';
+
+        /**
          * The class that will control the interface.
          * @type { LuminusInterfaceController }
          */
@@ -166,6 +173,7 @@ export class InventoryScene extends Phaser.Scene {
         this.createSlots();
         this.createCloseButton();
         this.createItems();
+        this.sound.play(this.inventoryOpenClose);
         this.scale.on('resize', (resize) => {
             this.resizeAll(resize);
         });
@@ -207,7 +215,7 @@ export class InventoryScene extends Phaser.Scene {
             .setScale(0.8);
 
         this.closeButton.on('pointerup', (pointer) => {
-            this.scene.stop();
+            this.stopScene();
         });
 
         this.luminusInterfaceController.interfaceElements[0] = [];
@@ -225,6 +233,7 @@ export class InventoryScene extends Phaser.Scene {
     }
 
     stopScene() {
+        this.sound.play(this.inventoryOpenClose);
         this.player.canMove = true;
         this.player.canAtack = true;
         this.scene.stop();

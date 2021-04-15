@@ -66,7 +66,7 @@ export class LuminusKeyboardMouseController {
                         player: this.player,
                     });
                 } else {
-                    this.scene.scene.stop(this.inventorySceneName);
+                    this.scene.scene.get(this.inventorySceneName).stopScene();
                 }
             }
         });

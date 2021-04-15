@@ -98,6 +98,7 @@ import heal from '../assets/sound/sfx/consumables/heal.mp3';
 
 // Menu
 import menu_navigation from '../assets/sound/sfx/menu/menu_navigation.mp3';
+import inventory_cloth from '../assets/sound/sfx/menu/inventory_cloth.mp3';
 
 export const Images = [
     {
@@ -398,5 +399,9 @@ export const LuminusAudios = [
     {
         name: 'menu_navigation',
         audio: menu_navigation,
+    },
+    {
+        name: 'inventory_cloth',
+        audio: inventory_cloth,
     },
 ];

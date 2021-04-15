@@ -79,7 +79,7 @@ export class LuminusGamePadController extends AnimationNames {
                         player: this.player,
                     });
                 } else {
-                    this.scene.scene.stop(this.inventorySceneName);
+                    this.scene.scene.get(this.inventorySceneName).stopScene();
                 }
             }
             if (pad.A && this.player && this.player.active) {

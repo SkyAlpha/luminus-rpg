@@ -49,6 +49,13 @@ export class LuminusInterfaceController {
         this.closeAction = null;
 
         /**
+         * The navigation sound effect. You should change it to match the action the player will perform.
+         * @type { string }
+         * @default
+         */
+        this.navigationSound = 'menu_navigation';
+
+        /**
          * The outline effect that will be used on the element.
          * @type { LuminusOutlineEffect }
          */
@@ -143,7 +150,7 @@ export class LuminusInterfaceController {
             return;
         }
         this.removeSelection(this.currentElementAction.element);
-        this.scene.sound.play('menu_navigation');
+        this.scene.sound.play(this.navigationSound);
         this.currentMatrixCol++;
         let currentPosition = this.interfaceElements[this.currentLinePosition][
             this.currentMatrixRow
@@ -168,6 +175,7 @@ export class LuminusInterfaceController {
         if (hasError) {
             return;
         }
+        this.scene.sound.play(this.navigationSound);
         this.removeSelection(this.currentElementAction.element);
         this.currentMatrixCol--;
         let currentPosition = this.interfaceElements[this.currentLinePosition][
@@ -199,7 +207,7 @@ export class LuminusInterfaceController {
         if (hasError) {
             return;
         }
-
+        this.scene.sound.play(this.navigationSound);
         this.removeSelection(this.currentElementAction.element);
         if (changeMatrixRow) this.currentMatrixRow++;
         if (
@@ -260,7 +268,7 @@ export class LuminusInterfaceController {
         if (hasError) {
             return;
         }
-
+        this.scene.sound.play(this.navigationSound);
         this.removeSelection(this.currentElementAction.element);
         if (changeMatrixRow) this.currentMatrixRow--;
         if (

@@ -192,7 +192,8 @@ export class HUDScene extends Phaser.Scene {
                     player: this.player,
                 });
             } else {
-                this.scene.stop(this.inventorySceneName);
+                this.scene.get(this.inventorySceneName).stopScene();
+                // this.scene.stop(this.inventorySceneName);
             }
         });
 
