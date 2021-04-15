@@ -3,6 +3,7 @@ import { NineSlice } from 'phaser3-nineslice';
 import { Item } from '../entities/Item';
 import { Player } from '../entities/Player';
 import { LuminusInterfaceController } from '../plugins/LuminusInterfaceController';
+import { LuminusUtils } from '../utils/LuminusUtils';
 export const InventorySceneName = 'InventoryScene';
 
 /**
@@ -348,7 +349,7 @@ export class InventoryScene extends Phaser.Scene {
                     element
                 );
 
-                if (row === 0 && col === 0) {
+                if (row === 0 && col === 0 && !LuminusUtils.isMobile()) {
                     this.luminusInterfaceController.currentElementAction = element;
                     this.luminusInterfaceController.updateHighlightedElement(
                         element.element

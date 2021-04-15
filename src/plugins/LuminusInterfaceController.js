@@ -13,6 +13,7 @@ export class LuminusInterfaceController {
         /**
          * An Array with the interactible elements of the interface.
          * @type { Array }
+         * @default
          */
         this.interfaceElements = [];
 
@@ -26,6 +27,7 @@ export class LuminusInterfaceController {
         /**
          * The current Matrix row position.
          * @type { nmber }
+         * @default
          */
         this.currentMatrixRow = 0;
 
@@ -39,12 +41,14 @@ export class LuminusInterfaceController {
         /**
          * This is the current element that is selected.
          * @type { any }
+         * @default
          */
         this.currentElementAction = null;
 
         /**
          * This will trigger the Back or close function.
          * @type { any }
+         * @default
          */
         this.closeAction = null;
 
@@ -61,7 +65,33 @@ export class LuminusInterfaceController {
          */
         this.outlineEffect = new LuminusOutlineEffect(this.scene);
 
+        /**
+         * The Gamepad used to perform actions on the UI Scene.
+         * @type { Phaser.Input.Gamepad }
+         */
         this.pad = this.scene.input.gamepad.pad1;
+
+        this.scene.input.on(
+            'pointerdown',
+            /**
+             *
+             * @param { Phaser.Input.Pointer } pointer
+             */
+            (pointer, gameObjects) => {
+                let object = gameObjects[0];
+                if (pointer.wasTouch && object && object.item) {
+                    this.currentElementAction = {
+                        element: object,
+                        action: 'useItem',
+                        context: this,
+                        args: object,
+                    };
+                    this.updateHighlightedElement(
+                        this.currentElementAction.element
+                    );
+                }
+            }
+        );
 
         if (this.pad) {
             let difference = 0;
@@ -132,6 +162,9 @@ export class LuminusInterfaceController {
         });
     }
 
+    /**
+     * This function will execute the Close / Back child function.
+     */
     close() {
         this.outlineEffect.outlinePostFxPlugin.destroy();
         this.executeFunctionByName(
@@ -142,8 +175,7 @@ export class LuminusInterfaceController {
     }
 
     /**
-     * Returns the right element. If there is none, then loops to the first one of the line.
-     * @returns { Phaser.GameObjects }
+     * Moves the cursor to the right.
      */
     moveRight() {
         let hasError = this.hasNoLineData();
@@ -168,8 +200,7 @@ export class LuminusInterfaceController {
     }
 
     /**
-     * Returns the left element. If there is none, then loops to the last one.
-     * @returns { Phaser.GameObjects }
+     * Moves the cursor to the left.
      */
     moveLeft() {
         let hasError = this.hasNoLineData();
@@ -287,7 +318,7 @@ export class LuminusInterfaceController {
                 );
                 return;
             }
-            this.moveDown(false);
+            this.moveUp(false);
         }
         if (
             !this.interfaceElements[this.currentLinePosition][
@@ -322,18 +353,30 @@ export class LuminusInterfaceController {
         this.updateHighlightedElement(this.currentElementAction.element);
     }
 
+    /**
+     * Sets the outline effect to the current selected element.
+     * @param { Phaser.GameObjects.Sprite } element
+     */
     updateHighlightedElement(element) {
         // element.tint = 0xff00ff;
         if (this.scene && this.scene.sys && element)
             this.outlineEffect.applyEffect(element);
     }
 
+    /**
+     * Removes the outline effect to the previously selected element.
+     * @param { Phaser.GameObjects.Sprite } element
+     */
     removeSelection(element) {
         // element.tint = 0xffffff;
         if (this.scene && this.scene.sys && element)
             this.outlineEffect.removeEffect(element);
     }
 
+    /**
+     * Checks if there is no Line data available.
+     * @returns { boolean }
+     */
     hasNoLineData() {
         if (!this.interfaceElements[this.currentLinePosition]) {
             console.error(
@@ -345,6 +388,13 @@ export class LuminusInterfaceController {
         }
     }
 
+    /**
+     * Executes the function on the correct Context.
+     * @param { string } functionName
+     * @param { this } context
+     * @param { any } args
+     * @returns { function }
+     */
     executeFunctionByName(functionName, context, args) {
         var args = Array.prototype.slice.call(arguments, 2);
         var namespaces = functionName.split('.');
