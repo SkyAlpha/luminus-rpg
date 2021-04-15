@@ -32,7 +32,7 @@ export class LuminusOutlineEffect {
          * The outline Thickness. The bigger the number, the bigger the thickness.
          * @type { number }
          */
-        this.outlineThickness = 1;
+        this.outlineThickness = 3;
 
         this.outlinePostFxPlugin = this.scene.plugins.get('rexOutlinePipeline');
     }

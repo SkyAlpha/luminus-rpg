@@ -218,21 +218,16 @@ export class InventoryScene extends Phaser.Scene {
             context: this,
             args: 'InventoryScene',
         };
-        this.luminusInterfaceController.currentElementAction = firstAction;
         this.luminusInterfaceController.closeAction = firstAction;
         this.luminusInterfaceController.interfaceElements[0][0].push(
             firstAction
         );
-
-        this.luminusInterfaceController.updateHighlightedElement(
-            firstAction.element
-        );
     }
 
     stopScene() {
-        this.scene.stop();
         this.player.canMove = true;
         this.player.canAtack = true;
+        this.scene.stop();
     }
 
     /**
@@ -343,6 +338,14 @@ export class InventoryScene extends Phaser.Scene {
                 this.luminusInterfaceController.interfaceElements[1][row].push(
                     element
                 );
+
+                if (row === 0 && col === 0) {
+                    this.luminusInterfaceController.currentElementAction = element;
+                    this.luminusInterfaceController.updateHighlightedElement(
+                        element.element
+                    );
+                    this.luminusInterfaceController.currentLinePosition = 1;
+                }
             }
         }
     }

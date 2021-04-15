@@ -96,6 +96,9 @@ import get_items from '../assets/sound/sfx/interection/get_items.mp3';
 // Consumables
 import heal from '../assets/sound/sfx/consumables/heal.mp3';
 
+// Menu
+import menu_navigation from '../assets/sound/sfx/menu/menu_navigation.mp3';
+
 export const Images = [
     {
         name: 'tiles',
@@ -391,5 +394,9 @@ export const LuminusAudios = [
     {
         name: 'heal',
         audio: heal,
+    },
+    {
+        name: 'menu_navigation',
+        audio: menu_navigation,
     },
 ];

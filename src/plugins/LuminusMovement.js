@@ -213,9 +213,16 @@ export class LuminusMovement extends AnimationNames {
                 }
             }
         } else {
-            if (this.player.walkDust) this.player.walkDust.on = false;
-            this.player.container.body.setVelocity(0);
-            this.luminusAnimationManager.setIdleAnimation();
+            if (this.player && this.player.walkDust)
+                this.player.walkDust.on = false;
+            if (
+                this.player &&
+                this.player.container &&
+                this.player.container.body
+            ) {
+                this.player.container.body.setVelocity(0);
+                this.luminusAnimationManager.setIdleAnimation();
+            }
         }
     }
 }

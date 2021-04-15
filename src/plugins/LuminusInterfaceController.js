@@ -1,3 +1,5 @@
+import { LuminusOutlineEffect } from './LuminusOutlineEffect';
+
 /**
  * @class
  */
@@ -46,31 +48,19 @@ export class LuminusInterfaceController {
          */
         this.closeAction = null;
 
-        console.log(this.scene.input.gamepad);
-        this.pad = this.scene.input.gamepad.pad1;
+        /**
+         * The outline effect that will be used on the element.
+         * @type { LuminusOutlineEffect }
+         */
+        this.outlineEffect = new LuminusOutlineEffect(this.scene);
 
-        this.scene.input.on(
-            'pointerup',
-            /**
-             *
-             * @param { Phaser.Input.Pointer } pointer
-             */
-            (pointer) => {
-                if (pointer.rightButtonReleased()) {
-                    this.moveDown();
-                }
-                if (pointer.leftButtonReleased()) {
-                    this.moveUp();
-                }
-            }
-        );
+        this.pad = this.scene.input.gamepad.pad1;
 
         if (this.pad) {
             let difference = 0;
             this.scene.events.on('update', (time, delta) => {
-                if (difference === 0) {
+                if (difference === 0 || Math.abs(time - difference) > 75) {
                     difference = time;
-                } else if (Math.abs(time - difference) > 75) {
                     if (this.pad.axes[0].getValue() === 1) {
                         this.moveRight();
                     } else if (this.pad.axes[0].getValue() === -1) {
@@ -80,7 +70,6 @@ export class LuminusInterfaceController {
                     } else if (this.pad.axes[1].getValue() === 1) {
                         this.moveDown();
                     }
-                    difference = 0;
                 }
             });
             this.pad.on('down', (pad) => {
@@ -98,15 +87,10 @@ export class LuminusInterfaceController {
                 }
 
                 if (this.pad.B) {
-                    this.executeFunctionByName(
-                        this.closeAction.action,
-                        this.closeAction.context,
-                        this.closeAction.args
-                    );
+                    this.close();
                 }
 
                 if (this.pad.A) {
-                    console.log(this.currentElementAction);
                     this.executeFunctionByName(
                         this.currentElementAction.action,
                         this.currentElementAction.context,
@@ -117,6 +101,21 @@ export class LuminusInterfaceController {
         }
 
         this.scene.input.keyboard.on('keydown', (keyboard) => {
+            if (keyboard.keyCode === 27) {
+                this.close();
+            }
+            if (keyboard.keyCode === 37) {
+                this.moveLeft();
+            }
+            if (keyboard.keyCode === 39) {
+                this.moveRight();
+            }
+            if (keyboard.keyCode === 38) {
+                this.moveUp();
+            }
+            if (keyboard.keyCode === 40) {
+                this.moveDown();
+            }
             if (keyboard.keyCode === 13)
                 this.executeFunctionByName(
                     this.currentElementAction.action,
@@ -124,6 +123,14 @@ export class LuminusInterfaceController {
                     this.currentElementAction.args
                 );
         });
+    }
+
+    close() {
+        this.executeFunctionByName(
+            this.closeAction.action,
+            this.closeAction.context,
+            this.closeAction.args
+        );
     }
 
     /**
@@ -136,6 +143,7 @@ export class LuminusInterfaceController {
             return;
         }
         this.removeSelection(this.currentElementAction.element);
+        this.scene.sound.play('menu_navigation');
         this.currentMatrixCol++;
         let currentPosition = this.interfaceElements[this.currentLinePosition][
             this.currentMatrixRow
@@ -168,14 +176,17 @@ export class LuminusInterfaceController {
         if (currentPosition) {
             this.currentElementAction = currentPosition;
         } else {
+            let position;
+            if (this.interfaceElements[this.currentLinePosition].length === 1) {
+                position = 0;
+            } else {
+                position = this.interfaceElements[this.currentLinePosition]
+                    .length;
+            }
             this.currentElementAction = this.interfaceElements[
                 this.currentLinePosition
-            ][this.currentMatrixRow][
-                this.interfaceElements[this.currentLinePosition].length
-            ];
-            this.currentMatrixCol = this.interfaceElements[
-                this.currentLinePosition
-            ].length;
+            ][this.currentMatrixRow][position];
+            this.currentMatrixCol = position;
         }
         this.updateHighlightedElement(this.currentElementAction.element);
     }
@@ -303,11 +314,13 @@ export class LuminusInterfaceController {
     }
 
     updateHighlightedElement(element) {
-        element.tint = 0xff00ff;
+        // element.tint = 0xff00ff;
+        if (element) this.outlineEffect.applyEffect(element);
     }
 
     removeSelection(element) {
-        element.tint = 0xffffff;
+        // element.tint = 0xffffff;
+        if (element) this.outlineEffect.removeEffect(element);
     }
 
     hasNoLineData() {
@@ -322,7 +335,6 @@ export class LuminusInterfaceController {
     }
 
     executeFunctionByName(functionName, context, args) {
-        console.log(functionName);
         var args = Array.prototype.slice.call(arguments, 2);
         var namespaces = functionName.split('.');
         var func = namespaces.pop();
