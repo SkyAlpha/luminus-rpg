@@ -29,6 +29,9 @@ import yellow_bar from '../assets/sprites/HUD/yellow_bar.png';
 import green_bar from '../assets/sprites/HUD/green_bar.png';
 import blue_bar from '../assets/sprites/HUD/blue_bar.png';
 import progressbar_background from '../assets/sprites/HUD/bars_background.png';
+import inventory_shortcut from '../assets/sprites/HUD/I_Key_Light.png';
+import buttonY from '../assets/sprites/XboxOne_Y.png';
+import buttonXboxWindows from '../assets/sprites/XboxOne_Windows.png';
 
 // Inventory
 import inventory_box from '../assets/sprites/inventory_box.png';
@@ -136,6 +139,14 @@ export const Images = [
     {
         name: 'buttonA',
         image: buttonA,
+    },
+    {
+        name: 'buttonY',
+        image: buttonY,
+    },
+    {
+        name: 'buttonXboxWindows',
+        image: buttonXboxWindows,
     },
     {
         name: 'question_mark',
@@ -246,6 +257,10 @@ export const Images = [
     {
         name: 'progressbar_background',
         image: progressbar_background,
+    },
+    {
+        name: 'inventory_shortcut',
+        image: inventory_shortcut,
     },
 
     // Inventory

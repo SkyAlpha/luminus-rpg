@@ -2,6 +2,7 @@ import Phaser from 'phaser';
 import { Player } from '../entities/Player';
 import { LuminusHUDProgressBar } from '../plugins/HUD/LuminusHUDProgressBar';
 import { LuminusHealthBar } from '../plugins/LuminusHealthBar';
+import { LuminusUtils } from '../utils/LuminusUtils';
 import { InventorySceneName } from './InventoryScene';
 
 /**
@@ -126,6 +127,7 @@ export class HUDScene extends Phaser.Scene {
         /**
          * The Image that indicates the HP of the Player.
          * @type { Phaser.GameObjects.Image }
+         * @default
          */
         this.hp_hud = null;
 
@@ -134,6 +136,27 @@ export class HUDScene extends Phaser.Scene {
          * @type { LuminusHealthBar }
          */
         this.health_bar = null;
+
+        /**
+         * The inventory sprite shortcut name.
+         * @type { string }
+         * @default
+         */
+        this.inventoryShortcutSprite = 'inventory_shortcut';
+
+        /**
+         * The Console Inventory Sprite Name.
+         * @type { string }
+         * @default
+         */
+        this.inventoryShortcutIconConsole = 'buttonXboxWindows';
+
+        /**
+         * The icon that represents
+         * @type { Phaser.GameObjects.Image }
+         * @default
+         */
+        this.inventoryShortcutIcon = null;
     }
 
     init(args) {
@@ -195,6 +218,25 @@ export class HUDScene extends Phaser.Scene {
                 this.scene.get(this.inventorySceneName).stopScene();
                 // this.scene.stop(this.inventorySceneName);
             }
+        });
+
+        if (!LuminusUtils.isMobile()) {
+            this.inventoryShortcutIcon = this.add.image(
+                this.settingsIcon.x - 70,
+                this.settingsIcon.y + 15,
+                this.inventoryShortcutSprite
+            );
+            const scale = (30 * 100) / this.inventoryShortcutIcon.width / 100;
+            this.inventoryShortcutIcon.setScale(scale);
+        }
+
+        this.input.gamepad.on('connected', (pad) => {
+            this.inventoryShortcutIcon.setTexture(
+                this.inventoryShortcutIconConsole
+            );
+        });
+        this.input.gamepad.on('disconnected', (pad) => {
+            this.inventoryShortcutIcon.setTexture(this.inventoryShortcutSprite);
         });
 
         // Launch the settings Scene.
