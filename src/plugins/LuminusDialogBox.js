@@ -135,7 +135,7 @@ export class LuminusDialogBox {
          * @type { number }
          * @default
          *  */
-        this.dialogMaxLines = 5;
+        this.dialogMaxLines = 3;
         /**
          * Space between lines of the dialog text.
          * @type { number }
@@ -354,6 +354,32 @@ export class LuminusDialogBox {
             }
         });
 
+        this.currentLeftPortraitName = 'lucius_portrait_beard';
+        this.leftPortraitImage = this.scene.add.image(
+            this.dialog.x + 100,
+            this.dialog.y - 60,
+            this.currentLeftPortraitName
+        );
+        this.leftPortraitImage.visible = false;
+
+        this.leftName = 'Lucius';
+        this.leftNameText = this.scene.add
+            .text(
+                this.dialog.x + this.margin,
+                this.dialog.y + 20,
+                ` ${this.leftName}: `,
+                {
+                    fontSize: this.fontSize,
+                    letterSpacing: this.letterSpacing,
+                    fontFamily: this.fontFamily,
+                    color: 'white',
+                    backgroundColor: 'black',
+                }
+            )
+            .setScrollFactor(0, 0)
+            .setDepth(99999999999999999);
+        this.leftNameText.visible = false;
+
         this.scene.input.gamepad.on('connected', (pad) => {
             this.gamepad = pad;
             this.actionButton.setTexture(this.mobileActionButtonSpriteName);
@@ -396,6 +422,8 @@ export class LuminusDialogBox {
             this.dialog.textMessage.destroy();
             this.luminusVideoOpener.checkHasVideo(this.allProperties);
             this.dialog.visible = false;
+            this.leftPortraitImage.visible = false;
+            this.leftNameText.visible = false;
             this.canShowDialog = true;
             this.actionButton.visible = false;
             this.interactionIcon.visible = false;
@@ -438,6 +466,8 @@ export class LuminusDialogBox {
         // this.actionButton.visible = false;
         this.dialog.visible = true;
         this.canShowDialog = false;
+        this.leftPortraitImage.visible = true;
+        this.leftNameText.visible = true;
         const maxLettersPage =
             Math.floor(this.textWidth / this.fontWidth) * this.dialogMaxLines;
         this.pagesNumber = Math.ceil(
@@ -592,7 +622,7 @@ export class LuminusDialogBox {
         this.dialog.textMessage = this.scene.add
             .text(
                 this.margin * 2,
-                this.cameraHeight + this.margin / 2 - this.dialogHeight,
+                this.cameraHeight + this.margin * 2.5 - this.dialogHeight,
                 '',
                 {
                     wordWrap: {

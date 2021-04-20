@@ -39,6 +39,9 @@ import inventory_background from '../assets/sprites/inventory/inventory_backgrou
 import inventory_title from '../assets/sprites/inventory/inventory_title.png';
 import inventory_slot from '../assets/sprites/inventory/inventory_slot.png';
 
+// Portraits
+import lucius_portrait_beard from '../assets/sprites/portraits/lucius_portrait_beard.png';
+
 // Consumables
 
 import red_potion from '../assets/sprites/consumables/red_potion.png';
@@ -261,6 +264,12 @@ export const Images = [
     {
         name: 'inventory_shortcut',
         image: inventory_shortcut,
+    },
+
+    // Portraits
+    {
+        name: 'lucius_portrait_beard',
+        image: lucius_portrait_beard,
     },
 
     // Inventory

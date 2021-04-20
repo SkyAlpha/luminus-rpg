@@ -1278,7 +1278,7 @@
          "startx":-96,
          "starty":-64,
          "type":"tilelayer",
-         "visible":true,
+         "visible":false,
          "width":176,
          "x":0,
          "y":0
@@ -1500,7 +1500,7 @@
                         {
                          "name":"message",
                          "type":"string",
-                         "value":"Welcome to the Luminus RPG, a PhaserJS template for creating Action RPG Games. This is a Work in Progress project, so expect to find Bugs. If you find any, please contact me on the Phaser Discord server @SkyAlpha. I hope you enjoy the experience. Thx for playing."
+                         "value":"Welcome to the Luminus RPG, a PhaserJS template for creating Action RPG Games. This is a Work in Progress project, so expect to find Bugs. If you find any, please contact me on the Phaser Discord server @SkyAlpha.\n\n\n\n\n\nI hope you enjoy the experience. Thx for playing.\n"
                         }],
                  "rotation":0,
                  "type":"",
@@ -1551,7 +1551,7 @@
                  "value":"Essa lenha est\u00e1 sequinha. H\u00e1 muitos dias n\u00e3o vemos chuva."
                 }],
          "type":"objectgroup",
-         "visible":false,
+         "visible":true,
          "x":0,
          "y":0
         }, 
@@ -1765,7 +1765,7 @@
                 }],
          "opacity":1,
          "type":"objectgroup",
-         "visible":true,
+         "visible":false,
          "x":0,
          "y":0
         }, 
@@ -1810,7 +1810,7 @@
                 }],
          "opacity":1,
          "type":"objectgroup",
-         "visible":true,
+         "visible":false,
          "x":0,
          "y":0
         }, 

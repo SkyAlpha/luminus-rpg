@@ -779,7 +779,7 @@
   </chunk>
   </data>
  </layer>
- <objectgroup id="7" name="info" visible="0">
+ <objectgroup id="7" name="info">
   <properties>
    <property name="message" value="Essa lenha está sequinha. Há muitos dias não vemos chuva."/>
   </properties>
@@ -845,7 +845,14 @@
   </object>
   <object id="59" name="initial_info" x="-1117" y="-704" width="27" height="123">
    <properties>
-    <property name="message" value="Welcome to the Luminus RPG, a PhaserJS template for creating Action RPG Games. This is a Work in Progress project, so expect to find Bugs. If you find any, please contact me on the Phaser Discord server @SkyAlpha. I hope you enjoy the experience. Thx for playing."/>
+    <property name="message">Welcome to the Luminus RPG, a PhaserJS template for creating Action RPG Games. This is a Work in Progress project, so expect to find Bugs. If you find any, please contact me on the Phaser Discord server @SkyAlpha.
+
+
+
+
+
+I hope you enjoy the experience. Thx for playing.
+</property>
    </properties>
   </object>
   <object id="60" name="side_lake" x="-592" y="89" width="52.5" height="92.5">
@@ -859,7 +866,7 @@
    </properties>
   </object>
  </objectgroup>
- <objectgroup id="14" name="enemies">
+ <objectgroup id="14" name="enemies" visible="0">
   <object id="78" x="-830.667" y="-492.667" width="160.667" height="95.3333">
    <properties>
     <property name="id" value="2"/>
