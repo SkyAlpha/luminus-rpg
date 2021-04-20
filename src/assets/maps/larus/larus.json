@@ -1498,9 +1498,9 @@
                  "name":"initial_info",
                  "properties":[
                         {
-                         "name":"message",
-                         "type":"string",
-                         "value":"Welcome to the Luminus RPG, a PhaserJS template for creating Action RPG Games. This is a Work in Progress project, so expect to find Bugs. If you find any, please contact me on the Phaser Discord server @SkyAlpha.\n\n\n\n\n\nI hope you enjoy the experience. Thx for playing.\n"
+                         "name":"messageID",
+                         "type":"int",
+                         "value":1
                         }],
                  "rotation":0,
                  "type":"",

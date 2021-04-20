@@ -1,3 +1,4 @@
+import { CHATS } from '../consts/DB_SEED/Chats';
 import { Player } from '../entities/Player';
 import { LuminusDialogBox } from './LuminusDialogBox';
 
@@ -53,7 +54,7 @@ export class LuminusTiledInfoBox {
          * @type {string}
          * @default
          * */
-        this.messageAttribute = 'message';
+        this.messageAttribute = 'messageID';
     }
 
     /**
@@ -73,14 +74,21 @@ export class LuminusTiledInfoBox {
                     infoObj.width,
                     infoObj.height
                 );
+                let obj = infoObj.properties.find(
+                    (f) => f.name === this.messageAttribute
+                );
+                if (!obj) {
+                    return;
+                }
+                let messageID = obj.value;
+                console.log(messageID, CHATS);
+                let chat = CHATS.find((c) => c.id == messageID);
                 this.scene.physics.add.existing(zone);
                 zone.setOrigin(0, 0);
                 zone.body.immovable = true;
                 zones.push({
                     ...zone,
-                    message: infoObj.properties.find(
-                        (f) => f.name === this.messageAttribute
-                    ).value,
+                    chat: chat.chat,
                     properties: infoObj.properties,
                 });
             });
@@ -97,7 +105,7 @@ export class LuminusTiledInfoBox {
                 this.luminusDialogBox.isOverlapingChat = true;
                 this.luminusDialogBox.actionButton.visible = true;
                 this.luminusDialogBox.interactionIcon.visible = true;
-                this.luminusDialogBox.dialogMessage = zone.message.trim();
+                this.luminusDialogBox.chat = zone.chat;
                 this.player.canAtack = false;
             },
             (d) => {

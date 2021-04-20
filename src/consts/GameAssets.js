@@ -41,6 +41,7 @@ import inventory_slot from '../assets/sprites/inventory/inventory_slot.png';
 
 // Portraits
 import lucius_portrait_beard from '../assets/sprites/portraits/lucius_portrait_beard.png';
+import lucius_portrait_beardless from '../assets/sprites/portraits/lucius_portrait_beardless.png';
 
 // Consumables
 
@@ -270,6 +271,10 @@ export const Images = [
     {
         name: 'lucius_portrait_beard',
         image: lucius_portrait_beard,
+    },
+    {
+        name: 'lucius_portrait_beardless',
+        image: lucius_portrait_beardless,
     },
 
     // Inventory

@@ -265,6 +265,17 @@ export class LuminusDialogBox {
          * @default
          */
         this.fontFamily = 'Monospace, "Press Start 2P"';
+
+        /**
+         * The Current Chat Configuration that is being displayed.
+         */
+        this.currentChat = null;
+
+        /**
+         * This variable controls if the chat will be shown from an NPC or any other Chat Income for example.
+         * @type { boolean }
+         */
+        this.showRandomChat = false;
     }
 
     create() {
@@ -354,7 +365,7 @@ export class LuminusDialogBox {
             }
         });
 
-        this.currentLeftPortraitName = 'lucius_portrait_beard';
+        this.currentLeftPortraitName = '';
         this.leftPortraitImage = this.scene.add.image(
             this.dialog.x + 100,
             this.dialog.y - 60,
@@ -362,7 +373,7 @@ export class LuminusDialogBox {
         );
         this.leftPortraitImage.visible = false;
 
-        this.leftName = 'Lucius';
+        this.leftName = 'Someone';
         this.leftNameText = this.scene.add
             .text(
                 this.dialog.x + this.margin,
@@ -380,6 +391,34 @@ export class LuminusDialogBox {
             .setDepth(99999999999999999);
         this.leftNameText.visible = false;
 
+        this.rightPortraitImage = this.scene.add.image(
+            this.dialog.x + this.dialog.width * this.dialog.scaleX - 100,
+            this.dialog.y - 60,
+            this.currentLeftPortraitName
+        );
+        this.rightPortraitImage.flipX = true;
+        this.rightPortraitImage.visible = false;
+
+        this.rightNameText = this.scene.add
+            .text(
+                this.dialog.x +
+                    this.dialog.width * this.dialog.scaleX -
+                    this.margin,
+                this.dialog.y + 20,
+                ``,
+                {
+                    fontSize: this.fontSize,
+                    letterSpacing: this.letterSpacing,
+                    fontFamily: this.fontFamily,
+                    color: 'white',
+                    backgroundColor: 'black',
+                }
+            )
+            .setScrollFactor(0, 0)
+            .setDepth(99999999999999999)
+            .setOrigin(1, 0);
+        this.rightNameText.visible = false;
+
         this.scene.input.gamepad.on('connected', (pad) => {
             this.gamepad = pad;
             this.actionButton.setTexture(this.mobileActionButtonSpriteName);
@@ -390,13 +429,42 @@ export class LuminusDialogBox {
         });
     }
 
+    checkSpeaker() {
+        this.leftNameText.alpha = 0.5;
+        this.leftPortraitImage.alpha = 0.5;
+        this.rightNameText.alpha = 0.5;
+        this.rightPortraitImage.alpha = 0.5;
+        if (this.currentChat.left) {
+            this.leftNameText.setText(` ${this.currentChat.leftName}: `);
+            this.leftPortraitImage.setTexture(
+                this.currentChat.leftPortraitName
+            );
+            this.leftNameText.alpha = 1;
+            this.leftPortraitImage.alpha = 1;
+        }
+        if (this.currentChat.right) {
+            this.rightNameText.setText(` ${this.currentChat.rightName}: `);
+            this.rightPortraitImage.setTexture(
+                this.currentChat.rightPortraitName
+            );
+            this.rightNameText.visible = true;
+            this.rightPortraitImage.visible = true;
+            this.rightNameText.alpha = 1;
+            this.rightPortraitImage.alpha = 1;
+        }
+    }
+
     checkButtonDown() {
         if (
-            this.isOverlapingChat &&
+            (this.isOverlapingChat || this.showRandomChat) &&
             this.checkButtonsPressed() &&
             !this.dialog.visible
         ) {
             // First time, show the Dialog.
+            this.currentChat = this.chat[0];
+            this.currentChat.index = 0;
+            this.dialogMessage = this.currentChat.message;
+            this.checkSpeaker();
             this.showDialog();
             this.player.container.body.maxSpeed = 0;
         } else if (this.isAnimatingText && this.checkButtonsPressed()) {
@@ -413,6 +481,18 @@ export class LuminusDialogBox {
             this.dialog.textMessage.text = '';
             this.setText(this.pagesMessage[this.currentPage], true);
         } else if (
+            this.currentChat &&
+            this.currentChat.index < this.chat.length - 1
+        ) {
+            let index = this.currentChat.index;
+            this.currentChat = this.chat[index + 1];
+            this.currentChat.index = index + 1;
+            this.checkSpeaker();
+            this.dialogMessage = this.currentChat.message;
+            this.pagesMessage = [];
+            this.setText('', false);
+            this.showDialog(false);
+        } else if (
             this.checkButtonsPressed() &&
             this.dialog.visible &&
             this.dialog.textMessage &&
@@ -424,6 +504,8 @@ export class LuminusDialogBox {
             this.dialog.visible = false;
             this.leftPortraitImage.visible = false;
             this.leftNameText.visible = false;
+            this.rightNameText.visible = false;
+            this.rightPortraitImage.visible = false;
             this.canShowDialog = true;
             this.actionButton.visible = false;
             this.interactionIcon.visible = false;
@@ -461,7 +543,7 @@ export class LuminusDialogBox {
      * Shows the dialog with the message from the zone it's overlaping.
      * Make sure you have only one overlaping zone with the player.
      */
-    showDialog() {
+    showDialog(createText = true) {
         this.currentPage = 0;
         // this.actionButton.visible = false;
         this.dialog.visible = true;
@@ -479,8 +561,7 @@ export class LuminusDialogBox {
                 this.dialogMessage.substr(i * maxLettersPage, maxLettersPage)
             );
         }
-
-        this.createText();
+        if (createText) this.createText();
         // Animates the text
         this.setText(this.pagesMessage[0], true);
     }
