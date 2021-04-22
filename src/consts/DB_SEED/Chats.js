@@ -45,7 +45,7 @@ export const CHATS = [
                 leftName: 'Lucius',
                 left: false,
                 message:
-                    "I'm you, but a couple years from now. Now you listen, I don't have much time! Beware to explore every single inch of this world, because you will find The One who will show you the path to the biggest treasure you will ever have.",
+                    "I'm you, but a couple years from now. Now you listen, I don't have much time! Beware to explore every single inch of this world, because here you will find The One who will show you the path to the biggest treasure you will ever have.",
                 rightPortraitName: 'lucius_portrait_beardless',
                 rightName: 'Future Lucius',
                 right: true,

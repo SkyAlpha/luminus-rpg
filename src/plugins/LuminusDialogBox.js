@@ -551,8 +551,12 @@ export class LuminusDialogBox {
             this.dialog.textMessage.destroy();
             this.luminusVideoOpener.checkHasVideo(this.allProperties);
             this.dialog.visible = false;
-            this.exitFromScene('left');
-            this.exitFromScene('right');
+            // this.exitFromScene('left');
+            this.leftPortraitImage.visible = false;
+            this.leftNameText.visible = false;
+            this.rightPortraitImage.visible = false;
+            this.rightNameText.visible = false;
+            // this.exitFromScene('right');
             this.canShowDialog = true;
             this.actionButton.visible = false;
             this.interactionIcon.visible = false;

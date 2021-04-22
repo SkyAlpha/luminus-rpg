@@ -1,4 +1,5 @@
 import Phaser from 'phaser';
+import { LuminusUtils } from '../utils/LuminusUtils';
 
 /**
  * The Introduction Scene.
@@ -179,7 +180,7 @@ export class IntroScene extends Phaser.Scene {
     }
 
     mobileMargin() {
-        return this.isMobile == true ? 30 : 60;
+        return this.isMobile == true ? 15 : 60;
     }
 
     /**
