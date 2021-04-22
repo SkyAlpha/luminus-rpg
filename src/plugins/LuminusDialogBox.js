@@ -111,7 +111,7 @@ export class LuminusDialogBox {
          * @type { number }
          * @default
          *  */
-        this.dialogSpeed = 100;
+        this.dialogSpeed = 20;
         /**
          * Dialog font size.
          * @type { number }
@@ -347,7 +347,7 @@ export class LuminusDialogBox {
         );
 
         this.scene.input.keyboard.on('keydown', (key) => {
-            this.checkButtonDown();
+            if (key.keyCode === 32) this.checkButtonDown();
         });
 
         const joystickScene = this.scene.scene.get('JoystickScene');
@@ -367,8 +367,8 @@ export class LuminusDialogBox {
 
         this.currentLeftPortraitName = '';
         this.leftPortraitImage = this.scene.add.image(
-            this.dialog.x + 100,
-            this.dialog.y - 60,
+            this.dialog.x + this.dialog.scaleX * 100,
+            this.dialog.y - this.dialog.scaleY * 60,
             this.currentLeftPortraitName
         );
         this.leftPortraitImage.visible = false;
@@ -377,7 +377,7 @@ export class LuminusDialogBox {
         this.leftNameText = this.scene.add
             .text(
                 this.dialog.x + this.margin,
-                this.dialog.y + 20,
+                this.dialog.y + this.dialog.scaleY * 20,
                 ` ${this.leftName}: `,
                 {
                     fontSize: this.fontSize,
@@ -393,7 +393,7 @@ export class LuminusDialogBox {
 
         this.rightPortraitImage = this.scene.add.image(
             this.dialog.x + this.dialog.width * this.dialog.scaleX - 100,
-            this.dialog.y - 60,
+            this.dialog.y - this.dialog.scaleY * 60,
             this.currentLeftPortraitName
         );
         this.rightPortraitImage.flipX = true;
@@ -404,7 +404,7 @@ export class LuminusDialogBox {
                 this.dialog.x +
                     this.dialog.width * this.dialog.scaleX -
                     this.margin,
-                this.dialog.y + 20,
+                this.dialog.y + this.dialog.scaleY * 20,
                 ``,
                 {
                     fontSize: this.fontSize,
@@ -429,16 +429,29 @@ export class LuminusDialogBox {
         });
     }
 
+    /**
+     * Checks what Speaker should have the highlight. Highlights the current Speaker, and makes the secondary speaker alpha lower.
+     */
     checkSpeaker() {
         this.leftNameText.alpha = 0.5;
         this.leftPortraitImage.alpha = 0.5;
         this.rightNameText.alpha = 0.5;
         this.rightPortraitImage.alpha = 0.5;
         if (this.currentChat.left) {
-            this.leftNameText.setText(` ${this.currentChat.leftName}: `);
-            this.leftPortraitImage.setTexture(
-                this.currentChat.leftPortraitName
-            );
+            if (this.currentChat.leftName) {
+                this.leftNameText.visible = true;
+                this.leftNameText.setText(` ${this.currentChat.leftName}: `);
+            } else {
+                this.leftNameText.visible = false;
+            }
+            if (this.currentChat.leftPortraitName) {
+                this.leftPortraitImage.visible = true;
+                this.leftPortraitImage.setTexture(
+                    this.currentChat.leftPortraitName
+                );
+            } else {
+                this.leftPortraitImage.visible = false;
+            }
             this.leftNameText.alpha = 1;
             this.leftPortraitImage.alpha = 1;
         }
@@ -452,8 +465,44 @@ export class LuminusDialogBox {
             this.rightNameText.alpha = 1;
             this.rightPortraitImage.alpha = 1;
         }
+        if (this.currentChat.leftExit) this.exitFromScene('left');
+        if (this.currentChat.rightExit) this.exitFromScene('right');
     }
 
+    exitFromScene(orientation) {
+        if (orientation === 'right') {
+            this.scene.tweens.add({
+                targets: this.rightPortraitImage,
+                x: this.rightPortraitImage.x + 500,
+                duration: 1000,
+                onStart: () => {
+                    this.rightNameText.visible = false;
+                },
+                onComplete: () => {
+                    this.rightPortraitImage.visible = false;
+                    this.rightPortraitImage.x = this.rightPortraitImage.x - 500;
+                },
+            });
+        }
+        if (orientation === 'left') {
+            this.scene.tweens.add({
+                targets: this.leftPortraitImage,
+                x: this.leftPortraitImage.x - 500,
+                duration: 1000,
+                onStart: () => {
+                    this.leftNameText.visible = false;
+                },
+                onComplete: () => {
+                    this.leftPortraitImage.visible = false;
+                    this.leftPortraitImage.x = this.leftPortraitImage.x + 500;
+                },
+            });
+        }
+    }
+
+    /**
+     * Checks what to do when the player presses the action button.
+     */
     checkButtonDown() {
         if (
             (this.isOverlapingChat || this.showRandomChat) &&
@@ -502,10 +551,8 @@ export class LuminusDialogBox {
             this.dialog.textMessage.destroy();
             this.luminusVideoOpener.checkHasVideo(this.allProperties);
             this.dialog.visible = false;
-            this.leftPortraitImage.visible = false;
-            this.leftNameText.visible = false;
-            this.rightNameText.visible = false;
-            this.rightPortraitImage.visible = false;
+            this.exitFromScene('left');
+            this.exitFromScene('right');
             this.canShowDialog = true;
             this.actionButton.visible = false;
             this.interactionIcon.visible = false;
@@ -548,17 +595,41 @@ export class LuminusDialogBox {
         // this.actionButton.visible = false;
         this.dialog.visible = true;
         this.canShowDialog = false;
-        this.leftPortraitImage.visible = true;
-        this.leftNameText.visible = true;
         const maxLettersPage =
             Math.floor(this.textWidth / this.fontWidth) * this.dialogMaxLines;
         this.pagesNumber = Math.ceil(
             this.dialogMessage.length / maxLettersPage
         );
         this.pagesMessage = [];
+        let lettersOffset = 0;
         for (let i = 0; i < this.pagesNumber; i++) {
+            let localText = this.dialogMessage.substr(
+                i * maxLettersPage - lettersOffset,
+                maxLettersPage
+            );
+
+            let localMaxLength = localText.length;
+            // Check for whole letter so it doesn't break final words.
+            let ready = true;
+            if (this.pagesNumber !== i + 1) {
+                for (let i = localText.length - 1; i === 0 || ready; i--) {
+                    if (localText[i] === '' || localText[i] === ' ') {
+                        ready = false;
+                        localMaxLength = i;
+                        break;
+                    }
+                    lettersOffset++;
+                }
+            }
+            let offset = 0;
+            if (i != 0) {
+                offset = lettersOffset;
+            }
             this.pagesMessage.push(
-                this.dialogMessage.substr(i * maxLettersPage, maxLettersPage)
+                this.dialogMessage.substr(
+                    i * maxLettersPage - offset,
+                    localMaxLength
+                )
             );
         }
         if (createText) this.createText();
@@ -676,6 +747,26 @@ export class LuminusDialogBox {
 
             this.actionButton.x = this.cameraWidth - this.margin * 4;
             this.actionButton.y = this.cameraHeight - this.margin * 3;
+
+            this.leftPortraitImage.setPosition(
+                this.dialog.x + this.dialog.scaleX * 100,
+                this.dialog.y - this.dialog.scaleY * 60
+            );
+            this.leftNameText.setPosition(
+                this.dialog.x + this.margin,
+                this.dialog.y + this.dialog.scaleY * 20
+            );
+
+            this.rightPortraitImage.setPosition(
+                this.dialog.x + this.dialog.width * this.dialog.scaleX - 100,
+                this.dialog.y - this.dialog.scaleY * 60
+            );
+            this.rightNameText.setPosition(
+                this.dialog.x +
+                    this.dialog.width * this.dialog.scaleX -
+                    this.margin,
+                this.dialog.y + this.dialog.scaleY * 20
+            );
             if (this.dialog.textMessage && this.dialog.textMessage.visible) {
                 this.dialog.textMessage.y =
                     this.cameraHeight + this.margin / 2 - this.dialogHeight;

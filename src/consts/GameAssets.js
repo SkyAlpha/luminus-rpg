@@ -76,12 +76,12 @@ import tile_map_json from '../assets/maps/larus/larus.json';
 import tutorial_map_json from '../assets/maps/tutorial/tutorial.json';
 
 // Sound
-import space_sound_key from '../assets/sound/typing/space_sound.mp3';
-import typing_key_01 from '../assets/sound/typing/typing_key_01.mp3';
-import typing_key_02 from '../assets/sound/typing/typing_key_02.mp3';
-import typing_key_03 from '../assets/sound/typing/typing_key_03.mp3';
-import typing_key_04 from '../assets/sound/typing/typing_key_04.mp3';
-import typing_key_05 from '../assets/sound/typing/typing_key_05.mp3';
+import space_sound_key from '../assets/sound/typing/blip_06.mp3';
+import typing_key_01 from '../assets/sound/typing/blip_01.mp3';
+import typing_key_02 from '../assets/sound/typing/blip_02.mp3';
+import typing_key_03 from '../assets/sound/typing/blip_03.mp3';
+import typing_key_04 from '../assets/sound/typing/blip_04.mp3';
+import typing_key_05 from '../assets/sound/typing/blip_05.mp3';
 import path_to_lake_land from '../assets/sound/path_to_lake_land.mp3';
 import dungeon_ambient from '../assets/sound/dungeon_ambient.mp3';
 import dark_theme from '../assets/sound/dark_theme.mp3';

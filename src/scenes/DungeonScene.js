@@ -50,6 +50,7 @@ export class DungeonScene extends Phaser.Scene {
         this.scene.launch('DialogScene', {
             player: this.player,
             map: this.dungeon.map,
+            scene: this,
         });
 
         this.scene.launch('HUDScene', { player: this.player });

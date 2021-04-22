@@ -54,6 +54,12 @@ export class LuminusTypingSoundManager {
          * @default
          */
         this.letterTypedIndex = 0;
+
+        /**
+         * The Volume intensity of the typping sound effect.
+         * @type { number }
+         */
+        this.typingSoundVolume = 0.4;
     }
 
     /**
@@ -61,8 +67,10 @@ export class LuminusTypingSoundManager {
      */
     create() {
         this.spaceAudioManager = this.scene.sound.add(this.spaceSoundName);
+        this.spaceAudioManager.volume = this.typingSoundVolume;
         for (let i = 0; i < this.typingKeySounds.length; i++) {
             const audio = this.scene.sound.add(this.typingKeySounds[i]);
+            audio.volume = this.typingSoundVolume;
             this.letterAudios.push(audio);
         }
     }
