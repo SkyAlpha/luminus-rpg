@@ -168,4 +168,11 @@ export class PanelComponent {
             .setOrigin(0.5, 0.5)
             .setScale(0.8);
     }
+
+    destroy() {
+        this.panelBackground.destroy();
+        this.panelTitle.destroy();
+        this.panelTitleText.destroy();
+        this.closeButton.destroy();
+    }
 }

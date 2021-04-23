@@ -257,7 +257,7 @@ export class LuminusDialogBox {
          * @type { Phaser.Input.Gamepad }
          * @default
          */
-        this.gamepad = null;
+        this.gamepad = this.scene.input.gamepad;
 
         /**
          * Font family to be used. It has to be included in your Phaser project.
@@ -442,14 +442,25 @@ export class LuminusDialogBox {
             .setOrigin(1, 0);
         this.rightNameText.visible = false;
 
+        if (this.gamepad) {
+            this.setGamepadTextures();
+        }
         this.scene.input.gamepad.on('connected', (pad) => {
             this.gamepad = pad;
-            this.actionButton.setTexture(this.mobileActionButtonSpriteName);
+            this.setGamepadTextures();
         });
         this.scene.input.gamepad.on('down', (pad) => {
             this.gamepad = pad;
             this.checkButtonDown();
         });
+    }
+
+    /**
+     * Sets the GamePad Textures.
+     * If the gamepad is connected, it should use the gamepad textures.
+     */
+    setGamepadTextures() {
+        this.actionButton.setTexture(this.mobileActionButtonSpriteName);
     }
 
     /**

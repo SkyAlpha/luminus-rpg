@@ -31,14 +31,23 @@ export class MainMenuScene extends Phaser.Scene {
 
         /**
          * Max width of the text inside the dialog.
-         * @type { number }  */
+         * @type { number }
+         * @default
+         */
         this.textWidth = 452; // Defines the text Width.
 
         /**
          * The Font Family of the scene.
          * @type { string }
+         * @default
          */
         this.fontFamily = '"Press Start 2P"';
+
+        /**
+         * The last InteractionControler Current Action.
+         *  @type { any }
+         */
+        this.lastMenuAction = null;
     }
 
     preload() {
@@ -79,14 +88,25 @@ export class MainMenuScene extends Phaser.Scene {
                     fontFamily: '"Press Start 2P"',
                 }
             )
-            .setOrigin(0.5, 0.5);
+            .setOrigin(0.5, 0.5)
+            .setInteractive();
+
+        this.gameStartText.on('pointerdown', (pointer) => {
+            this.startGame();
+        });
 
         this.creditsText = this.add
             .text(this.gameStartText.x, this.gameStartText.y + 60, 'Credits', {
                 fontSize: 34,
                 fontFamily: this.fontFamily,
             })
-            .setOrigin(0.5, 0.5);
+            .setOrigin(0.5, 0.5)
+            .setInteractive();
+
+        this.creditsText.on('pointerdown', (pointer, object) => {
+            console.log(object);
+            this.showCredits();
+        });
 
         this.setMainMenuActions();
     }
@@ -122,13 +142,14 @@ export class MainMenuScene extends Phaser.Scene {
     }
 
     showCredits() {
+        this.luminusInterfaceControler.menuHistoryAdd();
         this.panelComponent = new PanelComponent(this);
         this.creditsBackground = this.panelComponent.panelBackground;
         this.creditsTitle = this.panelComponent.panelTitle;
         this.creditsTitleText = this.panelComponent.panelTitleText;
         this.panelComponent.setTitleText('Credits');
         this.closeButton = this.panelComponent.closeButton;
-        this.creditsText = this.add
+        this.creditsTextContent = this.add
             .text(
                 this.creditsBackground.x + 30,
                 this.creditsBackground.y +
@@ -146,10 +167,45 @@ Forest - Intro Scene Music by "syncopika"
                 }
             )
             .setOrigin(0, 0);
+
+        let closeAction = {
+            element: this.closeButton,
+            action: 'closeCredits',
+            context: this,
+            args: '',
+        };
+        this.luminusInterfaceControler.removeCurrentSelectionHighlight();
+        this.luminusInterfaceControler.clearItems();
+        this.luminusInterfaceControler.closeAction = closeAction;
+        this.luminusInterfaceControler.currentElementAction = closeAction;
+        this.luminusInterfaceControler.interfaceElements[0] = [];
+        this.luminusInterfaceControler.interfaceElements[0][0] = [];
+        this.luminusInterfaceControler.interfaceElements[0][0].push(
+            closeAction
+        );
+        this.luminusInterfaceControler.updateHighlightedElement(
+            closeAction.element
+        );
+
+        this.closeButton.on('pointerup', (pointer) => {
+            this.closeCredits();
+        });
+    }
+
+    closeCredits() {
+        this.panelComponent.destroy();
+        this.creditsTextContent.destroy();
+        this.luminusInterfaceControler.closeAction = null;
+        this.luminusInterfaceControler.currentElementAction = null;
+        this.luminusInterfaceControler.clearItems();
+        this.setMainMenuActions();
+        this.luminusInterfaceControler.menuHistoryRetrieve();
     }
 
     startGame() {
-        this.scene.launch('MainScene');
+        let startSound = this.sound.add('start_game');
+        startSound.play();
+        this.scene.launch('MobileCheckScene');
         this.scene.stop();
         this.themeSound.stop();
     }

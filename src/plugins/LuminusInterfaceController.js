@@ -39,6 +39,12 @@ export class LuminusInterfaceController {
         this.currentMatrixCol = 0;
 
         /**
+         * When moving up the menu, it should store the last menu position for better experience.
+         * @type { object }
+         */
+        this.menuHistory = [];
+
+        /**
          * This is the current element that is selected.
          * @type { any }
          * @default
@@ -94,6 +100,42 @@ export class LuminusInterfaceController {
         //     }
         // );
 
+        this.scene.input.gamepad.on('connected', (pad) => {
+            this.pad = this.scene.input.gamepad.pad1;
+            this.setGamepadRules();
+        });
+
+        this.setGamepadRules();
+
+        this.scene.input.keyboard.on('keydown', (keyboard) => {
+            if (keyboard.keyCode === 27) {
+                this.close();
+            }
+            if (keyboard.keyCode === 37) {
+                this.moveLeft();
+            }
+            if (keyboard.keyCode === 39) {
+                this.moveRight();
+            }
+            if (keyboard.keyCode === 38) {
+                this.moveUp();
+            }
+            if (keyboard.keyCode === 40) {
+                this.moveDown();
+            }
+            if (keyboard.keyCode === 13)
+                this.executeFunctionByName(
+                    this.currentElementAction.action,
+                    this.currentElementAction.context,
+                    this.currentElementAction.args
+                );
+        });
+    }
+
+    /**
+     * Sets the gamepad control rules for the interface.
+     */
+    setGamepadRules() {
         if (this.pad) {
             let difference = 0;
             this.scene.events.on('update', (time, delta) => {
@@ -137,30 +179,43 @@ export class LuminusInterfaceController {
                 }
             });
         }
+    }
 
-        this.scene.input.keyboard.on('keydown', (keyboard) => {
-            if (keyboard.keyCode === 27) {
-                this.close();
-            }
-            if (keyboard.keyCode === 37) {
-                this.moveLeft();
-            }
-            if (keyboard.keyCode === 39) {
-                this.moveRight();
-            }
-            if (keyboard.keyCode === 38) {
-                this.moveUp();
-            }
-            if (keyboard.keyCode === 40) {
-                this.moveDown();
-            }
-            if (keyboard.keyCode === 13)
-                this.executeFunctionByName(
-                    this.currentElementAction.action,
-                    this.currentElementAction.context,
-                    this.currentElementAction.args
-                );
+    /**
+     * Clears all the interactionItems
+     */
+    clearItems() {
+        this.interfaceElements.flat();
+        this.interfaceElements = [];
+    }
+
+    menuHistoryAdd() {
+        this.menuHistory.push({
+            currentLinePosition: this.currentLinePosition,
+            currentMatrixRow: this.currentMatrixRow,
+            currentMatrixCol: this.currentMatrixCol,
+            currentElementAction: this.currentElementAction,
+            closeAction: this.closeAction,
         });
+    }
+
+    menuHistoryRetrieve() {
+        let history = this.menuHistory[this.menuHistory.length - 1];
+        this.removeCurrentSelectionHighlight(this.currentElementAction.element);
+        this.currentElementAction = history.currentElementAction;
+        this.currentLinePosition = history.currentLinePosition;
+        this.currentMatrixRow = history.currentMatrixRow;
+        this.currentMatrixCol = history.currentMatrixCol;
+        this.closeAction = history.closeAction;
+        this.updateHighlightedElement(this.currentElementAction.element);
+        delete this.menuHistory[this.menuHistory.length - 1];
+    }
+
+    /**
+     * Removes the current selectionhighlight.
+     */
+    removeCurrentSelectionHighlight() {
+        this.removeSelection(this.currentElementAction.element);
     }
 
     /**
@@ -397,12 +452,16 @@ export class LuminusInterfaceController {
      * @returns { function }
      */
     executeFunctionByName(functionName, context, args) {
-        var args = Array.prototype.slice.call(arguments, 2);
-        var namespaces = functionName.split('.');
-        var func = namespaces.pop();
-        for (var i = 0; i < namespaces.length; i++) {
-            context = context[namespaces[i]];
+        if (functionName) {
+            var args = Array.prototype.slice.call(arguments, 2);
+            var namespaces = functionName.split('.');
+            var func = namespaces.pop();
+            for (var i = 0; i < namespaces.length; i++) {
+                context = context[namespaces[i]];
+            }
+            return context[func].apply(context, args);
+        } else {
+            return null;
         }
-        return context[func].apply(context, args);
     }
 }

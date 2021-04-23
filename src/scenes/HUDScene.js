@@ -231,10 +231,12 @@ export class HUDScene extends Phaser.Scene {
             this.inventoryShortcutIcon.setScale(scale);
         }
 
+        if (this.input.gamepad.pad1) {
+            this.setGamepadTextures();
+        }
+
         this.input.gamepad.on('connected', (pad) => {
-            this.inventoryShortcutIcon.setTexture(
-                this.inventoryShortcutIconConsole
-            );
+            this.setGamepadTextures();
         });
         this.input.gamepad.on('disconnected', (pad) => {
             this.inventoryShortcutIcon.setTexture(this.inventoryShortcutSprite);
@@ -255,6 +257,16 @@ export class HUDScene extends Phaser.Scene {
         // All Scenes have to be stopped before they are called to launch.
         this.scene.stop(this.inventorySceneName);
         this.scene.stop(this.settingSceneName);
+    }
+
+    /**
+     * Sets the GamePad Textures.
+     * If the gamepad is connected, it should use the gamepad textures.
+     */
+    setGamepadTextures() {
+        this.inventoryShortcutIcon.setTexture(
+            this.inventoryShortcutIconConsole
+        );
     }
 
     /**

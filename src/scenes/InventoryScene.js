@@ -126,11 +126,6 @@ export class InventoryScene extends Phaser.Scene {
          * @type { LuminusInterfaceController }
          */
         this.luminusInterfaceController = null;
-
-        /**
-         *
-         */
-        this.pad = null;
     }
 
     create() {
@@ -393,11 +388,12 @@ export class InventoryScene extends Phaser.Scene {
             let item = slot.item;
             let text = slot.text;
             let i = slot.playerItemIndex;
-            item.consume(this.player);
+            slot.item.consume(this.player);
             if (this.player.items[i]) {
                 this.player.items[i].count--;
                 if (this.player.items[i].count <= 0) {
-                    item.destroy();
+                    slot.item.destroy();
+                    this.luminusInterfaceController.currentElementAction.action = null;
                     delete this.player.items[i];
                     text.setText('');
                     text.destroy();

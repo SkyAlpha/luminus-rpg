@@ -44,7 +44,7 @@ export class LuminusGamePadController extends AnimationNames {
          * @type { Phaser.Input.Gamepad.Gamepad }
          * @default
          */
-        this.gamepad = null;
+        this.gamepad = this.scene.input.gamepad.pad1;
 
         /**
          * The Luminus Battle Manager.
