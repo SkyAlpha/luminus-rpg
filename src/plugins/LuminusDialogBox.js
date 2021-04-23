@@ -276,6 +276,30 @@ export class LuminusDialogBox {
          * @type { boolean }
          */
         this.showRandomChat = false;
+
+        /**
+         * The text object that displays the right side entity on the dialog.
+         * @type { Phaser.GameObjects.Text}
+         */
+        this.rightNameText = null;
+
+        /**
+         * The right side Portrait image.
+         * @type { Phaser.GameObjects.Image }
+         */
+        this.rightPortraitImage = null;
+
+        /**
+         * The text object that displays the left side entity on the dialog.
+         * @type { Phaser.GameObjects.Text}
+         */
+        this.leftNameText = null;
+
+        /**
+         * The left side Portrait image.
+         * @type { Phaser.GameObjects.Image }
+         */
+        this.leftPortraitImage = null;
     }
 
     create() {
@@ -365,15 +389,14 @@ export class LuminusDialogBox {
             }
         });
 
-        this.currentLeftPortraitName = '';
         this.leftPortraitImage = this.scene.add.image(
             this.dialog.x + this.dialog.scaleX * 100,
             this.dialog.y - this.dialog.scaleY * 60,
-            this.currentLeftPortraitName
+            ''
         );
         this.leftPortraitImage.visible = false;
 
-        this.leftName = 'Someone';
+        this.leftName = 'Game Master';
         this.leftNameText = this.scene.add
             .text(
                 this.dialog.x + this.margin,
@@ -394,7 +417,7 @@ export class LuminusDialogBox {
         this.rightPortraitImage = this.scene.add.image(
             this.dialog.x + this.dialog.width * this.dialog.scaleX - 100,
             this.dialog.y - this.dialog.scaleY * 60,
-            this.currentLeftPortraitName
+            ''
         );
         this.rightPortraitImage.flipX = true;
         this.rightPortraitImage.visible = false;

@@ -1,5 +1,6 @@
 import Phaser from 'phaser';
 import { NineSlice } from 'phaser3-nineslice';
+import { PanelComponent } from '../components/PanelComponent';
 import { Item } from '../entities/Item';
 import { Player } from '../entities/Player';
 import { LuminusInterfaceController } from '../plugins/LuminusInterfaceController';
@@ -22,39 +23,11 @@ export class InventoryScene extends Phaser.Scene {
         this.player = null;
 
         /**
-         * The name of the sprite texture of the Inventory Title.
-         * @type { string }
-         */
-        this.inventoryTitleTexture = 'inventory_title';
-
-        /**
-         * The name of the sprite texture of the Inventory Background.
-         * @type { string }
-         * @default
-         */
-        this.inventoryBackgroundTexture = 'inventory_background';
-
-        /**
          * The name of the sprite texture of the Inventory Slot.
          * @type { string }
          * @default
          */
         this.inventorySlotTexture = 'inventory_slot';
-
-        /**
-         * The name of the sprite texture of the Close Button.
-         * @type { string }
-         * @default
-         */
-        this.inventoryCloseTexture = 'close_button';
-
-        /**
-         * The Offset of the Nine Slice background. It's used to protect the background from streching.
-         * It will make it responsive in any scale size without losing resolution.
-         * @type { number }
-         * @default
-         */
-        this.nineSliceOffset = 10;
 
         /**
          * The inventory background sprite.
@@ -135,13 +108,6 @@ export class InventoryScene extends Phaser.Scene {
         this.slotSize = 53;
 
         /**
-         * Default font size of the Title Text.
-         * @type { number }
-         * @default
-         */
-        this.titleTextFontSize = 13;
-
-        /**
          * The default font family of the Inventory Text.
          * @type { string }
          * @default
@@ -169,8 +135,10 @@ export class InventoryScene extends Phaser.Scene {
 
     create() {
         this.luminusInterfaceController = new LuminusInterfaceController(this);
-        this.createBackground();
-        this.createTitle();
+        this.panelComponent = new PanelComponent(this);
+        this.inventoryBackground = this.panelComponent.panelBackground;
+        this.inventoryTitle = this.panelComponent.panelTitle;
+        this.inventoryTitleText = this.panelComponent.panelTitleText;
         this.createSlots();
         this.createCloseButton();
         this.createItems();
@@ -181,39 +149,10 @@ export class InventoryScene extends Phaser.Scene {
     }
 
     /**
-     * Creates the Background Layer.
-     */
-    createBackground() {
-        this.inventoryBackground = this.add
-            .nineslice(
-                this.cameras.main.midPoint.x - 512 / 2,
-                this.cameras.main.midPoint.y - 512 / 2,
-                512,
-                512, // the width and height of your object
-                this.inventoryBackgroundTexture, // a key to an already loaded image
-                this.nineSliceOffset, // the width and height to offset for a corner slice
-                this.nineSliceOffset // (optional) pixels to offset when computing the safe usage area
-            )
-            .setScrollFactor(0, 0)
-            .setOrigin(0, 0);
-    }
-
-    /**
      * Creates the close Button.
      */
     createCloseButton() {
-        this.closeButton = this.add
-            .image(
-                this.inventoryBackground.x +
-                    this.inventoryBackground.width *
-                        this.inventoryBackground.scaleX -
-                    this.backgroundSlotPadding * 1.5,
-                this.inventoryBackground.y + this.backgroundSlotPadding * 1.5,
-                this.inventoryCloseTexture
-            )
-            .setInteractive()
-            .setOrigin(0.5, 0.5)
-            .setScale(0.8);
+        this.closeButton = this.panelComponent.closeButton;
 
         this.closeButton.on('pointerup', (pointer) => {
             this.stopScene();
@@ -238,35 +177,6 @@ export class InventoryScene extends Phaser.Scene {
         this.player.canMove = true;
         this.player.canAtack = true;
         this.scene.stop();
-    }
-
-    /**
-     * Creates the inventory Title.
-     */
-    createTitle() {
-        this.inventoryTitle = this.add
-            .image(
-                this.inventoryBackground.x +
-                    (this.inventoryBackground.width *
-                        this.inventoryBackground.scaleX) /
-                        2,
-                this.inventoryBackground.y + 54,
-                this.inventoryTitleTexture
-            )
-            .setScrollFactor(0, 0)
-            .setOrigin(0.5, 0.5);
-        this.inventoryTitleText = this.add
-            .text(
-                this.inventoryTitle.x + 11,
-                this.inventoryTitle.y + 7,
-                'Inventory',
-                {
-                    fontSize: this.titleTextFontSize,
-                    fontFamily: `${this.titleFontFamily}`,
-                }
-            )
-            .setScrollFactor(0, 0)
-            .setOrigin(0.5, 0.5);
     }
 
     /**

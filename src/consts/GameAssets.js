@@ -35,8 +35,8 @@ import buttonXboxWindows from '../assets/sprites/XboxOne_Windows.png';
 
 // Inventory
 import inventory_box from '../assets/sprites/inventory_box.png';
-import inventory_background from '../assets/sprites/inventory/inventory_background.png';
-import inventory_title from '../assets/sprites/inventory/inventory_title.png';
+import panel_background from '../assets/sprites/inventory/inventory_background.png';
+import panel_title from '../assets/sprites/inventory/inventory_title.png';
 import inventory_slot from '../assets/sprites/inventory/inventory_slot.png';
 
 // Portraits
@@ -283,12 +283,12 @@ export const Images = [
         image: inventory_box,
     },
     {
-        name: 'inventory_background',
-        image: inventory_background,
+        name: 'panel_background',
+        image: panel_background,
     },
     {
-        name: 'inventory_title',
-        image: inventory_title,
+        name: 'panel_title',
+        image: panel_title,
     },
     {
         name: 'inventory_slot',

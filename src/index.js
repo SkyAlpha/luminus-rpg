@@ -16,6 +16,7 @@ import { MobileCheckScene } from './scenes/MobileCheckScene';
 import { DungeonScene } from './scenes/DungeonScene';
 import { InventoryScene } from './scenes/InventoryScene';
 import { TutorialScene } from './scenes/TutorialScene';
+import { MainMenuScene } from './scenes/MainMenuScene';
 /**
  * @type { Phaser.Core.Config}
  */
@@ -33,6 +34,7 @@ const config = {
         DungeonScene,
         MobileCheckScene,
         TutorialScene,
+        MainMenuScene,
 
         // UI Scenes should be loaded after the game Scenes.
         JoystickScene,

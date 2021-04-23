@@ -859,7 +859,7 @@
    </properties>
   </object>
  </objectgroup>
- <objectgroup id="14" name="enemies" visible="0">
+ <objectgroup id="14" name="enemies">
   <object id="78" x="-830.667" y="-492.667" width="160.667" height="95.3333">
    <properties>
     <property name="id" value="2"/>
@@ -872,16 +872,10 @@
     <property name="number" type="int" value="3"/>
    </properties>
   </object>
-  <object id="80" x="-986.5" y="131.667" width="146" height="93.3333">
+  <object id="80" x="-1127.83" y="97.0003" width="146" height="93.3333">
    <properties>
     <property name="id" value="2"/>
     <property name="number" type="int" value="5"/>
-   </properties>
-  </object>
-  <object id="81" x="-292.667" y="-52.6667" width="85.3333" height="56.6667">
-   <properties>
-    <property name="id" value="2"/>
-    <property name="number" type="int" value="2"/>
    </properties>
   </object>
   <object id="82" x="-1091.66" y="-536.666" width="121" height="86.333">
@@ -903,7 +897,7 @@
     <property name="number" type="int" value="2"/>
    </properties>
   </object>
-  <object id="85" x="-778.667" y="-134.667" width="115.333" height="62">
+  <object id="85" x="-901.334" y="-334.667" width="115.333" height="62">
    <properties>
     <property name="id" value="2"/>
     <property name="number" type="int" value="3"/>
@@ -928,7 +922,7 @@
    </properties>
   </object>
  </objectgroup>
- <objectgroup id="10" name="markers" visible="0">
+ <objectgroup id="10" name="markers">
   <object id="35" x="1062.5" y="53">
    <point/>
   </object>
@@ -947,9 +941,6 @@
   <object id="66" x="-944.667" y="-167.333">
    <point/>
   </object>
-  <object id="67" x="-567.333" y="133.333">
-   <point/>
-  </object>
   <object id="69" x="-200" y="-186.667">
    <point/>
   </object>
@@ -960,9 +951,6 @@
    <point/>
   </object>
   <object id="73" x="-503.333" y="-735.333">
-   <point/>
-  </object>
-  <object id="74" x="-806" y="245.333">
    <point/>
   </object>
   <object id="75" x="-1104" y="-639.333">
@@ -1012,8 +1000,8 @@
    </properties>
   </object>
  </objectgroup>
- <objectgroup id="6" name="spawn" visible="0">
-  <object id="11" name="Spawn Point" x="-1158.83" y="-621.333">
+ <objectgroup id="6" name="spawn">
+  <object id="11" name="Spawn Point" x="-618.83" y="136">
    <point/>
   </object>
  </objectgroup>

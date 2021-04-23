@@ -206,6 +206,7 @@ export class HUDScene extends Phaser.Scene {
 
         this.maximize.on('pointerup', (pointer) => {
             this.scale.toggleFullscreen();
+            this.scene.stop();
         });
 
         // Launches Inventory Scene.s

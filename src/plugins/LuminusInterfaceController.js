@@ -71,27 +71,28 @@ export class LuminusInterfaceController {
          */
         this.pad = this.scene.input.gamepad.pad1;
 
-        this.scene.input.on(
-            'pointerdown',
-            /**
-             *
-             * @param { Phaser.Input.Pointer } pointer
-             */
-            (pointer, gameObjects) => {
-                let object = gameObjects[0];
-                if (pointer.wasTouch && object && object.item) {
-                    this.currentElementAction = {
-                        element: object,
-                        action: 'useItem',
-                        context: this,
-                        args: object,
-                    };
-                    this.updateHighlightedElement(
-                        this.currentElementAction.element
-                    );
-                }
-            }
-        );
+        // this.scene.input.on(
+        //     'pointerdown',
+        //     /**
+        //      *
+        //      * @param { Phaser.Input.Pointer } pointer
+        //      */
+        //     (pointer, gameObjects) => {
+        //         let object = gameObjects[0];
+        //         if (pointer.wasTouch && object && object.item) {
+        //             console.log(object.action);
+        //             this.currentElementAction = {
+        //                 element: object,
+        //                 action: 'useItem',
+        //                 context: this,
+        //                 args: object,
+        //             };
+        //             this.updateHighlightedElement(
+        //                 this.currentElementAction.element
+        //             );
+        //         }
+        //     }
+        // );
 
         if (this.pad) {
             let difference = 0;
