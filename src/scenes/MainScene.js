@@ -34,7 +34,7 @@ export class MainScene extends Phaser.Scene {
         //     this.scale.startFullscreen();
         // }
 
-        this.cameras.main.setZoom(3.5);
+        this.cameras.main.setZoom(2.5);
 
         this.mapCreator = new LuminusMapCreator(this);
         this.mapCreator.create();

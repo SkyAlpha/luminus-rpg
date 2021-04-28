@@ -257,7 +257,7 @@ export class LuminusDialogBox {
          * @type { Phaser.Input.Gamepad }
          * @default
          */
-        this.gamepad = this.scene.input.gamepad;
+        this.gamepad = this.scene.input.gamepad.pad1;
 
         /**
          * Font family to be used. It has to be included in your Phaser project.
@@ -441,7 +441,7 @@ export class LuminusDialogBox {
             .setDepth(99999999999999999)
             .setOrigin(1, 0);
         this.rightNameText.visible = false;
-
+                console.log(this.gamepad);
         if (this.gamepad) {
             this.setGamepadTextures();
         }
