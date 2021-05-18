@@ -1,3 +1,5 @@
+import { LuminusUtils } from '../utils/LuminusUtils';
+
 /**
  * @class
  */
@@ -93,6 +95,24 @@ export class PanelComponent {
          */
         this.titleFontFamily = "'Press Start 2P'";
 
+        /**
+         * The max width of the panel.
+         * @type { number }
+         */
+        this.panelMaxWidth = 512;
+
+        /**
+         * The max height of the panel.
+         * @type { number }
+         */
+        this.panelMaxHeight = 512;
+
+        /**
+         * The margin between the Screen and the panel.
+         * @type { number }
+         */
+        this.panelScreenMargin = 30;
+
         this.createBackground();
         this.createTitle();
         this.createCloseButton();
@@ -110,12 +130,16 @@ export class PanelComponent {
      * Creates the Panel Background Layer.
      */
     createBackground() {
+        if (LuminusUtils.isMobile()) {
+            this.panelMaxWidth = this.scene.cameras.main.width - this.panelScreenMargin * 4;
+            this.panelMaxHeight = this.scene.cameras.main.height - this.panelScreenMargin * 4;
+        }
         this.panelBackground = this.scene.add
             .nineslice(
-                this.scene.cameras.main.midPoint.x - 512 / 2,
-                this.scene.cameras.main.midPoint.y - 512 / 2,
-                512,
-                512, // the width and height of your object
+                this.scene.cameras.main.midPoint.x - this.panelMaxWidth / 2,
+                this.scene.cameras.main.midPoint.y - this.panelMaxHeight / 2,
+                this.panelMaxWidth,
+                this.panelMaxHeight, // the width and height of your object
                 this.inventoryBackgroundTexture, // a key to an already loaded image
                 this.nineSliceOffset, // the width and height to offset for a corner slice
                 this.nineSliceOffset // (optional) pixels to offset when computing the safe usage area
@@ -130,24 +154,17 @@ export class PanelComponent {
     createTitle() {
         this.panelTitle = this.scene.add
             .image(
-                this.panelBackground.x +
-                    (this.panelBackground.width * this.panelBackground.scaleX) /
-                        2,
+                this.panelBackground.x + (this.panelBackground.width * this.panelBackground.scaleX) / 2,
                 this.panelBackground.y + 54,
                 this.panelTitleTexture
             )
             .setScrollFactor(0, 0)
             .setOrigin(0.5, 0.5);
         this.panelTitleText = this.scene.add
-            .text(
-                this.panelTitle.x + 11,
-                this.panelTitle.y + 7,
-                this.panelName,
-                {
-                    fontSize: this.titleTextFontSize,
-                    fontFamily: `${this.titleFontFamily}`,
-                }
-            )
+            .text(this.panelTitle.x + 11, this.panelTitle.y + 7, this.panelName, {
+                fontSize: this.titleTextFontSize,
+                fontFamily: `${this.titleFontFamily}`,
+            })
             .setScrollFactor(0, 0)
             .setOrigin(0.5, 0.5);
     }
