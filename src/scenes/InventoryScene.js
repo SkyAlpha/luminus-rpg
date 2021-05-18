@@ -162,9 +162,7 @@ export class InventoryScene extends Phaser.Scene {
             args: 'InventoryScene',
         };
         this.luminusInterfaceController.closeAction = firstAction;
-        this.luminusInterfaceController.interfaceElements[0][0].push(
-            firstAction
-        );
+        this.luminusInterfaceController.interfaceElements[0][0].push(firstAction);
     }
 
     stopScene() {
@@ -198,14 +196,11 @@ export class InventoryScene extends Phaser.Scene {
         this.destroySlots();
         // The available space for the slots to be drawn.
         let slotsWorkingWidth = Math.abs(
-            this.backgroundSlotPadding * 2 -
-                this.inventoryBackground.width * this.inventoryBackground.scaleX
+            this.backgroundSlotPadding * 2 - this.inventoryBackground.width * this.inventoryBackground.scaleX
         );
 
         // Max number of Slots taking in count the Available space, Slot Size and Margin.
-        let slotsNumberHorizontal = Math.floor(
-            slotsWorkingWidth / (this.slotSize + this.slotMargin)
-        );
+        let slotsNumberHorizontal = Math.floor(slotsWorkingWidth / (this.slotSize + this.slotMargin));
 
         const padding = Math.ceil(
             (this.inventoryBackground.width * this.inventoryBackground.scaleX -
@@ -220,9 +215,7 @@ export class InventoryScene extends Phaser.Scene {
         );
 
         // Max number of Slots taking in count the Available space, Slot Size and Margin.
-        let slotsNumberVertical = Math.floor(
-            slotsWorkingHeight / (this.slotSize + this.slotMargin)
-        );
+        let slotsNumberVertical = Math.floor(slotsWorkingHeight / (this.slotSize + this.slotMargin));
 
         // Creates the seccond line
         this.luminusInterfaceController.interfaceElements[1] = [];
@@ -250,15 +243,11 @@ export class InventoryScene extends Phaser.Scene {
                     context: this,
                     args: slot,
                 };
-                this.luminusInterfaceController.interfaceElements[1][row].push(
-                    element
-                );
+                this.luminusInterfaceController.interfaceElements[1][row].push(element);
 
-                if (row === 0 && col === 0 && !LuminusUtils.isMobile()) {
+                if (row === 0 && col === 0) {
                     this.luminusInterfaceController.currentElementAction = element;
-                    this.luminusInterfaceController.updateHighlightedElement(
-                        element.element
-                    );
+                    this.luminusInterfaceController.updateHighlightedElement(element.element);
                     this.luminusInterfaceController.currentLinePosition = 1;
                 }
             }
@@ -271,14 +260,11 @@ export class InventoryScene extends Phaser.Scene {
     setPositionSlotsItems() {
         // The available space for the slots to be drawn.
         let slotsWorkingWidth = Math.abs(
-            this.backgroundSlotPadding * 2 -
-                this.inventoryBackground.width * this.inventoryBackground.scaleX
+            this.backgroundSlotPadding * 2 - this.inventoryBackground.width * this.inventoryBackground.scaleX
         );
 
         // Max number of Slots taking in count the Available space, Slot Size and Margin.
-        let slotsNumberHorizontal = Math.floor(
-            slotsWorkingWidth / (this.slotSize + this.slotMargin)
-        );
+        let slotsNumberHorizontal = Math.floor(slotsWorkingWidth / (this.slotSize + this.slotMargin));
 
         const padding = Math.ceil(
             (this.inventoryBackground.width * this.inventoryBackground.scaleX -
@@ -293,9 +279,7 @@ export class InventoryScene extends Phaser.Scene {
         );
 
         // Max number of Slots taking in count the Available space, Slot Size and Margin.
-        let slotsNumberVertical = Math.floor(
-            slotsWorkingHeight / (this.slotSize + this.slotMargin)
-        );
+        let slotsNumberVertical = Math.floor(slotsWorkingHeight / (this.slotSize + this.slotMargin));
 
         let count = 0;
         for (let row = 0; row < slotsNumberVertical; row++) {
@@ -306,20 +290,12 @@ export class InventoryScene extends Phaser.Scene {
                         (this.slotSize + this.slotMargin) * col +
                         padding +
                         this.slotMargin / 2,
-                    this.inventoryBackground.y +
-                        (this.slotSize + this.slotMargin) * row +
-                        this.backgroundSlotPaddingTop
+                    this.inventoryBackground.y + (this.slotSize + this.slotMargin) * row + this.backgroundSlotPaddingTop
                 );
                 if (this.slots[count].item) {
                     let item = this.slots[count].item;
-                    this.slots[count].item.setPosition(
-                        slot.x + slot.width / 2,
-                        slot.y + slot.height / 2 - 7
-                    );
-                    this.slots[count].text.setPosition(
-                        item.x,
-                        item.y + 10 + (item.height * item.scaleY) / 2
-                    );
+                    this.slots[count].item.setPosition(slot.x + slot.width / 2, slot.y + slot.height / 2 - 7);
+                    this.slots[count].text.setPosition(item.x, item.y + 10 + (item.height * item.scaleY) / 2);
                 }
                 count++;
             }
@@ -343,11 +319,7 @@ export class InventoryScene extends Phaser.Scene {
                     this.player.items[i].id
                 );
                 text = this.add
-                    .text(
-                        item.x,
-                        item.y + 15 + (item.height * item.scaleY) / 2,
-                        this.player.items[i].count
-                    )
+                    .text(item.x, item.y + 15 + (item.height * item.scaleY) / 2, this.player.items[i].count)
                     .setOrigin(0.5, 0.5);
                 // Sets the slot item;
                 slot.item = item;
@@ -357,6 +329,13 @@ export class InventoryScene extends Phaser.Scene {
                 if (item.stackable) {
                     slot.setInteractive();
                     slot.on('pointerup', (pointer) => {
+                        let element = {
+                            element: slot,
+                            action: 'useItem',
+                            context: this,
+                            args: slot,
+                        };
+                        this.luminusInterfaceController.currentElementAction = element;
                         if (time === 0) {
                             time = pointer.upTime;
                             return;
@@ -371,11 +350,7 @@ export class InventoryScene extends Phaser.Scene {
                     });
                     item.setScale(item.inventoryScale);
                 } else {
-                    for (
-                        let noStackCount = 0;
-                        noStackCount < this.player.items[i].count;
-                        noStackCount++
-                    ) {
+                    for (let noStackCount = 0; noStackCount < this.player.items[i].count; noStackCount++) {
                         // TODO - Create the logic for Equipments.
                     }
                 }
@@ -433,15 +408,11 @@ export class InventoryScene extends Phaser.Scene {
                 this.inventoryBackground.y + 54
             );
 
-            this.inventoryTitleText.setPosition(
-                this.inventoryTitle.x + 11,
-                this.inventoryTitle.y + 7
-            );
+            this.inventoryTitleText.setPosition(this.inventoryTitle.x + 11, this.inventoryTitle.y + 7);
 
             this.closeButton.setPosition(
                 this.inventoryBackground.x +
-                    this.inventoryBackground.width *
-                        this.inventoryBackground.scaleX -
+                    this.inventoryBackground.width * this.inventoryBackground.scaleX -
                     this.backgroundSlotPadding * 1.5,
                 this.inventoryBackground.y + this.backgroundSlotPadding * 1.5
             );

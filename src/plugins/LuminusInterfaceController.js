@@ -223,12 +223,18 @@ export class LuminusInterfaceController {
      */
     close() {
         this.outlineEffect.outlinePostFxPlugin.destroy();
-        this.executeFunctionByName(
-            this.closeAction.action,
-            this.closeAction.context,
-            this.closeAction.args
-        );
+        this.executeFunctionByName(this.closeAction.action, this.closeAction.context, this.closeAction.args);
     }
+
+    // /**
+    //  * Sets the current highlight element and removes the previous one.
+    //  * @param { any } element
+    //  */
+    // setCurrentElement(element) {
+    //     this.removeCurrentSelectionHighlight(this.currentElementAction);
+    //     this.updateHighlightedElement(element.element);
+    //     this.currentElementAction = element;
+    // }
 
     /**
      * Moves the cursor to the right.
@@ -241,16 +247,13 @@ export class LuminusInterfaceController {
         this.removeSelection(this.currentElementAction.element);
         this.scene.sound.play(this.navigationSound);
         this.currentMatrixCol++;
-        let currentPosition = this.interfaceElements[this.currentLinePosition][
-            this.currentMatrixRow
-        ][this.currentMatrixCol];
+        let currentPosition =
+            this.interfaceElements[this.currentLinePosition][this.currentMatrixRow][this.currentMatrixCol];
         if (currentPosition) {
             this.currentElementAction = currentPosition;
         } else {
             this.currentMatrixCol = 0;
-            this.currentElementAction = this.interfaceElements[
-                this.currentLinePosition
-            ][this.currentMatrixRow][0];
+            this.currentElementAction = this.interfaceElements[this.currentLinePosition][this.currentMatrixRow][0];
         }
         this.updateHighlightedElement(this.currentElementAction.element);
     }
@@ -266,9 +269,8 @@ export class LuminusInterfaceController {
         this.scene.sound.play(this.navigationSound);
         this.removeSelection(this.currentElementAction.element);
         this.currentMatrixCol--;
-        let currentPosition = this.interfaceElements[this.currentLinePosition][
-            this.currentMatrixRow
-        ][this.currentMatrixCol];
+        let currentPosition =
+            this.interfaceElements[this.currentLinePosition][this.currentMatrixRow][this.currentMatrixCol];
         if (currentPosition) {
             this.currentElementAction = currentPosition;
         } else {
@@ -276,12 +278,10 @@ export class LuminusInterfaceController {
             if (this.interfaceElements[this.currentLinePosition].length === 1) {
                 position = 0;
             } else {
-                position = this.interfaceElements[this.currentLinePosition]
-                    .length;
+                position = this.interfaceElements[this.currentLinePosition].length;
             }
-            this.currentElementAction = this.interfaceElements[
-                this.currentLinePosition
-            ][this.currentMatrixRow][position];
+            this.currentElementAction =
+                this.interfaceElements[this.currentLinePosition][this.currentMatrixRow][position];
             this.currentMatrixCol = position;
         }
         this.updateHighlightedElement(this.currentElementAction.element);
@@ -298,52 +298,33 @@ export class LuminusInterfaceController {
         this.scene.sound.play(this.navigationSound);
         this.removeSelection(this.currentElementAction.element);
         if (changeMatrixRow) this.currentMatrixRow++;
-        if (
-            !this.interfaceElements[this.currentLinePosition][
-                this.currentMatrixRow
-            ]
-        ) {
+        if (!this.interfaceElements[this.currentLinePosition][this.currentMatrixRow]) {
             this.currentLinePosition++;
             this.currentMatrixRow--;
             let canMove = this.hasNoLineData();
             if (canMove) {
                 this.currentLinePosition--;
-                this.updateHighlightedElement(
-                    this.currentElementAction.element
-                );
+                this.updateHighlightedElement(this.currentElementAction.element);
                 return;
             }
             this.moveDown(false);
         }
-        if (
-            !this.interfaceElements[this.currentLinePosition][
-                this.currentMatrixRow
-            ]
-        ) {
-            this.currentMatrixRow =
-                this.interfaceElements[this.currentLinePosition].length - 1;
+        if (!this.interfaceElements[this.currentLinePosition][this.currentMatrixRow]) {
+            this.currentMatrixRow = this.interfaceElements[this.currentLinePosition].length - 1;
         }
-        let currentPosition = this.interfaceElements[this.currentLinePosition][
-            this.currentMatrixRow
-        ][this.currentMatrixCol];
+        let currentPosition =
+            this.interfaceElements[this.currentLinePosition][this.currentMatrixRow][this.currentMatrixCol];
 
         if (currentPosition) {
             this.currentElementAction = currentPosition;
         } else if (
-            this.interfaceElements[this.currentLinePosition][
-                this.currentMatrixRow
-            ] &&
-            !this.interfaceElements[this.currentLinePosition][
-                this.currentMatrixRow
-            ][this.currentMatrixCol]
+            this.interfaceElements[this.currentLinePosition][this.currentMatrixRow] &&
+            !this.interfaceElements[this.currentLinePosition][this.currentMatrixRow][this.currentMatrixCol]
         ) {
-            this.currentElementAction = this.interfaceElements[
-                this.currentLinePosition
-            ][this.currentMatrixRow][
-                this.interfaceElements[this.currentLinePosition][
-                    this.currentMatrixRow
-                ].length - 1
-            ];
+            this.currentElementAction =
+                this.interfaceElements[this.currentLinePosition][this.currentMatrixRow][
+                    this.interfaceElements[this.currentLinePosition][this.currentMatrixRow].length - 1
+                ];
         }
         this.updateHighlightedElement(this.currentElementAction.element);
     }
@@ -359,52 +340,33 @@ export class LuminusInterfaceController {
         this.scene.sound.play(this.navigationSound);
         this.removeSelection(this.currentElementAction.element);
         if (changeMatrixRow) this.currentMatrixRow--;
-        if (
-            !this.interfaceElements[this.currentLinePosition][
-                this.currentMatrixRow
-            ]
-        ) {
+        if (!this.interfaceElements[this.currentLinePosition][this.currentMatrixRow]) {
             this.currentLinePosition--;
             this.currentMatrixRow++;
             let canMove = this.hasNoLineData();
             if (canMove) {
                 this.currentLinePosition++;
-                this.updateHighlightedElement(
-                    this.currentElementAction.element
-                );
+                this.updateHighlightedElement(this.currentElementAction.element);
                 return;
             }
             this.moveUp(false);
         }
-        if (
-            !this.interfaceElements[this.currentLinePosition][
-                this.currentMatrixRow
-            ]
-        ) {
-            this.currentMatrixRow =
-                this.interfaceElements[this.currentLinePosition].length - 1;
+        if (!this.interfaceElements[this.currentLinePosition][this.currentMatrixRow]) {
+            this.currentMatrixRow = this.interfaceElements[this.currentLinePosition].length - 1;
         }
-        let currentPosition = this.interfaceElements[this.currentLinePosition][
-            this.currentMatrixRow
-        ][this.currentMatrixCol];
+        let currentPosition =
+            this.interfaceElements[this.currentLinePosition][this.currentMatrixRow][this.currentMatrixCol];
 
         if (currentPosition) {
             this.currentElementAction = currentPosition;
         } else if (
-            this.interfaceElements[this.currentLinePosition][
-                this.currentMatrixRow
-            ] &&
-            !this.interfaceElements[this.currentLinePosition][
-                this.currentMatrixRow
-            ][this.currentMatrixCol]
+            this.interfaceElements[this.currentLinePosition][this.currentMatrixRow] &&
+            !this.interfaceElements[this.currentLinePosition][this.currentMatrixRow][this.currentMatrixCol]
         ) {
-            this.currentElementAction = this.interfaceElements[
-                this.currentLinePosition
-            ][this.currentMatrixRow][
-                this.interfaceElements[this.currentLinePosition][
-                    this.currentMatrixRow
-                ].length - 1
-            ];
+            this.currentElementAction =
+                this.interfaceElements[this.currentLinePosition][this.currentMatrixRow][
+                    this.interfaceElements[this.currentLinePosition][this.currentMatrixRow].length - 1
+                ];
         }
         this.updateHighlightedElement(this.currentElementAction.element);
     }
@@ -415,8 +377,7 @@ export class LuminusInterfaceController {
      */
     updateHighlightedElement(element) {
         // element.tint = 0xff00ff;
-        if (this.scene && this.scene.sys && element)
-            this.outlineEffect.applyEffect(element);
+        if (this.scene && this.scene.sys && element) this.outlineEffect.applyEffect(element);
     }
 
     /**
@@ -425,8 +386,7 @@ export class LuminusInterfaceController {
      */
     removeSelection(element) {
         // element.tint = 0xffffff;
-        if (this.scene && this.scene.sys && element)
-            this.outlineEffect.removeEffect(element);
+        if (this.scene && this.scene.sys && element) this.outlineEffect.removeEffect(element);
     }
 
     /**
