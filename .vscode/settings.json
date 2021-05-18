@@ -1,4 +1,12 @@
 {
   "jslint.enable": false,
-  "editor.wordWrapColumn": 120
+  "editor.wordWrapColumn": 120,
+  "prettier.printWidth": 120,
+  "prettier.tabWidth": 4,
+  "prettier.singleQuote": true,
+  "editor.formatOnSave": true,
+  "editor.codeActionsOnSave": null,
+  "[javascript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  }
 }

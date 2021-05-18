@@ -441,7 +441,6 @@ export class LuminusDialogBox {
             .setDepth(99999999999999999)
             .setOrigin(1, 0);
         this.rightNameText.visible = false;
-                console.log(this.gamepad);
         if (this.gamepad) {
             this.setGamepadTextures();
         }

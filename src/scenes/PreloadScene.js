@@ -1,12 +1,7 @@
 import Phaser from 'phaser';
 
 import { Animations } from '../consts/Animations';
-import {
-    AtlasConfig,
-    Images,
-    LuminusAudios,
-    TilemapConfig,
-} from '../consts/GameAssets';
+import { AtlasConfig, Images, LuminusAudios, TilemapConfig } from '../consts/GameAssets';
 
 // import nesCss from 'node_modules/nes.css/css/nes.min.css';
 
@@ -36,10 +31,7 @@ export class PreloadScene extends Phaser.Scene {
         });
 
         // Scripts
-        this.load.script(
-            'webfont',
-            'https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js'
-        );
+        this.load.script('webfont', 'https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js');
 
         // Sound
         LuminusAudios.forEach((value) => {

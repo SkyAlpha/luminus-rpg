@@ -81,7 +81,6 @@ export class LuminusTiledInfoBox {
                     return;
                 }
                 let messageID = obj.value;
-                console.log(messageID, CHATS);
                 let chat = CHATS.find((c) => c.id == messageID);
                 this.scene.physics.add.existing(zone);
                 zone.setOrigin(0, 0);

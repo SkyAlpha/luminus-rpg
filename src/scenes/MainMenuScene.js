@@ -55,21 +55,26 @@ export class MainMenuScene extends Phaser.Scene {
     }
 
     create() {
-        var vid = this.add.video(
+        this.video = this.add.video(
             this.cameras.main.x,
             this.cameras.main.y,
             'intro_video'
         );
-        vid.scaleX = this.cameras.main.width / vid.width;
-        vid.scaleY = this.cameras.main.height / vid.height;
-        console.log(this.cameras.main.width, vid.width);
-        vid.setOrigin(0, 0);
 
-        vid.setLoop(true);
-        vid.play();
+        if(this.scale.orientation === 'portrait-primary') {
+            this.video.setScale(2);
+            this.video.setOrigin(0.4, 0);
+        } else { // if Landscape, just fits the video on the canvas.
+            this.video.scaleX = this.cameras.main.width / this.video.width;
+            this.video.scaleY = this.cameras.main.height / this.video.height;
+            this.video.setOrigin(0, 0);
+        }
+
+        this.video.setLoop(true);
+        this.video.play();
 
         // Prevents video freeze when game is out of focus (i.e. user changes tab on the browser)
-        vid.setPaused(false);
+        this.video.setPaused(false);
 
         this.sound.volume = 0.35;
         this.themeSound = this.sound.add('forest', {
@@ -109,7 +114,35 @@ export class MainMenuScene extends Phaser.Scene {
         });
 
         this.setMainMenuActions();
+
+        this.scale.on('resize', (resize) => {
+            this.resizeAll(resize);
+        });
     }
+
+    /**
+     * resizes the game canvas.
+     */
+    resizeAll(size) {
+        if(size && this && this.cameras && this.cameras.main) {
+            this.gameStartText.setPosition(size.width / 2,
+                size.height / 2);
+            this.creditsText.setPosition(this.gameStartText.x, this.gameStartText.y + 60);
+            this.video.setPosition(
+                this.cameras.main.x,
+                this.cameras.main.y
+            );
+            console.log(size);
+            if(size.aspectRatio < 1) {
+                this.video.setScale(2);
+                this.video.setOrigin(0.4, 0);
+            } else { // if Landscape, just fits the video on the canvas.
+                this.video.scaleX = this.cameras.main.width / this.video.width;
+                this.video.scaleY = this.cameras.main.height / this.video.height;
+                this.video.setOrigin(0, 0);
+            }
+        }
+    } 
 
     setMainMenuActions() {
         // Sets the Firts action.
@@ -203,10 +236,15 @@ Forest - Intro Scene Music by "syncopika"
     }
 
     startGame() {
+        this.themeSound.stop();
+        this.cameras.main.fadeOut(1000, 0, 0, 0)
         let startSound = this.sound.add('start_game');
         startSound.play();
-        this.scene.launch('MobileCheckScene');
-        this.scene.stop();
-        this.themeSound.stop();
+        this.cameras.main.once(Phaser.Cameras.Scene2D.Events.FADE_OUT_COMPLETE, (cam, effect) => {
+            this.scene.start('MobileCheckScene')
+            this.scene.stop();
+        })
+        
+        
     }
 }

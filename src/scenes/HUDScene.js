@@ -171,13 +171,9 @@ export class HUDScene extends Phaser.Scene {
 
         this.sp_hud = this.add.image(25, 45, 'sp_hud_2x');
 
-        this.health_bar = new LuminusHUDProgressBar(
-            this,
-            this.hp_hud.x,
-            this.hp_hud.y,
-            this.hp_hud.width,
-            this.player
-        );
+        this.health_bar = new LuminusHUDProgressBar(this, this.hp_hud.x, this.hp_hud.y, this.hp_hud.width, this.player);
+
+        this.cam = this.cameras.main;
 
         this.maximize = this.add
             .image(
@@ -206,7 +202,6 @@ export class HUDScene extends Phaser.Scene {
 
         this.maximize.on('pointerup', (pointer) => {
             this.scale.toggleFullscreen();
-            this.scene.stop();
         });
 
         // Launches Inventory Scene.s
@@ -264,9 +259,7 @@ export class HUDScene extends Phaser.Scene {
      * If the gamepad is connected, it should use the gamepad textures.
      */
     setGamepadTextures() {
-        this.inventoryShortcutIcon.setTexture(
-            this.inventoryShortcutIconConsole
-        );
+        this.inventoryShortcutIcon.setTexture(this.inventoryShortcutIconConsole);
     }
 
     /**
@@ -274,19 +267,10 @@ export class HUDScene extends Phaser.Scene {
      * @param { Size } size the new size.
      */
     resizeAll(size) {
-        this.maximize.setPosition(
-            this.cameras.main.width - this.maximizeSpriteOffsetX,
-            this.maximizeSpriteOffsetY
-        );
+        this.maximize.setPosition(size.width - this.maximizeSpriteOffsetX, this.maximizeSpriteOffsetY);
 
-        this.settingsIcon.setPosition(
-            this.cameras.main.width - this.settingsSpriteOffsetX,
-            this.settingsSpriteOffsetY
-        );
+        this.settingsIcon.setPosition(size.width - this.settingsSpriteOffsetX, this.settingsSpriteOffsetY);
 
-        this.inventoryIcon.setPosition(
-            this.cameras.main.width - this.inventorySpriteOffsetX,
-            this.inventorySpriteOffsetY
-        );
+        this.inventoryIcon.setPosition(size.width - this.inventorySpriteOffsetX, this.inventorySpriteOffsetY);
     }
 }
