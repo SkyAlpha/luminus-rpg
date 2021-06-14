@@ -17,6 +17,89 @@ export class PreloadScene extends Phaser.Scene {
         super({
             key: 'PreloadScene',
         });
+
+        /**
+         * The Progress Bar that will be updated with the current loading value.
+         * @type { Phaser.GameObjects.Graphics }
+         */
+        this.progressBar = null;
+
+        /**
+         * The Background of the Progress Bar.
+         * @type { Phaser.GameObjects.Graphics }
+         */
+        this.progressBox = null;
+
+        /**
+         * The curretn camera Width.
+         * @type { numnber }
+         */
+        this.cameraWidth = 0;
+
+        /**
+         * The current camera Height.
+         * @type { number }
+         */
+        this.cameraHeight = 0;
+
+        /**
+         * The loading text.
+         * @type { Phaser.GameObjects.Text }
+         */
+        this.loadingText = null;
+
+        /**
+         * The percentage text.
+         * @type { Phaser.GameObjects.Text }
+         */
+        this.percentText = null;
+
+        /**
+         * The current progress value.
+         * @type { number }
+         */
+        this.currentValue = 0;
+
+        /**
+         * The Progressbar (background / box) tarting X position.
+         * @type { number }
+         */
+        this.boxStartingX = 10;
+
+        /**
+         * The progressbar (background / box) height.
+         * @type { number }
+         */
+        this.boxHeight = 50;
+        /**
+         * The progressbar (background / box) padding.
+         * @type { number }
+         */
+        this.boxPadding = 30;
+
+        /**
+         * The progress (background / box) margin from the text.
+         * @type { number }
+         */
+        this.boxMargin = 30;
+
+        /**
+         * The progress bar height.
+         * @type { number }
+         */
+        this.barHeight = 30;
+
+        /**
+         * The progressbar starting X position.
+         * @type { number }
+         */
+        this.barStartingX = 20;
+
+        /**
+         * The progressbar margin from the text.
+         * @type { number }
+         */
+        this.barMargin = 40;
     }
 
     preload() {
@@ -45,48 +128,89 @@ export class PreloadScene extends Phaser.Scene {
 
         // Custom CSS
         // this.load.css('nescss', nesCss);
+        this.progressBar = this.add.graphics();
+        this.progressBox = this.add.graphics();
+        this.cameraWidth = this.cameras.main.width;
+        this.cameraHeight = this.cameras.main.height;
 
-        let progressBar = this.add.graphics();
-        let progressBox = this.add.graphics();
-        const width = this.cameras.main.width;
-        const height = this.cameras.main.height;
-        progressBox.fillStyle(0x222222, 0.8);
-        progressBox.fillRect(10, height / 2 + 30, width - 30, 50);
+        this.progressBox.fillStyle(0x222222, 0.8);
+        this.progressBox.fillRect(
+            this.boxStartingX,
+            this.cameraHeight / 2 + this.boxMargin,
+            this.cameraWidth - this.boxPadding,
+            this.boxHeight
+        );
 
-        let loadingText = this.make.text({
-            x: width / 2,
-            y: height / 2 - 50,
+        this.loadingText = this.make.text({
+            x: this.cameraWidth / 2,
+            y: this.cameraHeight / 2 - this.boxHeight,
             text: 'Loading...',
             style: {
                 font: '20px monospace',
                 fill: '#ffffff',
             },
         });
-        loadingText.setOrigin(0.5, 0.5);
+        this.loadingText.setOrigin(0.5, 0.5);
 
-        let percentText = this.make.text({
-            x: width / 2,
-            y: height / 2 - 5,
+        this.percentText = this.make.text({
+            x: this.cameraWidth / 2,
+            y: this.cameraHeight / 2 - 5,
             text: '0%',
             style: {
                 font: '18px monospace',
                 fill: '#ffffff',
             },
         });
-        percentText.setOrigin(0.5, 0.5);
-        this.load.on('progress', function (value) {
-            percentText.setText(parseInt(value * 100) + '%');
-            progressBar.clear();
-            progressBar.fillStyle(0xffffff, 1);
-            progressBar.fillRect(20, height / 2 + 40, (width - 50) * value, 30);
+        this.percentText.setOrigin(0.5, 0.5);
+        this.load.on('progress', (value) => {
+            this.currentValue = value;
+            this.percentText.setText(parseInt(value * 100) + '%');
+            this.progressBar.clear();
+            this.progressBar.fillStyle(0xffffff, 1);
+            this.progressBar.fillRect(
+                this.barStartingX,
+                this.cameraHeight / 2 + this.barMargin,
+                (this.cameraWidth - this.boxHeight) * value,
+                this.barHeight
+            );
         });
 
-        this.load.on('complete', function () {
-            progressBar.destroy();
-            progressBox.destroy();
-            loadingText.destroy();
-            percentText.destroy();
+        this.load.on('complete', () => {
+            this.progressBar.destroy();
+            this.progressBox.destroy();
+            this.loadingText.destroy();
+            this.percentText.destroy();
         });
+        this.scale.on('resize', (size) => {
+            this.resize(size);
+        });
+    }
+
+    resize(size) {
+        if (size) {
+            this.cameraWidth = size.width;
+            this.cameraHeight = size.height;
+
+            this.loadingText.setPosition(this.cameraWidth / 2, this.cameraHeight / 2 - this.boxHeight);
+            this.percentText.setPosition(this.cameraWidth / 2, this.cameraHeight / 2 - 5);
+
+            this.progressBox.clear();
+            this.progressBox.fillStyle(0x222222, 0.8);
+            this.progressBox.fillRect(
+                this.boxStartingX,
+                this.cameraHeight / 2 + this.boxMargin,
+                this.cameraWidth - this.boxPadding,
+                this.boxHeight
+            );
+            this.progressBar.clear();
+            this.progressBar.fillStyle(0xffffff, 1);
+            this.progressBar.fillRect(
+                this.barStartingX,
+                this.cameraHeight / 2 + this.barMargin,
+                (this.cameraWidth - this.boxHeight) * this.currentValue,
+                this.barHeight
+            );
+        }
     }
 
     create() {

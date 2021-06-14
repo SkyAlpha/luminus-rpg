@@ -55,16 +55,13 @@ export class MainMenuScene extends Phaser.Scene {
     }
 
     create() {
-        this.video = this.add.video(
-            this.cameras.main.x,
-            this.cameras.main.y,
-            'intro_video'
-        );
+        this.video = this.add.video(this.cameras.main.x, this.cameras.main.y, 'intro_video');
 
-        if(this.scale.orientation === 'portrait-primary') {
+        if (this.scale.orientation === 'portrait-primary') {
             this.video.setScale(2);
             this.video.setOrigin(0.4, 0);
-        } else { // if Landscape, just fits the video on the canvas.
+        } else {
+            // if Landscape, just fits the video on the canvas.
             this.video.scaleX = this.cameras.main.width / this.video.width;
             this.video.scaleY = this.cameras.main.height / this.video.height;
             this.video.setOrigin(0, 0);
@@ -84,15 +81,10 @@ export class MainMenuScene extends Phaser.Scene {
         this.luminusInterfaceControler = new LuminusInterfaceController(this);
 
         this.gameStartText = this.add
-            .text(
-                this.cameras.main.midPoint.x,
-                this.cameras.main.midPoint.y,
-                'Start Game',
-                {
-                    fontSize: 34,
-                    fontFamily: '"Press Start 2P"',
-                }
-            )
+            .text(this.cameras.main.midPoint.x, this.cameras.main.midPoint.y, 'Start Game', {
+                fontSize: 34,
+                fontFamily: '"Press Start 2P"',
+            })
             .setOrigin(0.5, 0.5)
             .setInteractive();
 
@@ -124,25 +116,21 @@ export class MainMenuScene extends Phaser.Scene {
      * resizes the game canvas.
      */
     resizeAll(size) {
-        if(size && this && this.cameras && this.cameras.main) {
-            this.gameStartText.setPosition(size.width / 2,
-                size.height / 2);
+        if (size && this && this.cameras && this.cameras.main) {
+            this.gameStartText.setPosition(size.width / 2, size.height / 2);
             this.creditsText.setPosition(this.gameStartText.x, this.gameStartText.y + 60);
-            this.video.setPosition(
-                this.cameras.main.x,
-                this.cameras.main.y
-            );
-            console.log(size);
-            if(size.aspectRatio < 1) {
+            this.video.setPosition(this.cameras.main.x, this.cameras.main.y);
+            if (size.aspectRatio < 1) {
                 this.video.setScale(2);
                 this.video.setOrigin(0.4, 0);
-            } else { // if Landscape, just fits the video on the canvas.
+            } else {
+                // if Landscape, just fits the video on the canvas.
                 this.video.scaleX = this.cameras.main.width / this.video.width;
                 this.video.scaleY = this.cameras.main.height / this.video.height;
                 this.video.setOrigin(0, 0);
             }
         }
-    } 
+    }
 
     setMainMenuActions() {
         // Sets the Firts action.
@@ -156,9 +144,7 @@ export class MainMenuScene extends Phaser.Scene {
         };
         this.luminusInterfaceControler.closeAction = null;
         this.luminusInterfaceControler.currentElementAction = firstAction;
-        this.luminusInterfaceControler.interfaceElements[0][0].push(
-            firstAction
-        );
+        this.luminusInterfaceControler.interfaceElements[0][0].push(firstAction);
 
         let credits = {
             element: this.creditsText,
@@ -169,9 +155,7 @@ export class MainMenuScene extends Phaser.Scene {
         this.luminusInterfaceControler.interfaceElements[0][1] = [];
         this.luminusInterfaceControler.interfaceElements[0][1].push(credits);
 
-        this.luminusInterfaceControler.updateHighlightedElement(
-            firstAction.element
-        );
+        this.luminusInterfaceControler.updateHighlightedElement(firstAction.element);
     }
 
     showCredits() {
@@ -185,8 +169,7 @@ export class MainMenuScene extends Phaser.Scene {
         this.creditsTextContent = this.add
             .text(
                 this.creditsBackground.x + 30,
-                this.creditsBackground.y +
-                    this.panelComponent.backgroundMainContentPaddingTop,
+                this.creditsBackground.y + this.panelComponent.backgroundMainContentPaddingTop,
                 `Multiple Songs by Matthew Pablo https://matthewpablo.com/services/
 
 Forest - Intro Scene Music by "syncopika"
@@ -213,12 +196,8 @@ Forest - Intro Scene Music by "syncopika"
         this.luminusInterfaceControler.currentElementAction = closeAction;
         this.luminusInterfaceControler.interfaceElements[0] = [];
         this.luminusInterfaceControler.interfaceElements[0][0] = [];
-        this.luminusInterfaceControler.interfaceElements[0][0].push(
-            closeAction
-        );
-        this.luminusInterfaceControler.updateHighlightedElement(
-            closeAction.element
-        );
+        this.luminusInterfaceControler.interfaceElements[0][0].push(closeAction);
+        this.luminusInterfaceControler.updateHighlightedElement(closeAction.element);
 
         this.closeButton.on('pointerup', (pointer) => {
             this.closeCredits();
@@ -237,14 +216,12 @@ Forest - Intro Scene Music by "syncopika"
 
     startGame() {
         this.themeSound.stop();
-        this.cameras.main.fadeOut(1000, 0, 0, 0)
+        this.cameras.main.fadeOut(1000, 0, 0, 0);
         let startSound = this.sound.add('start_game');
         startSound.play();
         this.cameras.main.once(Phaser.Cameras.Scene2D.Events.FADE_OUT_COMPLETE, (cam, effect) => {
-            this.scene.start('MobileCheckScene')
+            this.scene.start('MobileCheckScene');
             this.scene.stop();
-        })
-        
-        
+        });
     }
 }

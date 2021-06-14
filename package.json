@@ -6,7 +6,7 @@
   "scripts": {
     "build": "webpack --config webpack/prod.js ",
     "start": "webpack-dev-server --config webpack/base.js --open",
-    "jsdoc": "jsdoc src -r -c jsdoc.config.json && npx browser-sync start --server --files 'docs/*.html' --startPath docs/ --watch 'docs/*.html'",
+    "jsdoc": "npx jsdoc src -r -c jsdoc.config.json && npx browser-sync start --server --files 'docs/*.html' --startPath docs/ --watch 'docs/*.html'",
     "tutorial": "npx browser-sync start --server --files 'tutorial/*.html' --startPath tutorial/ --watch 'tutorial/*.html'",
     "serve-tutorial": "cd tutorial-admin && php -S localhost:3500 system/router.php",
     "wget-tutorial": "wget --mirror --convert-links --adjust-extension --restrict-file-names=windows  --page-requisites --no-parent -e robots=off -P ./  http://localhost:3500 && mv ./localhost+3500 ./tutorial",
