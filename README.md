@@ -2,7 +2,7 @@
 
 [DEMO](https://skyalpha.github.io/luminus-rpg.github.io/)
 
-This is a Work in progress project, meant to be a code base for your 2D Action RPG game. It's based on the world class [Phaser Framework](https://phaser.io/), you should be able to use anything that the Phaser Framework provides in this project. Though it's not mandatory, it would be nice of you if you credit me for supplying this code base (I have put a lot of work on it).s
+This is a Work in progress project, meant to be a code base for your 2D Action RPG game. It's based on the world class [Phaser Framework](https://phaser.io/), you should be able to use anything that the Phaser Framework provides in this project. Though it's not mandatory, it would be nice of you if you credit me for supplying this code base (I have put a lot of work on it).
 
 ## Tutorials
 There are a couple of tutorials on how to use features of this template, they are not all covered yet, but you can already do all the basics. Just run 
@@ -22,6 +22,10 @@ There are a couple of tutorials on how to use features of this template, they ar
 | `npm run jsdoc` | Generates the JSDoc for the Project. After generating the JSDoc, it will open up the JSDoc in your web browser. |
 | `npm run tutorial` | Opens the Tutorial Page, teaching all the basics of the Template.|
 | `npm run publish-git --message="my awesome message"` | IF you have the access rights, Publishes the game to the official git-pages repository.|
+
+## Using specific Plugins
+
+The Luminus RPG template has a lot of plugins that are the core of it's mechanics. You might just want one of the plugins to use in your game. Just try to copy and paste a plugin and it's dependencies in your already created game. I haven't tested it yet, I will try it ASAP.
 
 ## Writing Code
 
