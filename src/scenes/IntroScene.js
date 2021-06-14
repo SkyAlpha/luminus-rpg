@@ -112,7 +112,7 @@ export class IntroScene extends Phaser.Scene {
 
         /**
          * The Luminus Logo font Family.
-         * @type { strin }
+         * @type { string }
          * @default
          */
         this.luminusLogoFontFamily = "'Press Start 2P'";
@@ -173,10 +173,7 @@ export class IntroScene extends Phaser.Scene {
             this.centerY - this.logo_phaser.height / 2 - this.mobileMargin()
         );
         this.studioImage.setPosition(this.centerX, this.centerY);
-        this.studioText.setPosition(
-            this.centerX,
-            this.centerY - this.studioImage.height / 2 - this.mobileMargin()
-        );
+        this.studioText.setPosition(this.centerX, this.centerY - this.studioImage.height / 2 - this.mobileMargin());
     }
 
     mobileMargin() {
@@ -187,11 +184,7 @@ export class IntroScene extends Phaser.Scene {
      * Creates the Phaser logo to present with the the particles.
      */
     createPhaserLogo() {
-        this.logo_phaser = this.add.image(
-            this.centerX,
-            this.centerY,
-            this.phaserLogoSpriteName
-        );
+        this.logo_phaser = this.add.image(this.centerX, this.centerY, this.phaserLogoSpriteName);
         this.logo_phaser.alpha = 0;
 
         if (this.scale.height / this.logo_phaser.height > 0.7) {
@@ -200,9 +193,7 @@ export class IntroScene extends Phaser.Scene {
 
         this.logo_phaser_text = this.add.text(
             this.centerX,
-            this.centerY -
-                (this.logo_phaser.height * this.logo_phaser.scaleY) / 2 -
-                this.mobileMargin(),
+            this.centerY - (this.logo_phaser.height * this.logo_phaser.scaleY) / 2 - this.mobileMargin(),
             this.phaserLogoText,
             {
                 wordWrap: {
@@ -222,14 +213,8 @@ export class IntroScene extends Phaser.Scene {
         let logoSource = {
             getRandomPoint: (vec) => {
                 do {
-                    let x = Phaser.Math.Between(
-                        0,
-                        this.logo_phaser.width * this.logo_phaser.scaleX - 1
-                    );
-                    let y = Phaser.Math.Between(
-                        0,
-                        this.logo_phaser.height * this.logo_phaser.scaleY - 1
-                    );
+                    let x = Phaser.Math.Between(0, this.logo_phaser.width * this.logo_phaser.scaleX - 1);
+                    let y = Phaser.Math.Between(0, this.logo_phaser.height * this.logo_phaser.scaleY - 1);
                     pixel = textures.getPixel(x, y, this.phaserLogoSpriteName);
                     return vec.setTo(x + origin.x, y + origin.y);
                 } while (pixel.alpha < 255);
@@ -248,11 +233,7 @@ export class IntroScene extends Phaser.Scene {
         });
 
         this.timeline.add({
-            targets: [
-                this.logo_phaser,
-                this.logo_phaser_text,
-                this.particles_logo,
-            ],
+            targets: [this.logo_phaser, this.logo_phaser_text, this.particles_logo],
             alpha: { from: 0, to: 1 },
             duration: 2000,
             yoyo: true,
@@ -263,11 +244,7 @@ export class IntroScene extends Phaser.Scene {
     }
 
     createLuminusLogo() {
-        this.studioImage = this.add.image(
-            this.centerX,
-            this.centerY,
-            this.luminusLogo
-        );
+        this.studioImage = this.add.image(this.centerX, this.centerY, this.luminusLogo);
         this.studioImage.alpha = 0;
 
         this.studioText = this.add.text(

@@ -2,12 +2,7 @@
 
 [DEMO](https://skyalpha.github.io/luminus-rpg.github.io/)
 
-This is a Work in progress project, meant to be a code base for your 2D Action RPG game. It's based on the world class [Phaser Framework](https://phaser.io/), you should be able to use anything that the Phaser Framework provides in this project. Though it's not mandatory, it would be nice of you if you credit me for supplying this code base (I have put a lot of work on it).
-
-Luminus RPG Template with ES6 support via [Babel 7](https://babeljs.io/) and [Webpack 4](https://webpack.js.org/)
-that includes hot-reloading for development and production-ready builds.
-
-Loading images via JavaScript module `import` is also supported.
+This is a Work in progress project, meant to be a code base for your 2D Action RPG game. It's based on the world class [Phaser Framework](https://phaser.io/), you should be able to use anything that the Phaser Framework provides in this project. Though it's not mandatory, it would be nice of you if you credit me for supplying this code base (I have put a lot of work on it).s
 
 ## Tutorials
 There are a couple of tutorials on how to use features of this template, they are not all covered yet, but you can already do all the basics. Just run 
@@ -57,6 +52,10 @@ This project uses the [Git-Flow](https://danielkummer.github.io/git-flow-cheatsh
 | Bugfix | `bugfix-{issue-number}` | `release-{issue-number}` | `release-{number}` and develop | bugfix-{issue-number} - My cool message |
 | Hotfix | `hotfix-{issue-number}` | master | master, `release-{number}` and develop | hotfix-{issue-number} - My cool message |
 
+### Based on Phaser 3 Template
+Luminus RPG Template uses the [Phaser 3 Template](https://github.com/photonstorm/phaser3-project-template) and has ES6 support via [Babel 7](https://babeljs.io/) and [Webpack 4](https://webpack.js.org/) that includes hot-reloading for development and production-ready builds.
+
+You can load images via JavaScript module `import`.
 
 ### Babel
 You can write modern ES6+ JavaScript and Babel will transpile it to a version of JavaScript that you
@@ -92,3 +91,18 @@ Permission is hereby granted, free of charge, to any person obtaining a copy of 
 The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+
+## CREDITS for Assets
+
+ ### Visuals
+ - [Portraits and Some Weird Stuff - ME \o/](https://www.instagram.com/javascriptgames/)
+ - [Zelda Like Tiles.](https://opengameart.org/content/zelda-like-tilesets-and-sprites)
+
+ ### Music
+ - Colossal Boss Fight.
+ - Tropic Strike.
+ - Wasteland Show down .
+  Credits to https://matthewpablo.com/services/
+
+- [Forest](https://opengameart.org/content/forest) Music by syncopika

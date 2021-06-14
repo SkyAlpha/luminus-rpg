@@ -212,12 +212,12 @@
  <objectgroup id="10" name="info">
   <object id="6" name="House_message" x="-63" y="-52.6667" width="142" height="96">
    <properties>
-    <property name="message" value="This is a house. Should I enter it?"/>
+    <property name="messageID" type="int" value="2"/>
    </properties>
   </object>
  </objectgroup>
  <objectgroup id="11" name="enemies"/>
- <objectgroup id="12" name="particles">
+ <objectgroup id="12" name="particles" visible="0">
   <object id="4" name="dust" x="-359.333" y="-284" width="741.333" height="538">
    <properties>
     <property name="particle" value="leaves"/>
@@ -229,12 +229,12 @@
    </properties>
   </object>
  </objectgroup>
- <objectgroup id="14" name="markers">
+ <objectgroup id="14" name="markers" visible="0">
   <object id="7" name="marker_info_house" x="7.33333" y="-4">
    <point/>
   </object>
  </objectgroup>
- <objectgroup id="15" name="warps">
+ <objectgroup id="15" name="warps" visible="0">
   <object id="8" name="inner_house" x="1857" y="-331.938" width="13.9375" height="7.8125">
    <properties>
     <property name="goto" type="object" value="11"/>
@@ -252,7 +252,7 @@
    <point/>
   </object>
  </objectgroup>
- <objectgroup id="16" name="spawn">
+ <objectgroup id="16" name="spawn" visible="0">
   <object id="3" name="Spawn Point" x="5.54545" y="96.3636">
    <point/>
   </object>

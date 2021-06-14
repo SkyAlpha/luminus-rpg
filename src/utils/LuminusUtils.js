@@ -1,4 +1,12 @@
+/**
+ * @class
+ * The class responsible for Utility methods.
+ */
 export const LuminusUtils = {
+    /**
+     * Returns if it's a mobile device, or not.
+     * @returns { boolean } result if the current device is mobile
+     */
     isMobile: () => {
         let check = false;
         (function (a) {
