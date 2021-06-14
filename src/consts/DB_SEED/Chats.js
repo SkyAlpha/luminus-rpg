@@ -55,8 +55,7 @@ export const CHATS = [
                 leftName: 'Lucius',
                 left: true,
                 leftExit: false,
-                message:
-                    'Nooo!!! Wait!! I still have a lot of questions to make!!',
+                message: 'Nooo!!! Wait!! I still have a lot of questions to make!!',
                 rightPortraitName: 'lucius_portrait_beardless',
                 rightName: 'Beardless Lucius',
                 right: false,

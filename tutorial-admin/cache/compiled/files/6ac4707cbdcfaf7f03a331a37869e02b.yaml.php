@@ -2,7 +2,7 @@
 return [
     '@class' => 'Grav\\Common\\File\\CompiledYamlFile',
     'filename' => '/Users/jonatan/Documents/Projects/games/collision/tutorial-admin/system/blueprints/config/system.yaml',
-    'modified' => 1617729503,
+    'modified' => 1622714294,
     'data' => [
         'title' => 'PLUGIN_ADMIN.SYSTEM',
         'form' => [
@@ -754,7 +754,7 @@ return [
                                     'type' => 'toggle',
                                     'label' => 'PLUGIN_ADMIN.CLEAR_IMAGES_BY_DEFAULT',
                                     'help' => 'PLUGIN_ADMIN.CLEAR_IMAGES_BY_DEFAULT_HELP',
-                                    'highlight' => 1,
+                                    'highlight' => 0,
                                     'options' => [
                                         1 => 'PLUGIN_ADMIN.YES',
                                         0 => 'PLUGIN_ADMIN.NO'

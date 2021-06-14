@@ -2,10 +2,10 @@
 return [
     '@class' => 'Grav\\Common\\File\\CompiledJsonFile',
     'filename' => '/Users/jonatan/Documents/Projects/games/collision/tutorial-admin/user/data/flex/indexes/pages.json',
-    'modified' => 1618255158,
+    'modified' => 1623683817,
     'data' => [
         'version' => '1.5',
-        'timestamp' => 1618255158,
+        'timestamp' => 1623683817,
         'count' => 18,
         'index' => [
             '' => [
@@ -24,223 +24,223 @@ return [
                 'key' => 'home',
                 'storage_key' => '01.home',
                 'template' => 'default',
-                'storage_timestamp' => 1617817140,
+                'storage_timestamp' => 1621433530,
                 'markdown' => [
                     '' => [
-                        'default' => 1617817140
+                        'default' => 1621433530
                     ]
                 ],
-                'checksum' => 'f1edfb96aa48defdeb9680027d8e5c93'
+                'checksum' => '6d4912bbfd7b30a227c92f1ea5c0df92'
             ],
             '03.tiled' => [
                 'key' => 'tiled',
                 'storage_key' => '03.tiled',
                 'template' => 'default',
-                'storage_timestamp' => 1618254902,
+                'storage_timestamp' => 1621433530,
                 'markdown' => [
                     '' => [
-                        'default' => 1617902145
+                        'default' => 1621433530
                     ]
                 ],
                 'children' => [
-                    '03.setting-up-your-tiled-map' => 1618254902
+                    '03.setting-up-your-tiled-map' => 1621433530
                 ],
-                'checksum' => 'bad0f32bf47a974f6a725e3ba114041e'
+                'checksum' => '286ee3055fe5d066e6c9bf9f302b1082'
             ],
             '03.tiled/03.setting-up-your-tiled-map' => [
                 'key' => 'tiled/setting-up-your-tiled-map',
                 'storage_key' => '03.tiled/03.setting-up-your-tiled-map',
                 'template' => 'default',
-                'storage_timestamp' => 1618254950,
+                'storage_timestamp' => 1621433530,
                 'markdown' => [
                     '' => [
-                        'default' => 1617992325
+                        'default' => 1621433530
                     ]
                 ],
                 'children' => [
-                    '01.creating-a-map' => 1617890533,
-                    '02.creating-tile-layers' => 1617904481,
-                    '03.creating-object-layers' => 1617905918,
-                    '04.creating-my-first-tileset' => 1617973744,
-                    '05.creating-our-first-tile-map' => 1617973757,
-                    '06.adding-the-player' => 1617991811,
-                    '07.adding-map-collisions' => 1618231723,
-                    '08.how-to-effectively-draw-a-tile-map' => 1618231731,
-                    '09.adding-environment-particles' => 1618247574,
-                    '10.how-to-add-information-zones' => 1618249875,
-                    '11.adding-help-markers' => 1618249809,
-                    '12.how-to-add-warps' => 1618254881,
-                    '13.creating-enemy-zones' => 1618254950
+                    '01.creating-a-map' => 1621433530,
+                    '02.creating-tile-layers' => 1621433530,
+                    '03.creating-object-layers' => 1621433530,
+                    '04.creating-my-first-tileset' => 1621433530,
+                    '05.creating-our-first-tile-map' => 1621433530,
+                    '06.adding-the-player' => 1621433530,
+                    '07.adding-map-collisions' => 1621433530,
+                    '08.how-to-effectively-draw-a-tile-map' => 1621433530,
+                    '09.adding-environment-particles' => 1621433530,
+                    '10.how-to-add-information-zones' => 1621433530,
+                    '11.adding-help-markers' => 1621433530,
+                    '12.how-to-add-warps' => 1621433530,
+                    '13.creating-enemy-zones' => 1621433530
                 ],
-                'checksum' => 'cf2226cca49176f1f86aaba5c12d9551'
+                'checksum' => '266852b179910b85fba31589b21ef2f2'
             ],
             '03.tiled/03.setting-up-your-tiled-map/01.creating-a-map' => [
                 'key' => 'tiled/setting-up-your-tiled-map/creating-a-map',
                 'storage_key' => '03.tiled/03.setting-up-your-tiled-map/01.creating-a-map',
                 'template' => 'default',
-                'storage_timestamp' => 1617890533,
+                'storage_timestamp' => 1621433530,
                 'markdown' => [
                     '' => [
-                        'default' => 1617890533
+                        'default' => 1621433530
                     ]
                 ],
-                'checksum' => '8adb0de17becade5d14db847286c8c29'
+                'checksum' => '873194a026e956d563471c6914e5532a'
             ],
             '03.tiled/03.setting-up-your-tiled-map/02.creating-tile-layers' => [
                 'key' => 'tiled/setting-up-your-tiled-map/creating-tile-layers',
                 'storage_key' => '03.tiled/03.setting-up-your-tiled-map/02.creating-tile-layers',
                 'template' => 'default',
-                'storage_timestamp' => 1617904481,
+                'storage_timestamp' => 1621433530,
                 'markdown' => [
                     '' => [
-                        'default' => 1617904481
+                        'default' => 1621433530
                     ]
                 ],
-                'checksum' => '13f605f302b3ff0deb5d87a6ece22627'
+                'checksum' => '7beb653098ed0adf7f91832246ea659c'
             ],
             '03.tiled/03.setting-up-your-tiled-map/03.creating-object-layers' => [
                 'key' => 'tiled/setting-up-your-tiled-map/creating-object-layers',
                 'storage_key' => '03.tiled/03.setting-up-your-tiled-map/03.creating-object-layers',
                 'template' => 'default',
-                'storage_timestamp' => 1617905918,
+                'storage_timestamp' => 1621433530,
                 'markdown' => [
                     '' => [
-                        'default' => 1617905918
+                        'default' => 1621433530
                     ]
                 ],
-                'checksum' => '353159cb3d8f20e425cc68ba25472cf4'
+                'checksum' => 'd10f328640939e7ccf73a616fd634134'
             ],
             '03.tiled/03.setting-up-your-tiled-map/04.creating-my-first-tileset' => [
                 'key' => 'tiled/setting-up-your-tiled-map/creating-my-first-tileset',
                 'storage_key' => '03.tiled/03.setting-up-your-tiled-map/04.creating-my-first-tileset',
                 'template' => 'default',
-                'storage_timestamp' => 1617973744,
+                'storage_timestamp' => 1621433530,
                 'markdown' => [
                     '' => [
-                        'default' => 1617973744
+                        'default' => 1621433530
                     ]
                 ],
-                'checksum' => '06a9d28bd00b2783e579a5e1e8b8c4c7'
+                'checksum' => 'c4569caf6bb87d5f56bd286a1a54c648'
             ],
             '03.tiled/03.setting-up-your-tiled-map/05.creating-our-first-tile-map' => [
                 'key' => 'tiled/setting-up-your-tiled-map/creating-our-first-tile-map',
                 'storage_key' => '03.tiled/03.setting-up-your-tiled-map/05.creating-our-first-tile-map',
                 'template' => 'default',
-                'storage_timestamp' => 1617973757,
+                'storage_timestamp' => 1621433530,
                 'markdown' => [
                     '' => [
-                        'default' => 1617973757
+                        'default' => 1621433530
                     ]
                 ],
-                'checksum' => 'c0f7e19210222a455f097fc09cbe5172'
+                'checksum' => '31cb3eea14a70045db468ed3b8c4b029'
             ],
             '03.tiled/03.setting-up-your-tiled-map/06.adding-the-player' => [
                 'key' => 'tiled/setting-up-your-tiled-map/adding-the-player',
                 'storage_key' => '03.tiled/03.setting-up-your-tiled-map/06.adding-the-player',
                 'template' => 'default',
-                'storage_timestamp' => 1617991811,
+                'storage_timestamp' => 1621433530,
                 'markdown' => [
                     '' => [
-                        'default' => 1617991811
+                        'default' => 1621433530
                     ]
                 ],
-                'checksum' => 'fa5c3d2852d02c6ea8abe12008791c11'
+                'checksum' => '156c5fc27c74b455865a38ea8f616fd7'
             ],
             '03.tiled/03.setting-up-your-tiled-map/07.adding-map-collisions' => [
                 'key' => 'tiled/setting-up-your-tiled-map/adding-map-collisions',
                 'storage_key' => '03.tiled/03.setting-up-your-tiled-map/07.adding-map-collisions',
                 'template' => 'default',
-                'storage_timestamp' => 1618231723,
+                'storage_timestamp' => 1621433530,
                 'markdown' => [
                     '' => [
-                        'default' => 1618231723
+                        'default' => 1621433530
                     ]
                 ],
-                'checksum' => 'ec4217349f1601730cc89531a79ef45a'
+                'checksum' => 'd522b37d73a2bd6738f6a1fad65ab900'
             ],
             '03.tiled/03.setting-up-your-tiled-map/08.how-to-effectively-draw-a-tile-map' => [
                 'key' => 'tiled/setting-up-your-tiled-map/how-to-effectively-draw-a-tile-map',
                 'storage_key' => '03.tiled/03.setting-up-your-tiled-map/08.how-to-effectively-draw-a-tile-map',
                 'template' => 'default',
-                'storage_timestamp' => 1618231731,
+                'storage_timestamp' => 1621433530,
                 'markdown' => [
                     '' => [
-                        'default' => 1618231731
+                        'default' => 1621433530
                     ]
                 ],
-                'checksum' => '9a48e305656145d41d03b75a4ffa7c80'
+                'checksum' => '2e48ab90b248599467e3dd780ed420ed'
             ],
             '03.tiled/03.setting-up-your-tiled-map/09.adding-environment-particles' => [
                 'key' => 'tiled/setting-up-your-tiled-map/adding-environment-particles',
                 'storage_key' => '03.tiled/03.setting-up-your-tiled-map/09.adding-environment-particles',
                 'template' => 'default',
-                'storage_timestamp' => 1618247574,
+                'storage_timestamp' => 1621433530,
                 'markdown' => [
                     '' => [
-                        'default' => 1618247574
+                        'default' => 1621433530
                     ]
                 ],
-                'checksum' => 'f029ab65f948dc675c2a436baa0a04b5'
+                'checksum' => '61bd6fd9e103536bd815180ad97d1fb3'
             ],
             '03.tiled/03.setting-up-your-tiled-map/10.how-to-add-information-zones' => [
                 'key' => 'tiled/setting-up-your-tiled-map/how-to-add-information-zones',
                 'storage_key' => '03.tiled/03.setting-up-your-tiled-map/10.how-to-add-information-zones',
                 'template' => 'default',
-                'storage_timestamp' => 1618249875,
+                'storage_timestamp' => 1623683817,
                 'markdown' => [
                     '' => [
-                        'default' => 1618249875
+                        'default' => 1623683817
                     ]
                 ],
-                'checksum' => 'ee64438ceff0d9e7cc60be66ba8b806f'
+                'checksum' => '5d2aabcdfce5affc3c30dd3e3216ff3a'
             ],
             '03.tiled/03.setting-up-your-tiled-map/11.adding-help-markers' => [
                 'key' => 'tiled/setting-up-your-tiled-map/adding-help-markers',
                 'storage_key' => '03.tiled/03.setting-up-your-tiled-map/11.adding-help-markers',
                 'template' => 'default',
-                'storage_timestamp' => 1618249809,
+                'storage_timestamp' => 1621433530,
                 'markdown' => [
                     '' => [
-                        'default' => 1618249809
+                        'default' => 1621433530
                     ]
                 ],
-                'checksum' => '94645a2a7aa2bc7edb1562bc747d47ca'
+                'checksum' => '16034241467125b29888942e12c3b18d'
             ],
             '03.tiled/03.setting-up-your-tiled-map/12.how-to-add-warps' => [
                 'key' => 'tiled/setting-up-your-tiled-map/how-to-add-warps',
                 'storage_key' => '03.tiled/03.setting-up-your-tiled-map/12.how-to-add-warps',
                 'template' => 'default',
-                'storage_timestamp' => 1618254881,
+                'storage_timestamp' => 1621433530,
                 'markdown' => [
                     '' => [
-                        'default' => 1618254881
+                        'default' => 1621433530
                     ]
                 ],
-                'checksum' => '5f6bbe97756e58a2b6153455d685e060'
+                'checksum' => '60e2e29f72e06cffa4dd19bec7d69cf1'
             ],
             '03.tiled/03.setting-up-your-tiled-map/13.creating-enemy-zones' => [
                 'key' => 'tiled/setting-up-your-tiled-map/creating-enemy-zones',
                 'storage_key' => '03.tiled/03.setting-up-your-tiled-map/13.creating-enemy-zones',
                 'template' => 'default',
-                'storage_timestamp' => 1618255101,
+                'storage_timestamp' => 1621433530,
                 'markdown' => [
                     '' => [
-                        'default' => 1618255101
+                        'default' => 1621433530
                     ]
                 ],
-                'checksum' => '2e9c3f5635cac44f870661c86f4122d8'
+                'checksum' => 'e66eb269fd890961abdda397f156465e'
             ],
             'typography' => [
                 'key' => 'typography',
                 'storage_key' => 'typography',
                 'template' => 'default',
-                'storage_timestamp' => 1618255158,
+                'storage_timestamp' => 1621433530,
                 'markdown' => [
                     '' => [
-                        'default' => 1617807695
+                        'default' => 1621433530
                     ]
                 ],
-                'checksum' => '0eb0860ac4ad61e8272bdc9b9c54f718'
+                'checksum' => '181c916a4a4c1cc0fe7ddf52ba9d1ade'
             ]
         ]
     ]

@@ -825,7 +825,7 @@
   </object>
   <object id="51" name="dark_grass" x="-1133.5" y="-421" width="103" height="111.5">
    <properties>
-    <property name="message" value="- I always wanted to see what is inside this house. Maybe some day I will Figure out how to enter in it."/>
+    <property name="messageID" type="int" value="1"/>
    </properties>
   </object>
   <object id="52" name="treasure_hole" x="-223.5" y="-149.5" width="46.5" height="69">

@@ -2,7 +2,7 @@
 return [
     '@class' => 'Grav\\Common\\File\\CompiledYamlFile',
     'filename' => '/Users/jonatan/Documents/Projects/games/collision/tutorial-admin/system/blueprints/config/site.yaml',
-    'modified' => 1617729503,
+    'modified' => 1622714294,
     'data' => [
         'title' => 'PLUGIN_ADMIN.SITE',
         'form' => [

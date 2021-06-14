@@ -2,7 +2,7 @@
 return [
     '@class' => 'Grav\\Common\\File\\CompiledYamlFile',
     'filename' => '/Users/jonatan/Documents/Projects/games/collision/tutorial-admin/system/blueprints/flex/configure/compat.yaml',
-    'modified' => 1617729503,
+    'modified' => 1622714294,
     'data' => [
         'form' => [
             'compatibility' => [

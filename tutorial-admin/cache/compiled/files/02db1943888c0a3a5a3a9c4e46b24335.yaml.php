@@ -2,7 +2,7 @@
 return [
     '@class' => 'Grav\\Common\\File\\CompiledYamlFile',
     'filename' => 'plugins://prism-highlight/prism-highlight.yaml',
-    'modified' => 1617816386,
+    'modified' => 1621433531,
     'data' => [
         'enabled' => true,
         'theme' => 'prism-base16-ocean.dark.css',

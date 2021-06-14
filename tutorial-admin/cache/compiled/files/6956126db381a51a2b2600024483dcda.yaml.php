@@ -2,7 +2,7 @@
 return [
     '@class' => 'Grav\\Common\\File\\CompiledYamlFile',
     'filename' => 'plugins://backtotop/backtotop.yaml',
-    'modified' => 1617822859,
+    'modified' => 1621433530,
     'data' => [
         'enabled' => true,
         'fontawesome_icons' => true,

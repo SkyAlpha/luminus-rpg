@@ -1,0 +1,26 @@
+{
+    "name": "getgrav/cache",
+    "description": "A lightweight file-system cache system",
+    "keywords": ["cache", "caching", "system", "file-system"],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Gregwar",
+            "email": "g.passault@gmail.com"
+        },
+        {
+            "name": "Grav CMS",
+            "email": "hello@getgrav.org",
+            "homepage": "https://getgrav.org"
+        }
+    ],
+    "target-dir": "Gregwar/Cache",
+    "require": {
+        "php": ">=5.3"
+    },
+    "autoload": {
+        "psr-0": {
+            "Gregwar\\Cache": ""
+        }
+    }
+}

@@ -1,103 +1,103 @@
 <?php
 return [
     '@class' => 'Grav\\Common\\Config\\CompiledBlueprints',
-    'timestamp' => 1617822864,
-    'checksum' => '88f465ecfecb8952f3dd02f2a554e711',
+    'timestamp' => 1623681904,
+    'checksum' => '5a287385f70619663118fb135bb4e8c7',
     'files' => [
         'user/plugins/admin/blueprints/config' => [
             'media' => [
                 'file' => 'user/plugins/admin/blueprints/config/media.yaml',
-                'modified' => 1617729503
+                'modified' => 1621433530
             ]
         ],
         'system/blueprints/config' => [
             'backups' => [
                 'file' => 'system/blueprints/config/backups.yaml',
-                'modified' => 1617729503
+                'modified' => 1622714294
             ],
             'media' => [
                 'file' => 'system/blueprints/config/media.yaml',
-                'modified' => 1617729503
+                'modified' => 1622714294
             ],
             'scheduler' => [
                 'file' => 'system/blueprints/config/scheduler.yaml',
-                'modified' => 1617729503
+                'modified' => 1622714294
             ],
             'security' => [
                 'file' => 'system/blueprints/config/security.yaml',
-                'modified' => 1617729503
+                'modified' => 1622714294
             ],
             'site' => [
                 'file' => 'system/blueprints/config/site.yaml',
-                'modified' => 1617729503
+                'modified' => 1622714294
             ],
             'streams' => [
                 'file' => 'system/blueprints/config/streams.yaml',
-                'modified' => 1617729503
+                'modified' => 1622714294
             ],
             'system' => [
                 'file' => 'system/blueprints/config/system.yaml',
-                'modified' => 1617729503
+                'modified' => 1622714294
             ]
         ],
         'user/plugins' => [
             'plugins/markdown-notices' => [
                 'file' => 'user/plugins/markdown-notices/blueprints.yaml',
-                'modified' => 1617729503
+                'modified' => 1621433531
             ],
             'plugins/form' => [
                 'file' => 'user/plugins/form/blueprints.yaml',
-                'modified' => 1617729503
+                'modified' => 1621433530
             ],
             'plugins/highlight' => [
                 'file' => 'user/plugins/highlight/blueprints.yaml',
-                'modified' => 1617820267
+                'modified' => 1621433530
             ],
             'plugins/flex-objects' => [
                 'file' => 'user/plugins/flex-objects/blueprints.yaml',
-                'modified' => 1617729503
+                'modified' => 1621433530
             ],
             'plugins/admin' => [
                 'file' => 'user/plugins/admin/blueprints.yaml',
-                'modified' => 1617729503
+                'modified' => 1621433530
             ],
             'plugins/problems' => [
                 'file' => 'user/plugins/problems/blueprints.yaml',
-                'modified' => 1617729503
+                'modified' => 1621433531
             ],
             'plugins/backtotop' => [
                 'file' => 'user/plugins/backtotop/blueprints.yaml',
-                'modified' => 1617822859
+                'modified' => 1621433530
             ],
             'plugins/prism-highlight' => [
                 'file' => 'user/plugins/prism-highlight/blueprints.yaml',
-                'modified' => 1617816386
+                'modified' => 1621433531
             ],
             'plugins/error' => [
                 'file' => 'user/plugins/error/blueprints.yaml',
-                'modified' => 1617729503
+                'modified' => 1621433530
             ],
             'plugins/login' => [
                 'file' => 'user/plugins/login/blueprints.yaml',
-                'modified' => 1617729503
+                'modified' => 1621433530
             ],
             'plugins/email' => [
                 'file' => 'user/plugins/email/blueprints.yaml',
-                'modified' => 1617729503
+                'modified' => 1621433530
             ]
         ],
         'user/themes' => [
             'themes/g5_hydrogen' => [
                 'file' => 'user/themes/g5_hydrogen/blueprints.yaml',
-                'modified' => 1617816140
+                'modified' => 1621433531
             ],
             'themes/deliver' => [
                 'file' => 'user/themes/deliver/blueprints.yaml',
-                'modified' => 1617816306
+                'modified' => 1621433531
             ],
             'themes/quark' => [
                 'file' => 'user/themes/quark/blueprints.yaml',
-                'modified' => 1617729503
+                'modified' => 1621433531
             ]
         ]
     ],
@@ -111,6 +111,7 @@ return [
                 ]
             ],
             'media.types' => [
+                'array' => true,
                 'name' => 'media.types',
                 'type' => 'list',
                 'label' => 'PLUGIN_ADMIN.MEDIA_TYPES',
@@ -118,8 +119,7 @@ return [
                 'key' => 'extension',
                 'controls' => 'both',
                 'collapsed' => true,
-                'validation' => 'loose',
-                'array' => true
+                'validation' => 'loose'
             ],
             'media.types.*' => [
                 'type' => '_parent',
@@ -235,14 +235,14 @@ return [
                 'validation' => 'loose'
             ],
             'backups.profiles' => [
+                'array' => true,
                 'type' => 'list',
                 'style' => 'vertical',
                 'label' => NULL,
                 'classes' => 'backups-list compact',
                 'sort' => false,
                 'name' => 'backups.profiles',
-                'validation' => 'loose',
-                'array' => true
+                'validation' => 'loose'
             ],
             'backups.profiles.*' => [
                 'type' => '_parent',
@@ -325,14 +325,14 @@ return [
                 'validation' => 'loose'
             ],
             'scheduler.custom_jobs' => [
+                'array' => true,
                 'type' => 'list',
                 'style' => 'vertical',
                 'label' => NULL,
                 'classes' => 'cron-job-list compact',
                 'key' => 'id',
                 'name' => 'scheduler.custom_jobs',
-                'validation' => 'loose',
-                'array' => true
+                'validation' => 'loose'
             ],
             'scheduler.custom_jobs.*' => [
                 'type' => '_parent',
@@ -1144,11 +1144,11 @@ return [
                 'validation' => 'loose'
             ],
             'system.languages.content_fallback' => [
+                'array' => true,
                 'type' => 'list',
                 'label' => 'PLUGIN_ADMIN.CONTENT_LANGUAGE_FALLBACKS',
                 'name' => 'system.languages.content_fallback',
-                'validation' => 'loose',
-                'array' => true
+                'validation' => 'loose'
             ],
             'system.languages.pages_fallback_only' => [
                 'type' => 'toggle',
@@ -1459,7 +1459,7 @@ return [
             'system.cache.clear_images_by_default' => [
                 'type' => 'toggle',
                 'label' => 'PLUGIN_ADMIN.CLEAR_IMAGES_BY_DEFAULT',
-                'highlight' => 1,
+                'highlight' => 0,
                 'options' => [
                     1 => 'PLUGIN_ADMIN.YES',
                     0 => 'PLUGIN_ADMIN.NO'
@@ -3654,6 +3654,11 @@ return [
                 'form_field' => false
             ],
             'plugins.admin.whitelabel.logo_login' => [
+                'array' => true,
+                'media_field' => true,
+                'validate' => [
+                    'type' => 'ignore'
+                ],
                 'type' => 'file',
                 'label' => 'PLUGIN_ADMIN.LOGIN_SCREEN_CUSTOM_LOGO_LABEL',
                 'destination' => 'user://assets',
@@ -3661,14 +3666,14 @@ return [
                     0 => 'image/*'
                 ],
                 'name' => 'plugins.admin.whitelabel.logo_login',
-                'validation' => 'loose',
+                'validation' => 'loose'
+            ],
+            'plugins.admin.whitelabel.logo_custom' => [
                 'array' => true,
                 'media_field' => true,
                 'validate' => [
                     'type' => 'ignore'
-                ]
-            ],
-            'plugins.admin.whitelabel.logo_custom' => [
+                ],
                 'type' => 'file',
                 'label' => 'PLUGIN_ADMIN.TOP_LEFT_CUSTOM_LOGO_LABEL',
                 'destination' => 'user://assets',
@@ -3676,12 +3681,7 @@ return [
                     0 => 'image/*'
                 ],
                 'name' => 'plugins.admin.whitelabel.logo_custom',
-                'validation' => 'loose',
-                'array' => true,
-                'media_field' => true,
-                'validate' => [
-                    'type' => 'ignore'
-                ]
+                'validation' => 'loose'
             ],
             'plugins.admin.whitelabel.codemirror_theme' => [
                 'type' => 'select',
@@ -5283,6 +5283,11 @@ return [
                 'validation' => 'loose'
             ],
             'themes.quark.custom_logo' => [
+                'array' => true,
+                'media_field' => true,
+                'validate' => [
+                    'type' => 'ignore'
+                ],
                 'type' => 'file',
                 'label' => 'Custom Logo',
                 'size' => 'large',
@@ -5294,14 +5299,14 @@ return [
                     0 => 'image/*'
                 ],
                 'name' => 'themes.quark.custom_logo',
-                'validation' => 'loose',
+                'validation' => 'loose'
+            ],
+            'themes.quark.custom_logo_mobile' => [
                 'array' => true,
                 'media_field' => true,
                 'validate' => [
                     'type' => 'ignore'
-                ]
-            ],
-            'themes.quark.custom_logo_mobile' => [
+                ],
                 'type' => 'file',
                 'label' => 'Mobile Custom Logo',
                 'size' => 'large',
@@ -5311,12 +5316,7 @@ return [
                     0 => 'image/*'
                 ],
                 'name' => 'themes.quark.custom_logo_mobile',
-                'validation' => 'loose',
-                'array' => true,
-                'media_field' => true,
-                'validate' => [
-                    'type' => 'ignore'
-                ]
+                'validation' => 'loose'
             ],
             'themes.quark.header-fixed' => [
                 'type' => 'toggle',

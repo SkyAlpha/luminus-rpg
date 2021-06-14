@@ -2,7 +2,7 @@
 return [
     '@class' => 'Grav\\Common\\File\\CompiledMarkdownFile',
     'filename' => '/Users/jonatan/Documents/Projects/games/collision/tutorial-admin/user/pages/03.tiled/03.setting-up-your-tiled-map/07.adding-map-collisions/default.md',
-    'modified' => 1618231723,
+    'modified' => 1621433530,
     'data' => [
         'header' => [
             'title' => 'Adding Map Collisions',

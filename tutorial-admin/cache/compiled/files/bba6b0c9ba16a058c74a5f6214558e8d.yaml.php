@@ -2,7 +2,7 @@
 return [
     '@class' => 'Grav\\Common\\File\\CompiledYamlFile',
     'filename' => '/Users/jonatan/Documents/Projects/games/collision/tutorial-admin/user/themes/deliver/blueprints.yaml',
-    'modified' => 1617816306,
+    'modified' => 1621433531,
     'data' => [
         'name' => 'Deliver',
         'slug' => 'deliver',

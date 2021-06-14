@@ -1430,9 +1430,9 @@
                  "name":"dark_grass",
                  "properties":[
                         {
-                         "name":"message",
-                         "type":"string",
-                         "value":"- I always wanted to see what is inside this house. Maybe some day I will Figure out how to enter in it."
+                         "name":"messageID",
+                         "type":"int",
+                         "value":1
                         }],
                  "rotation":0,
                  "type":"",
@@ -1623,8 +1623,8 @@
                  "type":"",
                  "visible":true,
                  "width":146,
-                 "x":-1127.83333333333,
-                 "y":97.0003333333333
+                 "x":-1127.83,
+                 "y":97.0003
                 }, 
                 {
                  "height":86.333,
@@ -1716,7 +1716,7 @@
                  "type":"",
                  "visible":true,
                  "width":115.333,
-                 "x":-901.333666666667,
+                 "x":-901.334,
                  "y":-334.667
                 }, 
                 {
@@ -2111,7 +2111,7 @@
                  "visible":true,
                  "width":0,
                  "x":-1162.83,
-                 "y":-606.666333333333
+                 "y":-606.666
                 }],
          "opacity":1,
          "type":"objectgroup",

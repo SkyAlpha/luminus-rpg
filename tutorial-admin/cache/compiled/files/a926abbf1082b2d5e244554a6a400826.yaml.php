@@ -2,7 +2,7 @@
 return [
     '@class' => 'Grav\\Common\\File\\CompiledYamlFile',
     'filename' => '/Users/jonatan/Documents/Projects/games/collision/tutorial-admin/user/plugins/backtotop/blueprints.yaml',
-    'modified' => 1617822859,
+    'modified' => 1621433530,
     'data' => [
         'name' => 'Back to Top',
         'version' => '0.6.1',

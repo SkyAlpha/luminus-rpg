@@ -2,7 +2,7 @@
 return [
     '@class' => 'Grav\\Common\\File\\CompiledMarkdownFile',
     'filename' => '/Users/jonatan/Documents/Projects/games/collision/tutorial-admin/user/pages/03.tiled/03.setting-up-your-tiled-map/06.adding-the-player/default.md',
-    'modified' => 1617991811,
+    'modified' => 1621433530,
     'data' => [
         'header' => [
             'title' => 'Adding the Player',

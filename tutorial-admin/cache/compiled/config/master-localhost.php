@@ -1,8 +1,8 @@
 <?php
 return [
     '@class' => 'Grav\\Common\\Config\\CompiledConfig',
-    'timestamp' => 1617822862,
-    'checksum' => 'cbb62e680483917d8eb91f1c22e9ab66',
+    'timestamp' => 1623681900,
+    'checksum' => '4eea77003f395dd25d38e8f5de5e4cc4',
     'files' => [
         'user/config' => [
             'media' => [
@@ -11,117 +11,117 @@ return [
             ],
             'plugins/highlight' => [
                 'file' => 'user/config/plugins/highlight.yaml',
-                'modified' => 1617822232
+                'modified' => 1621433530
             ],
             'plugins/prism-highlight' => [
                 'file' => 'user/config/plugins/prism-highlight.yaml',
-                'modified' => 1617821497
+                'modified' => 1621433530
             ],
             'security' => [
                 'file' => 'user/config/security.yaml',
-                'modified' => 1617806966
+                'modified' => 1621433530
             ],
             'site' => [
                 'file' => 'user/config/site.yaml',
-                'modified' => 1617729503
+                'modified' => 1621433530
             ],
             'system' => [
                 'file' => 'user/config/system.yaml',
-                'modified' => 1617822859
+                'modified' => 1623681895
             ],
             'themes/quark' => [
                 'file' => 'user/config/themes/quark.yaml',
-                'modified' => 1617809088
+                'modified' => 1621433530
             ],
             'versions' => [
                 'file' => 'user/config/versions.yaml',
-                'modified' => 1617806987
+                'modified' => 1623681895
             ]
         ],
         'system/config' => [
             'backups' => [
                 'file' => 'system/config/backups.yaml',
-                'modified' => 1617729503
+                'modified' => 1622714294
             ],
             'media' => [
                 'file' => 'system/config/media.yaml',
-                'modified' => 1617729503
+                'modified' => 1622714294
             ],
             'permissions' => [
                 'file' => 'system/config/permissions.yaml',
-                'modified' => 1617729503
+                'modified' => 1622714294
             ],
             'security' => [
                 'file' => 'system/config/security.yaml',
-                'modified' => 1617729503
+                'modified' => 1622714294
             ],
             'site' => [
                 'file' => 'system/config/site.yaml',
-                'modified' => 1617729503
+                'modified' => 1622714294
             ],
             'system' => [
                 'file' => 'system/config/system.yaml',
-                'modified' => 1617729503
+                'modified' => 1622714294
             ]
         ],
         'user/plugins' => [
             'plugins/markdown-notices' => [
                 'file' => 'user/plugins/markdown-notices/markdown-notices.yaml',
-                'modified' => 1617729503
+                'modified' => 1621433531
             ],
             'plugins/form' => [
                 'file' => 'user/plugins/form/form.yaml',
-                'modified' => 1617729503
+                'modified' => 1621433530
             ],
             'plugins/highlight' => [
                 'file' => 'user/plugins/highlight/highlight.yaml',
-                'modified' => 1617820267
+                'modified' => 1621433530
             ],
             'plugins/flex-objects' => [
                 'file' => 'user/plugins/flex-objects/flex-objects.yaml',
-                'modified' => 1617729503
+                'modified' => 1621433530
             ],
             'plugins/admin' => [
                 'file' => 'user/plugins/admin/admin.yaml',
-                'modified' => 1617729503
+                'modified' => 1621433530
             ],
             'plugins/problems' => [
                 'file' => 'user/plugins/problems/problems.yaml',
-                'modified' => 1617729503
+                'modified' => 1621433531
             ],
             'plugins/backtotop' => [
                 'file' => 'user/plugins/backtotop/backtotop.yaml',
-                'modified' => 1617822859
+                'modified' => 1621433530
             ],
             'plugins/prism-highlight' => [
                 'file' => 'user/plugins/prism-highlight/prism-highlight.yaml',
-                'modified' => 1617816386
+                'modified' => 1621433531
             ],
             'plugins/error' => [
                 'file' => 'user/plugins/error/error.yaml',
-                'modified' => 1617729503
+                'modified' => 1621433530
             ],
             'plugins/login' => [
                 'file' => 'user/plugins/login/login.yaml',
-                'modified' => 1617729503
+                'modified' => 1621433530
             ],
             'plugins/email' => [
                 'file' => 'user/plugins/email/email.yaml',
-                'modified' => 1617729503
+                'modified' => 1621433530
             ]
         ],
         'user/themes' => [
             'themes/g5_hydrogen' => [
                 'file' => 'user/themes/g5_hydrogen/g5_hydrogen.yaml',
-                'modified' => 1617816140
+                'modified' => 1621433531
             ],
             'themes/deliver' => [
                 'file' => 'user/themes/deliver/deliver.yaml',
-                'modified' => 1617816306
+                'modified' => 1621433531
             ],
             'themes/quark' => [
                 'file' => 'user/themes/quark/quark.yaml',
-                'modified' => 1617729503
+                'modified' => 1621433531
             ]
         ]
     ],
@@ -1043,6 +1043,12 @@ node_modules'
                 'autoescape' => true,
                 'undefined_functions' => true,
                 'undefined_filters' => true,
+                'safe_functions' => [
+                    
+                ],
+                'safe_filters' => [
+                    
+                ],
                 'umask_fix' => false
             ],
             'assets' => [
@@ -1153,8 +1159,14 @@ node_modules'
         'versions' => [
             'core' => [
                 'grav' => [
-                    'version' => '1.7.10',
-                    'schema' => '1.7.0_2020-11-20_1'
+                    'version' => '1.7.16',
+                    'schema' => '1.7.0_2020-11-20_1',
+                    'history' => [
+                        0 => [
+                            'version' => '1.7.16',
+                            'date' => '2021-06-14 14:44:55'
+                        ]
+                    ]
                 ]
             ]
         ]

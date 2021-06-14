@@ -2,7 +2,7 @@
 return [
     '@class' => 'Grav\\Common\\File\\CompiledYamlFile',
     'filename' => 'themes://deliver/deliver.yaml',
-    'modified' => 1617816306,
+    'modified' => 1621433531,
     'data' => [
         'enabled' => true,
         'dropdown' => [

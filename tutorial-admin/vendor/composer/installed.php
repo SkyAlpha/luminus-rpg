@@ -6,7 +6,7 @@
     'aliases' => 
     array (
     ),
-    'reference' => '284d9ea22bc6ae099133e4ff29ed1520357be7d9',
+    'reference' => 'ad1cf15d7c7719aa884cef7f2aad245052ebe0c7',
     'name' => 'getgrav/grav',
   ),
   'versions' => 
@@ -40,12 +40,12 @@
     ),
     'doctrine/cache' => 
     array (
-      'pretty_version' => '1.10.2',
-      'version' => '1.10.2.0',
+      'pretty_version' => '1.11.0',
+      'version' => '1.11.0.0',
       'aliases' => 
       array (
       ),
-      'reference' => '13e3381b25847283a91948d04640543941309727',
+      'reference' => 'a9c1b59eba5a08ca2770a76eddb88922f504e8e0',
     ),
     'doctrine/collections' => 
     array (
@@ -103,12 +103,21 @@
     ),
     'filp/whoops' => 
     array (
-      'pretty_version' => '2.12.0',
-      'version' => '2.12.0.0',
+      'pretty_version' => '2.12.1',
+      'version' => '2.12.1.0',
       'aliases' => 
       array (
       ),
-      'reference' => 'd501fd2658d55491a2295ff600ae5978eaad7403',
+      'reference' => 'c13c0be93cff50f88bbd70827d993026821914dd',
+    ),
+    'getgrav/cache' => 
+    array (
+      'pretty_version' => 'v2.0.0',
+      'version' => '2.0.0.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => '56fd63f752779928fcd1074ab7d12f406dde8861',
     ),
     'getgrav/grav' => 
     array (
@@ -117,25 +126,16 @@
       'aliases' => 
       array (
       ),
-      'reference' => '284d9ea22bc6ae099133e4ff29ed1520357be7d9',
+      'reference' => 'ad1cf15d7c7719aa884cef7f2aad245052ebe0c7',
     ),
-    'gregwar/cache' => 
+    'getgrav/image' => 
     array (
-      'pretty_version' => 'dev-php8',
-      'version' => 'dev-php8',
+      'pretty_version' => 'v3.0.0',
+      'version' => '3.0.0.0',
       'aliases' => 
       array (
       ),
-      'reference' => '49ccdf9ae760b009a192bc3c7b417980c8a8cc2e',
-    ),
-    'gregwar/image' => 
-    array (
-      'pretty_version' => 'dev-php8',
-      'version' => 'dev-php8',
-      'aliases' => 
-      array (
-      ),
-      'reference' => 'ea23859700f32447a85e79d96f331e3d6c8897a8',
+      'reference' => '02c1bb2c179dd894c4f6610c9c49da364ee7d264',
     ),
     'guzzlehttp/psr7' => 
     array (
@@ -387,12 +387,12 @@
     ),
     'rockettheme/toolbox' => 
     array (
-      'pretty_version' => '1.5.7',
-      'version' => '1.5.7.0',
+      'pretty_version' => '1.5.9',
+      'version' => '1.5.9.0',
       'aliases' => 
       array (
       ),
-      'reference' => '8d3ebc4d982595d6eac90e851f2b4d5c0cec0399',
+      'reference' => '2d6693235aaca2efaadb61c84dac927aaf4eabfa',
     ),
     'seld/cli-prompt' => 
     array (

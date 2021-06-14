@@ -1,0 +1,20 @@
+1624288690
+a:2:{s:7:"content";s:2619:"<h1 class="text-center">Step 9 - Adding Environment Particles</h1>
+<p>One of the things that make a game feel alive are particles. I have implemented a symple and easy to use particles system.</p>
+<p>First, select the <code>objects layer</code> and then select the <code>particles</code> object layer.</p>
+<p><a href="https://i.ibb.co/HF2PsWL/Screen-Shot-2021-04-12-at-09-59-25.png" target="_blank"><img src="https://i.ibb.co/HF2PsWL/Screen-Shot-2021-04-12-at-09-59-25.png" alt="" class="center" /></a></p>
+<p>Then you have to create a rectangle, where the particles will Spawn. Name the rectangle area <code>dust</code> and create a property called <code>particles</code> (string typed) anc set it to <code>leaves</code>. Save and Export.</p>
+<p><a href="https://i.ibb.co/nmGHPwG/Screen-Shot-2021-04-12-at-10-26-23.png" target="_blank"><img src="https://i.ibb.co/nmGHPwG/Screen-Shot-2021-04-12-at-10-26-23.png" alt="" class="center" /></a></p>
+<p>Now all you have to do, is to add the <code>LuminusEnvironmentParticles</code> to the <code>create</code> function of your Scene.</p>
+<pre><code>        // Created Particles
+        this.particles = new LuminusEnvironmentParticles(
+            this,
+            map.map
+        );
+        this.particles.create();</code></pre>
+<p>That's all, check your Scene and you should have working particles.</p>
+<p><a href="https://i.ibb.co/4K8qjKj/Screen-Recording-2021-04-12-at-10-39-57.gif" target="_blank"><img src="https://i.ibb.co/4K8qjKj/Screen-Recording-2021-04-12-at-10-39-57.gif" alt="" class="center" /></a></p>
+<p>You can also create clouds. Do the exact same process, Create a new rectangle and create set the property of the new rectangle to the value of <code>cloud</code> and you should have clouds. Beware that the clouds will spawn every 15 seconds. You can change all the setting in the <code>LuminusEnvironmentParticles</code>, check the <code>JSDocs</code> to learn more about it.</p>
+<p><a href="https://i.ibb.co/n0RcMnP/Screen-Recording-2021-04-12-at-10-49-41.gif" target="_blank"><img src="https://i.ibb.co/n0RcMnP/Screen-Recording-2021-04-12-at-10-49-41.gif" alt="" class="center" /></a></p>
+<p>Something that you should have in mind is that the particles will be destroyed once they touch the limits of the spawn zones. So the <code>cloud</code> zone should be considerably bigger than the normal particles.</p>
+<h4><a href="/tiled/setting-up-tiled/how-to-effectively-draw-a-tile-map">Previous Step - How to Effectivelly Draw a Tile Map</a> | <a href="/tiled/setting-up-tiled/how-to-add-information-zones">Next Step - How to Add Information Zones</a></h4>";s:12:"content_meta";N;}

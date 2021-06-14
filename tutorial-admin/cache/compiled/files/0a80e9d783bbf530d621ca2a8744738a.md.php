@@ -2,7 +2,7 @@
 return [
     '@class' => 'Grav\\Common\\File\\CompiledMarkdownFile',
     'filename' => '/Users/jonatan/Documents/Projects/games/collision/tutorial-admin/user/pages/typography/default.md',
-    'modified' => 1618255175,
+    'modified' => 1621433530,
     'data' => [
         'header' => [
             'title' => 'Typography',

@@ -1,12 +1,17 @@
 # Luminus RPG Project Template
 
+[DEMO](https://skyalpha.github.io/luminus-rpg.github.io/)
+
+This is a Work in progress project, meant to be a code base for your 2D Action RPG game. It's based on the world class [Phaser Framework](https://phaser.io/), you should be able to use anything that the Phaser Framework provides in this project. Though it's not mandatory, it would be nice of you if you credit me for supplying this code base (I have put a lot of work on it).
+
 Luminus RPG Template with ES6 support via [Babel 7](https://babeljs.io/) and [Webpack 4](https://webpack.js.org/)
 that includes hot-reloading for development and production-ready builds.
 
 Loading images via JavaScript module `import` is also supported.
 
 ## Tutorials
-
+There are a couple of tutorials on how to use features of this template, they are not all covered yet, but you can already do all the basics. Just run 
+`npm run tutorial`.
 
 ## Requirements
 
@@ -19,8 +24,9 @@ Loading images via JavaScript module `import` is also supported.
 | `npm install` | Install project dependencies |
 | `npm start` | Build project and open web server running project |
 | `npm run build` | Builds code bundle with production settings (minification, uglification, etc..) |
-| `npm run jsdoc` | Generates the JSDoc for the Project. After generating the JSDoc Opens your Browser on it. |
+| `npm run jsdoc` | Generates the JSDoc for the Project. After generating the JSDoc, it will open up the JSDoc in your web browser. |
 | `npm run tutorial` | Opens the Tutorial Page, teaching all the basics of the Template.|
+| `npm run publish-git --message="my awesome message"` | IF you have the access rights, Publishes the game to the official git-pages repository.|
 
 ## Writing Code
 
@@ -32,7 +38,25 @@ After starting the development server with `npm start`, you can edit any files i
 and webpack will automatically recompile and reload your server (available at `http://localhost:8080`
 by default).
 
-## Customizing Template
+## How to Contribute to this project.
+Just get a new [Issue](https://github.com/SkyAlpha/luminus-rpg/issues) and follow the coding steps.
+
+### Coding Step 1 - Coding issues
+The template is based (Kind of) of the [ECS System](https://pt.wikipedia.org/wiki/Entity-component-system), the whole idea behind it, is that you can add or remove Components and the game should still be working without errors. They are under the `src/plugins` folder. If you are going to code something from an open issue, make sure to follow this system.
+
+### Coding Step 2 - Code Review / Pull Requests
+
+For now, I'm the only contributor to this project, so add me as the reviewer of your code. I hope more people will be helping with this in no time.
+
+### Coding Step 3 - Git flow
+This project uses the [Git-Flow](https://danielkummer.github.io/git-flow-cheatsheet/) branching management pattern. Make sure to follow it as you start to get new issues to resolve.
+
+| Type of Issue | Branch Name | Origin Branch | Pull Request Target Branch | Commit Message|
+|---------|---------|-------------|-------------|-------------|
+| Feature | `feature-{issue-number}` | develop | `release-{number}`| feature-{issue-number} - My cool message |
+| Bugfix | `bugfix-{issue-number}` | `release-{issue-number}` | `release-{number}` and develop | bugfix-{issue-number} - My cool message |
+| Hotfix | `hotfix-{issue-number}` | master | master, `release-{number}` and develop | hotfix-{issue-number} - My cool message |
+
 
 ### Babel
 You can write modern ES6+ JavaScript and Babel will transpile it to a version of JavaScript that you
@@ -58,3 +82,13 @@ After you run the `npm run build` command, your code will be built into a single
 
 If you put the contents of the `dist` folder in a publicly-accessible location (say something like `http://mycoolserver.com`), 
 you should be able to open `http://mycoolserver.com/index.html` and play your game.
+
+# MIT License
+
+Copyright 2021 ® Luminus Game Studio
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.

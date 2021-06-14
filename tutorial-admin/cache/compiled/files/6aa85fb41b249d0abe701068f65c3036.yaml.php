@@ -2,7 +2,7 @@
 return [
     '@class' => 'Grav\\Common\\File\\CompiledYamlFile',
     'filename' => '/Users/jonatan/Documents/Projects/games/collision/tutorial-admin/system/blueprints/pages/default.yaml',
-    'modified' => 1617729503,
+    'modified' => 1622714294,
     'data' => [
         'title' => 'PLUGIN_ADMIN.DEFAULT',
         'rules' => [
@@ -129,7 +129,7 @@ return [
                                                     'underline' => true
                                                 ],
                                                 'folder' => [
-                                                    'type' => 'text',
+                                                    'type' => 'folder-slug',
                                                     'label' => 'PLUGIN_ADMIN.FOLDER_NAME',
                                                     'validate' => [
                                                         'rule' => 'slug'

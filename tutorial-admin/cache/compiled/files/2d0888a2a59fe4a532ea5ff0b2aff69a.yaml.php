@@ -2,7 +2,7 @@
 return [
     '@class' => 'Grav\\Common\\File\\CompiledYamlFile',
     'filename' => '/Users/jonatan/Documents/Projects/games/collision/tutorial-admin/user/plugins/highlight/blueprints.yaml',
-    'modified' => 1617820267,
+    'modified' => 1621433530,
     'data' => [
         'name' => 'Highlight',
         'version' => '1.5.0',

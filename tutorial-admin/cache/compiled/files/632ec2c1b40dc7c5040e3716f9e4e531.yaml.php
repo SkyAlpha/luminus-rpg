@@ -2,7 +2,7 @@
 return [
     '@class' => 'Grav\\Common\\File\\CompiledYamlFile',
     'filename' => '/Users/jonatan/Documents/Projects/games/collision/tutorial-admin/user/plugins/prism-highlight/blueprints.yaml',
-    'modified' => 1617816386,
+    'modified' => 1621433531,
     'data' => [
         'name' => 'Prism Highlighter',
         'version' => '2.0.0',

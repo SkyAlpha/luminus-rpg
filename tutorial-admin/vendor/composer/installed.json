@@ -215,42 +215,41 @@
         },
         {
             "name": "doctrine/cache",
-            "version": "1.10.2",
-            "version_normalized": "1.10.2.0",
+            "version": "1.11.0",
+            "version_normalized": "1.11.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/cache.git",
-                "reference": "13e3381b25847283a91948d04640543941309727"
+                "reference": "a9c1b59eba5a08ca2770a76eddb88922f504e8e0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/cache/zipball/13e3381b25847283a91948d04640543941309727",
-                "reference": "13e3381b25847283a91948d04640543941309727",
+                "url": "https://api.github.com/repos/doctrine/cache/zipball/a9c1b59eba5a08ca2770a76eddb88922f504e8e0",
+                "reference": "a9c1b59eba5a08ca2770a76eddb88922f504e8e0",
                 "shasum": ""
             },
             "require": {
                 "php": "~7.1 || ^8.0"
             },
             "conflict": {
-                "doctrine/common": ">2.2,<2.4"
+                "doctrine/common": ">2.2,<2.4",
+                "psr/cache": ">=3"
             },
             "require-dev": {
                 "alcaeus/mongo-php-adapter": "^1.1",
-                "doctrine/coding-standard": "^6.0",
+                "cache/integration-tests": "dev-master",
+                "doctrine/coding-standard": "^8.0",
                 "mongodb/mongodb": "^1.1",
-                "phpunit/phpunit": "^7.0",
-                "predis/predis": "~1.0"
+                "phpunit/phpunit": "^7.0 || ^8.0 || ^9.0",
+                "predis/predis": "~1.0",
+                "psr/cache": "^1.0 || ^2.0",
+                "symfony/cache": "^4.4 || ^5.2"
             },
             "suggest": {
                 "alcaeus/mongo-php-adapter": "Required to use legacy MongoDB driver"
             },
-            "time": "2020-07-07T18:54:01+00:00",
+            "time": "2021-04-13T14:46:17+00:00",
             "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "1.9.x-dev"
-                }
-            },
             "installation-source": "dist",
             "autoload": {
                 "psr-4": {
@@ -298,7 +297,7 @@
             ],
             "support": {
                 "issues": "https://github.com/doctrine/cache/issues",
-                "source": "https://github.com/doctrine/cache/tree/1.10.x"
+                "source": "https://github.com/doctrine/cache/tree/1.11.0"
             },
             "funding": [
                 {
@@ -666,17 +665,17 @@
         },
         {
             "name": "filp/whoops",
-            "version": "2.12.0",
-            "version_normalized": "2.12.0.0",
+            "version": "2.12.1",
+            "version_normalized": "2.12.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/filp/whoops.git",
-                "reference": "d501fd2658d55491a2295ff600ae5978eaad7403"
+                "reference": "c13c0be93cff50f88bbd70827d993026821914dd"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/filp/whoops/zipball/d501fd2658d55491a2295ff600ae5978eaad7403",
-                "reference": "d501fd2658d55491a2295ff600ae5978eaad7403",
+                "url": "https://api.github.com/repos/filp/whoops/zipball/c13c0be93cff50f88bbd70827d993026821914dd",
+                "reference": "c13c0be93cff50f88bbd70827d993026821914dd",
                 "shasum": ""
             },
             "require": {
@@ -692,7 +691,7 @@
                 "symfony/var-dumper": "Pretty print complex values better with var-dumper available",
                 "whoops/soap": "Formats errors as SOAP responses"
             },
-            "time": "2021-03-30T12:00:00+00:00",
+            "time": "2021-04-25T12:00:00+00:00",
             "type": "library",
             "extra": {
                 "branch-alias": {
@@ -728,7 +727,7 @@
             ],
             "support": {
                 "issues": "https://github.com/filp/whoops/issues",
-                "source": "https://github.com/filp/whoops/tree/2.12.0"
+                "source": "https://github.com/filp/whoops/tree/2.12.1"
             },
             "funding": [
                 {
@@ -739,25 +738,25 @@
             "install-path": "../filp/whoops"
         },
         {
-            "name": "gregwar/cache",
-            "version": "dev-php8",
-            "version_normalized": "dev-php8",
+            "name": "getgrav/cache",
+            "version": "v2.0.0",
+            "version_normalized": "2.0.0.0",
             "target-dir": "Gregwar/Cache",
             "source": {
                 "type": "git",
                 "url": "https://github.com/getgrav/Cache.git",
-                "reference": "49ccdf9ae760b009a192bc3c7b417980c8a8cc2e"
+                "reference": "56fd63f752779928fcd1074ab7d12f406dde8861"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/getgrav/Cache/zipball/49ccdf9ae760b009a192bc3c7b417980c8a8cc2e",
-                "reference": "49ccdf9ae760b009a192bc3c7b417980c8a8cc2e",
+                "url": "https://api.github.com/repos/getgrav/Cache/zipball/56fd63f752779928fcd1074ab7d12f406dde8861",
+                "reference": "56fd63f752779928fcd1074ab7d12f406dde8861",
                 "shasum": ""
             },
             "require": {
                 "php": ">=5.3"
             },
-            "time": "2020-12-02T10:54:35+00:00",
+            "time": "2021-04-20T05:48:00+00:00",
             "type": "library",
             "installation-source": "dist",
             "autoload": {
@@ -765,6 +764,7 @@
                     "Gregwar\\Cache": ""
                 }
             },
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
@@ -772,6 +772,11 @@
                 {
                     "name": "Gregwar",
                     "email": "g.passault@gmail.com"
+                },
+                {
+                    "name": "Grav CMS",
+                    "email": "hello@getgrav.org",
+                    "homepage": "https://getgrav.org"
                 }
             ],
             "description": "A lightweight file-system cache system",
@@ -782,29 +787,29 @@
                 "system"
             ],
             "support": {
-                "source": "https://github.com/getgrav/Cache/tree/php8"
+                "source": "https://github.com/getgrav/Cache/tree/v2.0.0"
             },
-            "install-path": "../gregwar/cache/Gregwar/Cache"
+            "install-path": "../getgrav/cache/Gregwar/Cache"
         },
         {
-            "name": "gregwar/image",
-            "version": "dev-php8",
-            "version_normalized": "dev-php8",
+            "name": "getgrav/image",
+            "version": "v3.0.0",
+            "version_normalized": "3.0.0.0",
             "target-dir": "Gregwar/Image",
             "source": {
                 "type": "git",
                 "url": "https://github.com/getgrav/Image.git",
-                "reference": "ea23859700f32447a85e79d96f331e3d6c8897a8"
+                "reference": "02c1bb2c179dd894c4f6610c9c49da364ee7d264"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/getgrav/Image/zipball/ea23859700f32447a85e79d96f331e3d6c8897a8",
-                "reference": "ea23859700f32447a85e79d96f331e3d6c8897a8",
+                "url": "https://api.github.com/repos/getgrav/Image/zipball/02c1bb2c179dd894c4f6610c9c49da364ee7d264",
+                "reference": "02c1bb2c179dd894c4f6610c9c49da364ee7d264",
                 "shasum": ""
             },
             "require": {
                 "ext-gd": "*",
-                "gregwar/cache": "dev-php8",
+                "getgrav/cache": "^2.0",
                 "php": "^5.6 || ^7.0 || ^8.0"
             },
             "require-dev": {
@@ -814,7 +819,7 @@
             "suggest": {
                 "behat/transliterator": "Transliterator provides ability to set non-latin1 pretty names"
             },
-            "time": "2021-03-15T17:03:52+00:00",
+            "time": "2021-04-20T05:50:18+00:00",
             "type": "library",
             "installation-source": "dist",
             "autoload": {
@@ -822,6 +827,7 @@
                     "Gregwar\\Image": ""
                 }
             },
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
@@ -830,6 +836,11 @@
                     "name": "Grégoire Passault",
                     "email": "g.passault@gmail.com",
                     "homepage": "http://www.gregwar.com/"
+                },
+                {
+                    "name": "Grav CMS",
+                    "email": "hello@getgrav.org",
+                    "homepage": "https://getgrav.org"
                 }
             ],
             "description": "Image handling",
@@ -839,9 +850,9 @@
                 "image"
             ],
             "support": {
-                "source": "https://github.com/getgrav/Image/tree/php8"
+                "source": "https://github.com/getgrav/Image/tree/v3.0.0"
             },
-            "install-path": "../gregwar/image/Gregwar/Image"
+            "install-path": "../getgrav/image/Gregwar/Image"
         },
         {
             "name": "guzzlehttp/psr7",
@@ -2234,17 +2245,17 @@
         },
         {
             "name": "rockettheme/toolbox",
-            "version": "1.5.7",
-            "version_normalized": "1.5.7.0",
+            "version": "1.5.9",
+            "version_normalized": "1.5.9.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/rockettheme/toolbox.git",
-                "reference": "8d3ebc4d982595d6eac90e851f2b4d5c0cec0399"
+                "reference": "2d6693235aaca2efaadb61c84dac927aaf4eabfa"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/rockettheme/toolbox/zipball/8d3ebc4d982595d6eac90e851f2b4d5c0cec0399",
-                "reference": "8d3ebc4d982595d6eac90e851f2b4d5c0cec0399",
+                "url": "https://api.github.com/repos/rockettheme/toolbox/zipball/2d6693235aaca2efaadb61c84dac927aaf4eabfa",
+                "reference": "2d6693235aaca2efaadb61c84dac927aaf4eabfa",
                 "shasum": ""
             },
             "require": {
@@ -2259,7 +2270,7 @@
                 "phpstan/phpstan-deprecation-rules": "^0.12",
                 "phpunit/phpunit": "~7.0"
             },
-            "time": "2021-02-17T17:58:36+00:00",
+            "time": "2021-04-14T19:52:40+00:00",
             "type": "library",
             "installation-source": "dist",
             "autoload": {
@@ -2287,7 +2298,7 @@
             ],
             "support": {
                 "issues": "https://github.com/rockettheme/toolbox/issues",
-                "source": "https://github.com/rockettheme/toolbox/tree/1.5.7"
+                "source": "https://github.com/rockettheme/toolbox/tree/1.5.9"
             },
             "install-path": "../rockettheme/toolbox"
         },

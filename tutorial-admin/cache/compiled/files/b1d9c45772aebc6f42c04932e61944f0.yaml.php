@@ -2,7 +2,7 @@
 return [
     '@class' => 'Grav\\Common\\File\\CompiledYamlFile',
     'filename' => '/Users/jonatan/Documents/Projects/games/collision/tutorial-admin/system/blueprints/flex/user-groups.yaml',
-    'modified' => 1617729503,
+    'modified' => 1622714294,
     'data' => [
         'title' => 'User Groups',
         'description' => 'Manage your User Groups in Flex.',
@@ -21,6 +21,7 @@ return [
                         ]
                     ],
                     'redirects' => [
+                        '/groups' => '/accounts/groups',
                         '/accounts' => '/accounts/groups'
                     ]
                 ],

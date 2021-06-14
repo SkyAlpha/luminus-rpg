@@ -2,7 +2,7 @@
 return [
     '@class' => 'Grav\\Common\\File\\CompiledMarkdownFile',
     'filename' => '/Users/jonatan/Documents/Projects/games/collision/tutorial-admin/user/pages/01.home/default.md',
-    'modified' => 1617817140,
+    'modified' => 1621433530,
     'data' => [
         'header' => [
             'title' => 'Home',

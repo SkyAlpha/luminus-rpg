@@ -2,7 +2,7 @@
 return [
     '@class' => 'Grav\\Common\\File\\CompiledYamlFile',
     'filename' => '/Users/jonatan/Documents/Projects/games/collision/tutorial-admin/user/plugins/flex-objects/blueprints/flex-objects.yaml',
-    'modified' => 1617729503,
+    'modified' => 1621433530,
     'data' => [
         'type' => 'flex-objects',
         'form' => [
