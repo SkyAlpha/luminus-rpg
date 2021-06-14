@@ -5,7 +5,7 @@ import { LuminusHealthBar } from '../plugins/LuminusHealthBar';
 import { LuminusKeyboardMouseController } from '../plugins/LuminusKeyboardMouseController';
 import { LuminusMovement } from '../plugins/LuminusMovement';
 import { BaseEntity } from './BaseEntity';
-import { EntityStatus } from './EntityStatus';
+import { EntityStats } from './EntityStats';
 
 /**
  * @class
@@ -23,7 +23,12 @@ export class Player extends Phaser.Physics.Arcade.Sprite {
 
         // Here are all classes that this Player Extends.
         Object.assign(this, BaseEntity);
-        Object.assign(this, EntityStatus);
+        /**
+         * The entity stats.
+         * @type { EntityStats }
+         */
+        this.stats = {};
+        Object.assign(this.stats, EntityStats);
 
         /**
          * The name of the Entity. It's used for differenciation of the entityes.
@@ -101,7 +106,7 @@ export class Player extends Phaser.Physics.Arcade.Sprite {
             0,
             0,
             this.width * 2,
-            this.health,
+            this.stats.health,
             this.width / 2.2,
             -(this.height / 2)
         );
@@ -122,11 +127,7 @@ export class Player extends Phaser.Physics.Arcade.Sprite {
          * The container that holds the player game objects.
          * @type { Phaser.GameObjects.Container }
          */
-        this.container = new Phaser.GameObjects.Container(this.scene, x, y, [
-            this,
-            this.healthBar,
-            this.hitZone,
-        ]);
+        this.container = new Phaser.GameObjects.Container(this.scene, x, y, [this, this.healthBar, this.hitZone]);
 
         // /**
         //  * The dust particles that the entity will emit when it moves.
@@ -156,10 +157,7 @@ export class Player extends Phaser.Physics.Arcade.Sprite {
          * The class responsible for managing Keyboard and Mouse inputs.
          * @type { LuminusKeyboardMouseController }
          */
-        this.luminusKeyboardMouseController = new LuminusKeyboardMouseController(
-            this.scene,
-            this
-        );
+        this.luminusKeyboardMouseController = new LuminusKeyboardMouseController(this.scene, this);
         this.luminusKeyboardMouseController.create();
 
         this.scene.scene.launch('JoystickScene', {
@@ -177,11 +175,7 @@ export class Player extends Phaser.Physics.Arcade.Sprite {
          * This object is responsible for moving the entity.
          * @type { LuminusMovement }
          */
-        this.luminusMovement = new LuminusMovement(
-            this.scene,
-            this,
-            this.joystickScene
-        );
+        this.luminusMovement = new LuminusMovement(this.scene, this, this.joystickScene);
 
         this.play('character-idle-down');
 

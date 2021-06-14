@@ -3,7 +3,7 @@ import { AnimationNames } from '../consts/AnimationNames';
 import { LuminusAnimationManager } from '../plugins/LuminusAnimationManager';
 import { LuminusHealthBar } from '../plugins/LuminusHealthBar';
 import { BaseEntity } from './BaseEntity';
-import { EntityStatus } from './EntityStatus';
+import { EntityStats } from './EntityStats';
 import { Player } from './Player';
 import uniqid from 'uniqid';
 import { LuminusBattleManager } from '../plugins/LuminusBattleManager';
@@ -26,7 +26,13 @@ export class Enemy extends Phaser.Physics.Arcade.Sprite {
         // TODO - Should get the config from the DB.
         const enemyConfig = EnemiesSeedConfig.find((c) => c.id === id);
         Object.assign(this, BaseEntity);
-        Object.assign(this, EntityStatus);
+
+        /**
+         * The entity stats.
+         * @type { EntityStats }
+         */
+        this.stats = {};
+        Object.assign(this.stats, EntityStats);
         Object.assign(this, new AnimationNames());
 
         /**
@@ -104,7 +110,7 @@ export class Enemy extends Phaser.Physics.Arcade.Sprite {
             0,
             0,
             this.width,
-            this.health,
+            this.stats.health,
             this.width / 4,
             -this.height * 1.3
         );
@@ -121,19 +127,13 @@ export class Enemy extends Phaser.Physics.Arcade.Sprite {
          * A container that holds the objects that should be moved together.
          * @type { Phaser.GameObjects.Container }
          */
-        this.container = new Phaser.GameObjects.Container(this.scene, x, y, [
-            this,
-            this.healthBar,
-            this.hitZone,
-        ]);
+        this.container = new Phaser.GameObjects.Container(this.scene, x, y, [this, this.healthBar, this.hitZone]);
 
         this.scene.add.existing(this.container);
         this.scene.physics.add.existing(this.container);
 
         const idleDown = `${this.idlePrefixAnimation}${this.downAnimationSufix}`;
-        const idleAnimation = texture
-            ? `${texture}-${idleDown}`
-            : `bat-${idleDown}`;
+        const idleAnimation = texture ? `${texture}-${idleDown}` : `bat-${idleDown}`;
 
         this.anims.play(idleAnimation);
         // All the dependencies that need to be inside the update game loop.
@@ -155,43 +155,23 @@ export class Enemy extends Phaser.Physics.Arcade.Sprite {
      */
     checkPlayerInRange() {
         let inRange = false;
-        let enemiesInRange = this.scene.physics.overlapCirc(
-            this.container.x,
-            this.container.y,
-            this.perceptionRange
-        );
+        let enemiesInRange = this.scene.physics.overlapCirc(this.container.x, this.container.y, this.perceptionRange);
         for (let target of enemiesInRange) {
-            if (
-                target &&
-                target.gameObject &&
-                target.gameObject.entityName === ENTITIES.Player
-            ) {
+            if (target && target.gameObject && target.gameObject.entityName === ENTITIES.Player) {
                 // console.log('Player');
                 let overlaps = false;
-                this.scene.physics.overlap(
-                    target.gameObject.hitZone,
-                    this,
-                    (t, enemy) => {
-                        overlaps = true;
-                        this.stopMovement();
-                        if (this.canAtack)
-                            this.luminusBattleManager.atack(this);
-                    }
-                );
+                this.scene.physics.overlap(target.gameObject.hitZone, this, (t, enemy) => {
+                    overlaps = true;
+                    this.stopMovement();
+                    if (this.canAtack) this.luminusBattleManager.atack(this);
+                });
 
                 inRange = true;
                 // Moves only if it's not overlaped. It prevents some Weird behaviors to happen.
                 if (!overlaps && !this.isAtacking) {
-                    this.scene.physics.moveToObject(
-                        this.container,
-                        target.gameObject.container,
-                        this.speed
-                    );
+                    this.scene.physics.moveToObject(this.container, target.gameObject.container, this.speed);
 
-                    const angle = Math.atan2(
-                        this.container.body.velocity.y,
-                        this.container.body.velocity.x
-                    );
+                    const angle = Math.atan2(this.container.body.velocity.y, this.container.body.velocity.x);
 
                     this.scene.physics.velocityFromAngle(angle, this.speed);
                     this.luminusAnimationManager.animateWithAngle(

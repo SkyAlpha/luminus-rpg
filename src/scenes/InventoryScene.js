@@ -139,8 +139,10 @@ export class InventoryScene extends Phaser.Scene {
         this.createItems();
         this.sound.play(this.inventoryOpenClose);
         this.scale.on('resize', (resize) => {
+            console.log('Resize!!');
             this.resizeAll(resize);
         });
+        console.log(this.panelComponent);
     }
 
     /**
@@ -247,7 +249,8 @@ export class InventoryScene extends Phaser.Scene {
 
                 if (row === 0 && col === 0) {
                     this.luminusInterfaceController.currentElementAction = element;
-                    this.luminusInterfaceController.updateHighlightedElement(element.element);
+                    if (!LuminusUtils.isMobile())
+                        this.luminusInterfaceController.updateHighlightedElement(element.element);
                     this.luminusInterfaceController.currentLinePosition = 1;
                 }
             }

@@ -136,8 +136,8 @@ export class PanelComponent {
         }
         this.panelBackground = this.scene.add
             .nineslice(
-                this.scene.cameras.main.midPoint.x - this.panelMaxWidth / 2,
-                this.scene.cameras.main.midPoint.y - this.panelMaxHeight / 2,
+                this.scene.scale.width / 2 - this.panelMaxWidth / 2,
+                this.scene.scale.height / 2 - this.panelMaxHeight / 2,
                 this.panelMaxWidth,
                 this.panelMaxHeight, // the width and height of your object
                 this.inventoryBackgroundTexture, // a key to an already loaded image
