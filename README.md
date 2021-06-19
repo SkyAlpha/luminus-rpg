@@ -1,4 +1,4 @@
-# Luminus RPG Project Template
+# Luminus RPG PhaserJS Project Template
 
 [DEMO](https://skyalpha.github.io/luminus-rpg.github.io/)
 
