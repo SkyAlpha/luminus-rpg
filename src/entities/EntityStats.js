@@ -82,4 +82,16 @@ export const EntityStats = {
      * @type { number }
      */
     hit: 10,
+
+    /**
+     * The experience points that the player currently has.
+     * @type { number }
+     */
+    experience: 0,
+
+    /**
+     * The amount of experience that the player needs to get to the next level.
+     * @type { number }
+     */
+    nextLevelExperience: 50,
 };
