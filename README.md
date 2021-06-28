@@ -1,4 +1,4 @@
-# Luminus RPG Project Template
+# Luminus RPG PhaserJS Project Template
 
 [DEMO](https://skyalpha.github.io/luminus-rpg.github.io/)
 
@@ -102,7 +102,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
  ### Visuals
  - [Portraits and Some Weird Stuff - ME \o/](https://www.instagram.com/javascriptgames/)
  - [Zelda Like Tiles.](https://opengameart.org/content/zelda-like-tilesets-and-sprites)
-
+ - [Monsters - Browser Quest](https://github.com/mozilla/BrowserQuest)
  ### Music
  - Colossal Boss Fight.
  - Tropic Strike.
