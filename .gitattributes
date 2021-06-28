@@ -1,2 +1,2 @@
-tutorial/* linguist-documentation
-tutorial-admin/* linguist-documentation
+tutorial/* linguist-vendored
+tutorial-admin/* linguist-vendored
