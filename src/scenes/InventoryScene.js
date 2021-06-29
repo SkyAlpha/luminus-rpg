@@ -142,7 +142,6 @@ export class InventoryScene extends Phaser.Scene {
             console.log('Resize!!');
             this.resizeAll(resize);
         });
-        console.log(this.panelComponent);
     }
 
     /**

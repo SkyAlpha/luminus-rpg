@@ -104,6 +104,7 @@ export const RatConfig = {
     atack: 2,
     defense: 1,
     speed: 25,
+    flee: 1,
     drops: [
         new EntityDrops(
             1, // Red Potion

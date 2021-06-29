@@ -65,21 +65,13 @@ export class LuminusHUDProgressBar {
             .image(x + width / 2 + 15, y, this.progressBarBackgroundSpriteName)
             .setOrigin(0, 0.5);
 
-        this.healthbar_sprite = this.scene.add
-            .image(x + width / 2 + 20, y, this.greenBarSpriteName)
-            .setOrigin(0, 0.5);
+        this.healthbar_sprite = this.scene.add.image(x + width / 2 + 20, y, this.greenBarSpriteName).setOrigin(0, 0.5);
 
         this.spbar_background = this.scene.add
-            .image(
-                x + width / 2 + 15,
-                y + 20,
-                this.progressBarBackgroundSpriteName
-            )
+            .image(x + width / 2 + 15, y + 20, this.progressBarBackgroundSpriteName)
             .setOrigin(0, 0.5);
 
-        this.spbar_sprite = this.scene.add
-            .image(x + width / 2 + 20, y + 20, this.blueBarSpriteName)
-            .setOrigin(0, 0.5);
+        this.spbar_sprite = this.scene.add.image(x + width / 2 + 20, y + 20, this.blueBarSpriteName).setOrigin(0, 0.5);
 
         /**
          * The current health points.
@@ -95,8 +87,7 @@ export class LuminusHUDProgressBar {
      * Updates the HUD Health bar based on the current player's Health.
      */
     updateHealth() {
-        const HP_percentage =
-            (this.player.health / this.player.baseHealth) * 100;
+        const HP_percentage = (this.player.stats.health / this.player.stats.baseHealth) * 100;
         if (HP_percentage > 40) {
             this.healthbar_sprite.setTexture(this.greenBarSpriteName);
         } else if (HP_percentage >= 20 && HP_percentage <= 40) {

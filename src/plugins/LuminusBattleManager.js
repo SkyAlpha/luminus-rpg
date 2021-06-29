@@ -5,6 +5,7 @@ import { Player } from '../entities/Player';
 import Phaser from 'phaser';
 import { ENTITIES } from '../consts/Entities';
 import { LuminusDamageDisplay } from './LuminusDamageDisplay';
+import { CRITICAL_MULTIPLIER } from '../consts/Battle';
 
 /**
  * @class
@@ -217,38 +218,79 @@ export class LuminusBattleManager extends AnimationNames {
      */
     takeDamage(atacker, target) {
         // Randomizes the name of the damage sound.
-        const damageName = this.damageSoundNames[Math.floor(Math.random() * this.damageSoundNames.length)];
-        const damage = this.randomDamage(atacker.stats.atack);
-        if (damage - target.stats.defense > 0) {
-            if (target.healthBar) target.healthBar.decrease(damage - target.stats.defense);
-            target.stats.health -= damage - target.stats.defense;
+        let damageName = this.damageSoundNames[Math.floor(Math.random() * this.damageSoundNames.length)];
+        let damage = this.randomDamage(atacker.stats.atack - target.stats.defense);
+        const isCritical = this.checkAtackIsCritial(atacker.stats.critical);
+        const hit = this.checkAtackHit(atacker.stats.hit, target.stats.flee);
+        if (isCritical) {
+            damage = Math.ceil(atacker.stats.atack * CRITICAL_MULTIPLIER);
+            damageName = 'critical';
+        }
+        if (hit || isCritical) {
+            if (damage > 0) {
+                if (target.healthBar) target.healthBar.decrease(damage);
+                target.stats.health -= damage;
+            } else {
+                target.stats.health -= 1;
+                target.stats.healthBar.decrease(1);
+            }
+
+            if (target.luminusHUDProgressBar) {
+                target.luminusHUDProgressBar.updateHealth();
+            }
+            this.phaserJuice.add(target).flash();
+            atacker.scene.sound.add(damageName).play();
+            if (target.stats.health <= 0) {
+                setTimeout((t) => {
+                    if (target.entityName === this.enemyConstructorName) target.dropItems();
+                    target.anims.stop();
+                    target.destroyAll();
+                }, 100);
+            }
+            // Not very Optimized.
+            this.luminusDamageDisplay = new LuminusDamageDisplay(target.scene);
+            this.luminusDamageDisplay.displayDamage(damage, target, isCritical);
         } else {
-            target.stats.health -= 1;
-            target.stats.healthBar.decrease(1);
+            this.luminusDamageDisplay = new LuminusDamageDisplay(target.scene);
+            this.luminusDamageDisplay.displayDamage('MISS', target);
         }
 
-        if (target.luminusHUDProgressBar) {
-            target.luminusHUDProgressBar.updateHealth();
-        }
-        this.phaserJuice.add(target).flash();
-        atacker.scene.sound.add(damageName).play();
-        if (target.stats.health <= 0) {
-            setTimeout((t) => {
-                if (target.entityName === this.enemyConstructorName) target.dropItems();
-                target.anims.stop();
-                target.destroyAll();
-            }, 100);
-        }
-
-        // Not very Optimized.
-        this.luminusDamageDisplay = new LuminusDamageDisplay(target.scene);
-        this.luminusDamageDisplay.displayDamage(damage, target);
         /**
          * Makes random damage.
          * Decreses the health based on the target defense.
          * Updates the Health Bar.
          * Kills the target if it reaches the 0 or less hit points.
          */
+    }
+
+    /**
+     * Checks if the atacker hit the target.
+     * @param { number } hit the atacker's hit.
+     * @param { number } flee the target's flee rate.
+     * @returns { boolean } Returns if the atacker hit the target.
+     */
+    checkAtackHit(hit, flee) {
+        console.log(hit, flee);
+        const random = Math.random() * 100;
+        console.log('HIT', (hit * 100) / flee, random);
+        let miss;
+        if (isFinite((hit * 100) / flee)) {
+            return (hit * 100) / flee >= random;
+        } else {
+            return true;
+        }
+    }
+
+    /**
+     * Checks if it is a critical hit.
+     * PS: Critical hits ignore flee. Therefore, a critical hit should not miss.
+     * @param { number } critChance atacker critical chance.
+     * @returns
+     */
+    checkAtackIsCritial(critChance) {
+        const random = Math.random() * 100;
+        console.log('CRITICAL:', critChance, random);
+        return critChance >= random;
     }
 
     /**

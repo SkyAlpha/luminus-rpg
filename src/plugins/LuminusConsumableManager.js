@@ -50,19 +50,10 @@ export class LuminusConsumableManager {
         switch (action[1]) {
             case 'hp':
                 // console.log(`Recover ${action[2]} HP`);
-                player.health = Math.min(
-                    player.baseHealth,
-                    (player.health += parseInt(action[2]))
-                );
-                player.healthBar.update(player.health);
-                if (player.luminusHUDProgressBar)
-                    player.luminusHUDProgressBar.updateHealth(player.health);
-                this.luminusDamageDisplay.displayDamage(
-                    action[2],
-                    player,
-                    false,
-                    true
-                );
+                player.stats.health = Math.min(player.stats.baseHealth, (player.stats.health += parseInt(action[2])));
+                player.healthBar.update(player.stats.health);
+                if (player.luminusHUDProgressBar) player.luminusHUDProgressBar.updateHealth(player.stats.health);
+                this.luminusDamageDisplay.displayDamage(action[2], player, false, true);
                 player.scene.sound.play(item.useSfx);
                 break;
             case 'sp':

@@ -303,9 +303,7 @@ export class LuminusDialogBox {
     }
 
     create() {
-        this.luminusTypingSoundManager = new LuminusTypingSoundManager(
-            this.scene
-        );
+        this.luminusTypingSoundManager = new LuminusTypingSoundManager(this.scene);
         this.luminusTypingSoundManager.create();
         // First thing to do is to check if it's mobile.
         this.isMobile = !this.scene.sys.game.device.os.desktop ? true : false;
@@ -328,9 +326,7 @@ export class LuminusDialogBox {
                 this.cameraHeight -
                     // this.dialog_height -
                     this.margin * 3,
-                this.isMobile
-                    ? this.mobileActionButtonSpriteName
-                    : this.actionButtonSpriteName
+                this.isMobile ? this.mobileActionButtonSpriteName : this.actionButtonSpriteName
             )
             .setDepth(9999)
             .setScrollFactor(0, 0)
@@ -345,8 +341,7 @@ export class LuminusDialogBox {
         this.interactionIcon = this.scene.add
             .sprite(
                 this.scene.cameras.main.midPoint.x,
-                this.scene.cameras.main.midPoint.y -
-                    this.player.container.body.height * 2.5,
+                this.scene.cameras.main.midPoint.y - this.player.container.body.height * 2.5,
                 this.interactionSpriteName
             )
             .setDepth(99999)
@@ -366,9 +361,7 @@ export class LuminusDialogBox {
             duration: 1000,
         });
 
-        this.keyObj = this.scene.input.keyboard.addKey(
-            this.actionButtonKeyCode
-        );
+        this.keyObj = this.scene.input.keyboard.addKey(this.actionButtonKeyCode);
 
         this.scene.input.keyboard.on('keydown', (key) => {
             if (key.keyCode === 32) this.checkButtonDown();
@@ -376,16 +369,11 @@ export class LuminusDialogBox {
 
         const joystickScene = this.scene.scene.get('JoystickScene');
         joystickScene.events.on('JoystickReady', (done) => {
-            if (
-                (joystickScene && joystickScene.buttonA) ||
-                joystickScene.buttonB
-            ) {
+            if ((joystickScene && joystickScene.buttonA) || joystickScene.buttonB) {
                 this.buttonA = joystickScene.buttonA;
                 this.buttonB = joystickScene.buttonB;
-                if (this.buttonA)
-                    this.buttonA.on('down', (b) => this.checkButtonDown());
-                if (this.buttonB)
-                    this.buttonB.on('down', (b) => this.checkButtonDown());
+                if (this.buttonA) this.buttonA.on('down', (b) => this.checkButtonDown());
+                if (this.buttonB) this.buttonB.on('down', (b) => this.checkButtonDown());
             }
         });
 
@@ -398,18 +386,13 @@ export class LuminusDialogBox {
 
         this.leftName = 'Game Master';
         this.leftNameText = this.scene.add
-            .text(
-                this.dialog.x + this.margin,
-                this.dialog.y + this.dialog.scaleY * 20,
-                ` ${this.leftName}: `,
-                {
-                    fontSize: this.fontSize,
-                    letterSpacing: this.letterSpacing,
-                    fontFamily: this.fontFamily,
-                    color: 'white',
-                    backgroundColor: 'black',
-                }
-            )
+            .text(this.dialog.x + this.margin, this.dialog.y + this.dialog.scaleY * 20, ` ${this.leftName}: `, {
+                fontSize: this.fontSize,
+                letterSpacing: this.letterSpacing,
+                fontFamily: this.fontFamily,
+                color: 'white',
+                backgroundColor: 'black',
+            })
             .setScrollFactor(0, 0)
             .setDepth(99999999999999999);
         this.leftNameText.visible = false;
@@ -424,9 +407,7 @@ export class LuminusDialogBox {
 
         this.rightNameText = this.scene.add
             .text(
-                this.dialog.x +
-                    this.dialog.width * this.dialog.scaleX -
-                    this.margin,
+                this.dialog.x + this.dialog.width * this.dialog.scaleX - this.margin,
                 this.dialog.y + this.dialog.scaleY * 20,
                 ``,
                 {
@@ -479,9 +460,7 @@ export class LuminusDialogBox {
             }
             if (this.currentChat.leftPortraitName) {
                 this.leftPortraitImage.visible = true;
-                this.leftPortraitImage.setTexture(
-                    this.currentChat.leftPortraitName
-                );
+                this.leftPortraitImage.setTexture(this.currentChat.leftPortraitName);
             } else {
                 this.leftPortraitImage.visible = false;
             }
@@ -490,9 +469,7 @@ export class LuminusDialogBox {
         }
         if (this.currentChat.right) {
             this.rightNameText.setText(` ${this.currentChat.rightName}: `);
-            this.rightPortraitImage.setTexture(
-                this.currentChat.rightPortraitName
-            );
+            this.rightPortraitImage.setTexture(this.currentChat.rightPortraitName);
             this.rightNameText.visible = true;
             this.rightPortraitImage.visible = true;
             this.rightNameText.alpha = 1;
@@ -537,11 +514,7 @@ export class LuminusDialogBox {
      * Checks what to do when the player presses the action button.
      */
     checkButtonDown() {
-        if (
-            (this.isOverlapingChat || this.showRandomChat) &&
-            this.checkButtonsPressed() &&
-            !this.dialog.visible
-        ) {
+        if ((this.isOverlapingChat || this.showRandomChat) && this.checkButtonsPressed() && !this.dialog.visible) {
             // First time, show the Dialog.
             this.currentChat = this.chat[0];
             this.currentChat.index = 0;
@@ -562,10 +535,7 @@ export class LuminusDialogBox {
             this.currentPage++;
             this.dialog.textMessage.text = '';
             this.setText(this.pagesMessage[this.currentPage], true);
-        } else if (
-            this.currentChat &&
-            this.currentChat.index < this.chat.length - 1
-        ) {
+        } else if (this.currentChat && this.currentChat.index < this.chat.length - 1) {
             let index = this.currentChat.index;
             this.currentChat = this.chat[index + 1];
             this.currentChat.index = index + 1;
@@ -603,11 +573,7 @@ export class LuminusDialogBox {
      * Is it Keyboard / Mobile / GamePad.
      */
     checkButtonsPressed() {
-        return (
-            this.keyObj.isDown ||
-            this.isMobileButtonPressed() ||
-            (this.gamepad && this.gamepad.A)
-        );
+        return this.keyObj.isDown || this.isMobileButtonPressed() || (this.gamepad && this.gamepad.A);
     }
 
     /**
@@ -632,18 +598,12 @@ export class LuminusDialogBox {
         // this.actionButton.visible = false;
         this.dialog.visible = true;
         this.canShowDialog = false;
-        const maxLettersPage =
-            Math.floor(this.textWidth / this.fontWidth) * this.dialogMaxLines;
-        this.pagesNumber = Math.ceil(
-            this.dialogMessage.length / maxLettersPage
-        );
+        const maxLettersPage = Math.floor(this.textWidth / this.fontWidth) * this.dialogMaxLines;
+        this.pagesNumber = Math.ceil(this.dialogMessage.length / maxLettersPage);
         this.pagesMessage = [];
         let lettersOffset = 0;
         for (let i = 0; i < this.pagesNumber; i++) {
-            let localText = this.dialogMessage.substr(
-                i * maxLettersPage - lettersOffset,
-                maxLettersPage
-            );
+            let localText = this.dialogMessage.substr(i * maxLettersPage - lettersOffset, maxLettersPage);
 
             let localMaxLength = localText.length;
             // Check for whole letter so it doesn't break final words.
@@ -662,12 +622,7 @@ export class LuminusDialogBox {
             if (i != 0) {
                 offset = lettersOffset;
             }
-            this.pagesMessage.push(
-                this.dialogMessage.substr(
-                    i * maxLettersPage - offset,
-                    localMaxLength
-                )
-            );
+            this.pagesMessage.push(this.dialogMessage.substr(i * maxLettersPage - offset, localMaxLength));
         }
         if (createText) this.createText();
         // Animates the text
@@ -708,13 +663,8 @@ export class LuminusDialogBox {
      * */
     animateText() {
         this.eventCounter++;
-        this.dialog.textMessage.setText(
-            this.dialog.textMessage.text +
-                this.animationText[this.eventCounter - 1]
-        );
-        this.luminusTypingSoundManager.type(
-            this.animationText[this.eventCounter - 1]
-        );
+        this.dialog.textMessage.setText(this.dialog.textMessage.text + this.animationText[this.eventCounter - 1]);
+        this.luminusTypingSoundManager.type(this.animationText[this.eventCounter - 1]);
         // Stops the text animation.
         if (this.eventCounter === this.animationText.length) {
             this.isAnimatingText = false;
@@ -727,17 +677,10 @@ export class LuminusDialogBox {
      * @returns { boolean }
      */
     isMoving() {
-        if (
-            this.player &&
-            this.player.container &&
-            this.player.container.body
-        ) {
+        if (this.player && this.player.container && this.player.container.body) {
             // If is colliding should always show the trigger button.
             // Pressing space button, should show the chat.
-            return (
-                this.player.container.body.velocity.x !== 0 ||
-                this.player.container.body.velocity.y !== 0
-            );
+            return this.player.container.body.velocity.x !== 0 || this.player.container.body.velocity.y !== 0;
         }
     }
 
@@ -767,20 +710,14 @@ export class LuminusDialogBox {
      */
     resizeComponents(width, height) {
         if (width !== 0 && height !== 0 && this.player && this.player.active) {
-            this.interactionIcon.setPosition(
-                width / 2,
-                height / 2 - this.player.container.body.height * 2.5
-            );
+            this.interactionIcon.setPosition(width / 2, height / 2 - this.player.container.body.height * 2.5);
 
             this.cameraWidth = width;
             this.cameraHeight = height;
             this.textWidth = this.cameraWidth - this.margin * 3;
             this.dialog.x = this.margin;
             this.dialog.y = this.cameraHeight - this.dialogHeight - this.margin; // this is the starting x/y location
-            this.dialog.resize(
-                this.cameraWidth - this.margin * 2,
-                this.dialogHeight
-            );
+            this.dialog.resize(this.cameraWidth - this.margin * 2, this.dialogHeight);
 
             this.actionButton.x = this.cameraWidth - this.margin * 4;
             this.actionButton.y = this.cameraHeight - this.margin * 3;
@@ -789,24 +726,18 @@ export class LuminusDialogBox {
                 this.dialog.x + this.dialog.scaleX * 100,
                 this.dialog.y - this.dialog.scaleY * 60
             );
-            this.leftNameText.setPosition(
-                this.dialog.x + this.margin,
-                this.dialog.y + this.dialog.scaleY * 20
-            );
+            this.leftNameText.setPosition(this.dialog.x + this.margin, this.dialog.y + this.dialog.scaleY * 20);
 
             this.rightPortraitImage.setPosition(
                 this.dialog.x + this.dialog.width * this.dialog.scaleX - 100,
                 this.dialog.y - this.dialog.scaleY * 60
             );
             this.rightNameText.setPosition(
-                this.dialog.x +
-                    this.dialog.width * this.dialog.scaleX -
-                    this.margin,
+                this.dialog.x + this.dialog.width * this.dialog.scaleX - this.margin,
                 this.dialog.y + this.dialog.scaleY * 20
             );
             if (this.dialog.textMessage && this.dialog.textMessage.visible) {
-                this.dialog.textMessage.y =
-                    this.cameraHeight + this.margin / 2 - this.dialogHeight;
+                this.dialog.textMessage.y = this.cameraHeight + this.margin / 2 - this.dialogHeight;
                 this.dialog.textMessage.setStyle({
                     wordWrap: {
                         width: this.textWidth,
@@ -829,26 +760,18 @@ export class LuminusDialogBox {
      */
     createText() {
         this.dialog.textMessage = this.scene.add
-            .text(
-                this.margin * 2,
-                this.cameraHeight + this.margin * 2.5 - this.dialogHeight,
-                '',
-                {
-                    wordWrap: {
-                        width: this.textWidth,
-                    },
-                    fontSize: this.fontSize,
-                    maxLines: this.dialogMaxLines,
-                    letterSpacing: this.letterSpacing,
-                    fontFamily: this.fontFamily,
-                    color: this.fontColor,
-                }
-            )
+            .text(this.margin * 2, this.cameraHeight + this.margin * 2.5 - this.dialogHeight, '', {
+                wordWrap: {
+                    width: this.textWidth,
+                },
+                fontSize: this.fontSize,
+                maxLines: this.dialogMaxLines,
+                letterSpacing: this.letterSpacing,
+                fontFamily: this.fontFamily,
+                color: this.fontColor,
+            })
             .setScrollFactor(0, 0)
             .setDepth(99999999999999999)
-            .setFixedSize(
-                this.cameraWidth - this.margin * 3,
-                this.dialogHeight
-            );
+            .setFixedSize(this.cameraWidth - this.margin * 3, this.dialogHeight);
     }
 }

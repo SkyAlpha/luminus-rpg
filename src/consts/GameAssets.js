@@ -19,6 +19,8 @@ import landscape_mobile from '../assets/sprites/landscape.png';
 import walk_dust from '../assets/sprites/walk_dust.png';
 import fog_mask from '../assets/sprites/mask.png';
 import health from '../assets/sprites/health.png';
+import critical from '../assets/sprites/critical_25.png';
+import critical_50 from '../assets/sprites/critical_50.png';
 // HUD
 import hp_hud from '../assets/sprites/HUD/HP.png';
 import hp_hud_2x from '../assets/sprites/HUD/HP_2x.png';
@@ -92,6 +94,7 @@ import forest from '../assets/sound/forest.mp3';
 import atack01 from '../assets/sound/sfx/atk/atack01.mp3';
 import atack02 from '../assets/sound/sfx/atk/atack02.mp3';
 import atack03 from '../assets/sound/sfx/atk/atack03.mp3';
+import critical_hit from '../assets/sound/sfx/atk/critical.mp3';
 
 import damage01 from '../assets/sound/sfx/damage/damage01.mp3';
 import damage02 from '../assets/sound/sfx/damage/damage02.mp3';
@@ -225,6 +228,14 @@ export const Images = [
     {
         name: 'red_potion',
         image: red_potion,
+    },
+    {
+        name: 'critical',
+        image: critical,
+    },
+    {
+        name: 'critical_2x',
+        image: critical_50,
     },
 
     // HUD
@@ -416,6 +427,10 @@ export const LuminusAudios = [
     {
         name: 'damage03',
         audio: damage03,
+    },
+    {
+        name: 'critical',
+        audio: critical_hit,
     },
     // Interaction
     {

@@ -22,6 +22,12 @@ export const EntityStats = {
     },
 
     /**
+     * Available stat points can be used to add new raw stats.
+     * @type { number }
+     */
+    availableStatPoints: 20,
+
+    /**
      * The bonus stats of the entity.
      * @type { object }
      */
@@ -75,13 +81,13 @@ export const EntityStats = {
      * The amount of flee that the Entity has.
      * @type { number }
      */
-    flee: 0,
+    flee: 1,
 
     /**
      * The amount of hit that the Entity has.
      * @type { number }
      */
-    hit: 10,
+    hit: 1,
 
     /**
      * The experience points that the player currently has.

@@ -98,8 +98,10 @@ export class LuminusDamageDisplay {
             this.fontColor = this.enemyDamageColor;
         }
 
+        let criticalSprite;
         if (isCritical) {
-            this.fontColor = this.criticalDamageColor;
+            // this.fontColor = this.criticalDamageColor;
+            criticalSprite = this.scene.add.sprite(position.x, position.y, 'critical_2x');
         }
 
         if (isHealing) {
@@ -114,16 +116,25 @@ export class LuminusDamageDisplay {
         });
 
         damageSprite.setOrigin(0.5, 1);
+        if (criticalSprite) {
+            if (damage.toString().length < 3) {
+                criticalSprite.setOrigin(0.55, 0.65);
+                criticalSprite.setScale(0.7);
+            } else {
+                criticalSprite.setOrigin(0.55, 0.57);
+            }
+        }
 
         damageSprite.setScale(0.4);
 
         let tween = this.scene.add.tween({
-            targets: damageSprite,
+            targets: [damageSprite, criticalSprite],
             y: position.y - this.fontVerticalMovement,
             alpha: 0,
             duration: this.verticalMovementDuration,
             onComplete: (t) => {
                 damageSprite.destroy();
+                if (criticalSprite) criticalSprite.destroy();
             },
         });
     }

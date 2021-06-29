@@ -17,12 +17,7 @@ export class MainScene extends Phaser.Scene {
     }
 
     preload() {
-        this.load.scenePlugin(
-            'animatedTiles',
-            AnimatedTiles,
-            'animatedTiles',
-            'animatedTiles'
-        );
+        this.load.scenePlugin('animatedTiles', AnimatedTiles, 'animatedTiles', 'animatedTiles');
     }
 
     create() {
@@ -42,16 +37,9 @@ export class MainScene extends Phaser.Scene {
         const camera = this.cameras.main;
         camera.startFollow(this.player.container);
 
-        const luminusWarp = new LuminusWarp(
-            this,
-            this.player,
-            this.mapCreator.map
-        );
+        const luminusWarp = new LuminusWarp(this, this.player, this.mapCreator.map);
         luminusWarp.createWarps();
-        const interactiveMarkers = new LuminusObjectMarker(
-            this,
-            this.mapCreator.map
-        );
+        const interactiveMarkers = new LuminusObjectMarker(this, this.mapCreator.map);
         interactiveMarkers.create();
 
         this.scene.launch('DialogScene', {
@@ -65,10 +53,7 @@ export class MainScene extends Phaser.Scene {
         this.scene.launch('HUDScene', { player: this.player });
 
         this.sys.animatedTiles.init(this.mapCreator.map);
-        this.particles = new LuminusEnvironmentParticles(
-            this,
-            this.mapCreator.map
-        );
+        this.particles = new LuminusEnvironmentParticles(this, this.mapCreator.map);
         this.particles.create();
 
         // this.outlineEffect = new LuminusOutlineEffect(this);
@@ -81,18 +66,10 @@ export class MainScene extends Phaser.Scene {
 
         this.enemies = [];
 
-        this.luminusEnemyZones = new LuminusEnemyZones(
-            this,
-            this.mapCreator.map
-        );
+        this.luminusEnemyZones = new LuminusEnemyZones(this, this.mapCreator.map);
         this.luminusEnemyZones.create();
 
-        new Item(
-            this,
-            this.player.container.x,
-            this.player.container.y - 30,
-            1
-        );
+        new Item(this, this.player.container.x, this.player.container.y - 30, 1);
     }
 
     /**
