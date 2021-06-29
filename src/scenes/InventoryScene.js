@@ -1,5 +1,6 @@
 import Phaser from 'phaser';
 import { NineSlice } from 'phaser3-nineslice';
+import { InfoBox } from '../components/InfoBox';
 import { PanelComponent } from '../components/PanelComponent';
 import { Item } from '../entities/Item';
 import { Player } from '../entities/Player';
@@ -133,6 +134,12 @@ export class InventoryScene extends Phaser.Scene {
          * @type { LuminusInterfaceController }
          */
         this.cachedInterfaceControler = null;
+
+        /**
+         * The information box for
+         * @type { InfoBox }
+         */
+        this.helpPanel = null;
     }
 
     create() {
@@ -144,6 +151,7 @@ export class InventoryScene extends Phaser.Scene {
         this.createSlots();
         this.createCloseButton();
         this.createItems();
+        this.createHelpSection();
         if (!this.isReset) this.sound.play(this.inventoryOpenClose);
         this.scale.on('resize', (resize) => {
             this.resizeAll(resize);
@@ -352,7 +360,28 @@ export class InventoryScene extends Phaser.Scene {
                 slot.playerItemIndex = i;
                 if (item.stackable) {
                     slot.setInteractive();
+                    slot.on('pointerover', (pointer) => {
+                        if (!this.helpPanel) {
+                            this.helpPanel = new InfoBox(
+                                this,
+                                slot.x + slot.width / 2,
+                                slot.y + slot.height / 2,
+                                200,
+                                200,
+                                {
+                                    name: slot.item.name,
+                                    description: slot.item.description,
+                                }
+                            );
+                        }
+                    });
+                    slot.on('pointerout', (pointer) => {
+                        if (this.helpPanel) {
+                            this.destroyHelpPanel();
+                        }
+                    });
                     slot.on('pointerup', (pointer) => {
+                        // IF it is mobile or controller is connected, Show the information box.
                         let element = {
                             element: slot,
                             action: 'useItem',
@@ -381,6 +410,15 @@ export class InventoryScene extends Phaser.Scene {
             }
         }
     }
+
+    destroyHelpPanel() {
+        this.helpPanel.backgroundSprite.destroy();
+        this.helpPanel.name.destroy();
+        this.helpPanel.description.destroy();
+        this.helpPanel = null;
+    }
+
+    createHelpSection() {}
 
     useItem(slot) {
         if (slot && slot.item) {

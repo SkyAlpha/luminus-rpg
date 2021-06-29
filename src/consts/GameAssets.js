@@ -33,6 +33,7 @@ import blue_bar from '../assets/sprites/HUD/blue_bar.png';
 import progressbar_background from '../assets/sprites/HUD/bars_background.png';
 import inventory_shortcut from '../assets/sprites/HUD/I_Key_Light.png';
 import buttonY from '../assets/sprites/XboxOne_Y.png';
+import h_keyboard_key from '../assets/sprites/H_Key_Light.png';
 import buttonXboxWindows from '../assets/sprites/XboxOne_Windows.png';
 
 // Inventory
@@ -40,6 +41,7 @@ import inventory_box from '../assets/sprites/inventory_box.png';
 import panel_background from '../assets/sprites/inventory/inventory_background.png';
 import panel_title from '../assets/sprites/inventory/inventory_title.png';
 import inventory_slot from '../assets/sprites/inventory/inventory_slot.png';
+import infobox_background from '../assets/sprites/info_panel.png';
 
 // Portraits
 import lucius_portrait_beard from '../assets/sprites/portraits/lucius_portrait_beard.png';
@@ -155,6 +157,10 @@ export const Images = [
         image: buttonY,
     },
     {
+        name: 'h_keyboard_key',
+        image: h_keyboard_key,
+    },
+    {
         name: 'buttonXboxWindows',
         image: buttonXboxWindows,
     },
@@ -241,6 +247,10 @@ export const Images = [
     {
         name: 'critical_2x',
         image: critical_50,
+    },
+    {
+        name: 'infobox_background',
+        image: infobox_background,
     },
 
     // HUD

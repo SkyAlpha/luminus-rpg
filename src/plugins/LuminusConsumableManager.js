@@ -56,6 +56,7 @@ export class LuminusConsumableManager {
                 if (player.luminusHUDProgressBar) player.luminusHUDProgressBar.updateHealth(player.stats.health);
                 this.luminusDamageDisplay.displayDamage(action[2], player, false, true);
                 player.scene.sound.play(item.useSfx);
+                console.log(`Recover ${action[2]} HP`);
                 break;
             case 'sp':
                 console.log(`Recover ${action[2]} SP`);
@@ -88,6 +89,7 @@ export class LuminusConsumableManager {
                 );
                 if (consumableBonus) {
                     player.scene.sound.play(item.useSfx);
+                    console.log(`Increased ${action[2]} ATK for ${action[3]} seconds`);
                     consumableBonus.timer.reset({
                         callbackScope: this,
                         delay: consumableBonus.time * 1000, // Time to restore the stats to it's default value.
@@ -100,7 +102,7 @@ export class LuminusConsumableManager {
                     this.changeStats(player, bonusStatus);
 
                     player.scene.sound.play(item.useSfx);
-                    console.log(`Increased ${action[2]} ATK for ${action[3]}`);
+                    console.log(`Increased ${action[2]} ATK for ${action[3]} seconds`);
                     bonusStatus.timer = player.scene.time.addEvent({
                         callbackScope: this,
                         delay: bonusStatus.time * 1000, // Time to restore the stats to it's default value.
