@@ -405,6 +405,23 @@ export class LuminusInterfaceController {
     }
 
     /**
+     * Recovers the last element position from a previous interface controler. This is slecialy useful when you recreate the scene.
+     * @param { LuminusInterfaceController } interfaceControler The interface to get the configuration from.
+     */
+    recoverPositionFromPrevious(interfaceControler) {
+        const currentLinePosition = interfaceControler.currentLinePosition;
+        const currentRow = interfaceControler.currentMatrixRow;
+        const currentCol = interfaceControler.currentMatrixCol;
+        this.currentLinePosition = currentLinePosition;
+        this.currentMatrixRow = currentRow;
+        this.currentMatrixCol = currentCol;
+        this.removeCurrentSelectionHighlight();
+        const element = (this.currentElementAction =
+            this.interfaceElements[currentLinePosition][currentRow][currentCol]);
+        this.updateHighlightedElement(element.element);
+    }
+
+    /**
      * Executes the function on the correct Context.
      * @param { string } functionName
      * @param { this } context

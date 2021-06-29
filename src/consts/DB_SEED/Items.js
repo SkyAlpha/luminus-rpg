@@ -1,3 +1,4 @@
+import { BUFF_TYPES } from './BuffTypes';
 import { ITEM_TYPE } from './ItemTypes';
 
 /**
@@ -15,10 +16,22 @@ export const DB_SEED_ITEMS = [
         id: 1,
         name: 'Red Potion',
         type: ITEM_TYPE.USABLE,
-        description:
-            'A small potion that recovers a small amount of Health Points [HP].',
+        buffType: 0, // Means you can use as many as you want. No restrictions.
+        description: 'A small potion that recovers a small amount of Health Points [HP].',
         script: 'rec hp 2;',
         texture: 'red_potion',
+        sfx: 'heal',
+        stackable: true,
+        inventoryScale: 1.7, // How much should the item scale when the inventory is opened.
+    },
+    {
+        id: 2,
+        name: 'Atack Potion',
+        type: ITEM_TYPE.USABLE,
+        buffType: BUFF_TYPES.ATK01,
+        description: 'A small potion that increases the atack by 5 for 10 minutes seconds.',
+        script: 'buff atk 5 15;',
+        texture: 'atk_potion',
         sfx: 'heal',
         stackable: true,
         inventoryScale: 1.7, // How much should the item scale when the inventory is opened.

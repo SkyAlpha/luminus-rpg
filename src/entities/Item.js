@@ -49,6 +49,13 @@ export class Item extends Phaser.Physics.Arcade.Sprite {
         this.type = itemConfig.type;
 
         /**
+         * The buff type.
+         * @type { Enumerator }
+         * @default
+         */
+        this.buffType = itemConfig.buffType;
+
+        /**
          * The description of the item.
          * @type { string }
          * @default

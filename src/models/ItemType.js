@@ -1,4 +1,5 @@
 /**
+ * The Item type.
  * @class
  */
 export class ItemType {

@@ -270,9 +270,7 @@ export class LuminusBattleManager extends AnimationNames {
      * @returns { boolean } Returns if the atacker hit the target.
      */
     checkAtackHit(hit, flee) {
-        console.log(hit, flee);
         const random = Math.random() * 100;
-        console.log('HIT', (hit * 100) / flee, random);
         let miss;
         if (isFinite((hit * 100) / flee)) {
             return (hit * 100) / flee >= random;
@@ -289,7 +287,6 @@ export class LuminusBattleManager extends AnimationNames {
      */
     checkAtackIsCritial(critChance) {
         const random = Math.random() * 100;
-        console.log('CRITICAL:', critChance, random);
         return critChance >= random;
     }
 

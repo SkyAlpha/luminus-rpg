@@ -126,6 +126,13 @@ export class InventoryScene extends Phaser.Scene {
          * @type { LuminusInterfaceController }
          */
         this.luminusInterfaceController = null;
+
+        this.isReset = false;
+
+        /**
+         * @type { LuminusInterfaceController }
+         */
+        this.cachedInterfaceControler = null;
     }
 
     create() {
@@ -137,11 +144,14 @@ export class InventoryScene extends Phaser.Scene {
         this.createSlots();
         this.createCloseButton();
         this.createItems();
-        this.sound.play(this.inventoryOpenClose);
+        if (!this.isReset) this.sound.play(this.inventoryOpenClose);
         this.scale.on('resize', (resize) => {
-            console.log('Resize!!');
             this.resizeAll(resize);
         });
+
+        if (this.cachedInterfaceControler) {
+            this.luminusInterfaceController.recoverPositionFromPrevious(this.cachedInterfaceControler);
+        }
     }
 
     /**
@@ -305,13 +315,25 @@ export class InventoryScene extends Phaser.Scene {
     }
 
     /**
+     * Clears all slots items before creating them again.
+     */
+    // clearSlots() {
+    //     this.slots.forEach((slot) => {
+    //         if (slot.item) slot.item.destroy();
+    //         if (slot.text) slot.text.destroy();
+    //     });
+    // }
+
+    /**
      * Loops through the Player's items and Adds it to the inventory Slots
      */
     createItems() {
+        // this.clearSlots();
         let slotIndex = 0;
         let time = 0;
         for (let i = 0; i < this.player.items.length; i++) {
             let slot = this.slots[slotIndex];
+            slotIndex++;
             if (this.player.items[i] && this.player.items[i].id) {
                 let text;
                 let item = new Item(
@@ -370,10 +392,15 @@ export class InventoryScene extends Phaser.Scene {
                 this.player.items[i].count--;
                 if (this.player.items[i].count <= 0) {
                     slot.item.destroy();
-                    this.luminusInterfaceController.currentElementAction.action = null;
-                    delete this.player.items[i];
+                    // this.luminusInterfaceController.currentElementAction.action = null;
+                    this.player.items.splice(i, 1);
                     text.setText('');
                     text.destroy();
+                    this.scene.restart({
+                        player: this.player,
+                        isReset: true,
+                        interfaceControler: this.luminusInterfaceController,
+                    });
                     // TODO - Rearange the items.
                 } else {
                     text.setText(this.player.items[i].count);
@@ -390,6 +417,10 @@ export class InventoryScene extends Phaser.Scene {
         this.player = args.player;
         this.player.canMove = false;
         this.player.canAtack = false;
+        if (args.isReset) {
+            this.isReset = true;
+            this.cachedInterfaceControler = args.interfaceControler;
+        }
     }
 
     update() {}

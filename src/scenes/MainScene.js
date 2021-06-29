@@ -69,6 +69,8 @@ export class MainScene extends Phaser.Scene {
         this.luminusEnemyZones = new LuminusEnemyZones(this, this.mapCreator.map);
         this.luminusEnemyZones.create();
 
+        new Item(this, this.player.container.x, this.player.container.y - 30, 2);
+        new Item(this, this.player.container.x, this.player.container.y - 30, 2);
         new Item(this, this.player.container.x, this.player.container.y - 30, 1);
     }
 
