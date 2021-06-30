@@ -737,7 +737,7 @@ export class LuminusDialogBox {
                 this.dialog.y + this.dialog.scaleY * 20
             );
             if (this.dialog.textMessage && this.dialog.textMessage.visible) {
-                this.dialog.textMessage.y = this.cameraHeight + this.margin / 2 - this.dialogHeight;
+                this.dialog.textMessage.setPosition(this.dialog.textMessage.x, this.leftNameText.y + 30);
                 this.dialog.textMessage.setStyle({
                     wordWrap: {
                         width: this.textWidth,

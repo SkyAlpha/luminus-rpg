@@ -7,6 +7,7 @@ import player_image from '../assets/sprites/player.png';
 import dialog from '../assets/sprites/dialog_paper.png';
 import space from '../assets/sprites/space.png';
 import buttonA from '../assets/sprites/buttonA.png';
+import buttonB from '../assets/sprites/buttonB.png';
 import question_mark from '../assets/sprites/question_mark.png';
 import spread from '../assets/sprites/spread.png';
 import maximize from '../assets/sprites/maximize.png';
@@ -34,6 +35,8 @@ import progressbar_background from '../assets/sprites/HUD/bars_background.png';
 import inventory_shortcut from '../assets/sprites/HUD/I_Key_Light.png';
 import buttonY from '../assets/sprites/XboxOne_Y.png';
 import h_keyboard_key from '../assets/sprites/H_Key_Light.png';
+import esc_keyboard_key from '../assets/sprites/Esc_Key_Light.png';
+import enter_keyboard_key from '../assets/sprites/enter_keyboard_key.png';
 import buttonXboxWindows from '../assets/sprites/XboxOne_Windows.png';
 
 // Inventory
@@ -153,12 +156,24 @@ export const Images = [
         image: buttonA,
     },
     {
+        name: 'buttonB',
+        image: buttonB,
+    },
+    {
         name: 'buttonY',
         image: buttonY,
     },
     {
+        name: 'enter_keyboard_key',
+        image: enter_keyboard_key,
+    },
+    {
         name: 'h_keyboard_key',
         image: h_keyboard_key,
+    },
+    {
+        name: 'esc_keyboard_key',
+        image: esc_keyboard_key,
     },
     {
         name: 'buttonXboxWindows',

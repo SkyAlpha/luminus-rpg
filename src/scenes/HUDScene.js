@@ -216,21 +216,17 @@ export class HUDScene extends Phaser.Scene {
             }
         });
 
-        if (!LuminusUtils.isMobile()) {
-            this.inventoryShortcutIcon = this.add.image(
-                this.settingsIcon.x - 70,
-                this.settingsIcon.y + 15,
-                this.inventoryShortcutSprite
-            );
-            const scale = (30 * 100) / this.inventoryShortcutIcon.width / 100;
-            this.inventoryShortcutIcon.setScale(scale);
+        if (!LuminusUtils.isMobile() || (LuminusUtils.isMobile() && this.input.gamepad.pad1)) {
+            this.createInventoryShortcutIcon();
         }
 
         if (this.input.gamepad.pad1) {
+            this.createInventoryShortcutIcon();
             this.setGamepadTextures();
         }
 
         this.input.gamepad.on('connected', (pad) => {
+            this.createInventoryShortcutIcon();
             this.setGamepadTextures();
         });
         this.input.gamepad.on('disconnected', (pad) => {
@@ -254,12 +250,25 @@ export class HUDScene extends Phaser.Scene {
         this.scene.stop(this.settingSceneName);
     }
 
+    createInventoryShortcutIcon() {
+        if (!this.inventoryShortcutIcon) {
+            this.inventoryShortcutIcon = this.add.image(
+                this.settingsIcon.x - 70,
+                this.settingsIcon.y + 15,
+                this.inventoryShortcutSprite
+            );
+            this.inventoryShortcutIcon.setDisplaySize(30, 30);
+            console.log('ICON', this.inventoryShortcutIcon);
+        }
+    }
+
     /**
      * Sets the GamePad Textures.
      * If the gamepad is connected, it should use the gamepad textures.
      */
     setGamepadTextures() {
-        this.inventoryShortcutIcon.setTexture(this.inventoryShortcutIconConsole);
+        console.log(this.inventoryShortcutIcon);
+        if (this.inventoryShortcutIcon) this.inventoryShortcutIcon.setTexture(this.inventoryShortcutIconConsole);
     }
 
     /**
@@ -272,6 +281,7 @@ export class HUDScene extends Phaser.Scene {
         this.settingsIcon.setPosition(size.width - this.settingsSpriteOffsetX, this.settingsSpriteOffsetY);
 
         this.inventoryIcon.setPosition(size.width - this.inventorySpriteOffsetX, this.inventorySpriteOffsetY);
-        this.inventoryShortcutIcon.setPosition(this.settingsIcon.x - 70, this.settingsIcon.y + 15);
+        if (this.inventoryShortcutIcon)
+            this.inventoryShortcutIcon.setPosition(this.settingsIcon.x - 70, this.settingsIcon.y + 15);
     }
 }

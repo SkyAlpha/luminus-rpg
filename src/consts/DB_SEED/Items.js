@@ -26,10 +26,10 @@ export const DB_SEED_ITEMS = [
     },
     {
         id: 2,
-        name: 'Atack Potion',
+        name: 'Dark Potion',
         type: ITEM_TYPE.USABLE,
         buffType: BUFF_TYPES.ATK01,
-        description: 'A small potion that increases the ATACK by 5 for 60 seconds.',
+        description: `They say this potion is only for those who have a strong heart, for those who drunk it became elves. (Increases the ATACK by 5 points for 60 seconds.)`,
         script: 'buff atk 5 60;',
         texture: 'atk_potion',
         sfx: 'heal',
