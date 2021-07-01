@@ -157,6 +157,8 @@ export class HUDScene extends Phaser.Scene {
          * @default
          */
         this.inventoryShortcutIcon = null;
+
+        this.level_text = null;
     }
 
     init(args) {
@@ -250,6 +252,8 @@ export class HUDScene extends Phaser.Scene {
         // All Scenes have to be stopped before they are called to launch.
         this.scene.stop(this.inventorySceneName);
         this.scene.stop(this.settingSceneName);
+
+        this.level_text = this.add.text(15, 75, 'LvL ' + this.player.attributes.level);
     }
 
     createInventoryShortcutIcon() {
@@ -284,5 +288,9 @@ export class HUDScene extends Phaser.Scene {
         this.inventoryIcon.setPosition(size.width - this.inventorySpriteOffsetX, this.inventorySpriteOffsetY);
         if (this.inventoryShortcutIcon)
             this.inventoryShortcutIcon.setPosition(this.settingsIcon.x - 70, this.settingsIcon.y + 15);
+    }
+
+    update() {
+        if (this.level_text) this.level_text.setText('LvL ' + this.player.attributes.level);
     }
 }

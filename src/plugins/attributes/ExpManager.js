@@ -46,6 +46,34 @@ export class ExpManager {
         this.displayText = new LuminusEntityTextDisplay(entity.scene);
         this.displayText.displayDamage('LEVEL UP!!', entity);
 
+        console.log(entity.texture.key);
+        let origin = entity.getTopLeft();
+        var textures = entity.scene.textures;
+        let pixel;
+        let logoSource = {
+            getRandomPoint: (vec) => {
+                do {
+                    let x = Phaser.Math.Between(0, entity.width * entity.scaleX - 1);
+                    let y = Phaser.Math.Between(0, entity.height * entity.scaleY - 1);
+                    pixel = textures.getPixel(x, y, entity.texture.key);
+                    return vec.setTo(x + origin.x, y + origin.y);
+                } while (pixel.alpha < 255);
+            },
+        };
+
+        this.particles_logo = entity.scene.add.particles('flares', {
+            x: entity.container.x,
+            y: entity.container.y,
+            lifespan: 300,
+            gravityY: 10,
+            speed: 20,
+            quantity: 1,
+            scale: { start: 0, end: 0.15, ease: 'Quad.easeOut' },
+            alpha: { start: 1, end: 0, ease: 'Quad.easeIn' },
+            blendMode: 'ADD',
+            emitZone: { type: 'random', source: logoSource },
+        });
+
         // let particles = entity.scene.add.particles('flares');
 
         // particles.createEmitter({
@@ -70,8 +98,8 @@ export class ExpManager {
         //     blendMode: 'ADD',
         // });
 
-        // setTimeout((t) => {
-        //     particles.destroy();
-        // }, 1000);
+        setTimeout((t) => {
+            this.particles_logo.destroy();
+        }, 400);
     }
 }
