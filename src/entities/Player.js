@@ -25,11 +25,11 @@ export class Player extends Phaser.Physics.Arcade.Sprite {
         // Here are all classes that this Player Extends.
         Object.assign(this, BaseEntity);
         /**
-         * The entity stats.
+         * The entity attributes.
          * @type { EntityAttributes }
          */
-        this.stats = {};
-        Object.assign(this.stats, EntityAttributes);
+        this.attributes = {};
+        Object.assign(this.attributes, EntityAttributes);
 
         /**
          * The Attributes Manager.
@@ -37,7 +37,7 @@ export class Player extends Phaser.Physics.Arcade.Sprite {
          */
         this.attributesManager = new AttributesManager(this.scene, this);
 
-        this.stats.critical = 30;
+        this.attributes.critical = 30;
 
         /**
          * The name of the Entity. It's used for differenciation of the entityes.
@@ -115,7 +115,7 @@ export class Player extends Phaser.Physics.Arcade.Sprite {
             0,
             0,
             this.width * 2,
-            this.stats.baseHealth,
+            this.attributes.baseHealth,
             this.width / 2.2,
             -(this.height / 2)
         );

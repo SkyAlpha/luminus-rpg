@@ -2477,9 +2477,9 @@ table.noflex {
     float: none;
     display: flex; }
     @media only all and (max-width: 47.938em) {
-      #admin-main .flush-bottom.button-bar.stats-bar {
+      #admin-main .flush-bottom.button-bar.attributes-bar {
         font-size: 90%; }
-        #admin-main .flush-bottom.button-bar.stats-bar b {
+        #admin-main .flush-bottom.button-bar.attributes-bar b {
           font-size: 1.5rem; } }
     #admin-main .flush-bottom.button-bar .button {
       margin: 0;

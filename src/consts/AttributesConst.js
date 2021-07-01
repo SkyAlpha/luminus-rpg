@@ -1,9 +1,9 @@
 /**
- * These are the stats constants.
+ * These are the attributes constants.
  * @constant
  * @type { object }
  */
-export const STATS_CONST = {
+export const ATTRIBUTES_CONST = {
     ATK: {
         /**
          * The atack bonus divider.

@@ -1,4 +1,4 @@
-import { STATS_CONST } from '../../consts/Stats';
+import { ATTRIBUTES_CONST } from '../../consts/AttributesConst';
 import { Enemy } from '../../entities/Enemy';
 import { Player } from '../../entities/Player';
 import lodash from 'lodash';
@@ -30,7 +30,7 @@ export class AttributesManager {
          * A copy of the entity
          * @type { EntityStats }
          */
-        this.statsCopy = lodash.cloneDeep(this.entity.stats);
+        this.statsCopy = lodash.cloneDeep(this.entity.attributes);
 
         /**
          * Is this the first time the loop is called?
@@ -50,7 +50,7 @@ export class AttributesManager {
     }
 
     /**
-     * Calculates all stats of the entity.
+     * Calculates all attributes of the entity.
      */
     calculateStats() {
         this.checkLevelChange();
@@ -71,8 +71,8 @@ export class AttributesManager {
      * Then it should update the core attributes.
      */
     checkLevelChange() {
-        if (this.statsCopy.level != this.entity.stats.level) {
-            this.statsCopy.level = this.entity.stats.level;
+        if (this.statsCopy.level != this.entity.attributes.level) {
+            this.statsCopy.level = this.entity.attributes.level;
             this.leveledUp = true;
         }
     }
@@ -81,17 +81,17 @@ export class AttributesManager {
      * Calculates the Health every tick.
      */
     calculateHealth() {
-        this.entity.stats.baseHealth =
-            this.statsCopy.baseHealth + this.entity.stats.level * 10 + this.entity.stats.rawStats.vit * 3;
+        this.entity.attributes.baseHealth =
+            this.statsCopy.baseHealth + this.entity.attributes.level * 10 + this.entity.attributes.rawStats.vit * 3;
         if (this.entity.healthBar) {
-            this.entity.healthBar.full = this.entity.stats.baseHealth;
-            this.entity.healthBar.health = this.entity.stats.baseHealth;
+            this.entity.healthBar.full = this.entity.attributes.baseHealth;
+            this.entity.healthBar.health = this.entity.attributes.baseHealth;
             this.entity.healthBar.draw();
         }
         if (this.firstTime || this.leveledUp) {
-            this.entity.stats.health = this.entity.stats.baseHealth;
+            this.entity.attributes.health = this.entity.attributes.baseHealth;
             if (this.entity.luminusHUDProgressBar) this.entity.luminusHUDProgressBar.updateHealth();
-            console.log('Full Life:', this.entity.stats.baseHealth);
+            console.log('Full Life:', this.entity.attributes.baseHealth);
         }
     }
     /**
@@ -99,8 +99,8 @@ export class AttributesManager {
      */
     calculateDefense() {
         if (this.firstTime) {
-            this.entity.stats.defense = this.statsCopy.defense + this.entity.stats.rawStats.vit;
-            console.log('Defense:', this.entity.stats.defense);
+            this.entity.attributes.defense = this.statsCopy.defense + this.entity.attributes.rawStats.vit;
+            console.log('Defense:', this.entity.attributes.defense);
         }
     }
     /**
@@ -108,13 +108,13 @@ export class AttributesManager {
      */
     calculateAtack() {
         if (this.firstTime || this.leveledUp) {
-            const multiplicator = Math.floor(this.entity.stats.rawStats.str / STATS_CONST.ATK.DIVIDER);
-            const atackBonus = multiplicator * STATS_CONST.ATK.BONUS_MULTIPLIER; // For every 10 of str you get 5 extra atack points.
-            const level_multiplier = Math.floor(this.entity.stats.level / STATS_CONST.ATK.DIVIDER);
-            const level_atack_bonus = level_multiplier * STATS_CONST.ATK.BONUS_LEVEL_MULTIPLIER;
-            this.entity.stats.atack =
-                this.statsCopy.atack + this.entity.stats.rawStats.str + atackBonus + level_atack_bonus;
-            console.log('Atack:', this.entity.stats.atack);
+            const multiplicator = Math.floor(this.entity.attributes.rawStats.str / ATTRIBUTES_CONST.ATK.DIVIDER);
+            const atackBonus = multiplicator * ATTRIBUTES_CONST.ATK.BONUS_MULTIPLIER; // For every 10 of str you get 5 extra atack points.
+            const level_multiplier = Math.floor(this.entity.attributes.level / ATTRIBUTES_CONST.ATK.DIVIDER);
+            const level_atack_bonus = level_multiplier * ATTRIBUTES_CONST.ATK.BONUS_LEVEL_MULTIPLIER;
+            this.entity.attributes.atack =
+                this.statsCopy.atack + this.entity.attributes.rawStats.str + atackBonus + level_atack_bonus;
+            console.log('Atack:', this.entity.attributes.atack);
         }
     }
     /**
@@ -123,8 +123,8 @@ export class AttributesManager {
     calculateSpeed() {
         // TODO - This should be updated with items and consumables.
         // if (this.firstTime) {
-        //     this.entity.stats.speed = this.statsCopy.speed + this.entity.stats.rawStats.agi;
-        //     console.log('Speed:', this.entity.stats.speed);
+        //     this.entity.attributes.speed = this.statsCopy.speed + this.entity.attributes.rawStats.agi;
+        //     console.log('Speed:', this.entity.attributes.speed);
         // }
     }
     /**
@@ -132,8 +132,8 @@ export class AttributesManager {
      */
     calculateCritical() {
         if (this.firstTime) {
-            this.entity.stats.critical = this.statsCopy.critical + this.entity.stats.rawStats.agi;
-            console.log('Critical:', this.entity.stats.critical);
+            this.entity.attributes.critical = this.statsCopy.critical + this.entity.attributes.rawStats.agi;
+            console.log('Critical:', this.entity.attributes.critical);
         }
     }
     /**
@@ -141,8 +141,8 @@ export class AttributesManager {
      */
     calculateFlee() {
         if (this.firstTime) {
-            this.entity.stats.flee = this.statsCopy.flee + this.entity.stats.rawStats.agi;
-            console.log('Flee:', this.entity.stats.flee);
+            this.entity.attributes.flee = this.statsCopy.flee + this.entity.attributes.rawStats.agi;
+            console.log('Flee:', this.entity.attributes.flee);
         }
     }
 
@@ -151,8 +151,8 @@ export class AttributesManager {
      */
     calculateHit() {
         if (this.firstTime) {
-            this.entity.stats.hit = this.statsCopy.hit + this.entity.stats.rawStats.dex;
-            console.log('Hit:', this.entity.stats.hit);
+            this.entity.attributes.hit = this.statsCopy.hit + this.entity.attributes.rawStats.dex;
+            console.log('Hit:', this.entity.attributes.hit);
         }
     }
 }

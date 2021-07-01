@@ -220,20 +220,20 @@ export class LuminusBattleManager extends AnimationNames {
     takeDamage(atacker, target) {
         // Randomizes the name of the damage sound.
         let damageName = this.damageSoundNames[Math.floor(Math.random() * this.damageSoundNames.length)];
-        let damage = this.randomDamage(atacker.stats.atack - target.stats.defense);
-        const isCritical = this.checkAtackIsCritial(atacker.stats.critical);
-        const hit = this.checkAtackHit(atacker.stats.hit, target.stats.flee);
+        let damage = this.randomDamage(atacker.attributes.atack - target.attributes.defense);
+        const isCritical = this.checkAtackIsCritial(atacker.attributes.critical);
+        const hit = this.checkAtackHit(atacker.attributes.hit, target.attributes.flee);
         if (isCritical) {
-            damage = Math.ceil(atacker.stats.atack * CRITICAL_MULTIPLIER);
+            damage = Math.ceil(atacker.attributes.atack * CRITICAL_MULTIPLIER);
             damageName = 'critical';
         }
         if (hit || isCritical) {
             if (damage > 0) {
                 if (target.healthBar) target.healthBar.decrease(damage);
-                target.stats.health -= damage;
+                target.attributes.health -= damage;
             } else {
-                target.stats.health -= 1;
-                target.stats.healthBar.decrease(1);
+                target.attributes.health -= 1;
+                target.attributes.healthBar.decrease(1);
             }
 
             if (target.luminusHUDProgressBar) {
@@ -241,7 +241,7 @@ export class LuminusBattleManager extends AnimationNames {
             }
             this.phaserJuice.add(target).flash();
             atacker.scene.sound.add(damageName).play();
-            if (target.stats.health <= 0) {
+            if (target.attributes.health <= 0) {
                 if (atacker.entityName === ENTITIES.Player) {
                     ExpManager.addExp(atacker, target.exp);
                 }

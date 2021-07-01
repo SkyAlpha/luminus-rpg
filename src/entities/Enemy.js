@@ -31,8 +31,8 @@ export class Enemy extends Phaser.Physics.Arcade.Sprite {
          * The entity attributes.
          * @type { EntityAttributes }
          */
-        this.stats = {};
-        Object.assign(this.stats, EntityAttributes);
+        this.attributes = {};
+        Object.assign(this.attributes, EntityAttributes);
         Object.assign(this, new AnimationNames());
 
         /**
@@ -116,7 +116,7 @@ export class Enemy extends Phaser.Physics.Arcade.Sprite {
             0,
             0,
             this.width,
-            this.stats.health,
+            this.attributes.health,
             this.width / 4,
             -this.height * 1.3
         );

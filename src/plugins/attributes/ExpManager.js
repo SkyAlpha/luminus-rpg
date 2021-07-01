@@ -10,13 +10,10 @@ export class ExpManager {
      * @param { number } extraExp extra exp, used for recursive call of the method.
      */
     static addExp(entity, exp, extraExp = 0) {
-        console.log('1', exp, extraExp);
-        entity.stats.experience += exp + extraExp;
+        entity.attributes.experience += exp + extraExp;
         let excedingExp = 0;
-        if (entity.stats.nextLevelExperience <= entity.stats.experience) {
-            console.log('2', entity.stats.experience, entity.stats.nextLevelExperience);
-            excedingExp = entity.stats.experience - entity.stats.nextLevelExperience;
-            console.log('Exp Excedente', excedingExp);
+        if (entity.attributes.nextLevelExperience <= entity.attributes.experience) {
+            excedingExp = entity.attributes.experience - entity.attributes.nextLevelExperience;
             this.levelUpEntity(entity);
             if (excedingExp > 0) this.addExp(entity, 0, excedingExp);
         }
@@ -27,18 +24,15 @@ export class ExpManager {
      * @param { Player | Enemy} entity
      */
     static levelUpEntity(entity) {
-        entity.stats.level += 1;
-        entity.stats.availableStatPoints += 2;
-        entity.stats.experience = 0;
-        entity.stats.baseHealth += 10;
-        entity.stats.nextLevelExperience += 100 * entity.stats.level;
+        entity.attributes.level += 1;
+        entity.attributes.availableStatPoints += 2;
+        entity.attributes.experience = 0;
+        entity.attributes.baseHealth += 10;
+        entity.attributes.nextLevelExperience += 100 * entity.attributes.level;
         if (entity.healthBar) {
-            entity.healthBar.full = entity.stats.baseHealth;
-            entity.healthBar.update(entity.stats.health);
+            entity.healthBar.full = entity.attributes.baseHealth;
+            entity.healthBar.update(entity.attributes.health);
         }
-
-        console.log(entity.stats, entity.healthBar);
-
         // Add next level experience.
         this.levelUpEffects(entity);
     }

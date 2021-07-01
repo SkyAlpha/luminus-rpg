@@ -51,9 +51,12 @@ export class LuminusConsumableManager {
         switch (action[1]) {
             case 'hp':
                 // console.log(`Recover ${action[2]} HP`);
-                player.stats.health = Math.min(player.stats.baseHealth, (player.stats.health += parseInt(action[2])));
-                player.healthBar.update(player.stats.health);
-                if (player.luminusHUDProgressBar) player.luminusHUDProgressBar.updateHealth(player.stats.health);
+                player.attributes.health = Math.min(
+                    player.attributes.baseHealth,
+                    (player.attributes.health += parseInt(action[2]))
+                );
+                player.healthBar.update(player.attributes.health);
+                if (player.luminusHUDProgressBar) player.luminusHUDProgressBar.updateHealth(player.attributes.health);
                 this.luminusEntityTextDisplay.displayDamage(action[2], player, false, true);
                 player.scene.sound.play(item.useSfx);
                 console.log(`Recover ${action[2]} HP`);
@@ -84,7 +87,7 @@ export class LuminusConsumableManager {
                 break;
             case 'atk':
                 /** @type {ConsumableBonus} */
-                const consumableBonus = player.stats.bonus.consumable.find(
+                const consumableBonus = player.attributes.bonus.consumable.find(
                     (consumableItem) => consumableItem.uniqueId === item.buffType.id
                 );
                 if (consumableBonus) {
@@ -92,7 +95,7 @@ export class LuminusConsumableManager {
                     console.log(`Increased ${action[2]} ATK for ${action[3]} seconds`);
                     consumableBonus.timer.reset({
                         callbackScope: this,
-                        delay: consumableBonus.time * 1000, // Time to restore the stats to it's default value.
+                        delay: consumableBonus.time * 1000, // Time to restore the attributes to it's default value.
                         callback: this.changeStats, // Callback
                         args: [player, consumableBonus, -1], // Params
                     });
@@ -105,11 +108,11 @@ export class LuminusConsumableManager {
                     console.log(`Increased ${action[2]} ATK for ${action[3]} seconds`);
                     bonusStatus.timer = player.scene.time.addEvent({
                         callbackScope: this,
-                        delay: bonusStatus.time * 1000, // Time to restore the stats to it's default value.
+                        delay: bonusStatus.time * 1000, // Time to restore the attributes to it's default value.
                         callback: this.changeStats, // Callback
                         args: [player, bonusStatus, -1], // Params
                     });
-                    player.stats.bonus.consumable.push(bonusStatus);
+                    player.attributes.bonus.consumable.push(bonusStatus);
                 }
 
                 break;
@@ -120,14 +123,14 @@ export class LuminusConsumableManager {
     }
 
     /**
-     * Changes the stats of the player based on the configuration.
-     * @param { Player } player The player that will hat it's stats changed.
+     * Changes the attributes of the player based on the configuration.
+     * @param { Player } player The player that will hat it's attributes changed.
      * @param { ConsumableBonus } bonus The bonus that will be applied.
      * @param { number } sign positive or negative sign.
      */
     changeStats(player, bonus, sign = 1) {
-        player.stats[bonus.statBonus] = player.stats[bonus.statBonus] + bonus.value * sign;
-        const index = player.stats.bonus.consumable.indexOf(bonus);
-        player.stats.bonus.consumable.splice(index, 1);
+        player.attributes[bonus.statBonus] = player.attributes[bonus.statBonus] + bonus.value * sign;
+        const index = player.attributes.bonus.consumable.indexOf(bonus);
+        player.attributes.bonus.consumable.splice(index, 1);
     }
 }

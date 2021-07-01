@@ -260,7 +260,6 @@ export class HUDScene extends Phaser.Scene {
                 this.inventoryShortcutSprite
             );
             this.inventoryShortcutIcon.setDisplaySize(30, 30);
-            console.log('ICON', this.inventoryShortcutIcon);
         }
     }
 

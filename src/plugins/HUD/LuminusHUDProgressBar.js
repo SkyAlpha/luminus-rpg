@@ -111,7 +111,7 @@ export class LuminusHUDProgressBar {
      * Updates the HUD Health bar based on the current player's Health.
      */
     updateHealth() {
-        const HP_percentage = (this.player.stats.health / this.player.stats.baseHealth) * 100;
+        const HP_percentage = (this.player.attributes.health / this.player.attributes.baseHealth) * 100;
         if (HP_percentage > 40) {
             this.healthbar_sprite.setTexture(this.greenBarSpriteName);
         } else if (HP_percentage >= 20 && HP_percentage <= 40) {
@@ -134,7 +134,7 @@ export class LuminusHUDProgressBar {
      * Updates the current Exp of the player.s
      */
     updateExp() {
-        const exp_percentage = (this.player.stats.experience / this.player.stats.nextLevelExperience) * 100;
+        const exp_percentage = (this.player.attributes.experience / this.player.attributes.nextLevelExperience) * 100;
         this.expbar_sprite.setDisplaySize(
             this.expbar_sprite.widthExtended * (exp_percentage / 100),
             this.expbar_sprite.height
