@@ -171,6 +171,8 @@ export class HUDScene extends Phaser.Scene {
 
         this.sp_hud = this.add.image(25, 45, 'sp_hud_2x');
 
+        // this.xp_hud = this.add.image(25, 65, 'xp_hud_2x');
+
         this.health_bar = new LuminusHUDProgressBar(this, this.hp_hud.x, this.hp_hud.y, this.hp_hud.width, this.player);
 
         this.cam = this.cameras.main;

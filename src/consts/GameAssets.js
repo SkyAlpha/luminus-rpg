@@ -27,10 +27,12 @@ import hp_hud from '../assets/sprites/HUD/HP.png';
 import hp_hud_2x from '../assets/sprites/HUD/HP_2x.png';
 import hp_hud_3x from '../assets/sprites/HUD/HP_3x.png';
 import sp_hud_2x from '../assets/sprites/HUD/SP_2x.png';
+import xp_hud_2x from '../assets/sprites/HUD/XP_2x.png';
 import red_bar from '../assets/sprites/HUD/red_bar.png';
 import yellow_bar from '../assets/sprites/HUD/yellow_bar.png';
 import green_bar from '../assets/sprites/HUD/green_bar.png';
 import blue_bar from '../assets/sprites/HUD/blue_bar.png';
+import exp_blue_bar from '../assets/sprites/HUD/exp_blue_bar.png';
 import progressbar_background from '../assets/sprites/HUD/bars_background.png';
 import inventory_shortcut from '../assets/sprites/HUD/I_Key_Light.png';
 import buttonY from '../assets/sprites/XboxOne_Y.png';
@@ -106,6 +108,10 @@ import damage01 from '../assets/sound/sfx/damage/damage01.mp3';
 import damage02 from '../assets/sound/sfx/damage/damage02.mp3';
 import damage03 from '../assets/sound/sfx/damage/damage03.mp3';
 
+// Actions
+import level_up from '../assets/sound/sfx/actions/level_up.mp3';
+
+// UI
 import start_game from '../assets/sound/sfx/menu/start_game.mp3';
 
 // Interaction
@@ -286,6 +292,10 @@ export const Images = [
         image: sp_hud_2x,
     },
     {
+        name: 'xp_hud_2x',
+        image: xp_hud_2x,
+    },
+    {
         name: 'red_bar',
         image: red_bar,
     },
@@ -300,6 +310,10 @@ export const Images = [
     {
         name: 'blue_bar',
         image: blue_bar,
+    },
+    {
+        name: 'exp_blue_bar',
+        image: exp_blue_bar,
     },
     {
         name: 'progressbar_background',
@@ -461,6 +475,11 @@ export const LuminusAudios = [
     {
         name: 'critical',
         audio: critical_hit,
+    },
+    // UI
+    {
+        name: 'level_up',
+        audio: level_up,
     },
     // Interaction
     {

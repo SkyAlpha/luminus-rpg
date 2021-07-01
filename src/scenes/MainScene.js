@@ -62,7 +62,7 @@ export class MainScene extends Phaser.Scene {
         this.themeSound = this.sound.add('path_to_lake_land', {
             loop: true,
         });
-        this.themeSound.play();
+        // this.themeSound.play();
 
         this.enemies = [];
 

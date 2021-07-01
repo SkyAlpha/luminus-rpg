@@ -104,6 +104,7 @@ export const BatConfig = {
     defense: 1,
     speed: 30,
     flee: 5,
+    exp: 190,
     drops: [
         new EntityDrops(
             1, // Red Potion

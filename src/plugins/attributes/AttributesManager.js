@@ -1,12 +1,13 @@
-import { STATS_CONST } from '../consts/Stats';
-import { Enemy } from '../entities/Enemy';
-import { Player } from '../entities/Player';
+import { STATS_CONST } from '../../consts/Stats';
+import { Enemy } from '../../entities/Enemy';
+import { Player } from '../../entities/Player';
+import lodash from 'lodash';
 
 /**
  * The Class responsible for managing the status of and entity.
  * @class
  */
-export class StatsManager {
+export class AttributesManager {
     /**
      * The Class responsible for managing the status of and entity.
      * @param { Phaser.Scene } scene The Phaser Scene.
@@ -29,13 +30,19 @@ export class StatsManager {
          * A copy of the entity
          * @type { EntityStats }
          */
-        this.statsCopy = JSON.parse(JSON.stringify(this.entity.stats));
+        this.statsCopy = lodash.cloneDeep(this.entity.stats);
 
         /**
          * Is this the first time the loop is called?
          * @type { boolean }
          */
         this.firstTime = true;
+
+        /**
+         * Controls if the player has leveled up.
+         * @type { number }
+         */
+        this.leveledUp = false;
 
         this.calculateStats();
 
@@ -46,6 +53,7 @@ export class StatsManager {
      * Calculates all stats of the entity.
      */
     calculateStats() {
+        this.checkLevelChange();
         this.calculateHealth();
         this.calculateDefense();
         this.calculateAtack();
@@ -53,7 +61,20 @@ export class StatsManager {
         this.calculateCritical();
         this.calculateFlee();
         this.calculateHit();
+
         this.firstTime = false;
+        this.leveledUp = false;
+    }
+
+    /**
+     * If the level changed, it means that the player has leveled up.
+     * Then it should update the core attributes.
+     */
+    checkLevelChange() {
+        if (this.statsCopy.level != this.entity.stats.level) {
+            this.statsCopy.level = this.entity.stats.level;
+            this.leveledUp = true;
+        }
     }
 
     /**
@@ -64,10 +85,12 @@ export class StatsManager {
             this.statsCopy.baseHealth + this.entity.stats.level * 10 + this.entity.stats.rawStats.vit * 3;
         if (this.entity.healthBar) {
             this.entity.healthBar.full = this.entity.stats.baseHealth;
+            this.entity.healthBar.health = this.entity.stats.baseHealth;
             this.entity.healthBar.draw();
         }
-        if (this.firstTime) {
+        if (this.firstTime || this.leveledUp) {
             this.entity.stats.health = this.entity.stats.baseHealth;
+            if (this.entity.luminusHUDProgressBar) this.entity.luminusHUDProgressBar.updateHealth();
             console.log('Full Life:', this.entity.stats.baseHealth);
         }
     }
@@ -84,10 +107,13 @@ export class StatsManager {
      * Calculates Atack every Tick.
      */
     calculateAtack() {
-        if (this.firstTime) {
+        if (this.firstTime || this.leveledUp) {
             const multiplicator = Math.floor(this.entity.stats.rawStats.str / STATS_CONST.ATK.DIVIDER);
             const atackBonus = multiplicator * STATS_CONST.ATK.BONUS_MULTIPLIER; // For every 10 of str you get 5 extra atack points.
-            this.entity.stats.atack = this.statsCopy.atack + this.entity.stats.rawStats.str + atackBonus;
+            const level_multiplier = Math.floor(this.entity.stats.level / STATS_CONST.ATK.DIVIDER);
+            const level_atack_bonus = level_multiplier * STATS_CONST.ATK.BONUS_LEVEL_MULTIPLIER;
+            this.entity.stats.atack =
+                this.statsCopy.atack + this.entity.stats.rawStats.str + atackBonus + level_atack_bonus;
             console.log('Atack:', this.entity.stats.atack);
         }
     }

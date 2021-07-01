@@ -1,7 +1,7 @@
 import { Item } from '../entities/Item';
 import { Player } from '../entities/Player';
 import { ConsumableBonus } from '../models/ConsumableBonus';
-import { LuminusDamageDisplay } from './LuminusDamageDisplay';
+import { LuminusEntityTextDisplay } from './LuminusEntityTextDisplay';
 
 /**
  * This class is responsible for Manage all the consumable actions.
@@ -45,7 +45,7 @@ export class LuminusConsumableManager {
      */
     recover(item, action, player) {
         // Not very Optimized.
-        this.luminusDamageDisplay = new LuminusDamageDisplay(player.scene);
+        this.luminusEntityTextDisplay = new LuminusEntityTextDisplay(player.scene);
 
         // TODO - Create an animation to display the usage of a consumable.
         switch (action[1]) {
@@ -54,7 +54,7 @@ export class LuminusConsumableManager {
                 player.stats.health = Math.min(player.stats.baseHealth, (player.stats.health += parseInt(action[2])));
                 player.healthBar.update(player.stats.health);
                 if (player.luminusHUDProgressBar) player.luminusHUDProgressBar.updateHealth(player.stats.health);
-                this.luminusDamageDisplay.displayDamage(action[2], player, false, true);
+                this.luminusEntityTextDisplay.displayDamage(action[2], player, false, true);
                 player.scene.sound.play(item.useSfx);
                 console.log(`Recover ${action[2]} HP`);
                 break;

@@ -3,7 +3,7 @@
  * It allows the entity to access
  * @namespace
  */
-export const EntityStats = {
+export const EntityAttributes = {
     /**
      * The entity level.
      * @type { number }

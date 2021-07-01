@@ -15,5 +15,11 @@ export const STATS_CONST = {
          * @type { number }
          */
         BONUS_MULTIPLIER: 5,
+
+        /**
+         * Atack bonus, for every 10 levels.
+         * @type { number }
+         */
+        BONUS_LEVEL_MULTIPLIER: 3,
     },
 };

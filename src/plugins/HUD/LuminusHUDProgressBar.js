@@ -55,6 +55,13 @@ export class LuminusHUDProgressBar {
         this.blueBarSpriteName = 'blue_bar';
 
         /**
+         * The asset name of the blue exp bar.
+         * @default
+         * @type { string }
+         */
+        this.expBlueBarSpriteName = 'exp_blue_bar';
+
+        /**
          * The asset name of the background of Health and SP Bars.
          * @type { string }
          * @default
@@ -73,6 +80,21 @@ export class LuminusHUDProgressBar {
 
         this.spbar_sprite = this.scene.add.image(x + width / 2 + 20, y + 20, this.blueBarSpriteName).setOrigin(0, 0.5);
 
+        this.expbar_background = this.scene.add
+            .image(x - 10, y + 40, this.progressBarBackgroundSpriteName)
+            .setOrigin(0, 0.5);
+        this.expbar_background.setDisplaySize(
+            this.expbar_background.width + width / 2 + 25,
+            this.expbar_background.height
+        );
+
+        this.expbar_sprite = this.scene.add.image(x - 5, y + 40, this.expBlueBarSpriteName).setOrigin(0, 0.5);
+        this.expbar_sprite.widthExtended = this.expbar_background.width * this.expbar_background.scaleX;
+        this.expbar_sprite.setDisplaySize(
+            this.expbar_background.width * this.expbar_background.scaleX,
+            this.expbar_sprite.height
+        );
+
         /**
          * The current health points.
          * @type { number }
@@ -81,6 +103,8 @@ export class LuminusHUDProgressBar {
 
         // Sets the progressbar to the player, on creation.
         this.player.luminusHUDProgressBar = this;
+
+        this.player.scene.events.on('update', this.updateHud, this);
     }
 
     /**
@@ -100,5 +124,20 @@ export class LuminusHUDProgressBar {
         }
 
         this.healthbar_sprite.scaleX = HP_percentage / 100;
+    }
+
+    updateHud() {
+        this.updateExp();
+    }
+
+    /**
+     * Updates the current Exp of the player.s
+     */
+    updateExp() {
+        const exp_percentage = (this.player.stats.experience / this.player.stats.nextLevelExperience) * 100;
+        this.expbar_sprite.setDisplaySize(
+            this.expbar_sprite.widthExtended * (exp_percentage / 100),
+            this.expbar_sprite.height
+        );
     }
 }

@@ -3,7 +3,7 @@ import { AnimationNames } from '../consts/AnimationNames';
 import { LuminusAnimationManager } from '../plugins/LuminusAnimationManager';
 import { LuminusHealthBar } from '../plugins/LuminusHealthBar';
 import { BaseEntity } from './BaseEntity';
-import { EntityStats } from './EntityStats';
+import { EntityAttributes } from './EntityStats';
 import { Player } from './Player';
 import uniqid from 'uniqid';
 import { LuminusBattleManager } from '../plugins/LuminusBattleManager';
@@ -28,11 +28,11 @@ export class Enemy extends Phaser.Physics.Arcade.Sprite {
         Object.assign(this, BaseEntity);
 
         /**
-         * The entity stats.
-         * @type { EntityStats }
+         * The entity attributes.
+         * @type { EntityAttributes }
          */
         this.stats = {};
-        Object.assign(this.stats, EntityStats);
+        Object.assign(this.stats, EntityAttributes);
         Object.assign(this, new AnimationNames());
 
         /**
@@ -88,6 +88,12 @@ export class Enemy extends Phaser.Physics.Arcade.Sprite {
          * @type { Array }
          */
         this.drops = enemyConfig.drops;
+
+        /**
+         * The amount of exp that this enemy gives to the player.
+         * @type { number }
+         */
+        this.exp = enemyConfig.exp;
 
         /**
          * The luminus animation manager.

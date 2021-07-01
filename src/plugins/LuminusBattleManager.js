@@ -4,8 +4,9 @@ import { Enemy } from '../entities/Enemy';
 import { Player } from '../entities/Player';
 import Phaser from 'phaser';
 import { ENTITIES } from '../consts/Entities';
-import { LuminusDamageDisplay } from './LuminusDamageDisplay';
+import { LuminusEntityTextDisplay } from './LuminusEntityTextDisplay';
 import { CRITICAL_MULTIPLIER } from '../consts/Battle';
+import { ExpManager } from './attributes/ExpManager';
 
 /**
  * @class
@@ -123,10 +124,10 @@ export class LuminusBattleManager extends AnimationNames {
         this.PlayerConstructorName = ENTITIES.Player;
 
         /**
-         * The LuminusDamageDisplay class, responsible for showing the player the damage dealth to a given Entity / Enemy.
-         * @type { LuminusDamageDisplay }
+         * The LuminusEntityTextDisplay class, responsible for showing the player the damage dealth to a given Entity / Enemy.
+         * @type { LuminusEntityTextDisplay }
          */
-        this.luminusDisplayDamage = null;
+        this.luminusEntityTextDisplay = null;
     }
 
     /**
@@ -241,6 +242,9 @@ export class LuminusBattleManager extends AnimationNames {
             this.phaserJuice.add(target).flash();
             atacker.scene.sound.add(damageName).play();
             if (target.stats.health <= 0) {
+                if (atacker.entityName === ENTITIES.Player) {
+                    ExpManager.addExp(atacker, target.exp);
+                }
                 setTimeout((t) => {
                     if (target.entityName === this.enemyConstructorName) target.dropItems();
                     target.anims.stop();
@@ -248,11 +252,11 @@ export class LuminusBattleManager extends AnimationNames {
                 }, 100);
             }
             // Not very Optimized.
-            this.luminusDamageDisplay = new LuminusDamageDisplay(target.scene);
-            this.luminusDamageDisplay.displayDamage(damage, target, isCritical);
+            this.luminusEntityTextDisplay = new LuminusEntityTextDisplay(target.scene);
+            this.luminusEntityTextDisplay.displayDamage(damage, target, isCritical);
         } else {
-            this.luminusDamageDisplay = new LuminusDamageDisplay(target.scene);
-            this.luminusDamageDisplay.displayDamage('MISS', target);
+            this.luminusEntityTextDisplay = new LuminusEntityTextDisplay(target.scene);
+            this.luminusEntityTextDisplay.displayDamage('MISS', target);
         }
 
         /**

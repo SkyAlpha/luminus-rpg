@@ -1,12 +1,12 @@
 import Phaser, { Game, GameObjects } from 'phaser';
-import { StatsManager } from '../components/StatsManager';
+import { AttributesManager } from '../plugins/attributes/AttributesManager';
 import { ENTITIES } from '../consts/Entities';
 import { LuminusHUDProgressBar } from '../plugins/HUD/LuminusHUDProgressBar';
 import { LuminusHealthBar } from '../plugins/LuminusHealthBar';
 import { LuminusKeyboardMouseController } from '../plugins/LuminusKeyboardMouseController';
 import { LuminusMovement } from '../plugins/LuminusMovement';
 import { BaseEntity } from './BaseEntity';
-import { EntityStats } from './EntityStats';
+import { EntityAttributes } from './EntityStats';
 
 /**
  * @class
@@ -26,16 +26,16 @@ export class Player extends Phaser.Physics.Arcade.Sprite {
         Object.assign(this, BaseEntity);
         /**
          * The entity stats.
-         * @type { EntityStats }
+         * @type { EntityAttributes }
          */
         this.stats = {};
-        Object.assign(this.stats, EntityStats);
+        Object.assign(this.stats, EntityAttributes);
 
         /**
-         * The Stats Manager.
-         * @type { StatsManager }
+         * The Attributes Manager.
+         * @type { AttributesManager }
          */
-        this.statsManager = new StatsManager(this.scene, this);
+        this.attributesManager = new AttributesManager(this.scene, this);
 
         this.stats.critical = 30;
 
