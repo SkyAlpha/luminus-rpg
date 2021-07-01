@@ -9,6 +9,7 @@ export class ConsumableBonus {
          * @type { number }
          */
         this.uniqueId = id;
+
         /**
          * The stat bonus string, this is the name of the Entity Status Variable.
          * @type { string }

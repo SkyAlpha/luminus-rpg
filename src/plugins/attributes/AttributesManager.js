@@ -2,6 +2,7 @@ import { ATTRIBUTES_CONST } from '../../consts/AttributesConst';
 import { Enemy } from '../../entities/Enemy';
 import { Player } from '../../entities/Player';
 import lodash from 'lodash';
+import { BUFF_TYPES } from '../../consts/DB_SEED/BuffTypes';
 
 /**
  * The Class responsible for managing the status of and entity.
@@ -112,8 +113,18 @@ export class AttributesManager {
             const atackBonus = multiplicator * ATTRIBUTES_CONST.ATK.BONUS_MULTIPLIER; // For every 10 of str you get 5 extra atack points.
             const level_multiplier = Math.floor(this.entity.attributes.level / ATTRIBUTES_CONST.ATK.DIVIDER);
             const level_atack_bonus = level_multiplier * ATTRIBUTES_CONST.ATK.BONUS_LEVEL_MULTIPLIER;
+            let consumable_atack = 0;
+            this.entity.attributes.bonus.consumable.forEach((item) => {
+                if (item.uniqueId === BUFF_TYPES.ATK01.id) {
+                    consumable_atack += parseInt(item.value);
+                }
+            });
             this.entity.attributes.atack =
-                this.statsCopy.atack + this.entity.attributes.rawStats.str + atackBonus + level_atack_bonus;
+                this.statsCopy.atack +
+                this.entity.attributes.rawStats.str +
+                atackBonus +
+                level_atack_bonus +
+                consumable_atack;
             console.log('Atack:', this.entity.attributes.atack);
         }
     }
