@@ -2,12 +2,12 @@
  * @class
  * The class responsible for Utility methods.
  */
-export const LuminusUtils = {
+export class LuminusUtils {
     /**
      * Returns if it's a mobile device, or not.
      * @returns { boolean } result if the current device is mobile
      */
-    isMobile: () => {
+    static isMobile() {
         let check = false;
         (function (a) {
             if (
@@ -21,5 +21,26 @@ export const LuminusUtils = {
                 check = true;
         })(navigator.userAgent || navigator.vendor || window.opera);
         return check;
-    },
-};
+    }
+
+    /**
+     * Executes the function on the correct Context.
+     * @param { string } functionName
+     * @param { this } context
+     * @param { any } args
+     * @returns { function }
+     */
+    static executeFunctionByName(functionName, context, args) {
+        if (functionName) {
+            var args = Array.prototype.slice.call(arguments, 2);
+            var namespaces = functionName.split('.');
+            var func = namespaces.pop();
+            for (var i = 0; i < namespaces.length; i++) {
+                context = context[namespaces[i]];
+            }
+            return context[func].apply(context, args);
+        } else {
+            return null;
+        }
+    }
+}

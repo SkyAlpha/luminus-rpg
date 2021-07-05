@@ -82,7 +82,7 @@ export class InfoBox {
         });
         this.name.setOrigin(0, 0.5);
         this.name.setScrollFactor(0, 0);
-        this.description = this.scene.add.text(baseX, this.name.y + this.name.height, this.config.description, {
+        this.description = this.scene.add.text(baseX, this.name.y + this.name.height + 10, this.config.description, {
             fontSize: this.titleTextFontSize,
             fontFamily: `${this.titleFontFamily}`,
             wordWrap: { width: wrap },

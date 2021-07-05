@@ -109,9 +109,9 @@ export class AttributesManager {
      */
     calculateAtack() {
         if (this.firstTime || this.leveledUp) {
-            const multiplicator = Math.floor(this.entity.attributes.rawStats.str / ATTRIBUTES_CONST.ATK.DIVIDER);
-            const atackBonus = multiplicator * ATTRIBUTES_CONST.ATK.BONUS_MULTIPLIER; // For every 10 of str you get 5 extra atack points.
-            const level_multiplier = Math.floor(this.entity.attributes.level / ATTRIBUTES_CONST.ATK.DIVIDER);
+            const multiplicator = Math.floor(this.entity.attributes.rawStats.str / ATTRIBUTES_CONST.ATK.DIVIDER01);
+            const atackBonus = multiplicator * ATTRIBUTES_CONST.ATK.BONUS_MULTIPLIER;
+            const level_multiplier = Math.floor(this.entity.attributes.level / ATTRIBUTES_CONST.ATK.DIVIDER02);
             const level_atack_bonus = level_multiplier * ATTRIBUTES_CONST.ATK.BONUS_LEVEL_MULTIPLIER;
             let consumable_atack = 0;
             this.entity.attributes.bonus.consumable.forEach((item) => {
@@ -165,5 +165,23 @@ export class AttributesManager {
             this.entity.attributes.hit = this.statsCopy.hit + this.entity.attributes.rawStats.dex;
             console.log('Hit:', this.entity.attributes.hit);
         }
+    }
+
+    addAttribute(attribute, amount) {
+        if (this.entity.attributes.availableStatPoints >= amount) {
+            this.entity.attributes.rawStats[attribute] += amount;
+            this.entity.attributes.availableStatPoints -= amount;
+            this.leveledUp = true;
+        }
+        console.log(this.entity.attributes);
+    }
+
+    removeAttribute(attribute, amount) {
+        if (this.entity.attributes.availableStatPoints >= amount) {
+            this.entity.attributes.rawStats[attribute] -= amount;
+            this.entity.attributes.availableStatPoints += amount;
+            this.leveledUp = true;
+        }
+        console.log(this.entity.attributes);
     }
 }

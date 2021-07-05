@@ -9,17 +9,22 @@ export const ATTRIBUTES_CONST = {
          * The atack bonus divider.
          * @type { number }
          */
-        DIVIDER: 3,
+        DIVIDER01: 10,
+        /**
+         * The atack bonus divider.
+         * @type { number }
+         */
+        DIVIDER02: 3,
         /**
          * The atack bonus multiplier.
          * @type { number }
          */
-        BONUS_MULTIPLIER: 5,
+        BONUS_MULTIPLIER: 2,
 
         /**
          * Atack bonus, for every 10 levels.
          * @type { number }
          */
-        BONUS_LEVEL_MULTIPLIER: 2,
+        BONUS_LEVEL_MULTIPLIER: 1,
     },
 };

@@ -1,4 +1,6 @@
 import Phaser from 'phaser';
+import { ButtonMinus } from '../components/UI/ButtonMinus';
+import { ButtonPlus } from '../components/UI/ButtonPlus';
 import { Player } from '../entities/Player';
 import { LuminusHUDProgressBar } from '../plugins/HUD/LuminusHUDProgressBar';
 import { LuminusHealthBar } from '../plugins/LuminusHealthBar';
@@ -29,6 +31,12 @@ export class HUDScene extends Phaser.Scene {
         this.maximizeSpriteName = 'maximize';
 
         /**
+         * The offset of the x position. Take in account that the x position will be from right to left side.
+         * @type { number }
+         */
+        this.baseSpriteOffsetX = 50;
+
+        /**
          * Maximize image/sprite offset X;
          * @type { number }
          * @default
@@ -41,6 +49,8 @@ export class HUDScene extends Phaser.Scene {
          * @default
          */
         this.maximizeSpriteOffsetY = 50;
+
+        this.baseSpriteOffsetY = 50;
 
         /**
          * Settings image/sprite name.
@@ -159,6 +169,16 @@ export class HUDScene extends Phaser.Scene {
         this.inventoryShortcutIcon = null;
 
         this.level_text = null;
+
+        /**
+         * The book attributes icon.
+         * @type { Phaser.GameObjects.Sprite }
+         */
+        this.attributesBook = null;
+
+        this.attributeSceneName = 'AttributeScene';
+
+        this.attributesBookSpriteName = 'book_ui';
     }
 
     init(args) {
@@ -204,8 +224,29 @@ export class HUDScene extends Phaser.Scene {
             .setInteractive()
             .setScale(this.inventorySpriteScale);
 
+        this.attributesBook = this.add
+            .image(
+                this.cameras.main.width - this.baseSpriteOffsetX * 4.1,
+                this.baseSpriteOffsetY,
+                this.attributesBookSpriteName
+            )
+            .setInteractive();
+
         this.maximize.on('pointerup', (pointer) => {
             this.scale.toggleFullscreen();
+        });
+
+        // Launches Attribute Scene Scene.
+        this.attributesBook.on('pointerup', (pointer) => {
+            if (!this.scene.isVisible(this.attributeSceneName)) {
+                this.scene.launch(this.attributeSceneName, {
+                    player: this.player,
+                });
+            } else {
+                console.log(this.scene.get(this.attributeSceneName));
+                this.scene.get(this.attributeSceneName).scene.stop();
+                // this.scene.stop(this.inventorySceneName);
+            }
         });
 
         // Launches Inventory Scene.s
@@ -252,6 +293,7 @@ export class HUDScene extends Phaser.Scene {
         // All Scenes have to be stopped before they are called to launch.
         this.scene.stop(this.inventorySceneName);
         this.scene.stop(this.settingSceneName);
+        this.scene.stop(this.attributeSceneName);
 
         this.level_text = this.add.text(15, 75, 'LvL ' + this.player.attributes.level);
     }

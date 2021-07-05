@@ -48,6 +48,11 @@ import panel_title from '../assets/sprites/inventory/inventory_title.png';
 import inventory_slot from '../assets/sprites/inventory/inventory_slot.png';
 import infobox_background from '../assets/sprites/info_panel.png';
 
+// Attributes
+import attributes_background from '../assets/sprites/UI/attributes_background.png';
+import attributes_background_3x from '../assets/sprites/UI/attributes_background_3x.png';
+import book_ui from '../assets/sprites/HUD/book_ui.png';
+
 // Portraits
 import lucius_portrait_beard from '../assets/sprites/portraits/lucius_portrait_beard.png';
 import lucius_portrait_beardless from '../assets/sprites/portraits/lucius_portrait_beardless.png';
@@ -123,6 +128,12 @@ import heal from '../assets/sound/sfx/consumables/heal.mp3';
 // Menu
 import menu_navigation from '../assets/sound/sfx/menu/menu_navigation.mp3';
 import inventory_cloth from '../assets/sound/sfx/menu/inventory_cloth.mp3';
+
+// ASEPRITE
+import plus_small_button from '../assets/sprites/plus_small_button.png';
+import plus_small_button_json from '../assets/sprites/plus_small_button.json';
+import minus_small_button from '../assets/sprites/minus_small_button.png';
+import minus_small_button_json from '../assets/sprites/minus_small_button.json';
 
 export const Images = [
     {
@@ -323,6 +334,10 @@ export const Images = [
         name: 'inventory_shortcut',
         image: inventory_shortcut,
     },
+    {
+        name: 'book_ui',
+        image: book_ui,
+    },
 
     // Portraits
     {
@@ -350,6 +365,16 @@ export const Images = [
     {
         name: 'inventory_slot',
         image: inventory_slot,
+    },
+
+    // UI
+    {
+        name: 'attributes_background',
+        image: attributes_background,
+    },
+    {
+        name: 'attributes_background_3x',
+        image: attributes_background_3x,
     },
 
     //Clouds
@@ -481,6 +506,7 @@ export const LuminusAudios = [
         name: 'level_up',
         audio: level_up,
     },
+
     // Interaction
     {
         name: 'get_items',
@@ -502,5 +528,18 @@ export const LuminusAudios = [
     {
         name: 'inventory_cloth',
         audio: inventory_cloth,
+    },
+];
+
+export const ASEPRITE_CONFIG = [
+    {
+        name: 'plus_small_button',
+        image: plus_small_button,
+        json: plus_small_button_json,
+    },
+    {
+        name: 'minus_small_button',
+        image: minus_small_button,
+        json: minus_small_button_json,
     },
 ];
