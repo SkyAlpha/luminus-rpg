@@ -13,7 +13,7 @@ export const EntityAttributes = {
      * The Raw base attributes of the entity.
      * @type { object }
      */
-    rawStats: {
+    rawAttributes: {
         str: 1, // Strengh
         agi: 1, // Agility
         vit: 1, // Vitality
@@ -25,7 +25,7 @@ export const EntityAttributes = {
      * Available stat points can be used to add new raw attributes.
      * @type { number }
      */
-    availableStatPoints: 20,
+    availableStatPoints: 5,
 
     /**
      * The bonus attributes of the entity.

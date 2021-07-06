@@ -239,7 +239,6 @@ export class InventoryScene extends Phaser.Scene {
      */
     registerGamepad() {
         this.input.gamepad.pad1.on('down', (pad) => {
-            console.log(pad);
             if (pad === 3) {
                 this.toggleInfoBox();
             }

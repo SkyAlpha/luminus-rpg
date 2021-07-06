@@ -1,4 +1,7 @@
 import Phaser from 'phaser';
+import { AttributeSceneName } from '../scenes/AttributeScene';
+import { InventorySceneName } from '../scenes/InventoryScene';
+import { SceneToggleWatcher } from '../scenes/wathcers/SceneToggleWatcher';
 import { LuminusBattleManager } from './LuminusBattleManager';
 
 /**
@@ -35,7 +38,14 @@ export class LuminusKeyboardMouseController {
          * @type { string }
          * @default
          */
-        this.inventorySceneName = 'InventoryScene';
+        this.inventorySceneName = InventorySceneName;
+
+        /**
+         * The name of the Attribute Management/Info Scene.
+         * @type { string }
+         * @default
+         */
+        this.attributeSceneName = AttributeSceneName;
     }
 
     /**
@@ -46,28 +56,21 @@ export class LuminusKeyboardMouseController {
         this.scene.input.mouse.disableContextMenu();
         this.luminusBattleManager = new LuminusBattleManager();
         this.scene.input.on('pointerdown', (pointer) => {
-            if (
-                pointer.leftButtonDown() &&
-                !isMobile &&
-                this.player &&
-                this.player.active
-            ) {
+            if (pointer.leftButtonDown() && !isMobile && this.player && this.player.active) {
                 this.luminusBattleManager.atack(this.player);
             }
         });
 
         this.scene.input.keyboard.on('keydown', (keydown) => {
+            console.log(keydown);
             if (keydown.keyCode === 32 && this.player && this.player.active) {
                 this.luminusBattleManager.atack(this.player);
             }
             if (keydown.keyCode === 73 && this.player && this.player.active) {
-                if (!this.scene.scene.isVisible(this.inventorySceneName)) {
-                    this.scene.scene.launch(this.inventorySceneName, {
-                        player: this.player,
-                    });
-                } else {
-                    this.scene.scene.get(this.inventorySceneName).stopScene();
-                }
+                SceneToggleWatcher.toggleScene(this.scene, this.inventorySceneName, this.player);
+            }
+            if (keydown.keyCode === 85 && this.player && this.player.active) {
+                SceneToggleWatcher.toggleScene(this.scene, this.attributeSceneName, this.player);
             }
         });
     }

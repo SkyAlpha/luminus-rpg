@@ -83,7 +83,9 @@ export class AttributesManager {
      */
     calculateHealth() {
         this.entity.attributes.baseHealth =
-            this.statsCopy.baseHealth + this.entity.attributes.level * 10 + this.entity.attributes.rawStats.vit * 3;
+            this.statsCopy.baseHealth +
+            this.entity.attributes.level * 10 +
+            this.entity.attributes.rawAttributes.vit * 3;
         if (this.entity.healthBar) {
             this.entity.healthBar.full = this.entity.attributes.baseHealth;
             this.entity.healthBar.health = this.entity.attributes.baseHealth;
@@ -99,8 +101,8 @@ export class AttributesManager {
      * Calculates defense every tick.
      */
     calculateDefense() {
-        if (this.firstTime) {
-            this.entity.attributes.defense = this.statsCopy.defense + this.entity.attributes.rawStats.vit;
+        if (this.firstTime || this.leveledUp) {
+            this.entity.attributes.defense = this.statsCopy.defense + this.entity.attributes.rawAttributes.vit;
             console.log('Defense:', this.entity.attributes.defense);
         }
     }
@@ -109,7 +111,7 @@ export class AttributesManager {
      */
     calculateAtack() {
         if (this.firstTime || this.leveledUp) {
-            const multiplicator = Math.floor(this.entity.attributes.rawStats.str / ATTRIBUTES_CONST.ATK.DIVIDER01);
+            const multiplicator = Math.floor(this.entity.attributes.rawAttributes.str / ATTRIBUTES_CONST.ATK.DIVIDER01);
             const atackBonus = multiplicator * ATTRIBUTES_CONST.ATK.BONUS_MULTIPLIER;
             const level_multiplier = Math.floor(this.entity.attributes.level / ATTRIBUTES_CONST.ATK.DIVIDER02);
             const level_atack_bonus = level_multiplier * ATTRIBUTES_CONST.ATK.BONUS_LEVEL_MULTIPLIER;
@@ -121,7 +123,7 @@ export class AttributesManager {
             });
             this.entity.attributes.atack =
                 this.statsCopy.atack +
-                this.entity.attributes.rawStats.str +
+                this.entity.attributes.rawAttributes.str +
                 atackBonus +
                 level_atack_bonus +
                 consumable_atack;
@@ -134,7 +136,7 @@ export class AttributesManager {
     calculateSpeed() {
         // TODO - This should be updated with items and consumables.
         // if (this.firstTime) {
-        //     this.entity.attributes.speed = this.statsCopy.speed + this.entity.attributes.rawStats.agi;
+        //     this.entity.attributes.speed = this.statsCopy.speed + this.entity.attributes.rawAttributes.agi;
         //     console.log('Speed:', this.entity.attributes.speed);
         // }
     }
@@ -142,8 +144,8 @@ export class AttributesManager {
      * Calculates Critical every Tick.
      */
     calculateCritical() {
-        if (this.firstTime) {
-            this.entity.attributes.critical = this.statsCopy.critical + this.entity.attributes.rawStats.agi;
+        if (this.firstTime || this.leveledUp) {
+            this.entity.attributes.critical = this.statsCopy.critical + this.entity.attributes.rawAttributes.agi;
             console.log('Critical:', this.entity.attributes.critical);
         }
     }
@@ -151,8 +153,8 @@ export class AttributesManager {
      * Calculates Flee every tick.
      */
     calculateFlee() {
-        if (this.firstTime) {
-            this.entity.attributes.flee = this.statsCopy.flee + this.entity.attributes.rawStats.agi;
+        if (this.firstTime || this.leveledUp) {
+            this.entity.attributes.flee = this.statsCopy.flee + this.entity.attributes.rawAttributes.agi;
             console.log('Flee:', this.entity.attributes.flee);
         }
     }
@@ -161,24 +163,25 @@ export class AttributesManager {
      * Calculates Hit every tick.
      */
     calculateHit() {
-        if (this.firstTime) {
-            this.entity.attributes.hit = this.statsCopy.hit + this.entity.attributes.rawStats.dex;
+        if (this.firstTime || this.leveledUp) {
+            this.entity.attributes.hit = this.statsCopy.hit + this.entity.attributes.rawAttributes.dex;
             console.log('Hit:', this.entity.attributes.hit);
         }
     }
 
-    addAttribute(attribute, amount) {
+    addAttribute(attribute, amount, lastRawAttributes) {
         if (this.entity.attributes.availableStatPoints >= amount) {
-            this.entity.attributes.rawStats[attribute] += amount;
+            this.entity.attributes.rawAttributes[attribute] += amount;
             this.entity.attributes.availableStatPoints -= amount;
             this.leveledUp = true;
         }
         console.log(this.entity.attributes);
     }
 
-    removeAttribute(attribute, amount) {
-        if (this.entity.attributes.availableStatPoints >= amount) {
-            this.entity.attributes.rawStats[attribute] -= amount;
+    removeAttribute(attribute, amount, lastRawAttributes) {
+        console.log(lastRawAttributes[attribute], this.entity.attributes.rawAttributes[attribute]);
+        if (this.entity.attributes.rawAttributes[attribute] > lastRawAttributes[attribute]) {
+            this.entity.attributes.rawAttributes[attribute] -= amount;
             this.entity.attributes.availableStatPoints += amount;
             this.leveledUp = true;
         }

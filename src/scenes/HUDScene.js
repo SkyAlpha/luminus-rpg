@@ -5,7 +5,9 @@ import { Player } from '../entities/Player';
 import { LuminusHUDProgressBar } from '../plugins/HUD/LuminusHUDProgressBar';
 import { LuminusHealthBar } from '../plugins/LuminusHealthBar';
 import { LuminusUtils } from '../utils/LuminusUtils';
+import { AttributeSceneName } from './AttributeScene';
 import { InventorySceneName } from './InventoryScene';
+import { SceneToggleWatcher } from './wathcers/SceneToggleWatcher';
 
 /**
  * Scene for HUD Creation. It contains all the HUD of the game.
@@ -176,8 +178,18 @@ export class HUDScene extends Phaser.Scene {
          */
         this.attributesBook = null;
 
-        this.attributeSceneName = 'AttributeScene';
+        /**
+         * The name of the Attribute Management/Info Scene.
+         * @type { string }
+         * @default
+         */
+        this.attributeSceneName = AttributeSceneName;
 
+        /**
+         * The name of the Icon of the Attributes Scene Button.
+         * @type { string }
+         * @default
+         */
         this.attributesBookSpriteName = 'book_ui';
     }
 
@@ -193,11 +205,7 @@ export class HUDScene extends Phaser.Scene {
 
         this.sp_hud = this.add.image(25, 45, 'sp_hud_2x');
 
-        // this.xp_hud = this.add.image(25, 65, 'xp_hud_2x');
-
         this.health_bar = new LuminusHUDProgressBar(this, this.hp_hud.x, this.hp_hud.y, this.hp_hud.width, this.player);
-
-        this.cam = this.cameras.main;
 
         this.maximize = this.add
             .image(
@@ -243,7 +251,6 @@ export class HUDScene extends Phaser.Scene {
                     player: this.player,
                 });
             } else {
-                console.log(this.scene.get(this.attributeSceneName));
                 this.scene.get(this.attributeSceneName).scene.stop();
                 // this.scene.stop(this.inventorySceneName);
             }
@@ -251,14 +258,7 @@ export class HUDScene extends Phaser.Scene {
 
         // Launches Inventory Scene.s
         this.inventoryIcon.on('pointerup', (pointer) => {
-            if (!this.scene.isVisible(this.inventorySceneName)) {
-                this.scene.launch(this.inventorySceneName, {
-                    player: this.player,
-                });
-            } else {
-                this.scene.get(this.inventorySceneName).stopScene();
-                // this.scene.stop(this.inventorySceneName);
-            }
+            SceneToggleWatcher.toggleScene(this, this.inventorySceneName, this.player);
         });
 
         if (!LuminusUtils.isMobile() || (LuminusUtils.isMobile() && this.input.gamepad.pad1)) {
@@ -323,13 +323,21 @@ export class HUDScene extends Phaser.Scene {
      * @param { Size } size the new size.
      */
     resizeAll(size) {
-        this.maximize.setPosition(size.width - this.maximizeSpriteOffsetX, this.maximizeSpriteOffsetY);
+        if (this.maximize)
+            this.maximize.setPosition(size.width - this.maximizeSpriteOffsetX, this.maximizeSpriteOffsetY);
 
-        this.settingsIcon.setPosition(size.width - this.settingsSpriteOffsetX, this.settingsSpriteOffsetY);
+        if (this.settingsIcon)
+            this.settingsIcon.setPosition(size.width - this.settingsSpriteOffsetX, this.settingsSpriteOffsetY);
 
         this.inventoryIcon.setPosition(size.width - this.inventorySpriteOffsetX, this.inventorySpriteOffsetY);
         if (this.inventoryShortcutIcon)
             this.inventoryShortcutIcon.setPosition(this.settingsIcon.x - 70, this.settingsIcon.y + 15);
+
+        if (this.attributesBook)
+            this.attributesBook.setPosition(
+                this.cameras.main.width - this.baseSpriteOffsetX * 4.1,
+                this.baseSpriteOffsetY
+            );
     }
 
     update() {

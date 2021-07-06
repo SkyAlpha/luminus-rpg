@@ -25,7 +25,7 @@ export class ExpManager {
      */
     static levelUpEntity(entity) {
         entity.attributes.level += 1;
-        entity.attributes.availableStatPoints += 2;
+        entity.attributes.availableStatPoints += 1;
         entity.attributes.experience = 0;
         entity.attributes.baseHealth += 10;
         entity.attributes.nextLevelExperience += 100 * entity.attributes.level;
