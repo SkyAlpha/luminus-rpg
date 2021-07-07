@@ -83,7 +83,6 @@ export class LuminusHUDProgressBar {
         this.expbar_background = this.scene.add
             .image(x - 10, y + 40, this.progressBarBackgroundSpriteName)
             .setOrigin(0, 0.5);
-        console.log(this.expbar_background.width);
         this.expbar_background.setDisplaySize(
             this.expbar_background.width + width / 2 + 25,
             this.expbar_background.height

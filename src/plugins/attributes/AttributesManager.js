@@ -94,7 +94,6 @@ export class AttributesManager {
         if (this.firstTime || this.leveledUp) {
             this.entity.attributes.health = this.entity.attributes.baseHealth;
             if (this.entity.luminusHUDProgressBar) this.entity.luminusHUDProgressBar.updateHealth();
-            console.log('Full Life:', this.entity.attributes.baseHealth);
         }
     }
     /**
@@ -103,7 +102,6 @@ export class AttributesManager {
     calculateDefense() {
         if (this.firstTime || this.leveledUp) {
             this.entity.attributes.defense = this.statsCopy.defense + this.entity.attributes.rawAttributes.vit;
-            console.log('Defense:', this.entity.attributes.defense);
         }
     }
     /**
@@ -121,13 +119,13 @@ export class AttributesManager {
                     consumable_atack += parseInt(item.value);
                 }
             });
+            console.log(consumable_atack);
             this.entity.attributes.atack =
                 this.statsCopy.atack +
                 this.entity.attributes.rawAttributes.str +
                 atackBonus +
                 level_atack_bonus +
                 consumable_atack;
-            console.log('Atack:', this.entity.attributes.atack);
         }
     }
     /**
@@ -146,7 +144,6 @@ export class AttributesManager {
     calculateCritical() {
         if (this.firstTime || this.leveledUp) {
             this.entity.attributes.critical = this.statsCopy.critical + this.entity.attributes.rawAttributes.agi;
-            console.log('Critical:', this.entity.attributes.critical);
         }
     }
     /**
@@ -155,7 +152,6 @@ export class AttributesManager {
     calculateFlee() {
         if (this.firstTime || this.leveledUp) {
             this.entity.attributes.flee = this.statsCopy.flee + this.entity.attributes.rawAttributes.agi;
-            console.log('Flee:', this.entity.attributes.flee);
         }
     }
 
@@ -165,7 +161,6 @@ export class AttributesManager {
     calculateHit() {
         if (this.firstTime || this.leveledUp) {
             this.entity.attributes.hit = this.statsCopy.hit + this.entity.attributes.rawAttributes.dex;
-            console.log('Hit:', this.entity.attributes.hit);
         }
     }
 
@@ -179,7 +174,6 @@ export class AttributesManager {
     }
 
     removeAttribute(attribute, amount, lastRawAttributes) {
-        console.log(lastRawAttributes[attribute], this.entity.attributes.rawAttributes[attribute]);
         if (this.entity.attributes.rawAttributes[attribute] > lastRawAttributes[attribute]) {
             this.entity.attributes.rawAttributes[attribute] -= amount;
             this.entity.attributes.availableStatPoints += amount;

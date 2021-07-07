@@ -37,8 +37,6 @@ export class Player extends Phaser.Physics.Arcade.Sprite {
          */
         this.attributesManager = new AttributesManager(this.scene, this);
 
-        this.attributes.critical = 30;
-
         /**
          * The name of the Entity. It's used for differenciation of the entityes.
          * @type { string }

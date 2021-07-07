@@ -164,6 +164,13 @@ export class HUDScene extends Phaser.Scene {
         this.inventoryShortcutIconConsole = 'buttonXboxWindows';
 
         /**
+         * The Icon for the attributes menu.
+         * @type { string }
+         * @default
+         */
+        this.attributesShortcutIconDesktop = 'attributes_shortcut_icon';
+
+        /**
          * The icon that represents
          * @type { Phaser.GameObjects.Image }
          * @default
@@ -263,15 +270,18 @@ export class HUDScene extends Phaser.Scene {
 
         if (!LuminusUtils.isMobile() || (LuminusUtils.isMobile() && this.input.gamepad.pad1)) {
             this.createInventoryShortcutIcon();
+            this.createAttributesShortcutIcon();
         }
 
         if (this.input.gamepad.pad1) {
             this.createInventoryShortcutIcon();
+            this.createAttributesShortcutIcon();
             this.setGamepadTextures();
         }
 
         this.input.gamepad.on('connected', (pad) => {
             this.createInventoryShortcutIcon();
+            this.createAttributesShortcutIcon();
             this.setGamepadTextures();
         });
         this.input.gamepad.on('disconnected', (pad) => {
@@ -298,6 +308,9 @@ export class HUDScene extends Phaser.Scene {
         this.level_text = this.add.text(15, 75, 'LvL ' + this.player.attributes.level);
     }
 
+    /**
+     * Creates the inventory shortcut image.
+     */
     createInventoryShortcutIcon() {
         if (!this.inventoryShortcutIcon) {
             this.inventoryShortcutIcon = this.add.image(
@@ -306,6 +319,18 @@ export class HUDScene extends Phaser.Scene {
                 this.inventoryShortcutSprite
             );
             this.inventoryShortcutIcon.setDisplaySize(30, 30);
+        }
+    }
+
+    createAttributesShortcutIcon() {
+        if (!this.attributesShortcutIcon) {
+            this.attributesShortcutIcon = this.add
+                .image(
+                    this.attributesBook.x - this.attributesBook.width / 2,
+                    this.attributesBook.y + 15,
+                    this.attributesShortcutIconDesktop
+                )
+                .setDisplaySize(30, 30);
         }
     }
 
@@ -337,6 +362,11 @@ export class HUDScene extends Phaser.Scene {
             this.attributesBook.setPosition(
                 this.cameras.main.width - this.baseSpriteOffsetX * 4.1,
                 this.baseSpriteOffsetY
+            );
+        if (this.attributesShortcutIcon)
+            this.attributesShortcutIcon.setPosition(
+                this.attributesBook.x - this.attributesBook.width / 2,
+                this.attributesBook.y + 15
             );
     }
 

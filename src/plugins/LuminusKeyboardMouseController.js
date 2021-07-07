@@ -62,7 +62,6 @@ export class LuminusKeyboardMouseController {
         });
 
         this.scene.input.keyboard.on('keydown', (keydown) => {
-            console.log(keydown);
             if (keydown.keyCode === 32 && this.player && this.player.active) {
                 this.luminusBattleManager.atack(this.player);
             }

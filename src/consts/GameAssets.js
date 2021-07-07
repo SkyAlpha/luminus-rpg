@@ -35,6 +35,7 @@ import blue_bar from '../assets/sprites/HUD/blue_bar.png';
 import exp_blue_bar from '../assets/sprites/HUD/exp_blue_bar.png';
 import progressbar_background from '../assets/sprites/HUD/bars_background.png';
 import inventory_shortcut from '../assets/sprites/HUD/I_Key_Light.png';
+import attributes_shortcut_icon from '../assets/sprites/HUD/Keyboard_White_U.png';
 import buttonY from '../assets/sprites/XboxOne_Y.png';
 import h_keyboard_key from '../assets/sprites/H_Key_Light.png';
 import esc_keyboard_key from '../assets/sprites/Esc_Key_Light.png';
@@ -333,6 +334,10 @@ export const Images = [
     {
         name: 'inventory_shortcut',
         image: inventory_shortcut,
+    },
+    {
+        name: 'attributes_shortcut_icon',
+        image: attributes_shortcut_icon,
     },
     {
         name: 'book_ui',

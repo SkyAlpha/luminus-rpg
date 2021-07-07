@@ -61,6 +61,8 @@ export class AttributeScene extends Phaser.Scene {
         const baseY = this.cameras.main.height / 2 - this.attributesBackground.height / 2;
         this.attributesBackground.setPosition(baseX, baseY);
         this.createAttributesButtons();
+        this.createAttributesInfo();
+        this.scale.on('resize', this.resizeAll);
     }
 
     createAttributesButtons() {
@@ -94,7 +96,35 @@ export class AttributeScene extends Phaser.Scene {
             .setOrigin(0, 0.5);
     }
 
-    createAttributesInfo() {}
+    createAttributesInfo() {
+        const baseX =
+            this.attributesBackground.x + 15 + (this.attributesBackground.width / 2) * this.attributesBackground.scaleX;
+        const baseY = this.attributesBackground.y + 55;
+        this.atackText = this.add.text(baseX, baseY, `Atack: ${this.player.attributes.atack}`).setOrigin(0, 0.5);
+        this.defenseText = this.add
+            .text(baseX, this.atackText.y + this.atackText.height + 5, `Defense: ${this.player.attributes.defense}`)
+            .setOrigin(0, 0.5);
+        this.maxHealthText = this.add
+            .text(
+                baseX,
+                this.defenseText.y + this.defenseText.height + 5,
+                `Max Health: ${this.player.attributes.baseHealth}`
+            )
+            .setOrigin(0, 0.5);
+        this.criticalText = this.add
+            .text(
+                baseX,
+                this.maxHealthText.y + this.maxHealthText.height + 5,
+                `Critical: ${this.player.attributes.critical} %`
+            )
+            .setOrigin(0, 0.5);
+        this.fleeText = this.add
+            .text(baseX, this.criticalText.y + this.criticalText.height + 5, `Flee: ${this.player.attributes.flee}`)
+            .setOrigin(0, 0.5);
+        this.hitText = this.add
+            .text(baseX, this.fleeText.y + this.fleeText.height + 5, `Hit: ${this.player.attributes.hit}`)
+            .setOrigin(0, 0.5);
+    }
 
     checkButtonEnabled() {
         this.attributesConfiguration.forEach((value, i) => {
@@ -124,8 +154,30 @@ export class AttributeScene extends Phaser.Scene {
         this.player.attributesManager.removeAttribute(payload.attribute, 1, this.lastRawAttributes);
     }
 
+    resizeAll(size) {
+        if (this.atackText) this.atackText.setPosition(baseX, baseY);
+        if (this.defenseText) this.defenseText.setPosition(baseX, this.atackText.y + this.atackText.height + 5);
+        if (this.maxHealthText) this.maxHealthText.setPosition(baseX, this.defenseText.y + this.defenseText.height + 5);
+        if (this.criticalText)
+            this.criticalText.setPosition(baseX, this.maxHealthText.y + this.maxHealthText.height + 5);
+        if (this.fleeText) this.fleeText.setPosition(baseX, this.criticalText.y + this.criticalText.height + 5);
+        if (this.hitText) this.hitText.setPosition(baseX, this.fleeText.y + this.fleeText.height + 5);
+    }
+
+    setAttributesText() {
+        if (this.scene.isActive()) {
+            this.atackText.setText(`Atack: ${this.player.attributes.atack}`);
+            this.defenseText.setText(`Defense: ${this.player.attributes.defense}`);
+            this.maxHealthText.setText(`Max Health: ${this.player.attributes.baseHealth}`);
+            this.criticalText.setText(`Critical: ${this.player.attributes.critical} %`);
+            this.fleeText.setText(`Flee: ${this.player.attributes.flee}`);
+            this.hitText.setText(`Hit: ${this.player.attributes.hit}`);
+        }
+    }
+
     update() {
         this.checkButtonEnabled();
+        this.setAttributesText();
         if (this.player && this.availableAttributesText)
             this.availableAttributesText.setText('Available: ' + this.player.attributes.availableStatPoints);
     }

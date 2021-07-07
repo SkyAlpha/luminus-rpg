@@ -7,7 +7,7 @@ export const Player = [
     {
         atlas: PlayerConfig.texture,
         key: `${PlayerConfig.texture}-idle-down`,
-        frameRate: 4,
+        frameRate: 8,
         prefix: 'idle-down/idle-down',
         start: 0,
         end: 0,
@@ -17,7 +17,7 @@ export const Player = [
     {
         atlas: PlayerConfig.texture,
         key: `${PlayerConfig.texture}-idle-right`,
-        frameRate: 4,
+        frameRate: 8,
         prefix: 'idle-right/idle-right',
         start: 0,
         end: 0,
@@ -27,7 +27,7 @@ export const Player = [
     {
         atlas: PlayerConfig.texture,
         key: `${PlayerConfig.texture}-idle-left`,
-        frameRate: 4,
+        frameRate: 8,
         prefix: 'idle-left/idle-left',
         start: 0,
         end: 0,
@@ -37,7 +37,7 @@ export const Player = [
     {
         atlas: PlayerConfig.texture,
         key: `${PlayerConfig.texture}-idle-up`,
-        frameRate: 4,
+        frameRate: 8,
         prefix: 'idle-up/idle-up',
         start: 0,
         end: 0,
@@ -47,7 +47,7 @@ export const Player = [
     {
         atlas: PlayerConfig.texture,
         key: `${PlayerConfig.texture}-walk-down`,
-        frameRate: 4,
+        frameRate: 8,
         prefix: 'walk-down/character-down',
         start: 0,
         end: 3,
@@ -57,7 +57,7 @@ export const Player = [
     {
         atlas: PlayerConfig.texture,
         key: `${PlayerConfig.texture}-walk-right`,
-        frameRate: 4,
+        frameRate: 8,
         prefix: 'walk-right/character-right',
         start: 0,
         end: 3,
@@ -67,7 +67,7 @@ export const Player = [
     {
         atlas: PlayerConfig.texture,
         key: `${PlayerConfig.texture}-walk-left`,
-        frameRate: 4,
+        frameRate: 8,
         prefix: 'walk-left/character-left',
         start: 0,
         end: 3,
@@ -77,7 +77,7 @@ export const Player = [
     {
         atlas: PlayerConfig.texture,
         key: `${PlayerConfig.texture}-walk-up`,
-        frameRate: 4,
+        frameRate: 8,
         prefix: 'walk-up/character-up',
         start: 0,
         end: 3,
