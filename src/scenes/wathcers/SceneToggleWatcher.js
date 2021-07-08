@@ -4,8 +4,10 @@ export class SceneToggleWatcher {
             sceneContext.scene.launch(name, {
                 player: player,
             });
+            player.canMove = false;
         } else {
             sceneContext.scene.get(name).scene.stop();
+            player.canMove = true;
         }
     }
 }

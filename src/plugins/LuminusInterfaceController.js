@@ -132,6 +132,11 @@ export class LuminusInterfaceController {
         });
     }
 
+    createFirstRow() {
+        this.interfaceElements[0] = [];
+        this.interfaceElements[0][0] = [];
+    }
+
     /**
      * Sets the gamepad control rules for the interface.
      */
@@ -278,7 +283,7 @@ export class LuminusInterfaceController {
             if (this.interfaceElements[this.currentLinePosition].length === 1) {
                 position = 0;
             } else {
-                position = this.interfaceElements[this.currentLinePosition].length;
+                position = this.interfaceElements[this.currentLinePosition][this.currentMatrixRow].length - 1;
             }
             this.currentElementAction =
                 this.interfaceElements[this.currentLinePosition][this.currentMatrixRow][position];

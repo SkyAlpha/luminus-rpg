@@ -36,6 +36,7 @@ import exp_blue_bar from '../assets/sprites/HUD/exp_blue_bar.png';
 import progressbar_background from '../assets/sprites/HUD/bars_background.png';
 import inventory_shortcut from '../assets/sprites/HUD/I_Key_Light.png';
 import attributes_shortcut_icon from '../assets/sprites/HUD/Keyboard_White_U.png';
+import XboxOne_Menu from '../assets/sprites/HUD/XboxOne_Menu.png';
 import buttonY from '../assets/sprites/XboxOne_Y.png';
 import h_keyboard_key from '../assets/sprites/H_Key_Light.png';
 import esc_keyboard_key from '../assets/sprites/Esc_Key_Light.png';
@@ -129,6 +130,8 @@ import heal from '../assets/sound/sfx/consumables/heal.mp3';
 // Menu
 import menu_navigation from '../assets/sound/sfx/menu/menu_navigation.mp3';
 import inventory_cloth from '../assets/sound/sfx/menu/inventory_cloth.mp3';
+import attributes_menu from '../assets/sound/sfx/menu/attributes_menu.mp3';
+import turn_page from '../assets/sound/sfx/menu/turn_page.mp3';
 
 // ASEPRITE
 import plus_small_button from '../assets/sprites/plus_small_button.png';
@@ -196,6 +199,10 @@ export const Images = [
     {
         name: 'buttonXboxWindows',
         image: buttonXboxWindows,
+    },
+    {
+        name: 'XboxOne_Menu',
+        image: XboxOne_Menu,
     },
     {
         name: 'question_mark',
@@ -533,6 +540,14 @@ export const LuminusAudios = [
     {
         name: 'inventory_cloth',
         audio: inventory_cloth,
+    },
+    {
+        name: 'attributes_menu',
+        audio: attributes_menu,
+    },
+    {
+        name: 'turn_page',
+        audio: turn_page,
     },
 ];
 

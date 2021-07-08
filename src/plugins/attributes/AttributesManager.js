@@ -119,7 +119,6 @@ export class AttributesManager {
                     consumable_atack += parseInt(item.value);
                 }
             });
-            console.log(consumable_atack);
             this.entity.attributes.atack =
                 this.statsCopy.atack +
                 this.entity.attributes.rawAttributes.str +

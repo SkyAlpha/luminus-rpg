@@ -1,12 +1,14 @@
 import Phaser from 'phaser';
 import { ButtonMinus } from '../components/UI/ButtonMinus';
 import { ButtonPlus } from '../components/UI/ButtonPlus';
+import { IconNamesConst } from '../consts/UI/IconNames';
 import { Player } from '../entities/Player';
 import { LuminusHUDProgressBar } from '../plugins/HUD/LuminusHUDProgressBar';
 import { LuminusHealthBar } from '../plugins/LuminusHealthBar';
 import { LuminusUtils } from '../utils/LuminusUtils';
 import { AttributeSceneName } from './AttributeScene';
 import { InventorySceneName } from './InventoryScene';
+import { IconDeviceChange } from './wathcers/IconDeviceChange';
 import { SceneToggleWatcher } from './wathcers/SceneToggleWatcher';
 
 /**
@@ -154,21 +156,27 @@ export class HUDScene extends Phaser.Scene {
          * @type { string }
          * @default
          */
-        this.inventoryShortcutSprite = 'inventory_shortcut';
+        this.inventoryShortcutSprite = IconNamesConst.HUDScene.inventory.desktop;
 
         /**
          * The Console Inventory Sprite Name.
          * @type { string }
          * @default
          */
-        this.inventoryShortcutIconConsole = 'buttonXboxWindows';
+        this.inventoryShortcutIconXbox = IconNamesConst.HUDScene.inventory.xbox;
 
         /**
          * The Icon for the attributes menu.
          * @type { string }
          * @default
          */
-        this.attributesShortcutIconDesktop = 'attributes_shortcut_icon';
+        this.attributesShortcutIconDesktop = IconNamesConst.HUDScene.attributes.desktop;
+        /**
+         * The Icon for the attributes menu XBOX.
+         * @type { string }
+         * @default
+         */
+        this.attributesShortcutIconXbox = IconNamesConst.HUDScene.attributes.xbox;
 
         /**
          * The icon that represents
@@ -280,12 +288,14 @@ export class HUDScene extends Phaser.Scene {
         }
 
         this.input.gamepad.on('connected', (pad) => {
+            console.log(pad.id);
             this.createInventoryShortcutIcon();
             this.createAttributesShortcutIcon();
             this.setGamepadTextures();
         });
         this.input.gamepad.on('disconnected', (pad) => {
             this.inventoryShortcutIcon.setTexture(this.inventoryShortcutSprite);
+            this.attributesShortcutIcon.setTexture(this.attributesShortcutIconDesktop);
         });
 
         // Launch the settings Scene.
@@ -340,7 +350,9 @@ export class HUDScene extends Phaser.Scene {
      */
     setGamepadTextures() {
         console.log(this.inventoryShortcutIcon);
-        if (this.inventoryShortcutIcon) this.inventoryShortcutIcon.setTexture(this.inventoryShortcutIconConsole);
+        if (this.inventoryShortcutIcon) this.inventoryShortcutIcon.setTexture(this.inventoryShortcutIconXbox);
+        if (this.attributesShortcutIcon) this.attributesShortcutIcon.setTexture(this.attributesShortcutIconXbox);
+        // this.attributesShortcutIconXbox
     }
 
     /**

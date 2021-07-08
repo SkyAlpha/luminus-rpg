@@ -209,7 +209,7 @@ export class LuminusBattleManager extends AnimationNames {
     setHitboxRotation(hitbox, rotation, position, atacker) {
         hitbox.setRotation(rotation);
         hitbox.setPosition(position.x, position.y);
-        atacker.scene.physics.velocityFromRotation(rotation, this.hitboxVelocity, hitbox.body.velocity);
+        // atacker.scene.physics.velocityFromRotation(rotation, this.hitboxVelocity, hitbox.body.velocity);
     }
 
     /**

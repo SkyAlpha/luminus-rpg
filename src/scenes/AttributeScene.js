@@ -3,6 +3,8 @@ import { ButtonMinus } from '../components/UI/ButtonMinus';
 import { ButtonPlus } from '../components/UI/ButtonPlus';
 import { Player } from '../entities/Player';
 import lodash from 'lodash';
+import { SceneToggleWatcher } from './wathcers/SceneToggleWatcher';
+import { LuminusInterfaceController } from '../plugins/LuminusInterfaceController';
 export const AttributeSceneName = 'AttributeScene';
 
 export class AttributeScene extends Phaser.Scene {
@@ -51,23 +53,59 @@ export class AttributeScene extends Phaser.Scene {
     init(args) {
         this.player = args.player;
         console.log('player', this.player);
+        this.player.canMove = false;
+        this.sound.play('turn_page');
     }
 
     create() {
+        this.interfaceController = new LuminusInterfaceController(this);
         this.lastRawAttributes = lodash.cloneDeep(this.player.attributes.rawAttributes);
         this.attributesUiArray = [];
         this.attributesBackground = this.add.image(0, 0, this.atributesBackgroundSpriteName).setOrigin(0, 0);
         const baseX = this.cameras.main.width / 2 - this.attributesBackground.width / 2;
         const baseY = this.cameras.main.height / 2 - this.attributesBackground.height / 2;
         this.attributesBackground.setPosition(baseX, baseY);
+        this.createCloseButton();
         this.createAttributesButtons();
         this.createAttributesInfo();
         this.scale.on('resize', this.resizeAll);
     }
 
+    createCloseButton() {
+        this.closeButton = this.add
+            .image(
+                this.attributesBackground.x + this.attributesBackground.width * this.attributesBackground.scaleX - 45,
+                this.attributesBackground.y + 30,
+                'close_button'
+            )
+            .setDisplaySize(22, 22)
+            .setInteractive();
+
+        this.closeButton.on('pointerdown', (pointer) => {
+            this.closeScene();
+        });
+        const closeAction = {
+            element: this.closeButton,
+            action: 'closeScene',
+            context: this,
+            args: null,
+        };
+        this.interfaceController.closeAction = closeAction;
+        this.interfaceController.currentElementAction = closeAction;
+        this.interfaceController.createFirstRow();
+        this.interfaceController.interfaceElements[0][0].push(closeAction);
+        this.interfaceController.updateHighlightedElement(closeAction.element);
+    }
+    closeScene() {
+        SceneToggleWatcher.toggleScene(this, AttributeSceneName, this.player);
+        this.sound.play('turn_page');
+    }
+
     createAttributesButtons() {
         const startPosition = 30;
+        this.interfaceController.interfaceElements[1] = [];
         this.attributesConfiguration.forEach((attribute, i) => {
+            this.interfaceController.interfaceElements[1][i] = [];
             const yPosition = this.attributesBackground.y + startPosition + 25 * (i + 1);
             const xPosition = this.attributesBackground.x + 50;
             let minus_button = new ButtonMinus(this, xPosition, yPosition, 'removeAttribute', attribute);
@@ -86,6 +124,20 @@ export class AttributeScene extends Phaser.Scene {
             );
             attribute_text.setOrigin(0.5, 0.5);
             this.attributesUiArray.push({ minus_button, attributeText: attribute_text, plus_button });
+            const minus_button_interface = {
+                element: minus_button,
+                action: 'removeAttribute',
+                context: this,
+                args: attribute,
+            };
+            const plus_button_interface = {
+                element: plus_button,
+                action: 'addAttribute',
+                context: this,
+                args: attribute,
+            };
+            this.interfaceController.interfaceElements[1][i].push(minus_button_interface);
+            this.interfaceController.interfaceElements[1][i].push(plus_button_interface);
         });
         this.availableAttributesText = this.add
             .text(
