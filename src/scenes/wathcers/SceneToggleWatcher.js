@@ -8,6 +8,7 @@ export class SceneToggleWatcher {
         } else {
             sceneContext.scene.get(name).scene.stop();
             player.canMove = true;
+            player.canAtack = true;
         }
     }
 }
