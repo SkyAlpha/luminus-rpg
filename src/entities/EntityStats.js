@@ -3,17 +3,17 @@
  * It allows the entity to access
  * @namespace
  */
-export const EntityStats = {
+export const EntityAttributes = {
     /**
      * The entity level.
      * @type { number }
      */
     level: 1,
     /**
-     * The Raw base stats of the entity.
+     * The Raw base attributes of the entity.
      * @type { object }
      */
-    rawStats: {
+    rawAttributes: {
         str: 1, // Strengh
         agi: 1, // Agility
         vit: 1, // Vitality
@@ -22,7 +22,13 @@ export const EntityStats = {
     },
 
     /**
-     * The bonus stats of the entity.
+     * Available stat points can be used to add new raw attributes.
+     * @type { number }
+     */
+    availableStatPoints: 5,
+
+    /**
+     * The bonus attributes of the entity.
      * @type { object }
      */
     bonus: {
@@ -75,13 +81,13 @@ export const EntityStats = {
      * The amount of flee that the Entity has.
      * @type { number }
      */
-    flee: 0,
+    flee: 1,
 
     /**
      * The amount of hit that the Entity has.
      * @type { number }
      */
-    hit: 10,
+    hit: 1,
 
     /**
      * The experience points that the player currently has.

@@ -17,6 +17,7 @@ import { DungeonScene } from './scenes/DungeonScene';
 import { InventoryScene } from './scenes/InventoryScene';
 import { TutorialScene } from './scenes/TutorialScene';
 import { MainMenuScene } from './scenes/MainMenuScene';
+import { AttributeScene } from './scenes/AttributeScene';
 /**
  * @type { Phaser.Core.Config}
  */
@@ -43,6 +44,7 @@ const config = {
         InventoryScene,
         SettingScene,
         VideoPlayerScene,
+        AttributeScene,
     ],
     input: {
         gamepad: true,

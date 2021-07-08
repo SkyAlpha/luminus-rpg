@@ -36,17 +36,8 @@ export class LuminusDropSystem {
          * Drops the items from an entity.
          */
         this.dropItems = () => {
-            let zone = this.scene.add.zone(
-                this.entity.container.x,
-                this.entity.container.y,
-                10,
-                10
-            );
-            var spriteBounds = Phaser.Geom.Rectangle.Inflate(
-                Phaser.Geom.Rectangle.Clone(zone),
-                0,
-                0
-            );
+            let zone = this.scene.add.zone(this.entity.container.x, this.entity.container.y, 10, 10);
+            var spriteBounds = Phaser.Geom.Rectangle.Inflate(Phaser.Geom.Rectangle.Clone(zone), 0, 0);
             const pos = Phaser.Geom.Rectangle.Random(spriteBounds);
 
             this.drops.forEach((drop) => {
@@ -57,10 +48,12 @@ export class LuminusDropSystem {
                         targets: item,
                         props: {
                             y: {
-                                value: pos.y - 10,
+                                value: item.y - 4,
                             },
                         },
-                        duration: 200,
+                        duration: 2000,
+                        loop: -1,
+                        yoyo: true,
                     });
                 }
             });

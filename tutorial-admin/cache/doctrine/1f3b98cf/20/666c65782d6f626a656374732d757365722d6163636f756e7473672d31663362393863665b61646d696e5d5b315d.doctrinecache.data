@@ -1,2 +1,0 @@
-1623683901
-O:39:"Grav\Common\Flex\Types\Users\UserObject":4:{s:4:"type";s:13:"user-accounts";s:3:"key";s:5:"admin";s:8:"elements";a:7:{s:5:"state";s:7:"enabled";s:5:"email";s:15:"admin@gmail.com";s:8:"fullname";s:5:"Admin";s:5:"title";s:20:"Luminus RPG Template";s:6:"access";a:2:{s:5:"admin";a:2:{s:5:"login";b:1;s:5:"super";b:1;}s:4:"site";a:1:{s:5:"login";b:1;}}s:15:"hashed_password";s:60:"$2y$10$UfUIV/4UOTqeD9BB8kV7K.l5.oOUxwvBienwEqKlrFh48n2arKsOC";s:8:"username";s:5:"admin";}s:7:"storage";a:2:{s:11:"storage_key";s:5:"admin";s:17:"storage_timestamp";i:1623681875;}}

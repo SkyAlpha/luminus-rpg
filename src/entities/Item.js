@@ -1,6 +1,7 @@
 import Phaser from 'phaser';
 import { v4 as uuidv4 } from 'uuid';
 import { DB_SEED_ITEMS } from '../consts/DB_SEED/Items';
+import { PlayerConfig } from '../consts/player/Player';
 import { LuminusConsumableManager } from '../plugins/LuminusConsumableManager';
 import { Player } from './Player';
 
@@ -48,6 +49,13 @@ export class Item extends Phaser.Physics.Arcade.Sprite {
         this.type = itemConfig.type;
 
         /**
+         * The buff type.
+         * @type { Enumerator }
+         * @default
+         */
+        this.buffType = itemConfig.buffType;
+
+        /**
          * The description of the item.
          * @type { string }
          * @default
@@ -88,7 +96,7 @@ export class Item extends Phaser.Physics.Arcade.Sprite {
          * The name of the player variable in the Scene that the player is gaming.
          * @type { string }
          */
-        this.scenePlayerVariableName = 'player';
+        this.scenePlayerVariableName = PlayerConfig.variableName;
 
         /**
          * The Class responsible for managing consumable items.
@@ -125,8 +133,7 @@ export class Item extends Phaser.Physics.Arcade.Sprite {
                         scale: 0.2,
                     },
                     onComplete: (tween) => {
-                        if (tween.totalProgress === 1)
-                            item.addInventory(player);
+                        if (tween.totalProgress === 1) item.addInventory(player);
                     },
                     ease: 'Quad',
                     duration: 350,
