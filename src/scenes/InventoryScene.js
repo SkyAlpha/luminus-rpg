@@ -1,5 +1,6 @@
 import Phaser from 'phaser';
 import { NineSlice } from 'phaser3-nineslice';
+import { InfoBox } from '../components/InfoBox';
 import { PanelComponent } from '../components/PanelComponent';
 import { Item } from '../entities/Item';
 import { Player } from '../entities/Player';
@@ -108,6 +109,12 @@ export class InventoryScene extends Phaser.Scene {
         this.slotSize = 53;
 
         /**
+         * The space separate for legend height.
+         * @type { number }
+         */
+        this.legendHeight = 50;
+
+        /**
          * The default font family of the Inventory Text.
          * @type { string }
          * @default
@@ -122,13 +129,69 @@ export class InventoryScene extends Phaser.Scene {
         this.inventoryOpenClose = 'inventory_cloth';
 
         /**
+         * The name of the texture of the action button legend for desktop.
+         * @type { string }
+         */
+        this.actionButtonSpriteNameDesktop = 'enter_keyboard_key';
+        /**
+         * The name of the texture of the action button legend for console.
+         * @type { string }
+         */
+        this.actionButtonSpriteNameConsole = 'buttonA';
+
+        /**
+         * The name of the texture of the back button legend for desktop.
+         * @type { string }
+         */
+        this.backButtonDesktopSpriteName = 'esc_keyboard_key';
+
+        /**
+         * The name of the texture of the back button legend for console.
+         * @type { string }
+         */
+        this.backButtonLegendConsole = 'buttonB';
+
+        /**
+         * The name of the texture of the description button legend for desktop.
+         * @type { string }
+         */
+        this.descriptionButtonLegendDesktop = 'h_keyboard_key';
+
+        /**
+         * The name of the texture of the description button legend for console.
+         * @type { string }
+         */
+        this.descriptionButtonLegendConsole = 'buttonY';
+
+        /**
          * The class that will control the interface.
          * @type { LuminusInterfaceController }
          */
         this.luminusInterfaceController = null;
+
+        this.isReset = false;
+
+        /**
+         * @type { LuminusInterfaceController }
+         */
+        this.cachedInterfaceControler = null;
+
+        /**
+         * The information box for
+         * @type { InfoBox }
+         */
+        this.helpPanel = null;
+
+        /**
+         * The back button sprite.
+         * @type { Phaser.GameObjects.Sprite }
+         */
+        this.backButtonLegend = null;
     }
 
     create() {
+        // Prevent that the panel is open.
+        this.destroyHelpPanel();
         this.luminusInterfaceController = new LuminusInterfaceController(this);
         this.panelComponent = new PanelComponent(this);
         this.inventoryBackground = this.panelComponent.panelBackground;
@@ -137,12 +200,82 @@ export class InventoryScene extends Phaser.Scene {
         this.createSlots();
         this.createCloseButton();
         this.createItems();
-        this.sound.play(this.inventoryOpenClose);
+        if (!LuminusUtils.isMobile() || (LuminusUtils.isMobile() && this.input.gamepad.pad1))
+            this.createLegendSection();
+        if (this.input.gamepad.pad1) {
+            this.registerGamepad();
+            this.setGamepadTextures();
+        }
+
+        this.input.gamepad.on('connected', (pad) => {
+            this.registerGamepad();
+            this.setGamepadTextures();
+        });
+        this.input.gamepad.on('disconnected', (pad) => {
+            this.backButtonLegend.setTexture(this.backButtonDesktopSpriteName);
+        });
+
+        if (!this.isReset) this.sound.play(this.inventoryOpenClose);
         this.scale.on('resize', (resize) => {
-            console.log('Resize!!');
             this.resizeAll(resize);
         });
-        console.log(this.panelComponent);
+
+        if (this.cachedInterfaceControler) {
+            this.luminusInterfaceController.recoverPositionFromPrevious(this.cachedInterfaceControler);
+        }
+
+        this.registerKeyboardShortcuts();
+    }
+
+    registerKeyboardShortcuts() {
+        this.input.keyboard.on('keydown', (key) => {
+            if (key.keyCode === 72) {
+                this.toggleInfoBox();
+            }
+        });
+    }
+    /**
+     * Registers the gamepad inputs.
+     */
+    registerGamepad() {
+        this.input.gamepad.pad1.on('down', (pad) => {
+            if (pad === 3) {
+                this.toggleInfoBox();
+            }
+        });
+    }
+
+    /**
+     * Toggles info / description box of the item.
+     */
+    toggleInfoBox() {
+        if (!this.helpPanel) {
+            const slot = this.luminusInterfaceController.currentElementAction.element;
+            if (slot.item) {
+                this.createInfoBox(slot);
+            }
+        } else {
+            this.destroyHelpPanel();
+        }
+    }
+
+    createInfoBox(slot) {
+        this.helpPanel = new InfoBox(this, slot.x + slot.width / 2, slot.y + slot.height / 2, 200, 200, {
+            name: slot.item.name,
+            description: slot.item.description,
+        });
+    }
+
+    /**
+     * Sets the GamePad Textures.
+     * If the gamepad is connected, it should use the gamepad textures.
+     */
+    setGamepadTextures() {
+        if (this && this.sys && this.backButtonLegend) this.backButtonLegend.setTexture(this.backButtonLegendConsole);
+        if (this && this.sys && this.actionButtonLegend)
+            this.actionButtonLegend.setTexture(this.actionButtonSpriteNameConsole);
+        if (this && this.sys && this.descriptionButtonLegend)
+            this.descriptionButtonLegend.setTexture(this.descriptionButtonLegendConsole);
     }
 
     /**
@@ -216,6 +349,9 @@ export class InventoryScene extends Phaser.Scene {
                 this.backgroundSlotPaddingBottom
         );
 
+        if (!LuminusUtils.isMobile() || (LuminusUtils.isMobile() && this.input.gamepad.pad1))
+            slotsWorkingHeight = slotsWorkingHeight - this.legendHeight; // Pixels for Legends.
+
         // Max number of Slots taking in count the Available space, Slot Size and Margin.
         let slotsNumberVertical = Math.floor(slotsWorkingHeight / (this.slotSize + this.slotMargin));
 
@@ -249,7 +385,7 @@ export class InventoryScene extends Phaser.Scene {
 
                 if (row === 0 && col === 0) {
                     this.luminusInterfaceController.currentElementAction = element;
-                    if (!LuminusUtils.isMobile())
+                    if (!LuminusUtils.isMobile() || (LuminusUtils.isMobile() && this.input.gamepad.pad1))
                         this.luminusInterfaceController.updateHighlightedElement(element.element);
                     this.luminusInterfaceController.currentLinePosition = 1;
                 }
@@ -288,31 +424,47 @@ export class InventoryScene extends Phaser.Scene {
         for (let row = 0; row < slotsNumberVertical; row++) {
             for (let col = 0; col < slotsNumberHorizontal; col++) {
                 let slot = this.slots[count];
-                this.slots[count].setPosition(
-                    this.inventoryBackground.x +
-                        (this.slotSize + this.slotMargin) * col +
-                        padding +
-                        this.slotMargin / 2,
-                    this.inventoryBackground.y + (this.slotSize + this.slotMargin) * row + this.backgroundSlotPaddingTop
-                );
-                if (this.slots[count].item) {
-                    let item = this.slots[count].item;
-                    this.slots[count].item.setPosition(slot.x + slot.width / 2, slot.y + slot.height / 2 - 7);
-                    this.slots[count].text.setPosition(item.x, item.y + 10 + (item.height * item.scaleY) / 2);
+                if (slot) {
+                    slot.setPosition(
+                        this.inventoryBackground.x +
+                            (this.slotSize + this.slotMargin) * col +
+                            padding +
+                            this.slotMargin / 2,
+                        this.inventoryBackground.y +
+                            (this.slotSize + this.slotMargin) * row +
+                            this.backgroundSlotPaddingTop
+                    );
+                    if (slot.item) {
+                        let item = slot.item;
+                        slot.item.setPosition(slot.x + slot.width / 2, slot.y + slot.height / 2 - 7);
+                        slot.text.setPosition(item.x, item.y + 10 + (item.height * item.scaleY) / 2);
+                    }
+                    count++;
                 }
-                count++;
             }
         }
     }
 
     /**
+     * Clears all slots items before creating them again.
+     */
+    // clearSlots() {
+    //     this.slots.forEach((slot) => {
+    //         if (slot.item) slot.item.destroy();
+    //         if (slot.text) slot.text.destroy();
+    //     });
+    // }
+
+    /**
      * Loops through the Player's items and Adds it to the inventory Slots
      */
     createItems() {
+        // this.clearSlots();
         let slotIndex = 0;
         let time = 0;
         for (let i = 0; i < this.player.items.length; i++) {
             let slot = this.slots[slotIndex];
+            slotIndex++;
             if (this.player.items[i] && this.player.items[i].id) {
                 let text;
                 let item = new Item(
@@ -331,7 +483,18 @@ export class InventoryScene extends Phaser.Scene {
                 slot.playerItemIndex = i;
                 if (item.stackable) {
                     slot.setInteractive();
+                    slot.on('pointerover', (pointer) => {
+                        if (!this.helpPanel && !this.input.gamepad.pad1) {
+                            this.createInfoBox(slot);
+                        }
+                    });
+                    slot.on('pointerout', (pointer) => {
+                        if (this.helpPanel && !this.input.gamepad.pad1) {
+                            this.destroyHelpPanel();
+                        }
+                    });
                     slot.on('pointerup', (pointer) => {
+                        // IF it is mobile or controller is connected, Show the information box.
                         let element = {
                             element: slot,
                             action: 'useItem',
@@ -361,6 +524,75 @@ export class InventoryScene extends Phaser.Scene {
         }
     }
 
+    destroyHelpPanel() {
+        if (this.helpPanel) {
+            this.helpPanel.backgroundSprite.destroy();
+            this.helpPanel.name.destroy();
+            this.helpPanel.description.destroy();
+            this.helpPanel = null;
+        }
+    }
+
+    createLegendSection() {
+        this.actionButtonLegend = this.add.sprite(
+            this.inventoryBackground.x + this.backgroundSlotPadding + this.slotMargin,
+            this.inventoryBackground.y + this.inventoryBackground.height - this.legendHeight,
+            this.actionButtonSpriteNameDesktop
+        );
+        this.actionButtonLegend.setOrigin(0, 0.5);
+        this.actionButtonLegend.setDisplaySize(35, 35);
+
+        this.actionButtonLegend.text = this.add.text(
+            this.actionButtonLegend.x +
+                this.actionButtonLegend.width * this.actionButtonLegend.scaleX +
+                this.slotMargin,
+            this.actionButtonLegend.y,
+            'Use/Action'
+        );
+
+        this.actionButtonLegend.text.setOrigin(0, 0.5);
+
+        //////
+        this.descriptionButtonLegend = this.add.sprite(
+            this.actionButtonLegend.text.x +
+                this.actionButtonLegend.text.width * this.actionButtonLegend.text.scaleX +
+                this.slotMargin,
+            this.actionButtonLegend.text.y,
+            this.descriptionButtonLegendDesktop
+        );
+        this.descriptionButtonLegend.setOrigin(0, 0.5);
+        this.descriptionButtonLegend.setDisplaySize(35, 35);
+
+        this.descriptionButtonLegend.text = this.add.text(
+            this.descriptionButtonLegend.x +
+                this.descriptionButtonLegend.width * this.descriptionButtonLegend.scaleX +
+                this.slotMargin,
+            this.descriptionButtonLegend.y,
+            'Show Info'
+        );
+        this.descriptionButtonLegend.text.setOrigin(0, 0.5);
+        ////
+
+        this.backButtonLegend = this.add.sprite(
+            this.descriptionButtonLegend.text.x +
+                this.descriptionButtonLegend.text.width * this.descriptionButtonLegend.text.scaleX +
+                this.slotMargin,
+            this.descriptionButtonLegend.text.y,
+            this.backButtonDesktopSpriteName
+        );
+        this.backButtonLegend.setOrigin(0, 0.5);
+        this.backButtonLegend.setDisplaySize(35, 35);
+
+        this.backButtonLegend.text = this.add.text(
+            this.backButtonLegend.x + this.backButtonLegend.width * this.backButtonLegend.scaleX + this.slotMargin,
+            this.backButtonLegend.y,
+            'Back'
+        );
+        this.backButtonLegend.text.setOrigin(0, 0.5);
+
+        if (this.input.gamepad.pad1) this.setGamepadTextures();
+    }
+
     useItem(slot) {
         if (slot && slot.item) {
             let item = slot.item;
@@ -371,10 +603,15 @@ export class InventoryScene extends Phaser.Scene {
                 this.player.items[i].count--;
                 if (this.player.items[i].count <= 0) {
                     slot.item.destroy();
-                    this.luminusInterfaceController.currentElementAction.action = null;
-                    delete this.player.items[i];
+                    // this.luminusInterfaceController.currentElementAction.action = null;
+                    this.player.items.splice(i, 1);
                     text.setText('');
                     text.destroy();
+                    this.scene.restart({
+                        player: this.player,
+                        isReset: true,
+                        interfaceControler: this.luminusInterfaceController,
+                    });
                     // TODO - Rearange the items.
                 } else {
                     text.setText(this.player.items[i].count);
@@ -391,6 +628,10 @@ export class InventoryScene extends Phaser.Scene {
         this.player = args.player;
         this.player.canMove = false;
         this.player.canAtack = false;
+        if (args.isReset) {
+            this.isReset = true;
+            this.cachedInterfaceControler = args.interfaceControler;
+        }
     }
 
     update() {}
@@ -419,6 +660,48 @@ export class InventoryScene extends Phaser.Scene {
                     this.backgroundSlotPadding * 1.5,
                 this.inventoryBackground.y + this.backgroundSlotPadding * 1.5
             );
+            if (this.actionButtonLegend)
+                this.actionButtonLegend.setPosition(
+                    this.inventoryBackground.x + this.backgroundSlotPadding + this.slotMargin,
+                    this.inventoryBackground.y + this.inventoryBackground.height - this.legendHeight
+                );
+
+            if (this.actionButtonLegend.text)
+                this.actionButtonLegend.text.setPosition(
+                    this.actionButtonLegend.x +
+                        this.actionButtonLegend.width * this.actionButtonLegend.scaleX +
+                        this.slotMargin,
+                    this.actionButtonLegend.y
+                );
+            if (this.descriptionButtonLegend)
+                this.descriptionButtonLegend.setPosition(
+                    this.actionButtonLegend.text.x +
+                        this.actionButtonLegend.text.width * this.actionButtonLegend.text.scaleX +
+                        this.slotMargin,
+                    this.actionButtonLegend.text.y
+                );
+            if (this.descriptionButtonLegend.text)
+                this.descriptionButtonLegend.text.setPosition(
+                    this.descriptionButtonLegend.x +
+                        this.descriptionButtonLegend.width * this.descriptionButtonLegend.scaleX +
+                        this.slotMargin,
+                    this.descriptionButtonLegend.y
+                );
+
+            if (this.backButtonLegend)
+                this.backButtonLegend.setPosition(
+                    this.descriptionButtonLegend.text.x +
+                        this.descriptionButtonLegend.text.width * this.descriptionButtonLegend.text.scaleX +
+                        this.slotMargin,
+                    this.descriptionButtonLegend.text.y
+                );
+            if (this.backButtonLegend.text)
+                this.backButtonLegend.text.setPosition(
+                    this.backButtonLegend.x +
+                        this.backButtonLegend.width * this.backButtonLegend.scaleX +
+                        this.slotMargin,
+                    this.backButtonLegend.y
+                );
 
             this.setPositionSlotsItems();
         }

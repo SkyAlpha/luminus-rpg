@@ -4,7 +4,9 @@ import { Enemy } from '../entities/Enemy';
 import { Player } from '../entities/Player';
 import Phaser from 'phaser';
 import { ENTITIES } from '../consts/Entities';
-import { LuminusDamageDisplay } from './LuminusDamageDisplay';
+import { LuminusEntityTextDisplay } from './LuminusEntityTextDisplay';
+import { CRITICAL_MULTIPLIER } from '../consts/Battle';
+import { ExpManager } from './attributes/ExpManager';
 
 /**
  * @class
@@ -122,10 +124,10 @@ export class LuminusBattleManager extends AnimationNames {
         this.PlayerConstructorName = ENTITIES.Player;
 
         /**
-         * The LuminusDamageDisplay class, responsible for showing the player the damage dealth to a given Entity / Enemy.
-         * @type { LuminusDamageDisplay }
+         * The LuminusEntityTextDisplay class, responsible for showing the player the damage dealth to a given Entity / Enemy.
+         * @type { LuminusEntityTextDisplay }
          */
-        this.luminusDisplayDamage = null;
+        this.luminusEntityTextDisplay = null;
     }
 
     /**
@@ -207,7 +209,7 @@ export class LuminusBattleManager extends AnimationNames {
     setHitboxRotation(hitbox, rotation, position, atacker) {
         hitbox.setRotation(rotation);
         hitbox.setPosition(position.x, position.y);
-        atacker.scene.physics.velocityFromRotation(rotation, this.hitboxVelocity, hitbox.body.velocity);
+        // atacker.scene.physics.velocityFromRotation(rotation, this.hitboxVelocity, hitbox.body.velocity);
     }
 
     /**
@@ -217,38 +219,79 @@ export class LuminusBattleManager extends AnimationNames {
      */
     takeDamage(atacker, target) {
         // Randomizes the name of the damage sound.
-        const damageName = this.damageSoundNames[Math.floor(Math.random() * this.damageSoundNames.length)];
-        const damage = this.randomDamage(atacker.stats.atack);
-        if (damage - target.stats.defense > 0) {
-            if (target.healthBar) target.healthBar.decrease(damage - target.stats.defense);
-            target.stats.health -= damage - target.stats.defense;
+        let damageName = this.damageSoundNames[Math.floor(Math.random() * this.damageSoundNames.length)];
+        let damage = this.randomDamage(atacker.attributes.atack - target.attributes.defense);
+        const isCritical = this.checkAtackIsCritial(atacker.attributes.critical);
+        const hit = this.checkAtackHit(atacker.attributes.hit, target.attributes.flee);
+        if (isCritical) {
+            damage = Math.ceil(atacker.attributes.atack * CRITICAL_MULTIPLIER);
+            damageName = 'critical';
+        }
+        if (hit || isCritical) {
+            if (damage > 0) {
+                if (target.healthBar) target.healthBar.decrease(damage);
+                target.attributes.health -= damage;
+            } else {
+                target.attributes.health -= 1;
+                target.attributes.healthBar.decrease(1);
+            }
+
+            if (target.luminusHUDProgressBar) {
+                target.luminusHUDProgressBar.updateHealth();
+            }
+            this.phaserJuice.add(target).flash();
+            atacker.scene.sound.add(damageName).play();
+            if (target.attributes.health <= 0) {
+                if (atacker.entityName === ENTITIES.Player) {
+                    ExpManager.addExp(atacker, target.exp);
+                }
+                setTimeout((t) => {
+                    if (target.entityName === this.enemyConstructorName) target.dropItems();
+                    target.anims.stop();
+                    target.destroyAll();
+                }, 100);
+            }
+            // Not very Optimized.
+            this.luminusEntityTextDisplay = new LuminusEntityTextDisplay(target.scene);
+            this.luminusEntityTextDisplay.displayDamage(damage, target, isCritical);
         } else {
-            target.stats.health -= 1;
-            target.stats.healthBar.decrease(1);
+            this.luminusEntityTextDisplay = new LuminusEntityTextDisplay(target.scene);
+            this.luminusEntityTextDisplay.displayDamage('MISS', target);
         }
 
-        if (target.luminusHUDProgressBar) {
-            target.luminusHUDProgressBar.updateHealth();
-        }
-        this.phaserJuice.add(target).flash();
-        atacker.scene.sound.add(damageName).play();
-        if (target.stats.health <= 0) {
-            setTimeout((t) => {
-                if (target.entityName === this.enemyConstructorName) target.dropItems();
-                target.anims.stop();
-                target.destroyAll();
-            }, 100);
-        }
-
-        // Not very Optimized.
-        this.luminusDamageDisplay = new LuminusDamageDisplay(target.scene);
-        this.luminusDamageDisplay.displayDamage(damage, target);
         /**
          * Makes random damage.
          * Decreses the health based on the target defense.
          * Updates the Health Bar.
          * Kills the target if it reaches the 0 or less hit points.
          */
+    }
+
+    /**
+     * Checks if the atacker hit the target.
+     * @param { number } hit the atacker's hit.
+     * @param { number } flee the target's flee rate.
+     * @returns { boolean } Returns if the atacker hit the target.
+     */
+    checkAtackHit(hit, flee) {
+        const random = Math.random() * 100;
+        let miss;
+        if (isFinite((hit * 100) / flee)) {
+            return (hit * 100) / flee >= random;
+        } else {
+            return true;
+        }
+    }
+
+    /**
+     * Checks if it is a critical hit.
+     * PS: Critical hits ignore flee. Therefore, a critical hit should not miss.
+     * @param { number } critChance atacker critical chance.
+     * @returns
+     */
+    checkAtackIsCritial(critChance) {
+        const random = Math.random() * 100;
+        return critChance >= random;
     }
 
     /**

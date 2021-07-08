@@ -55,6 +55,13 @@ export class LuminusHUDProgressBar {
         this.blueBarSpriteName = 'blue_bar';
 
         /**
+         * The asset name of the blue exp bar.
+         * @default
+         * @type { string }
+         */
+        this.expBlueBarSpriteName = 'exp_blue_bar';
+
+        /**
          * The asset name of the background of Health and SP Bars.
          * @type { string }
          * @default
@@ -65,21 +72,27 @@ export class LuminusHUDProgressBar {
             .image(x + width / 2 + 15, y, this.progressBarBackgroundSpriteName)
             .setOrigin(0, 0.5);
 
-        this.healthbar_sprite = this.scene.add
-            .image(x + width / 2 + 20, y, this.greenBarSpriteName)
-            .setOrigin(0, 0.5);
+        this.healthbar_sprite = this.scene.add.image(x + width / 2 + 20, y, this.greenBarSpriteName).setOrigin(0, 0.5);
 
         this.spbar_background = this.scene.add
-            .image(
-                x + width / 2 + 15,
-                y + 20,
-                this.progressBarBackgroundSpriteName
-            )
+            .image(x + width / 2 + 15, y + 20, this.progressBarBackgroundSpriteName)
             .setOrigin(0, 0.5);
 
-        this.spbar_sprite = this.scene.add
-            .image(x + width / 2 + 20, y + 20, this.blueBarSpriteName)
+        this.spbar_sprite = this.scene.add.image(x + width / 2 + 20, y + 20, this.blueBarSpriteName).setOrigin(0, 0.5);
+
+        this.expbar_background = this.scene.add
+            .image(x - 10, y + 40, this.progressBarBackgroundSpriteName)
             .setOrigin(0, 0.5);
+        this.expbar_background.setDisplaySize(
+            this.expbar_background.width + width / 2 + 25,
+            this.expbar_background.height
+        );
+        this.expbar_sprite = this.scene.add.image(x - 5, y + 40, this.expBlueBarSpriteName).setOrigin(0, 0.5);
+        this.expbar_sprite.widthExtended = (this.expbar_background.width - 8) * this.expbar_background.scaleX;
+        this.expbar_sprite.setDisplaySize(
+            (this.expbar_background.width - 8) * this.expbar_background.scaleX,
+            this.expbar_sprite.height
+        );
 
         /**
          * The current health points.
@@ -89,14 +102,15 @@ export class LuminusHUDProgressBar {
 
         // Sets the progressbar to the player, on creation.
         this.player.luminusHUDProgressBar = this;
+
+        this.player.scene.events.on('update', this.updateHud, this);
     }
 
     /**
      * Updates the HUD Health bar based on the current player's Health.
      */
     updateHealth() {
-        const HP_percentage =
-            (this.player.health / this.player.baseHealth) * 100;
+        const HP_percentage = (this.player.attributes.health / this.player.attributes.baseHealth) * 100;
         if (HP_percentage > 40) {
             this.healthbar_sprite.setTexture(this.greenBarSpriteName);
         } else if (HP_percentage >= 20 && HP_percentage <= 40) {
@@ -109,5 +123,20 @@ export class LuminusHUDProgressBar {
         }
 
         this.healthbar_sprite.scaleX = HP_percentage / 100;
+    }
+
+    updateHud() {
+        this.updateExp();
+    }
+
+    /**
+     * Updates the current Exp of the player.s
+     */
+    updateExp() {
+        const exp_percentage = (this.player.attributes.experience / this.player.attributes.nextLevelExperience) * 100;
+        this.expbar_sprite.setDisplaySize(
+            this.expbar_sprite.widthExtended * (exp_percentage / 100),
+            this.expbar_sprite.height
+        );
     }
 }

@@ -1,6 +1,8 @@
 import Phaser from 'phaser';
 import { AnimationNames } from '../consts/AnimationNames';
+import { AttributeSceneName } from '../scenes/AttributeScene';
 import { InventorySceneName } from '../scenes/InventoryScene';
+import { SceneToggleWatcher } from '../scenes/wathcers/SceneToggleWatcher';
 import { LuminusAnimationManager } from './LuminusAnimationManager';
 import { LuminusBattleManager } from './LuminusBattleManager';
 
@@ -29,9 +31,16 @@ export class LuminusGamePadController extends AnimationNames {
         this.player = player;
 
         /**
+         * The Name of the Inventory Scene.
          * @type { string }
          */
         this.inventorySceneName = InventorySceneName;
+
+        /**
+         * The name of the Attribute Scene.
+         * @type { string }
+         */
+        this.attributeSceneName = AttributeSceneName;
 
         /**
          * The luminus animation manager.
@@ -74,13 +83,10 @@ export class LuminusGamePadController extends AnimationNames {
                 this.gamepad = pad;
             }
             if (this.gamepad && this.gamepad.buttons[8].value === 1) {
-                if (!this.scene.scene.isVisible(this.inventorySceneName)) {
-                    this.scene.scene.launch(this.inventorySceneName, {
-                        player: this.player,
-                    });
-                } else {
-                    this.scene.scene.get(this.inventorySceneName).stopScene();
-                }
+                SceneToggleWatcher.toggleScene(this.scene, this.inventorySceneName, this.player);
+            }
+            if (this.gamepad && this.gamepad.buttons[9].value === 1) {
+                SceneToggleWatcher.toggleScene(this.scene, this.attributeSceneName, this.player);
             }
             if (pad.A && this.player && this.player.active) {
                 this.luminusBattleManager.atack(this.player);
@@ -100,41 +106,28 @@ export class LuminusGamePadController extends AnimationNames {
                 (this.gamepad.left && this.gamepad.up)
             ) {
                 this.player.container.body.setVelocityX(-this.player.speed);
-                this.player.anims.play(
-                    texture + '-' + this.walkLeftAnimationName,
-                    true
-                );
+                this.player.anims.play(texture + '-' + this.walkLeftAnimationName, true);
             } else if (
                 this.gamepad.right ||
                 (this.gamepad.right && this.gamepad.down) ||
                 (this.gamepad.right && this.gamepad.up)
             ) {
-                this.player.anims.play(
-                    texture + '-' + this.walkRightAnimationName,
-                    true
-                );
+                this.player.anims.play(texture + '-' + this.walkRightAnimationName, true);
                 this.player.container.body.setVelocityX(this.player.speed);
             }
 
             if (this.gamepad.up) {
                 this.player.container.body.setVelocityY(-this.player.speed);
                 if (!this.gamepad.left && !this.gamepad.right)
-                    this.player.anims.play(
-                        texture + '-' + this.walkUpAnimationName,
-                        true
-                    );
+                    this.player.anims.play(texture + '-' + this.walkUpAnimationName, true);
             } else if (this.gamepad.down) {
                 this.player.container.body.setVelocityY(this.player.speed);
                 if (!this.gamepad.left && !this.gamepad.right)
-                    this.player.anims.play(
-                        texture + '-' + this.walkDownAnimationName,
-                        true
-                    );
+                    this.player.anims.play(texture + '-' + this.walkDownAnimationName, true);
             }
 
             if (
-                (this.gamepad.leftStick.x !== 0 ||
-                    this.gamepad.leftStick.y !== 0) &&
+                (this.gamepad.leftStick.x !== 0 || this.gamepad.leftStick.y !== 0) &&
                 this.player.container.body.maxSpeed > 0
             ) {
                 this.luminusAnimationManager.animateWithAngle(
@@ -148,9 +141,7 @@ export class LuminusGamePadController extends AnimationNames {
                 );
             }
 
-            this.player.container.body.velocity
-                .normalize()
-                .scale(this.player.speed);
+            this.player.container.body.velocity.normalize().scale(this.player.speed);
         }
     }
 }

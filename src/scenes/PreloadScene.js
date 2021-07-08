@@ -1,7 +1,7 @@
 import Phaser from 'phaser';
 
 import { Animations } from '../consts/Animations';
-import { AtlasConfig, Images, LuminusAudios, TilemapConfig } from '../consts/GameAssets';
+import { ASEPRITE_CONFIG, AtlasConfig, Images, LuminusAudios, TilemapConfig } from '../consts/GameAssets';
 
 // import nesCss from 'node_modules/nes.css/css/nes.min.css';
 
@@ -126,6 +126,10 @@ export class PreloadScene extends Phaser.Scene {
             this.load.atlas(value.name, value.image, value.json);
         });
 
+        ASEPRITE_CONFIG.forEach((aseprite) => {
+            this.load.aseprite(aseprite.name, aseprite.image, aseprite.json);
+        });
+
         // Custom CSS
         // this.load.css('nescss', nesCss);
         this.progressBar = this.add.graphics();
@@ -236,6 +240,9 @@ export class PreloadScene extends Phaser.Scene {
                 }),
                 repeat: animation.repeat,
             });
+        });
+        ASEPRITE_CONFIG.forEach((aseprite) => {
+            this.anims.createFromAseprite(aseprite.name);
         });
         // Web Fonts
         WebFont.load({

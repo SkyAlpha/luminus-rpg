@@ -1,6 +1,7 @@
 import { Item } from '../entities/Item';
 import { Player } from '../entities/Player';
-import { LuminusDamageDisplay } from './LuminusDamageDisplay';
+import { ConsumableBonus } from '../models/ConsumableBonus';
+import { LuminusEntityTextDisplay } from './LuminusEntityTextDisplay';
 
 /**
  * This class is responsible for Manage all the consumable actions.
@@ -25,7 +26,7 @@ export class LuminusConsumableManager {
                         this.recover(item, scriptActions, player);
                         break;
                     case 'buff':
-                        console.log('Buff');
+                        this.buff(item, scriptActions, player);
                         break;
 
                     default:
@@ -44,26 +45,21 @@ export class LuminusConsumableManager {
      */
     recover(item, action, player) {
         // Not very Optimized.
-        this.luminusDamageDisplay = new LuminusDamageDisplay(player.scene);
+        this.luminusEntityTextDisplay = new LuminusEntityTextDisplay(player.scene);
 
         // TODO - Create an animation to display the usage of a consumable.
         switch (action[1]) {
             case 'hp':
                 // console.log(`Recover ${action[2]} HP`);
-                player.health = Math.min(
-                    player.baseHealth,
-                    (player.health += parseInt(action[2]))
+                player.attributes.health = Math.min(
+                    player.attributes.baseHealth,
+                    (player.attributes.health += parseInt(action[2]))
                 );
-                player.healthBar.update(player.health);
-                if (player.luminusHUDProgressBar)
-                    player.luminusHUDProgressBar.updateHealth(player.health);
-                this.luminusDamageDisplay.displayDamage(
-                    action[2],
-                    player,
-                    false,
-                    true
-                );
+                player.healthBar.update(player.attributes.health);
+                if (player.luminusHUDProgressBar) player.luminusHUDProgressBar.updateHealth(player.attributes.health);
+                this.luminusEntityTextDisplay.displayDamage(action[2], player, false, true);
                 player.scene.sound.play(item.useSfx);
+                console.log(`Recover ${action[2]} HP`);
                 break;
             case 'sp':
                 console.log(`Recover ${action[2]} SP`);
@@ -75,7 +71,7 @@ export class LuminusConsumableManager {
     }
 
     /**
-     * Performa a Buff based on the incoming parameters.
+     * Performs a Buff based on the incoming parameters.
      * @param { Item } item the item that will give the buff.
      * @param { string } action The script action that will be performed.
      * @param { Player } player The player that will use the item.
@@ -89,9 +85,52 @@ export class LuminusConsumableManager {
             case 'sp':
                 console.log(`Recover ${action[2]} SP`);
                 break;
+            case 'atk':
+                /** @type {ConsumableBonus} */
+                const consumableBonus = player.attributes.bonus.consumable.find(
+                    (consumableItem) => consumableItem.uniqueId === item.buffType.id
+                );
+                if (consumableBonus) {
+                    player.scene.sound.play(item.useSfx);
+                    console.log(`Increased ${action[2]} ATK for ${action[3]} seconds`);
+                    consumableBonus.timer.reset({
+                        callbackScope: this,
+                        delay: consumableBonus.time * 1000, // Time to restore the attributes to it's default value.
+                        callback: this.changeStats, // Callback
+                        args: [player, consumableBonus, -1], // Params
+                    });
+                } else {
+                    // Add the item
+                    let bonusStatus = new ConsumableBonus(item.buffType.id, 'atack', action[2], action[3]);
+                    this.changeStats(player, bonusStatus);
+
+                    player.scene.sound.play(item.useSfx);
+                    console.log(`Increased ${action[2]} ATK for ${action[3]} seconds`);
+                    bonusStatus.timer = player.scene.time.addEvent({
+                        callbackScope: this,
+                        delay: bonusStatus.time * 1000, // Time to restore the attributes to it's default value.
+                        callback: this.changeStats, // Callback
+                        args: [player, bonusStatus, -1], // Params
+                    });
+                    player.attributes.bonus.consumable.push(bonusStatus);
+                }
+
+                break;
 
             default:
                 break;
         }
+    }
+
+    /**
+     * Changes the attributes of the player based on the configuration.
+     * @param { Player } player The player that will hat it's attributes changed.
+     * @param { ConsumableBonus } bonus The bonus that will be applied.
+     * @param { number } sign positive or negative sign.
+     */
+    changeStats(player, bonus, sign = 1) {
+        player.attributes[bonus.statBonus] = player.attributes[bonus.statBonus] + bonus.value * sign;
+        const index = player.attributes.bonus.consumable.indexOf(bonus);
+        player.attributes.bonus.consumable.splice(index, 1);
     }
 }

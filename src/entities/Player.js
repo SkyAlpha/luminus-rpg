@@ -1,11 +1,12 @@
 import Phaser, { Game, GameObjects } from 'phaser';
+import { AttributesManager } from '../plugins/attributes/AttributesManager';
 import { ENTITIES } from '../consts/Entities';
 import { LuminusHUDProgressBar } from '../plugins/HUD/LuminusHUDProgressBar';
 import { LuminusHealthBar } from '../plugins/LuminusHealthBar';
 import { LuminusKeyboardMouseController } from '../plugins/LuminusKeyboardMouseController';
 import { LuminusMovement } from '../plugins/LuminusMovement';
 import { BaseEntity } from './BaseEntity';
-import { EntityStats } from './EntityStats';
+import { EntityAttributes } from './EntityStats';
 
 /**
  * @class
@@ -24,11 +25,17 @@ export class Player extends Phaser.Physics.Arcade.Sprite {
         // Here are all classes that this Player Extends.
         Object.assign(this, BaseEntity);
         /**
-         * The entity stats.
-         * @type { EntityStats }
+         * The entity attributes.
+         * @type { EntityAttributes }
          */
-        this.stats = {};
-        Object.assign(this.stats, EntityStats);
+        this.attributes = {};
+        Object.assign(this.attributes, EntityAttributes);
+
+        /**
+         * The Attributes Manager.
+         * @type { AttributesManager }
+         */
+        this.attributesManager = new AttributesManager(this.scene, this);
 
         /**
          * The name of the Entity. It's used for differenciation of the entityes.
@@ -106,7 +113,7 @@ export class Player extends Phaser.Physics.Arcade.Sprite {
             0,
             0,
             this.width * 2,
-            this.stats.health,
+            this.attributes.baseHealth,
             this.width / 2.2,
             -(this.height / 2)
         );
@@ -123,12 +130,6 @@ export class Player extends Phaser.Physics.Arcade.Sprite {
          */
         this.dustParticleName = 'walk_dust';
 
-        /**
-         * The container that holds the player game objects.
-         * @type { Phaser.GameObjects.Container }
-         */
-        this.container = new Phaser.GameObjects.Container(this.scene, x, y, [this, this.healthBar, this.hitZone]);
-
         // /**
         //  * The dust particles that the entity will emit when it moves.
         //  * @type { Phaser.GameObjects.Particles }
@@ -144,7 +145,7 @@ export class Player extends Phaser.Physics.Arcade.Sprite {
                 quantity: 20,
                 lifespan: 1000,
                 rotate: { min: 0, max: 360 },
-                alpha: { start: 1, end: 0.2 },
+                alpha: { start: 1, end: 0 },
                 followOffset: {
                     y: 10,
                 },
@@ -179,6 +180,11 @@ export class Player extends Phaser.Physics.Arcade.Sprite {
 
         this.play('character-idle-down');
 
+        /**
+         * The container that holds the player game objects.
+         * @type { Phaser.GameObjects.Container }
+         */
+        this.container = new Phaser.GameObjects.Container(this.scene, x, y, [this, this.healthBar, this.hitZone]);
         // Initializes the physics.
         this.setPhysics();
         // All the dependencies that need to be inside the update game loop.

@@ -7,6 +7,7 @@ import player_image from '../assets/sprites/player.png';
 import dialog from '../assets/sprites/dialog_paper.png';
 import space from '../assets/sprites/space.png';
 import buttonA from '../assets/sprites/buttonA.png';
+import buttonB from '../assets/sprites/buttonB.png';
 import question_mark from '../assets/sprites/question_mark.png';
 import spread from '../assets/sprites/spread.png';
 import maximize from '../assets/sprites/maximize.png';
@@ -19,18 +20,27 @@ import landscape_mobile from '../assets/sprites/landscape.png';
 import walk_dust from '../assets/sprites/walk_dust.png';
 import fog_mask from '../assets/sprites/mask.png';
 import health from '../assets/sprites/health.png';
+import critical from '../assets/sprites/critical_25.png';
+import critical_50 from '../assets/sprites/critical_50.png';
 // HUD
 import hp_hud from '../assets/sprites/HUD/HP.png';
 import hp_hud_2x from '../assets/sprites/HUD/HP_2x.png';
 import hp_hud_3x from '../assets/sprites/HUD/HP_3x.png';
 import sp_hud_2x from '../assets/sprites/HUD/SP_2x.png';
+import xp_hud_2x from '../assets/sprites/HUD/XP_2x.png';
 import red_bar from '../assets/sprites/HUD/red_bar.png';
 import yellow_bar from '../assets/sprites/HUD/yellow_bar.png';
 import green_bar from '../assets/sprites/HUD/green_bar.png';
 import blue_bar from '../assets/sprites/HUD/blue_bar.png';
+import exp_blue_bar from '../assets/sprites/HUD/exp_blue_bar.png';
 import progressbar_background from '../assets/sprites/HUD/bars_background.png';
 import inventory_shortcut from '../assets/sprites/HUD/I_Key_Light.png';
+import attributes_shortcut_icon from '../assets/sprites/HUD/Keyboard_White_U.png';
+import XboxOne_Menu from '../assets/sprites/HUD/XboxOne_Menu.png';
 import buttonY from '../assets/sprites/XboxOne_Y.png';
+import h_keyboard_key from '../assets/sprites/H_Key_Light.png';
+import esc_keyboard_key from '../assets/sprites/Esc_Key_Light.png';
+import enter_keyboard_key from '../assets/sprites/enter_keyboard_key.png';
 import buttonXboxWindows from '../assets/sprites/XboxOne_Windows.png';
 
 // Inventory
@@ -38,6 +48,12 @@ import inventory_box from '../assets/sprites/inventory_box.png';
 import panel_background from '../assets/sprites/inventory/inventory_background.png';
 import panel_title from '../assets/sprites/inventory/inventory_title.png';
 import inventory_slot from '../assets/sprites/inventory/inventory_slot.png';
+import infobox_background from '../assets/sprites/info_panel.png';
+
+// Attributes
+import attributes_background from '../assets/sprites/UI/attributes_background.png';
+import attributes_background_3x from '../assets/sprites/UI/attributes_background_3x.png';
+import book_ui from '../assets/sprites/HUD/book_ui.png';
 
 // Portraits
 import lucius_portrait_beard from '../assets/sprites/portraits/lucius_portrait_beard.png';
@@ -46,6 +62,7 @@ import lucius_portrait_beardless from '../assets/sprites/portraits/lucius_portra
 // Consumables
 
 import red_potion from '../assets/sprites/consumables/red_potion.png';
+import atk_potion from '../assets/sprites/consumables/atk_potion.png';
 
 // Maps
 import dungeon_map from '../assets/maps/dungeon/dungeon_tileset.png';
@@ -92,11 +109,16 @@ import forest from '../assets/sound/forest.mp3';
 import atack01 from '../assets/sound/sfx/atk/atack01.mp3';
 import atack02 from '../assets/sound/sfx/atk/atack02.mp3';
 import atack03 from '../assets/sound/sfx/atk/atack03.mp3';
+import critical_hit from '../assets/sound/sfx/atk/critical.mp3';
 
 import damage01 from '../assets/sound/sfx/damage/damage01.mp3';
 import damage02 from '../assets/sound/sfx/damage/damage02.mp3';
 import damage03 from '../assets/sound/sfx/damage/damage03.mp3';
 
+// Actions
+import level_up from '../assets/sound/sfx/actions/level_up.mp3';
+
+// UI
 import start_game from '../assets/sound/sfx/menu/start_game.mp3';
 
 // Interaction
@@ -108,6 +130,14 @@ import heal from '../assets/sound/sfx/consumables/heal.mp3';
 // Menu
 import menu_navigation from '../assets/sound/sfx/menu/menu_navigation.mp3';
 import inventory_cloth from '../assets/sound/sfx/menu/inventory_cloth.mp3';
+import attributes_menu from '../assets/sound/sfx/menu/attributes_menu.mp3';
+import turn_page from '../assets/sound/sfx/menu/turn_page.mp3';
+
+// ASEPRITE
+import plus_small_button from '../assets/sprites/plus_small_button.png';
+import plus_small_button_json from '../assets/sprites/plus_small_button.json';
+import minus_small_button from '../assets/sprites/minus_small_button.png';
+import minus_small_button_json from '../assets/sprites/minus_small_button.json';
 
 export const Images = [
     {
@@ -147,12 +177,32 @@ export const Images = [
         image: buttonA,
     },
     {
+        name: 'buttonB',
+        image: buttonB,
+    },
+    {
         name: 'buttonY',
         image: buttonY,
     },
     {
+        name: 'enter_keyboard_key',
+        image: enter_keyboard_key,
+    },
+    {
+        name: 'h_keyboard_key',
+        image: h_keyboard_key,
+    },
+    {
+        name: 'esc_keyboard_key',
+        image: esc_keyboard_key,
+    },
+    {
         name: 'buttonXboxWindows',
         image: buttonXboxWindows,
+    },
+    {
+        name: 'XboxOne_Menu',
+        image: XboxOne_Menu,
     },
     {
         name: 'question_mark',
@@ -226,6 +276,22 @@ export const Images = [
         name: 'red_potion',
         image: red_potion,
     },
+    {
+        name: 'atk_potion',
+        image: atk_potion,
+    },
+    {
+        name: 'critical',
+        image: critical,
+    },
+    {
+        name: 'critical_2x',
+        image: critical_50,
+    },
+    {
+        name: 'infobox_background',
+        image: infobox_background,
+    },
 
     // HUD
     {
@@ -245,6 +311,10 @@ export const Images = [
         image: sp_hud_2x,
     },
     {
+        name: 'xp_hud_2x',
+        image: xp_hud_2x,
+    },
+    {
         name: 'red_bar',
         image: red_bar,
     },
@@ -261,12 +331,24 @@ export const Images = [
         image: blue_bar,
     },
     {
+        name: 'exp_blue_bar',
+        image: exp_blue_bar,
+    },
+    {
         name: 'progressbar_background',
         image: progressbar_background,
     },
     {
         name: 'inventory_shortcut',
         image: inventory_shortcut,
+    },
+    {
+        name: 'attributes_shortcut_icon',
+        image: attributes_shortcut_icon,
+    },
+    {
+        name: 'book_ui',
+        image: book_ui,
     },
 
     // Portraits
@@ -295,6 +377,16 @@ export const Images = [
     {
         name: 'inventory_slot',
         image: inventory_slot,
+    },
+
+    // UI
+    {
+        name: 'attributes_background',
+        image: attributes_background,
+    },
+    {
+        name: 'attributes_background_3x',
+        image: attributes_background_3x,
     },
 
     //Clouds
@@ -417,6 +509,16 @@ export const LuminusAudios = [
         name: 'damage03',
         audio: damage03,
     },
+    {
+        name: 'critical',
+        audio: critical_hit,
+    },
+    // UI
+    {
+        name: 'level_up',
+        audio: level_up,
+    },
+
     // Interaction
     {
         name: 'get_items',
@@ -438,5 +540,26 @@ export const LuminusAudios = [
     {
         name: 'inventory_cloth',
         audio: inventory_cloth,
+    },
+    {
+        name: 'attributes_menu',
+        audio: attributes_menu,
+    },
+    {
+        name: 'turn_page',
+        audio: turn_page,
+    },
+];
+
+export const ASEPRITE_CONFIG = [
+    {
+        name: 'plus_small_button',
+        image: plus_small_button,
+        json: plus_small_button_json,
+    },
+    {
+        name: 'minus_small_button',
+        image: minus_small_button,
+        json: minus_small_button_json,
     },
 ];
