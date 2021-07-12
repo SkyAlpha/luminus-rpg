@@ -2,7 +2,7 @@ import Phaser from 'phaser';
 import { AnimationNames } from '../consts/AnimationNames';
 import { AttributeSceneName } from '../scenes/AttributeScene';
 import { InventorySceneName } from '../scenes/InventoryScene';
-import { SceneToggleWatcher } from '../scenes/wathcers/SceneToggleWatcher';
+import { SceneToggleWatcher } from '../scenes/watchers/SceneToggleWatcher';
 import { LuminusAnimationManager } from './LuminusAnimationManager';
 import { LuminusBattleManager } from './LuminusBattleManager';
 

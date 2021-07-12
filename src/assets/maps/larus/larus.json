@@ -1425,23 +1425,6 @@
                  "y":-216
                 }, 
                 {
-                 "height":111.5,
-                 "id":51,
-                 "name":"dark_grass",
-                 "properties":[
-                        {
-                         "name":"messageID",
-                         "type":"int",
-                         "value":1
-                        }],
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":103,
-                 "x":-1133.5,
-                 "y":-421
-                }, 
-                {
                  "height":69,
                  "id":52,
                  "name":"treasure_hole",
@@ -1551,7 +1534,7 @@
                  "value":"Essa lenha est\u00e1 sequinha. H\u00e1 muitos dias n\u00e3o vemos chuva."
                 }],
          "type":"objectgroup",
-         "visible":true,
+         "visible":false,
          "x":0,
          "y":0
         }, 
@@ -1743,7 +1726,7 @@
                 }],
          "opacity":1,
          "type":"objectgroup",
-         "visible":true,
+         "visible":false,
          "x":0,
          "y":0
         }, 
@@ -1847,30 +1830,6 @@
                 }, 
                 {
                  "height":0,
-                 "id":65,
-                 "name":"",
-                 "point":true,
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":0,
-                 "x":-1078,
-                 "y":-356.667
-                }, 
-                {
-                 "height":0,
-                 "id":66,
-                 "name":"",
-                 "point":true,
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":0,
-                 "x":-944.667,
-                 "y":-167.333
-                }, 
-                {
-                 "height":0,
                  "id":69,
                  "name":"",
                  "point":true,
@@ -1883,42 +1842,6 @@
                 }, 
                 {
                  "height":0,
-                 "id":70,
-                 "name":"",
-                 "point":true,
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":0,
-                 "x":-240,
-                 "y":-588.667
-                }, 
-                {
-                 "height":0,
-                 "id":71,
-                 "name":"",
-                 "point":true,
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":0,
-                 "x":-212.667,
-                 "y":-710.667
-                }, 
-                {
-                 "height":0,
-                 "id":73,
-                 "name":"",
-                 "point":true,
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":0,
-                 "x":-503.333,
-                 "y":-735.333
-                }, 
-                {
-                 "height":0,
                  "id":75,
                  "name":"",
                  "point":true,
@@ -1928,18 +1851,6 @@
                  "width":0,
                  "x":-1104,
                  "y":-639.333
-                }, 
-                {
-                 "height":0,
-                 "id":76,
-                 "name":"",
-                 "point":true,
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":0,
-                 "x":-1257.33,
-                 "y":-61.3333
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -2110,12 +2021,12 @@
                  "type":"",
                  "visible":true,
                  "width":0,
-                 "x":-1164.16333333333,
-                 "y":-629.332666666667
+                 "x":-1164.16,
+                 "y":-629.333
                 }],
          "opacity":1,
          "type":"objectgroup",
-         "visible":true,
+         "visible":false,
          "x":0,
          "y":0
         }],

@@ -1,6 +1,7 @@
 import Phaser from 'phaser';
 import { LuminusSoundManager } from '../plugins/LuminusSoundManager';
 import { NineSlice } from 'phaser3-nineslice';
+import { PanelComponent } from '../components/PanelComponent';
 
 /**
  * @constant
@@ -149,48 +150,19 @@ export class SettingScene extends Phaser.Scene {
          * @type { string }
          * @default
          */
-        this.settingBackgroundSpriteName = 'settings_background';
+        this.settingBackgroundSpriteName = 'panel_background';
     }
 
     create() {
         this.luminusSoundManager = new LuminusSoundManager(this);
         this.luminusSoundManager.create();
+        this.panelComponent = new PanelComponent(this);
+        this.panelComponent.setTitleText('Settings');
 
-        this.dialog = this.add
-            .nineslice(
-                this.dialogXPosition,
-                this.dialogYPosition,
-                this.cameras.main.width - this.margin * 2,
-                this.cameras.main.height - this.dialogBottomOffset, // the width and height of your object
-                this.settingBackgroundSpriteName, // a key to an already loaded image
-                this.nineSliceOffsets, // the width and height to offset for a corner slice
-                this.nineSliceSafeArea // (optional) pixels to offset when computing the safe usage area
-            )
-            .setScrollFactor(0, 0)
-            .setOrigin(0, 0);
+        this.dialog = this.panelComponent.panelBackground;
         this.createAudioSlider();
 
-        this.settingHeader = this.add
-            .text(
-                (this.cameras.main.width - this.margin * 2) / 2,
-                this.settingHeaderMarginTop,
-                this.settingHeaderText,
-                {
-                    fontSize: this.settingHeaderFontSize,
-                    fontFamily: `${this.settingHeaderFontFamily}`,
-                }
-            )
-            .setOrigin(0.5, 0.5);
-        this.closeButton = this.add
-            .image(
-                this.cameras.main.width - this.closeButtonOffsetX,
-                this.settingHeader.y,
-                this.closeButtonSpriteName
-            )
-            .setInteractive()
-            .setScale(this.closeButtonScale)
-            .setScrollFactor(0, 0)
-            .setDepth(50);
+        this.closeButton = this.panelComponent.closeButton;
 
         this.closeButton.on('pointerdown', (pointer) => {
             this.scene.stop();
@@ -206,10 +178,7 @@ export class SettingScene extends Phaser.Scene {
                     (this.cameras.main.width - this.margin * 2) / 2,
                     this.settingHeaderMarginTop
                 );
-                this.closeButton.setPosition(
-                    this.cameras.main.width - this.closeButtonOffsetX,
-                    this.settingHeader.y
-                );
+                this.closeButton.setPosition(this.cameras.main.width - this.closeButtonOffsetX, this.settingHeader.y);
             }
         });
     }
@@ -237,19 +206,10 @@ export class SettingScene extends Phaser.Scene {
                 value: this.luminusSoundManager.getVolume(),
 
                 track: this.rexUI.add.roundRectangle(0, 0, 0, 0, 6, COLOR_DARK),
-                thumb: this.rexUI.add.roundRectangle(
-                    0,
-                    0,
-                    0,
-                    0,
-                    10,
-                    COLOR_LIGHT
-                ),
+                thumb: this.rexUI.add.roundRectangle(0, 0, 0, 0, 10, COLOR_LIGHT),
 
                 valuechangeCallback: (value) => {
-                    this.textAudioSlider.text = `Audio: ${
-                        value.toFixed(1) * 100
-                    }`;
+                    this.textAudioSlider.text = `Audio: ${value.toFixed(1) * 100}`;
                     this.luminusSoundManager.setVolume(value);
                 },
                 space: {

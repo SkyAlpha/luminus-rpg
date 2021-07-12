@@ -6,7 +6,7 @@ import { LuminusHealthBar } from '../plugins/LuminusHealthBar';
 import { LuminusKeyboardMouseController } from '../plugins/LuminusKeyboardMouseController';
 import { LuminusMovement } from '../plugins/LuminusMovement';
 import { BaseEntity } from './BaseEntity';
-import { EntityAttributes } from './EntityStats';
+import { EntityAttributes } from './EntityAttributes';
 
 /**
  * @class

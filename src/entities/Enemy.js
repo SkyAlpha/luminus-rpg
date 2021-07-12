@@ -3,7 +3,7 @@ import { AnimationNames } from '../consts/AnimationNames';
 import { LuminusAnimationManager } from '../plugins/LuminusAnimationManager';
 import { LuminusHealthBar } from '../plugins/LuminusHealthBar';
 import { BaseEntity } from './BaseEntity';
-import { EntityAttributes } from './EntityStats';
+import { EntityAttributes } from './EntityAttributes';
 import { Player } from './Player';
 import uniqid from 'uniqid';
 import { LuminusBattleManager } from '../plugins/LuminusBattleManager';
