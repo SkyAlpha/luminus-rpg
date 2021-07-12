@@ -3,8 +3,9 @@ import { ButtonMinus } from '../components/UI/ButtonMinus';
 import { ButtonPlus } from '../components/UI/ButtonPlus';
 import { Player } from '../entities/Player';
 import lodash from 'lodash';
-import { SceneToggleWatcher } from './wathcers/SceneToggleWatcher';
+import { SceneToggleWatcher } from './watchers/SceneToggleWatcher';
 import { LuminusInterfaceController } from '../plugins/LuminusInterfaceController';
+import { PanelComponent } from '../components/PanelComponent';
 export const AttributeSceneName = 'AttributeScene';
 
 export class AttributeScene extends Phaser.Scene {
@@ -48,6 +49,12 @@ export class AttributeScene extends Phaser.Scene {
         ];
 
         this.attributesUiArray = [];
+
+        /**
+         * The panel component.
+         * @type { PanelComponent }
+         */
+        this.panelComponent = null;
     }
 
     init(args) {
@@ -61,7 +68,9 @@ export class AttributeScene extends Phaser.Scene {
         this.interfaceController = new LuminusInterfaceController(this);
         this.lastRawAttributes = lodash.cloneDeep(this.player.attributes.rawAttributes);
         this.attributesUiArray = [];
-        this.attributesBackground = this.add.image(0, 0, this.atributesBackgroundSpriteName).setOrigin(0, 0);
+        this.panelComponent = new PanelComponent(this);
+        this.panelComponent.setTitleText('Attributes');
+        this.attributesBackground = this.panelComponent.panelBackground;
         const baseX = this.cameras.main.width / 2 - this.attributesBackground.width / 2;
         const baseY = this.cameras.main.height / 2 - this.attributesBackground.height / 2;
         this.attributesBackground.setPosition(baseX, baseY);
@@ -72,14 +81,7 @@ export class AttributeScene extends Phaser.Scene {
     }
 
     createCloseButton() {
-        this.closeButton = this.add
-            .image(
-                this.attributesBackground.x + this.attributesBackground.width * this.attributesBackground.scaleX - 45,
-                this.attributesBackground.y + 30,
-                'close_button'
-            )
-            .setDisplaySize(22, 22)
-            .setInteractive();
+        this.closeButton = this.panelComponent.closeButton;
 
         this.closeButton.on('pointerdown', (pointer) => {
             this.closeScene();
@@ -102,7 +104,7 @@ export class AttributeScene extends Phaser.Scene {
     }
 
     createAttributesButtons() {
-        const startPosition = 30;
+        const startPosition = 90;
         this.interfaceController.interfaceElements[1] = [];
         this.attributesConfiguration.forEach((attribute, i) => {
             this.interfaceController.interfaceElements[1][i] = [];
@@ -151,7 +153,7 @@ export class AttributeScene extends Phaser.Scene {
     createAttributesInfo() {
         const baseX =
             this.attributesBackground.x + 15 + (this.attributesBackground.width / 2) * this.attributesBackground.scaleX;
-        const baseY = this.attributesBackground.y + 55;
+        const baseY = this.attributesBackground.y + 115;
         this.atackText = this.add.text(baseX, baseY, `Atack: ${this.player.attributes.atack}`).setOrigin(0, 0.5);
         this.defenseText = this.add
             .text(baseX, this.atackText.y + this.atackText.height + 5, `Defense: ${this.player.attributes.defense}`)

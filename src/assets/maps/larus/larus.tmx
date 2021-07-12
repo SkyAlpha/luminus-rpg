@@ -781,7 +781,7 @@
   </chunk>
   </data>
  </layer>
- <objectgroup id="7" name="info">
+ <objectgroup id="7" name="info" visible="0">
   <properties>
    <property name="message" value="Essa lenha está sequinha. Há muitos dias não vemos chuva."/>
   </properties>
@@ -825,11 +825,6 @@
     <property name="message" value="- Snoop has already left for his daily walk."/>
    </properties>
   </object>
-  <object id="51" name="dark_grass" x="-1133.5" y="-421" width="103" height="111.5">
-   <properties>
-    <property name="messageID" type="int" value="1"/>
-   </properties>
-  </object>
   <object id="52" name="treasure_hole" x="-223.5" y="-149.5" width="46.5" height="69">
    <properties>
     <property name="message" value="Be careful not to fall in this hole! They say there is a dungeon down there."/>
@@ -861,7 +856,7 @@
    </properties>
   </object>
  </objectgroup>
- <objectgroup id="14" name="enemies">
+ <objectgroup id="14" name="enemies" visible="0">
   <object id="78" x="-830.667" y="-492.667" width="160.667" height="95.3333">
    <properties>
     <property name="id" value="2"/>
@@ -937,28 +932,10 @@
   <object id="38" x="932" y="393.5">
    <point/>
   </object>
-  <object id="65" x="-1078" y="-356.667">
-   <point/>
-  </object>
-  <object id="66" x="-944.667" y="-167.333">
-   <point/>
-  </object>
   <object id="69" x="-200" y="-186.667">
    <point/>
   </object>
-  <object id="70" x="-240" y="-588.667">
-   <point/>
-  </object>
-  <object id="71" x="-212.667" y="-710.667">
-   <point/>
-  </object>
-  <object id="73" x="-503.333" y="-735.333">
-   <point/>
-  </object>
   <object id="75" x="-1104" y="-639.333">
-   <point/>
-  </object>
-  <object id="76" x="-1257.33" y="-61.3333">
    <point/>
   </object>
  </objectgroup>
@@ -1002,7 +979,7 @@
    </properties>
   </object>
  </objectgroup>
- <objectgroup id="6" name="spawn">
+ <objectgroup id="6" name="spawn" visible="0">
   <object id="11" name="Spawn Point" x="-1164.16" y="-629.333">
    <point/>
   </object>
