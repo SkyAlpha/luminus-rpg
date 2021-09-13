@@ -8,8 +8,7 @@ import { LuminusHealthBar } from '../plugins/LuminusHealthBar';
 import { LuminusUtils } from '../utils/LuminusUtils';
 import { AttributeSceneName } from './AttributeScene';
 import { InventorySceneName } from './InventoryScene';
-import { IconDeviceChange } from './wathcers/IconDeviceChange';
-import { SceneToggleWatcher } from './wathcers/SceneToggleWatcher';
+import { SceneToggleWatcher } from './watchers/SceneToggleWatcher';
 
 /**
  * Scene for HUD Creation. It contains all the HUD of the game.

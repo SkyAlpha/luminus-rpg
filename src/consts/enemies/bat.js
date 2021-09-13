@@ -106,10 +106,19 @@ export const BatConfig = {
     flee: 3,
     hit: 5,
     exp: 50,
+    hit: 5,
     drops: [
         new EntityDrops(
             1, // Red Potion
             50 // 50% chance of dropping the item
+        ),
+        new EntityDrops(
+            2, // black Potion
+            5 // 5% chance of dropping the item
+        ),
+        new EntityDrops(
+            3, // Treasure Chest
+            1 // 1% chance of dropping the item
         ),
     ],
 };

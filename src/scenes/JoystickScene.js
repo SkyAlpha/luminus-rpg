@@ -95,15 +95,15 @@ export class JoystickScene extends Phaser.Scene {
          * @type { LuminusBattleManager }
          */
         this.luminusBattleManager = null;
+
+        /**
+         * Just a copy of the actual stick that will move the player arrownd.
+         */
+        this.phantomStick = null;
     }
 
     preload() {
-        this.load.scenePlugin(
-            'VirtualJoystickPlugin',
-            joystick,
-            'VirtualJoystickPlugin',
-            'pad'
-        );
+        this.load.scenePlugin('VirtualJoystickPlugin', joystick, 'VirtualJoystickPlugin', 'pad');
         this.load.atlas(this.atlasName, joystick_atlas_image, joystick_json);
     }
 
@@ -120,22 +120,18 @@ export class JoystickScene extends Phaser.Scene {
         this.isMobile = !this.sys.game.device.os.desktop ? true : false;
         if (this.isMobile) {
             const position_stick =
-                Math.sqrt(
-                    this.cameras.main.width ** 2 + this.cameras.main.height ** 2
-                ) * this.stickPositionMultiplier;
+                Math.sqrt(this.cameras.main.width ** 2 + this.cameras.main.height ** 2) * this.stickPositionMultiplier;
 
-            this.stick = this.pad
+            this.stick = this.pad.addHiddenStick(120);
+            this.phantomStick = this.pad
                 .addStick(0, 0, 120, this.atlasName, 'base', 'stick')
                 .alignBottomLeft(position_stick);
+
             this.buttonA = this.pad
                 .addButton(0, 120, this.atlasName, 'button0-up', 'button0-down')
                 .setName(this.buttonAName);
-            this.buttonA.posX =
-                this.cameras.main.width -
-                this.cameras.main.width * this.buttonAMultiplierXposition;
-            this.buttonA.posY =
-                this.cameras.main.height -
-                this.cameras.main.height * this.buttonAMultiplierXposition;
+            this.buttonA.posX = this.cameras.main.width - this.cameras.main.width * this.buttonAMultiplierXposition;
+            this.buttonA.posY = this.cameras.main.height - this.cameras.main.height * this.buttonAMultiplierXposition;
 
             // Sets the button B
             // this.buttonB = this.pad
@@ -147,21 +143,35 @@ export class JoystickScene extends Phaser.Scene {
 
             this.events.emit('setStick', this.stick);
 
+            this.input.on('pointerdown', (pointer) => {
+                const leftHalfX = this.cameras.main.width / 2;
+                if (pointer.x < leftHalfX) {
+                    this.phantomStick.posX = pointer.x;
+                    this.phantomStick.posY = pointer.y;
+                    this.phantomStick.isDown = true;
+                } else {
+                    this.stick.isDown = false;
+                }
+            });
+            this.input.on('pointerup', (pointer) => {
+                if (!this.phantomStick.isDown) {
+                    const position_resized =
+                        Math.sqrt(this.cameras.main.width ** 2 + this.cameras.main.height ** 2) *
+                        this.stickPositionMultiplier;
+                    this.phantomStick.alignBottomLeft(position_resized);
+                }
+            });
+
             this.scale.on('resize', (resize) => {
                 if (this.stick) {
                     const position_resized =
-                        Math.sqrt(resize.width ** 2 + resize.height ** 2) *
-                        this.stickPositionMultiplier;
+                        Math.sqrt(resize.width ** 2 + resize.height ** 2) * this.stickPositionMultiplier;
                     this.stick.alignBottomLeft(position_resized);
                     if (this.buttonA) {
                         this.buttonA.posX =
-                            this.cameras.main.width -
-                            this.cameras.main.width *
-                                this.buttonAMultiplierXposition;
+                            this.cameras.main.width - this.cameras.main.width * this.buttonAMultiplierXposition;
                         this.buttonA.posY =
-                            this.cameras.main.height -
-                            this.cameras.main.height *
-                                this.buttonAMultiplierYposition;
+                            this.cameras.main.height - this.cameras.main.height * this.buttonAMultiplierYposition;
                     }
                     // Button B not used for now.
                     if (this.buttonB) {
@@ -183,12 +193,7 @@ export class JoystickScene extends Phaser.Scene {
     createButtonActions() {
         if (this.buttonA) {
             this.buttonA.on('down', (buttonA) => {
-                if (
-                    this.player &&
-                    this.player.active &&
-                    this.player.canAtack &&
-                    !this.player.isAtacking
-                ) {
+                if (this.player && this.player.active && this.player.canAtack && !this.player.isAtacking) {
                     this.luminusBattleManager.atack(this.player);
                 }
             });

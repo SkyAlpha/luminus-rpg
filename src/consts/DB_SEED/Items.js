@@ -36,4 +36,16 @@ export const DB_SEED_ITEMS = [
         stackable: true,
         inventoryScale: 1.7, // How much should the item scale when the inventory is opened.
     },
+    {
+        id: 3,
+        name: 'Treasure',
+        type: ITEM_TYPE.USABLE,
+        buffType: BUFF_TYPES.ATK01,
+        description: `The treasure of the mighty, legend says that those who opened this box, became the most powerfull warriors of all time. (Increases the ATACK by 50 points for 120 seconds.)`,
+        script: 'buff atk 50 120;',
+        texture: 'treasure_chest',
+        sfx: 'heal',
+        stackable: true,
+        inventoryScale: 1.7, // How much should the item scale when the inventory is opened.
+    },
 ];
