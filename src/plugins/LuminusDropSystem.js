@@ -42,7 +42,7 @@ export class LuminusDropSystem {
 
             this.drops.forEach((drop) => {
                 const chance = Math.random() * 100;
-                if (chance - drop.chance >= 0 || drop.chance === 100) {
+                if (drop.chance - chance >= 0 || drop.chance === 100) {
                     let item = new Item(this.scene, pos.x, pos.y - 20, drop.id);
                     this.scene.tweens.add({
                         targets: item,

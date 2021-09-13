@@ -63,6 +63,7 @@ import lucius_portrait_beardless from '../assets/sprites/portraits/lucius_portra
 
 import red_potion from '../assets/sprites/consumables/red_potion.png';
 import atk_potion from '../assets/sprites/consumables/atk_potion.png';
+import treasure_chest from '../assets/sprites/chest.png';
 
 // Maps
 import dungeon_map from '../assets/maps/dungeon/dungeon_tileset.png';
@@ -279,6 +280,10 @@ export const Images = [
     {
         name: 'atk_potion',
         image: atk_potion,
+    },
+    {
+        name: 'treasure_chest',
+        image: treasure_chest,
     },
     {
         name: 'critical',
