@@ -25,7 +25,7 @@ export const EntityAttributes = {
      * Available stat points can be used to add new raw attributes.
      * @type { number }
      */
-    availableStatPoints: 5,
+    availableStatPoints: 1,
 
     /**
      * The bonus attributes of the entity.

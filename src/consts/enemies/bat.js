@@ -100,10 +100,11 @@ export const BatConfig = {
     id: 2,
     name: 'Bat',
     baseHealth: 10,
-    atack: 3,
+    atack: 7,
     defense: 1,
     speed: 30,
-    flee: 5,
+    flee: 3,
+    hit: 5,
     exp: 50,
     drops: [
         new EntityDrops(

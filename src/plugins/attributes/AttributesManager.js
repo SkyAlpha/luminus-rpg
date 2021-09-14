@@ -41,9 +41,15 @@ export class AttributesManager {
 
         /**
          * Controls if the player has leveled up.
-         * @type { number }
+         * @type { boolean }
          */
         this.leveledUp = false;
+
+        /**
+         * Controls if the player changed its attributes.
+         * @type { boolean }
+         */
+        this.changedAttribute = false;
 
         this.calculateStats();
 
@@ -65,6 +71,7 @@ export class AttributesManager {
 
         this.firstTime = false;
         this.leveledUp = false;
+        this.changedAttribute = false;
     }
 
     /**
@@ -86,12 +93,15 @@ export class AttributesManager {
             this.statsCopy.baseHealth +
             this.entity.attributes.level * 10 +
             this.entity.attributes.rawAttributes.vit * 3;
-        if (this.entity.healthBar) {
-            this.entity.healthBar.full = this.entity.attributes.baseHealth;
-            this.entity.healthBar.health = this.entity.attributes.baseHealth;
-            this.entity.healthBar.draw();
-        }
+        if (this.entity.healthBar) this.entity.healthBar.draw();
         if (this.firstTime || this.leveledUp) {
+            if (this.entity.healthBar && this.leveledUp) {
+                this.entity.healthBar.full = this.entity.attributes.baseHealth;
+                this.entity.healthBar.health = this.entity.attributes.baseHealth;
+                this.entity.healthBar.draw();
+            } else if (this.entity.healthBar) {
+                this.entity.healthBar.full = this.entity.attributes.baseHealth;
+            }
             this.entity.attributes.health = this.entity.attributes.baseHealth;
             if (this.entity.luminusHUDProgressBar) this.entity.luminusHUDProgressBar.updateHealth();
         }
@@ -100,7 +110,7 @@ export class AttributesManager {
      * Calculates defense every tick.
      */
     calculateDefense() {
-        if (this.firstTime || this.leveledUp) {
+        if (this.firstTime || this.leveledUp || this.changedAttribute) {
             this.entity.attributes.defense = this.statsCopy.defense + this.entity.attributes.rawAttributes.vit;
         }
     }
@@ -108,7 +118,7 @@ export class AttributesManager {
      * Calculates Atack every Tick.
      */
     calculateAtack() {
-        if (this.firstTime || this.leveledUp) {
+        if (this.firstTime || this.leveledUp || this.changedAttribute) {
             const multiplicator = Math.floor(this.entity.attributes.rawAttributes.str / ATTRIBUTES_CONST.ATK.DIVIDER01);
             const atackBonus = multiplicator * ATTRIBUTES_CONST.ATK.BONUS_MULTIPLIER;
             const level_multiplier = Math.floor(this.entity.attributes.level / ATTRIBUTES_CONST.ATK.DIVIDER02);
@@ -141,7 +151,7 @@ export class AttributesManager {
      * Calculates Critical every Tick.
      */
     calculateCritical() {
-        if (this.firstTime || this.leveledUp) {
+        if (this.firstTime || this.leveledUp || this.changedAttribute) {
             this.entity.attributes.critical = this.statsCopy.critical + this.entity.attributes.rawAttributes.agi;
         }
     }
@@ -149,7 +159,7 @@ export class AttributesManager {
      * Calculates Flee every tick.
      */
     calculateFlee() {
-        if (this.firstTime || this.leveledUp) {
+        if (this.firstTime || this.leveledUp || this.changedAttribute) {
             this.entity.attributes.flee = this.statsCopy.flee + this.entity.attributes.rawAttributes.agi;
         }
     }
@@ -158,7 +168,7 @@ export class AttributesManager {
      * Calculates Hit every tick.
      */
     calculateHit() {
-        if (this.firstTime || this.leveledUp) {
+        if (this.firstTime || this.leveledUp || this.changedAttribute) {
             this.entity.attributes.hit = this.statsCopy.hit + this.entity.attributes.rawAttributes.dex;
         }
     }
@@ -167,7 +177,7 @@ export class AttributesManager {
         if (this.entity.attributes.availableStatPoints >= amount) {
             this.entity.attributes.rawAttributes[attribute] += amount;
             this.entity.attributes.availableStatPoints -= amount;
-            this.leveledUp = true;
+            this.changedAttribute = true;
         }
         console.log(this.entity.attributes);
     }
@@ -176,7 +186,7 @@ export class AttributesManager {
         if (this.entity.attributes.rawAttributes[attribute] > lastRawAttributes[attribute]) {
             this.entity.attributes.rawAttributes[attribute] -= amount;
             this.entity.attributes.availableStatPoints += amount;
-            this.leveledUp = true;
+            this.changedAttribute = true;
         }
         console.log(this.entity.attributes);
     }

@@ -101,10 +101,11 @@ export const RatConfig = {
     id: 1,
     name: 'Rat',
     baseHealth: 10,
-    atack: 2,
+    atack: 5,
     defense: 1,
     speed: 25,
-    flee: 1,
+    flee: 2,
+    hit: 5,
     exp: 25,
     drops: [
         new EntityDrops(

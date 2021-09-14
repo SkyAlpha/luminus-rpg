@@ -233,7 +233,7 @@ export class LuminusBattleManager extends AnimationNames {
                 target.attributes.health -= damage;
             } else {
                 target.attributes.health -= 1;
-                target.attributes.healthBar.decrease(1);
+                target.healthBar.decrease(1);
             }
 
             if (target.luminusHUDProgressBar) {

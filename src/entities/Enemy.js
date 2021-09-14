@@ -35,6 +35,8 @@ export class Enemy extends Phaser.Physics.Arcade.Sprite {
         Object.assign(this.attributes, EntityAttributes);
         Object.assign(this, new AnimationNames());
 
+        this.setAttributes(enemyConfig);
+
         /**
          * The name of the Entity. It's used for differenciation of the entityes.
          * @type { string }
@@ -145,6 +147,16 @@ export class Enemy extends Phaser.Physics.Arcade.Sprite {
         // All the dependencies that need to be inside the update game loop.
         this.scene.events.on('update', this.onUpdate, this);
         Object.assign(this, new LuminusDropSystem(scene, this, enemyConfig));
+    }
+
+    setAttributes(attributes) {
+        if (this.attributes.atack) {
+            this.attributes.atack = attributes.atack;
+            this.attributes.hit = attributes.hit;
+            this.attributes.flee = attributes.flee;
+            this.attributes.defense = attributes.defense;
+            this.attributes.health = attributes.baseHealth;
+        }
     }
 
     /**
