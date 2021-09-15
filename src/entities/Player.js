@@ -130,29 +130,7 @@ export class Player extends Phaser.Physics.Arcade.Sprite {
          */
         this.dustParticleName = 'walk_dust';
 
-        // /**
-        //  * The dust particles that the entity will emit when it moves.
-        //  * @type { Phaser.GameObjects.Particles }
-        //  */
-        this.walkDust = this.scene.add
-            .particles(this.dustParticleName)
-            .setDepth(0)
-            .createEmitter({
-                follow: this.container,
-                speed: 2,
-                scale: { start: 0.1, end: 0.25 },
-                frequency: 300,
-                quantity: 20,
-                lifespan: 1000,
-                rotate: { min: 0, max: 360 },
-                alpha: { start: 1, end: 0 },
-                followOffset: {
-                    y: 10,
-                },
-            });
-
         this.setDepth(1);
-        this.walkDust.on = false;
 
         /**
          * The class responsible for managing Keyboard and Mouse inputs.
@@ -185,10 +163,34 @@ export class Player extends Phaser.Physics.Arcade.Sprite {
          * @type { Phaser.GameObjects.Container }
          */
         this.container = new Phaser.GameObjects.Container(this.scene, x, y, [this, this.healthBar, this.hitZone]);
+
         // Initializes the physics.
         this.setPhysics();
+        /**
+         * The dust particles that the entity will emit when it moves.
+         * @type { Phaser.GameObjects.Particles }
+         */
+        this.walkDust = this.scene.add
+            .particles(this.dustParticleName)
+            .setDepth(0)
+            .createEmitter({
+                follow: this.container,
+                speed: 2,
+                scale: { start: 0.1, end: 0.25 },
+                frequency: 300,
+                quantity: 20,
+                lifespan: 1000,
+                rotate: { min: 0, max: 360 },
+                alpha: { start: 1, end: 0 },
+                followOffset: {
+                    y: 10,
+                },
+            });
+
+        this.walkDust.on = false;
         // All the dependencies that need to be inside the update game loop.
         this.scene.events.on('update', this.onUpdate, this);
+        this.walkDust.x;
     }
 
     /**

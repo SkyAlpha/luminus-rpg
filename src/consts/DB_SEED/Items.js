@@ -44,7 +44,19 @@ export const DB_SEED_ITEMS = [
         description: `The treasure of the mighty, legend says that those who opened this box, became the most powerfull warriors of all time. (Increases the ATACK by 50 points for 120 seconds.)`,
         script: 'buff atk 50 120;',
         texture: 'treasure_chest',
-        sfx: 'heal',
+        sfx: 'equip_item',
+        stackable: true,
+        inventoryScale: 1.7, // How much should the item scale when the inventory is opened.
+    },
+    {
+        id: 4,
+        name: 'Mighty Sword',
+        type: ITEM_TYPE.USABLE,
+        buffType: BUFF_TYPES.ATK02,
+        description: `A powerfull sword created by merlin The Wizzard of Wizzards. Used to break stones, it's durability is out of the blue. (Increases the ATACK by 5 points for 120 seconds. Carrier can only have one of these)`,
+        script: 'buff atk 5 120;',
+        texture: 'mighty_sword',
+        sfx: 'equip_item',
         stackable: true,
         inventoryScale: 1.7, // How much should the item scale when the inventory is opened.
     },
