@@ -64,6 +64,7 @@ import lucius_portrait_beardless from '../assets/sprites/portraits/lucius_portra
 import red_potion from '../assets/sprites/consumables/red_potion.png';
 import atk_potion from '../assets/sprites/consumables/atk_potion.png';
 import treasure_chest from '../assets/sprites/chest.png';
+import mighty_sword from '../assets/sprites/mighty_sword.png';
 
 // Maps
 import dungeon_map from '../assets/maps/dungeon/dungeon_tileset.png';
@@ -124,6 +125,7 @@ import start_game from '../assets/sound/sfx/menu/start_game.mp3';
 
 // Interaction
 import get_items from '../assets/sound/sfx/interection/get_items.mp3';
+import equip_item from '../assets/sound/sfx/interection/equip_item.mp3';
 
 // Consumables
 import heal from '../assets/sound/sfx/consumables/heal.mp3';
@@ -284,6 +286,10 @@ export const Images = [
     {
         name: 'treasure_chest',
         image: treasure_chest,
+    },
+    {
+        name: 'mighty_sword',
+        image: mighty_sword,
     },
     {
         name: 'critical',
@@ -528,6 +534,10 @@ export const LuminusAudios = [
     {
         name: 'get_items',
         audio: get_items,
+    },
+    {
+        name: 'equip_item',
+        audio: equip_item,
     },
     {
         name: 'start_game',

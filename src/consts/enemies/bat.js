@@ -120,5 +120,9 @@ export const BatConfig = {
             3, // Treasure Chest
             2 // 1% chance of dropping the item
         ),
+        new EntityDrops(
+            4, // Mighty Sword
+            5 // 5% chance of dropping the item
+        ),
     ],
 };

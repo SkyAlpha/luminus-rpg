@@ -113,9 +113,10 @@ export class Item extends Phaser.Physics.Arcade.Sprite {
     pickItemLogic() {
         // Prevents the Player from getting more than one item.
         let canCollide = true;
+        const playerEntity = this.scene[this.scenePlayerVariableName];
         this.scene.physics.add.collider(
             this,
-            this.scene[this.scenePlayerVariableName],
+            playerEntity.hitZone,
             /**
              * @param { Item } item the Item that is being picked up.
              * @param { Player } player The player that is picking the item up.
@@ -128,12 +129,12 @@ export class Item extends Phaser.Physics.Arcade.Sprite {
                 this.scene.tweens.add({
                     targets: item,
                     props: {
-                        x: player.container.x,
-                        y: player.container.y,
+                        x: playerEntity.container.x,
+                        y: playerEntity.container.y,
                         scale: 0.2,
                     },
                     onComplete: (tween) => {
-                        if (tween.totalProgress === 1) item.addInventory(player);
+                        if (tween.totalProgress === 1) item.addInventory(playerEntity);
                     },
                     ease: 'Quad',
                     duration: 350,

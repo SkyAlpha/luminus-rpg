@@ -36,13 +36,13 @@ export class LuminusDropSystem {
          * Drops the items from an entity.
          */
         this.dropItems = () => {
-            let zone = this.scene.add.zone(this.entity.container.x, this.entity.container.y, 10, 10);
+            let zone = this.scene.add.zone(this.entity.container.x, this.entity.container.y, 16, 16);
             var spriteBounds = Phaser.Geom.Rectangle.Inflate(Phaser.Geom.Rectangle.Clone(zone), 0, 0);
-            const pos = Phaser.Geom.Rectangle.Random(spriteBounds);
 
             this.drops.forEach((drop) => {
                 const chance = Math.random() * 100;
                 if (drop.chance - chance >= 0 || drop.chance === 100) {
+                    const pos = Phaser.Geom.Rectangle.Random(spriteBounds);
                     let item = new Item(this.scene, pos.x, pos.y - 20, drop.id);
                     this.scene.tweens.add({
                         targets: item,
