@@ -1,10 +1,12 @@
 import { Bat } from './enemies/bat';
+import { Ogre } from './enemies/ogre';
 import { Rat } from './enemies/rat';
 import { Player } from './player/Player';
 
 export const Animations = [
     ...Bat,
     ...Rat,
+    ...Ogre,
     ...Player,
 
     // Chat iteraction box.

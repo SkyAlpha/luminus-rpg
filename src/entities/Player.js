@@ -115,7 +115,7 @@ export class Player extends Phaser.Physics.Arcade.Sprite {
             this.width * 2,
             this.attributes.baseHealth,
             this.width / 2.2,
-            -(this.height / 2)
+            this.height / 2
         );
 
         /**
