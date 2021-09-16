@@ -114,7 +114,7 @@ export const BatConfig = {
         ),
         new EntityDrops(
             2, // black Potion
-            5 // 5% chance of dropping the item
+            100 // 5% chance of dropping the item
         ),
         new EntityDrops(
             3, // Treasure Chest
@@ -122,7 +122,7 @@ export const BatConfig = {
         ),
         new EntityDrops(
             4, // Mighty Sword
-            5 // 5% chance of dropping the item
+            100 // 5% chance of dropping the item
         ),
     ],
 };
