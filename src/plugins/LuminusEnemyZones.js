@@ -70,39 +70,20 @@ export class LuminusEnemyZones {
      */
     create() {
         const objectZones = this.map.getObjectLayer(this.tiledObjectLayer);
-        if (
-            objectZones &&
-            objectZones.objects &&
-            objectZones.objects.length > 0
-        ) {
+        if (objectZones && objectZones.objects && objectZones.objects.length > 0) {
             objectZones.objects.forEach((infoObj) => {
-                let zone = this.scene.add.zone(
-                    infoObj.x,
-                    infoObj.y,
-                    infoObj.width,
-                    infoObj.height
-                );
-                var spriteBounds = Phaser.Geom.Rectangle.Inflate(
-                    Phaser.Geom.Rectangle.Clone(zone),
-                    0,
-                    0
-                );
+                let zone = this.scene.add.zone(infoObj.x, infoObj.y, infoObj.width, infoObj.height);
+                var spriteBounds = Phaser.Geom.Rectangle.Inflate(Phaser.Geom.Rectangle.Clone(zone), 0, 0);
                 if (this.createFromProperties && infoObj.properties) {
-                    let number = infoObj.properties.find(
-                        (f) => f.name === this.numberPropertyName
-                    );
+                    let number = infoObj.properties.find((f) => f.name === this.numberPropertyName);
 
                     if (number) {
                         number = number.value;
                     }
 
-                    let texture = infoObj.properties.find(
-                        (f) => f.name === this.texturePropertyName
-                    );
+                    let texture = infoObj.properties.find((f) => f.name === this.texturePropertyName);
 
-                    let id = infoObj.properties.find(
-                        (f) => f.name === this.idPropertyName
-                    );
+                    let id = infoObj.properties.find((f) => f.name === this.idPropertyName);
 
                     if (texture) {
                         texture = texture.value;
@@ -117,9 +98,7 @@ export class LuminusEnemyZones {
                             parseInt(id.value)
                         );
                         const idleDown = `${this.idlePrefixAnimation}${this.downAnimationSufix}`;
-                        const idleAnimation = texture
-                            ? `${texture}-${idleDown}`
-                            : `bat-${idleDown}`;
+                        const idleAnimation = texture ? `${texture}-${idleDown}` : `bat-${idleDown}`;
                         enemy.anims.play(idleAnimation);
                         enemy.body.setSize(enemy.width, enemy.height);
                         this.scene.enemies.push(enemy);

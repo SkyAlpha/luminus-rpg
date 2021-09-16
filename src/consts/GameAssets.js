@@ -81,6 +81,8 @@ import atlas_character_image from '../assets/sprites/character.png';
 import atlas_character_image_json from '../assets/sprites/character.json';
 import atlas_bat_image from '../assets/sprites/bat.png';
 import atlas_bat_image_json from '../assets/sprites/bat.json';
+import atlas_ogre_image from '../assets/sprites/ogre.png';
+import atlas_ogre_image_json from '../assets/sprites/ogre.json';
 import atlas_rat_image from '../assets/sprites/rat.png';
 import atlas_rat_image_json from '../assets/sprites/rat.json';
 import atlas_slash_image from '../assets/sprites/slash.png';
@@ -432,6 +434,11 @@ export const AtlasConfig = [
         name: 'bat',
         image: atlas_bat_image,
         json: atlas_bat_image_json,
+    },
+    {
+        name: 'ogre',
+        image: atlas_ogre_image,
+        json: atlas_ogre_image_json,
     },
     {
         name: 'rat',

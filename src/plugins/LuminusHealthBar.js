@@ -61,7 +61,7 @@ export class LuminusHealthBar extends Phaser.GameObjects.Sprite {
          * Y-Axis Position.
          * @type { number }
          */
-        this.y = y - offY;
+        this.y = y + offY;
         /**
          * The Alpha / Opacity of the healthbar.
          * @type { number }
