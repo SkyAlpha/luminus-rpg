@@ -87,9 +87,9 @@ export class LuminusConsumableManager {
                 break;
             case 'atk':
                 /** @type {ConsumableBonus} */
-                const consumableBonus = player.attributes.bonus.consumable.find(
-                    (consumableItem) => consumableItem.uniqueId === item.buffType.id
-                );
+                const consumableBonus = player.attributes.bonus.consumable.find((consumableItem) => {
+                    return consumableItem.uniqueId === item.buffType.id;
+                });
                 if (consumableBonus) {
                     player.scene.sound.play(item.useSfx);
                     console.log(`Increased ${action[2]} ATK for ${action[3]} seconds`);
@@ -131,6 +131,6 @@ export class LuminusConsumableManager {
     changeStats(player, bonus, sign = 1) {
         player.attributes[bonus.statBonus] = player.attributes[bonus.statBonus] + bonus.value * sign;
         const index = player.attributes.bonus.consumable.indexOf(bonus);
-        player.attributes.bonus.consumable.splice(index, 1);
+        if (index != -1) player.attributes.bonus.consumable.splice(index, 1);
     }
 }

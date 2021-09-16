@@ -125,9 +125,11 @@ export class AttributesManager {
             const level_atack_bonus = level_multiplier * ATTRIBUTES_CONST.ATK.BONUS_LEVEL_MULTIPLIER;
             let consumable_atack = 0;
             this.entity.attributes.bonus.consumable.forEach((item) => {
-                if (item.uniqueId === BUFF_TYPES.ATK01.id) {
-                    consumable_atack += parseInt(item.value);
-                }
+                Object.keys(BUFF_TYPES).forEach((key) => {
+                    if (item.uniqueId === BUFF_TYPES[key].id) {
+                        consumable_atack += parseInt(item.value);
+                    }
+                });
             });
             this.entity.attributes.atack =
                 this.statsCopy.atack +
@@ -179,7 +181,6 @@ export class AttributesManager {
             this.entity.attributes.availableStatPoints -= amount;
             this.changedAttribute = true;
         }
-        console.log(this.entity.attributes);
     }
 
     removeAttribute(attribute, amount, lastRawAttributes) {
@@ -188,6 +189,5 @@ export class AttributesManager {
             this.entity.attributes.availableStatPoints += amount;
             this.changedAttribute = true;
         }
-        console.log(this.entity.attributes);
     }
 }

@@ -46,7 +46,6 @@ export class ExpManager {
         this.displayText = new LuminusEntityTextDisplay(entity.scene);
         this.displayText.displayDamage('LEVEL UP!!', entity);
 
-        console.log(entity.texture.key);
         let origin = entity.getTopLeft();
         var textures = entity.scene.textures;
         let pixel;
