@@ -1,4 +1,12 @@
 { "compressionlevel":-1,
+ "editorsettings":
+    {
+     "export":
+        {
+         "format":"json",
+         "target":"larus.json"
+        }
+    },
  "height":100,
  "infinite":true,
  "layers":[
@@ -1558,31 +1566,26 @@
                  "y":-492.667
                 }, 
                 {
-                 "height":93.3333,
+                 "height":61.3333,
                  "id":79,
                  "name":"",
                  "properties":[
                         {
                          "name":"id",
                          "type":"string",
-                         "value":"3"
+                         "value":"2"
                         }, 
                         {
                          "name":"number",
                          "type":"int",
-                         "value":5
-                        }, 
-                        {
-                         "name":"texture",
-                         "type":"string",
-                         "value":"ogre"
+                         "value":3
                         }],
                  "rotation":0,
                  "type":"",
                  "visible":true,
-                 "width":174,
-                 "x":-1102.66666666667,
-                 "y":-123.999966666667
+                 "width":126,
+                 "x":-1069.33333333333,
+                 "y":-647.999966666667
                 }, 
                 {
                  "height":93.3333,
@@ -1669,18 +1672,13 @@
                          "name":"number",
                          "type":"int",
                          "value":2
-                        }, 
-                        {
-                         "name":"texture",
-                         "type":"string",
-                         "value":"ogre"
                         }],
                  "rotation":0,
                  "type":"",
                  "visible":true,
                  "width":84,
-                 "x":-392.667,
-                 "y":-173.333666666667
+                 "x":-496.667,
+                 "y":-270.667
                 }, 
                 {
                  "height":62,
@@ -1690,17 +1688,12 @@
                         {
                          "name":"id",
                          "type":"string",
-                         "value":"1"
+                         "value":"2"
                         }, 
                         {
                          "name":"number",
                          "type":"int",
-                         "value":5
-                        }, 
-                        {
-                         "name":"texture",
-                         "type":"string",
-                         "value":"rat"
+                         "value":3
                         }],
                  "rotation":0,
                  "type":"",
@@ -1730,33 +1723,6 @@
                  "width":142.25,
                  "x":-745.75,
                  "y":-643
-                }, 
-                {
-                 "height":92.6666666666667,
-                 "id":92,
-                 "name":"",
-                 "properties":[
-                        {
-                         "name":"id",
-                         "type":"string",
-                         "value":"2"
-                        }, 
-                        {
-                         "name":"number",
-                         "type":"int",
-                         "value":5
-                        }, 
-                        {
-                         "name":"texture",
-                         "type":"string",
-                         "value":"bat"
-                        }],
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":208.666333333333,
-                 "x":-813.6665,
-                 "y":106.333333333333
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -2065,10 +2031,10 @@
          "y":0
         }],
  "nextlayerid":16,
- "nextobjectid":93,
+ "nextobjectid":92,
  "orientation":"orthogonal",
  "renderorder":"right-down",
- "tiledversion":"1.7.2",
+ "tiledversion":"1.7.0",
  "tileheight":16,
  "tilesets":[
         {

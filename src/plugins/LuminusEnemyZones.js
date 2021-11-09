@@ -1,5 +1,6 @@
 import Phaser, { GameObjects } from 'phaser';
 import { AnimationNames } from '../consts/AnimationNames';
+import { EnemiesSeedConfig } from '../consts/enemies/EnemiesSeedConfig';
 import { Enemy } from '../entities/Enemy';
 
 /**
@@ -85,8 +86,11 @@ export class LuminusEnemyZones {
 
                     let id = infoObj.properties.find((f) => f.name === this.idPropertyName);
 
-                    if (texture) {
-                        texture = texture.value;
+                    let enemyConfig = EnemiesSeedConfig.find((e) => e.id === parseInt(id.value));
+                    console.log(enemyConfig);
+
+                    if (enemyConfig) {
+                        texture = enemyConfig.texture;
                     }
                     for (let i = 0; i < number; i++) {
                         const pos = Phaser.Geom.Rectangle.Random(spriteBounds);

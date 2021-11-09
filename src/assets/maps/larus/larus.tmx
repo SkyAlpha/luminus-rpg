@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.5" tiledversion="1.7.2" orientation="orthogonal" renderorder="right-down" width="100" height="100" tilewidth="16" tileheight="16" infinite="1" nextlayerid="16" nextobjectid="93">
+<map version="1.5" tiledversion="1.7.0" orientation="orthogonal" renderorder="right-down" width="100" height="100" tilewidth="16" tileheight="16" infinite="1" nextlayerid="16" nextobjectid="92">
  <editorsettings>
   <export target="larus.json" format="json"/>
  </editorsettings>
@@ -863,11 +863,10 @@
     <property name="number" type="int" value="5"/>
    </properties>
   </object>
-  <object id="79" x="-1102.67" y="-124" width="174" height="93.3333">
+  <object id="79" x="-1069.33" y="-648" width="126" height="61.3333">
    <properties>
-    <property name="id" value="3"/>
-    <property name="number" type="int" value="5"/>
-    <property name="texture" value="ogre"/>
+    <property name="id" value="2"/>
+    <property name="number" type="int" value="3"/>
    </properties>
   </object>
   <object id="80" x="-1127.83" y="97.0003" width="146" height="93.3333">
@@ -889,31 +888,22 @@
     <property name="number" type="int" value="2"/>
    </properties>
   </object>
-  <object id="84" x="-392.667" y="-173.334" width="84" height="68.6667">
+  <object id="84" x="-496.667" y="-270.667" width="84" height="68.6667">
    <properties>
     <property name="id" value="2"/>
     <property name="number" type="int" value="2"/>
-    <property name="texture" value="ogre"/>
    </properties>
   </object>
   <object id="85" x="-901.334" y="-334.667" width="115.333" height="62">
    <properties>
-    <property name="id" value="1"/>
-    <property name="number" type="int" value="5"/>
-    <property name="texture" value="rat"/>
+    <property name="id" value="2"/>
+    <property name="number" type="int" value="3"/>
    </properties>
   </object>
   <object id="91" x="-745.75" y="-643" width="142.25" height="92.5">
    <properties>
     <property name="id" value="2"/>
     <property name="number" type="int" value="3"/>
-   </properties>
-  </object>
-  <object id="92" x="-813.667" y="106.333" width="208.666" height="92.6667">
-   <properties>
-    <property name="id" value="2"/>
-    <property name="number" type="int" value="5"/>
-    <property name="texture" value="bat"/>
    </properties>
   </object>
  </objectgroup>
