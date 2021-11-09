@@ -119,7 +119,7 @@ export class Enemy extends Phaser.Physics.Arcade.Sprite {
             0,
             this.width,
             this.attributes.health,
-            this.width / 4,
+            enemyConfig.healthBarOffsetX,
             enemyConfig.healthBarOffsetY
         );
 

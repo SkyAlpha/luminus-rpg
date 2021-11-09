@@ -99,6 +99,7 @@ export const Bat = [
 export const BatConfig = {
     id: 2,
     name: 'Bat',
+    texture: 'bat',
     baseHealth: 10,
     atack: 7,
     defense: 1,
@@ -107,6 +108,7 @@ export const BatConfig = {
     hit: 5,
     exp: 50,
     hit: 5,
+    healthBarOffsetX: -6,
     healthBarOffsetY: 16,
     drops: [
         new EntityDrops(

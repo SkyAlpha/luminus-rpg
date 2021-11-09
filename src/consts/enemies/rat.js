@@ -100,6 +100,7 @@ export const Rat = [
 export const RatConfig = {
     id: 1,
     name: 'Rat',
+    texture: 'rat',
     baseHealth: 10,
     atack: 5,
     defense: 1,
@@ -107,6 +108,7 @@ export const RatConfig = {
     flee: 2,
     hit: 5,
     exp: 25,
+    healthBarOffsetX: -5,
     healthBarOffsetY: 16,
     drops: [
         new EntityDrops(

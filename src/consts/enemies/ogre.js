@@ -99,6 +99,7 @@ export const Ogre = [
 export const OgreConfig = {
     id: 3,
     name: 'Ogre',
+    texture: 'ogre',
     baseHealth: 20,
     atack: 8,
     defense: 4,
@@ -107,7 +108,8 @@ export const OgreConfig = {
     hit: 5,
     exp: 100,
     hit: 5,
-    healthBarOffsetY: 30,
+    healthBarOffsetX: -5,
+    healthBarOffsetY: 17,
     drops: [
         new EntityDrops(
             3, // Treasure Chest
