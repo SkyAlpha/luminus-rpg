@@ -1,0 +1,33 @@
+version: '3'
+
+services:
+  postgres:
+    image: postgres
+    container_name: luminus_postgres
+    environment:
+      POSTGRES_USER: luminus
+      POSTGRES_PASSWORD: luminus
+    ports:
+      - 15432:5432
+    networks:
+      - luminus-network
+    volumes:
+      - ./create-database.sql:/docker-entrypoint-initdb.d/init.sql
+
+  pgadmin:
+    image: dpage/pgadmin4
+    container_name: luminus_pgadmin
+    environment:
+      PGADMIN_DEFAULT_EMAIL: pgadmin4@pgadmin.org
+      PGADMIN_DEFAULT_PASSWORD: admin
+    ports:
+      - 16543:16543
+    depends_on:
+      - postgres
+    networks:
+      - luminus-network
+
+networks: 
+  luminus-network:
+    name: luminus_network
+    driver: bridge
