@@ -8,6 +8,7 @@ Thumbs.db
 
 # Vendors
 node_modules/
+server/node_modules/
 
 #Documentacion
 docs/
