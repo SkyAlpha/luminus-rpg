@@ -10,6 +10,7 @@ export default {
     methods: {
         async getDialogues() {
             const { data } = await axios.get('http://localhost:3000/api/v1/dialogues');
+            console.log(data);
             this.dialogues = data;
         },
     },
