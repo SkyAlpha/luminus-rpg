@@ -9,6 +9,7 @@ Thumbs.db
 # Vendors
 node_modules/
 server/node_modules/
+UIManager/node_modules/
 
 #Documentacion
 docs/
