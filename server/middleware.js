@@ -1,3 +1,7 @@
 module.exports = (app) => {
-    //app.use(routes(app));
+    app.use(
+        require('cors')({
+            origin: `*`,
+        })
+    );
 };

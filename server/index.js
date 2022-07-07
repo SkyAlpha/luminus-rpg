@@ -5,6 +5,7 @@ const middleware = require('./middleware');
 
 const app = express();
 const port = 3000;
+require('./middleware')(app);
 require('./routes')(app);
 
 //const DialogueModel = require('./models/DialogueModel');
