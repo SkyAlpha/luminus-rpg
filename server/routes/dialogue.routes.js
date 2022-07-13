@@ -8,8 +8,27 @@ router.get(`/dialogues`, async (req, res) => {
         include: {
             model: DialogueRowModel,
             as: 'chat',
-            order: [['chat.id', 'ASC']],
+            order: [['id', 'ASC']],
+            separate: true,
         },
+    });
+
+    res.json(response);
+});
+
+router.post(`/dialogues/create-parent`, async (req, res) => {
+    const response = await DialogueModel.findOrCreate({
+        id: req.body.id,
+        name: req.body.name,
+    });
+
+    res.json(response);
+});
+
+router.post(`/dialogues/create-row`, async (req, res) => {
+    const response = await DialogueModel.findOrCreate({
+        id: req.body.id,
+        name: req.body.name,
     });
 
     res.json(response);
