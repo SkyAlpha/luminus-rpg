@@ -1,3 +1,4 @@
+import { isNumber } from 'lodash';
 import { CHATS } from '../consts/DB_SEED/Chats';
 import { Player } from '../entities/Player';
 import { LuminusDialogBox } from './LuminusDialogBox';
@@ -74,6 +75,9 @@ export class LuminusTiledInfoBox {
 					return;
 				}
 				let messageID = obj.value;
+				if (!isNumber(messageID)) {
+					return;
+				}
 				let chat = CHATS.find((c) => c.id == messageID);
 				this.scene.physics.add.existing(zone);
 				zone.setOrigin(0, 0);
