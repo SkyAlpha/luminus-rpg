@@ -307,19 +307,83 @@ export class LuminusDialogBox {
 		this.luminusTypingSoundManager.create();
 		// First thing to do is to check if it's mobile.
 		this.isMobile = !this.scene.sys.game.device.os.desktop ? true : false;
-		this.dialog = this.scene.add.nineslice(
-			this.margin,
-			this.cameraHeight - this.dialogHeight - this.margin, // this is the starting x/y location
-			this.cameraWidth - this.margin * 2,
-			this.dialogHeight, // the width and height of your object
-			this.dialogSpriteName, // a key to an already loaded image
-			this.nineSliceOffsets, // the width and height to offset for a corner slice
-			this.nineSliceSafeArea // (optional) pixels to offset when computing the safe usage area
-		);
-		this.dialog.setScrollFactor(0, 0);
-		this.dialog.depth = 99;
-		this.dialog.visible = false;
 
+		this.createDialogueBox();
+		this.createInteractionButtons();
+		this.createDialogueElements();
+
+		if (this.gamepad) {
+			this.setGamepadTextures();
+		}
+		this.scene.input.gamepad.on('connected', (pad) => {
+			this.gamepad = pad;
+			this.setGamepadTextures();
+		});
+		this.scene.input.gamepad.on('down', (pad) => {
+			this.gamepad = pad;
+			this.checkButtonDown();
+		});
+	}
+
+	/**
+	 * @private
+	 * Creates the dialogue elements.
+	 * Left and Right side talkers. Boxes with names and portraits.
+	 */
+	createDialogueElements() {
+		this.leftPortraitImage = this.scene.add.image(
+			this.dialog.x + this.dialog.scaleX * 100,
+			this.dialog.y - this.dialog.scaleY * 60,
+			''
+		);
+		this.leftPortraitImage.visible = false;
+
+		this.leftName = 'Game Master';
+		this.leftNameText = this.scene.add
+			.text(this.dialog.x + this.margin, this.dialog.y + this.dialog.scaleY * 20, ` ${this.leftName}: `, {
+				fontSize: this.fontSize,
+				letterSpacing: this.letterSpacing,
+				fontFamily: this.fontFamily,
+				color: 'white',
+				backgroundColor: 'black',
+			})
+			.setScrollFactor(0, 0)
+			.setDepth(99999999999999999);
+		this.leftNameText.visible = false;
+
+		this.rightPortraitImage = this.scene.add.image(
+			this.dialog.x + this.dialog.width * this.dialog.scaleX - 100,
+			this.dialog.y - this.dialog.scaleY * 60,
+			''
+		);
+		this.rightPortraitImage.flipX = true;
+		this.rightPortraitImage.visible = false;
+
+		this.rightNameText = this.scene.add
+			.text(
+				this.dialog.x + this.dialog.width * this.dialog.scaleX - this.margin,
+				this.dialog.y + this.dialog.scaleY * 20,
+				``,
+				{
+					fontSize: this.fontSize,
+					letterSpacing: this.letterSpacing,
+					fontFamily: this.fontFamily,
+					color: 'white',
+					backgroundColor: 'black',
+				}
+			)
+			.setScrollFactor(0, 0)
+			.setDepth(99999999999999999)
+			.setOrigin(1, 0);
+		this.rightNameText.visible = false;
+	}
+
+	/**
+	 * @private
+	 * Creates the interaction buttons.
+	 * The buttons are used to drive the dialogue, skip, and close.
+	 */
+	createInteractionButtons() {
 		this.actionButton = this.scene.add
 			.image(
 				this.cameraWidth - this.margin * 4,
@@ -376,63 +440,25 @@ export class LuminusDialogBox {
 				if (this.buttonB) this.buttonB.on('down', (b) => this.checkButtonDown());
 			}
 		});
+	}
 
-		this.leftPortraitImage = this.scene.add.image(
-			this.dialog.x + this.dialog.scaleX * 100,
-			this.dialog.y - this.dialog.scaleY * 60,
-			''
+	/**
+	 * @private
+	 * Creates the dialogue box itself.
+	 */
+	createDialogueBox() {
+		this.dialog = this.scene.add.nineslice(
+			this.margin,
+			this.cameraHeight - this.dialogHeight - this.margin,
+			this.cameraWidth - this.margin * 2,
+			this.dialogHeight,
+			this.dialogSpriteName,
+			this.nineSliceOffsets,
+			this.nineSliceSafeArea // (optional) pixels to offset when computing the safe usage area
 		);
-		this.leftPortraitImage.visible = false;
-
-		this.leftName = 'Game Master';
-		this.leftNameText = this.scene.add
-			.text(this.dialog.x + this.margin, this.dialog.y + this.dialog.scaleY * 20, ` ${this.leftName}: `, {
-				fontSize: this.fontSize,
-				letterSpacing: this.letterSpacing,
-				fontFamily: this.fontFamily,
-				color: 'white',
-				backgroundColor: 'black',
-			})
-			.setScrollFactor(0, 0)
-			.setDepth(99999999999999999);
-		this.leftNameText.visible = false;
-
-		this.rightPortraitImage = this.scene.add.image(
-			this.dialog.x + this.dialog.width * this.dialog.scaleX - 100,
-			this.dialog.y - this.dialog.scaleY * 60,
-			''
-		);
-		this.rightPortraitImage.flipX = true;
-		this.rightPortraitImage.visible = false;
-
-		this.rightNameText = this.scene.add
-			.text(
-				this.dialog.x + this.dialog.width * this.dialog.scaleX - this.margin,
-				this.dialog.y + this.dialog.scaleY * 20,
-				``,
-				{
-					fontSize: this.fontSize,
-					letterSpacing: this.letterSpacing,
-					fontFamily: this.fontFamily,
-					color: 'white',
-					backgroundColor: 'black',
-				}
-			)
-			.setScrollFactor(0, 0)
-			.setDepth(99999999999999999)
-			.setOrigin(1, 0);
-		this.rightNameText.visible = false;
-		if (this.gamepad) {
-			this.setGamepadTextures();
-		}
-		this.scene.input.gamepad.on('connected', (pad) => {
-			this.gamepad = pad;
-			this.setGamepadTextures();
-		});
-		this.scene.input.gamepad.on('down', (pad) => {
-			this.gamepad = pad;
-			this.checkButtonDown();
-		});
+		this.dialog.setScrollFactor(0, 0);
+		this.dialog.depth = 99;
+		this.dialog.visible = false;
 	}
 
 	/**
