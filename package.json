@@ -11,7 +11,7 @@
     "serve-tutorial": "cd tutorial-admin && php -S localhost:3500 system/router.php",
     "wget-tutorial": "wget --mirror --convert-links --adjust-extension --restrict-file-names=windows  --page-requisites --no-parent -e robots=off -P ./  http://localhost:3500 && mv ./localhost+3500 ./tutorial",
     "distwatch": "npx browser-sync start --server 'dist'  --watch 'dist/*.html'",
-    "publish-git": "npm run build && cd dist && git init && git remote add pages https://github.com/SkyAlpha/luminus-rpg.github.io && git add -A . && git commit -m \"$npm_config_message\" && git push pages master --force && cd .. "
+    "publish-git": "npm run build && cd dist && git init && git remote rm pages && git remote add pages https://github.com/SkyAlpha/luminus-rpg.github.io && git add -A . && git commit -m \"$npm_config_message\" && git push pages master --force && cd .. "
   },
   "repository": {
     "type": "git",
