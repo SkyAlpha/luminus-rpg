@@ -1072,12 +1072,12 @@
   </properties>
   <object id="21" name="plates_house" x="1110" y="18.1818" width="26.5455" height="5.09091">
    <properties>
-    <property name="message" value="- I'm so glad the house is clean and organized."/>
+    <property name="messageID" type="int" value="7"/>
    </properties>
   </object>
   <object id="29" name="bad_chair" x="1055.5" y="31.5" width="25" height="45">
    <properties>
-    <property name="message" value="- This is a weak chair. I think it's better not to sit on it."/>
+    <property name="messageID" type="int" value="6"/>
    </properties>
   </object>
   <object id="30" name="beautiful_bed" x="911" y="369.5" width="49.5" height="52">
@@ -1112,7 +1112,7 @@
   </object>
   <object id="52" name="treasure_hole" x="-223.5" y="-149.5" width="46.5" height="69">
    <properties>
-    <property name="message" value="Be careful not to fall in this hole! They say there is a dungeon down there."/>
+    <property name="messageID" type="int" value="9"/>
    </properties>
   </object>
   <object id="53" name="logs" x="-548.667" y="-760" width="82.6667" height="55.3333">
@@ -1132,7 +1132,7 @@
   </object>
   <object id="60" name="side_lake" x="-592" y="89" width="52.5" height="92.5">
    <properties>
-    <property name="message" value="- I could stand here ans look at this view all day long....."/>
+    <property name="messageID" type="int" value="8"/>
    </properties>
   </object>
   <object id="62" name="bones" x="-784.875" y="128.875" width="22.75" height="22.25">
